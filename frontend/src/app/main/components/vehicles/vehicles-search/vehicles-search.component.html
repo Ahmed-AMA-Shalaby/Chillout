@@ -1,0 +1,51 @@
+<div id="vehicles-search" class="page-layout carded fullwidth">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+  
+    <!-- CENTER -->
+    <div class="center">
+  
+      <!-- HEADER -->
+      <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+        fxLayoutAlign.gt-sm="space-between center">
+  
+        <!-- APP TITLE -->
+        <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                local_shipping
+            </mat-icon>
+          <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Vehicles</span>
+        </div>
+        <!-- / APP TITLE -->
+  
+        <!-- SEARCH -->
+        <div class="search-wrapper mx-32 mx-md-0">
+            <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon>search</mat-icon>
+                <input #filter placeholder="Search for a vehicle">
+            </div>
+        </div>
+        <!-- / SEARCH -->
+  
+        <!-- ADD BUTTON -->
+        <button mat-raised-button (click)="ViewVehicles()" class="fuse-white mt-24 mt-md-0">
+          <mat-icon>people</mat-icon>
+          <span> View All Vehicles</span>
+        </button>
+        <!-- / ADD BUTTON -->
+  
+      </div>
+      <!-- / HEADER -->
+  
+      <!-- CONTENT CARD -->
+      <div class="content-card" *ngIf="vehicles" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+  
+        <generic-table [data]="vehicles" [cellLink]="'/vehicle/'" [type]="'vehicles'" [length] = "length" [pageSize]="pageSize" (pageParamters)='changePage($event)'></generic-table>
+  
+      </div>
+      <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+  </div>

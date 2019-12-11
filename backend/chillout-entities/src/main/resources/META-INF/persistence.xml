@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="chilloutdb" transaction-type="JTA">
+    <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+
+    <class>com.wataneya.chillout.entity.User</class>
+    <class>com.wataneya.chillout.entity.Product</class>
+
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+    <properties>
+      <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform"/>
+      <property name="hibernate.ogm.datastore.database" value="chilloutdb"/>
+      <property name="hibernate.ogm.datastore.create_database" value="true"/>
+      <property name="hibernate.ogm.datastore.host" value="localhost"/>
+      <property name="hibernate.ogm.datastore.port" value="27017"/>
+      <property name="hibernate.ogm.datastore.provider" value="MONGODB"/>
+
+      <property name="hibernate.event.merge.entity_copy_observer" value="allow"/>
+      <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+
+    </properties>
+  </persistence-unit>
+</persistence>
