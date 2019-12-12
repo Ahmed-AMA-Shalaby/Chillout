@@ -165,6 +165,86 @@ public class ChilloutClientREST {
         }
     }
 
+    @POST
+    @Path("/createDistance")
+    @Consumes("application/json")
+    public Response createDistance(Distance distance){
+        try {
+            return chilloutStoreService.createDistance(distance) ?
+                    Response.ok(new BaseResponse(false, "Distance created successfully")).build() :
+                    Response.ok(new BaseResponse(true, "Distance already exists")).build();
+        } catch (Exception e) {
+            if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
+                return Response.ok(new BaseResponse(true, "Distance already exists")).build();
+            }
+            return Response.ok(new BaseResponse(true, "Error")).build();
+        }
+    }
+
+    @POST
+    @Path("/createImportation")
+    @Consumes("application/json")
+    public Response createImportation(Importation importation){
+        try {
+            return chilloutStoreService.createImportation(importation) ?
+                    Response.ok(new BaseResponse(false, "Importation created successfully")).build() :
+                    Response.ok(new BaseResponse(true, "Importation already exists")).build();
+        } catch (Exception e) {
+            if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
+                return Response.ok(new BaseResponse(true, "Importation already exists")).build();
+            }
+            return Response.ok(new BaseResponse(true, "Error")).build();
+        }
+    }
+
+    @POST
+    @Path("/createExisting")
+    @Consumes("application/json")
+    public Response createExisting(Existing existing){
+        try {
+            return chilloutStoreService.createExisting(existing) ?
+                    Response.ok(new BaseResponse(false, "Existing created successfully")).build() :
+                    Response.ok(new BaseResponse(true, "Existing already exists")).build();
+        } catch (Exception e) {
+            if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
+                return Response.ok(new BaseResponse(true, "Existing already exists")).build();
+            }
+            return Response.ok(new BaseResponse(true, "Error")).build();
+        }
+    }
+
+    @POST
+    @Path("/createWithdrawal")
+    @Consumes("application/json")
+    public Response createWithdrawal(Withdrawal withdrawal){
+        try {
+            return chilloutStoreService.createWithdrawal(withdrawal) ?
+                    Response.ok(new BaseResponse(false, "Withdrawal created successfully")).build() :
+                    Response.ok(new BaseResponse(true, "Withdrawal already exists")).build();
+        } catch (Exception e) {
+            if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
+                return Response.ok(new BaseResponse(true, "Withdrawal already exists")).build();
+            }
+            return Response.ok(new BaseResponse(true, "Error")).build();
+        }
+    }
+
+    @POST
+    @Path("/createSale")
+    @Consumes("application/json")
+    public Response createSale(Sale sale){
+        try {
+            return chilloutStoreService.createSale(sale) ?
+                    Response.ok(new BaseResponse(false, "Sale created successfully")).build() :
+                    Response.ok(new BaseResponse(true, "Sale already exists")).build();
+        } catch (Exception e) {
+            if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
+                return Response.ok(new BaseResponse(true, "Sale already exists")).build();
+            }
+            return Response.ok(new BaseResponse(true, "Error")).build();
+        }
+    }
+
     /*****************************************************PUT***********************************************************/
 
     @PUT
@@ -244,5 +324,33 @@ public class ChilloutClientREST {
     @Produces("application/json")
     public Response retrieveDistances() {
         return Response.ok(chilloutQueryService.retrieveDistances()).build();
+    }
+
+    @GET
+    @Path("/retrieveImportations")
+    @Produces("application/json")
+    public Response retrieveImportations() {
+        return Response.ok(chilloutQueryService.retrieveImportations()).build();
+    }
+
+    @GET
+    @Path("/retrieveExistings")
+    @Produces("application/json")
+    public Response retrieveExistings() {
+        return Response.ok(chilloutQueryService.retrieveExistings()).build();
+    }
+
+    @GET
+    @Path("/retrieveWithdrawals")
+    @Produces("application/json")
+    public Response retrieveWithdrawals() {
+        return Response.ok(chilloutQueryService.retrieveWithdrawals()).build();
+    }
+
+    @GET
+    @Path("/retrieveSales")
+    @Produces("application/json")
+    public Response retrieveSales() {
+        return Response.ok(chilloutQueryService.retrieveSales()).build();
     }
 }

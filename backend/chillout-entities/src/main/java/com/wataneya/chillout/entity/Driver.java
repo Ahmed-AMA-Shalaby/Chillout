@@ -16,7 +16,9 @@ public class Driver {
     @GeneratedValue(generator = "uuid")
     private String id;
 
-    private String driver;
+    private String firstName;
+
+    private String lastName;
 
     @Column(unique = true)
     private String phone;
@@ -25,9 +27,10 @@ public class Driver {
 
     }
 
-    public Driver(String id, String driver, String phone) {
+    public Driver(String id, String firstName, String lastName, String phone) {
         this.id = id;
-        this.driver = driver;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
     }
 
@@ -39,12 +42,20 @@ public class Driver {
         this.id = id;
     }
 
-    public String getDriver() {
-        return driver;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setDriver(String driver) {
-        this.driver = driver;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhone() {
@@ -59,7 +70,8 @@ public class Driver {
     public String toString() {
         return "Driver{" +
                 "id='" + id + '\'' +
-                ", driver='" + driver + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
     }

@@ -51,7 +51,7 @@ public class ChilloutStoreService {
         Sector sectorfromDB = null;
         try {
             sectorfromDB = (Sector)
-                    em.createQuery("select p from Sector p where p.sector = :sector").setParameter("sector", sector.getSector()).getSingleResult();
+                    em.createQuery("select s from Sector s where s.sector = :sector").setParameter("sector", sector.getSector()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (sectorfromDB != null) {
@@ -66,7 +66,7 @@ public class ChilloutStoreService {
         Tank tankfromDB = null;
         try {
             tankfromDB = (Tank)
-                    em.createQuery("select p from Tank p where p.tank = :tank").setParameter("tank", tank.getTank()).getSingleResult();
+                    em.createQuery("select t from Tank t where t.tank = :tank").setParameter("tank", tank.getTank()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (tankfromDB != null) {
@@ -81,7 +81,7 @@ public class ChilloutStoreService {
         Company companyfromDB = null;
         try {
             companyfromDB = (Company)
-                    em.createQuery("select p from Company p where p.company = :company").setParameter("company", company.getCompany()).getSingleResult();
+                    em.createQuery("select c from Company c where c.company = :company").setParameter("company", company.getCompany()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (companyfromDB != null) {
@@ -96,7 +96,7 @@ public class ChilloutStoreService {
         Agent agentfromDB = null;
         try {
             agentfromDB = (Agent)
-                    em.createQuery("select p from Agent p where p.agent = :agent").setParameter("agent", agent.getAgent()).getSingleResult();
+                    em.createQuery("select a from Agent a where a.agent = :agent").setParameter("agent", agent.getAgent()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (agentfromDB != null) {
@@ -111,7 +111,7 @@ public class ChilloutStoreService {
         Driver driverfromDB = null;
         try {
             driverfromDB = (Driver)
-                    em.createQuery("select p from Driver p where p.driver = :driver").setParameter("driver", driver.getDriver()).getSingleResult();
+                    em.createQuery("select d from Driver d where d.driver = :driver").setParameter("driver", driver.getPhone()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (driverfromDB != null) {
@@ -126,7 +126,7 @@ public class ChilloutStoreService {
         Station stationfromDB = null;
         try {
             stationfromDB = (Station)
-                    em.createQuery("select p from Station p where p.station = :station").setParameter("station", station.getStation()).getSingleResult();
+                    em.createQuery("select s from Station s where s.station = :station").setParameter("station", station.getStation()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (stationfromDB != null) {
@@ -141,7 +141,7 @@ public class ChilloutStoreService {
         Warehouse warehousefromDB = null;
         try {
             warehousefromDB = (Warehouse)
-                    em.createQuery("select p from Warehouse p where p.warehouse = :warehouse").setParameter("warehouse", warehouse.getWarehouse()).getSingleResult();
+                    em.createQuery("select w from Warehouse w where w.warehouse = :warehouse").setParameter("warehouse", warehouse.getWarehouse()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (warehousefromDB != null) {
@@ -156,13 +156,73 @@ public class ChilloutStoreService {
         Distance distancefromDB = null;
         try {
             distancefromDB = (Distance)
-                    em.createQuery("select p from Distance p where p.distance = :distance").setParameter("distance", distance.getDistance()).getSingleResult();
+                    em.createQuery("select d from Distance d where d.distance = :distance").setParameter("distance", distance.getDistance()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (distancefromDB != null) {
             return false;
         } else {
             em.persist(distance);
+            return true;
+        }
+    }
+
+    public boolean createImportation(Importation importation) {
+        Importation importationfromDB = null;
+        try {
+            importationfromDB = (Importation)
+                    em.createQuery("select i from Importation i where i.importation = :importation").setParameter("importation", importation.getImportedAmount()).getSingleResult();
+        } catch (NoResultException nre) {
+        }
+        if (importationfromDB != null) {
+            return false;
+        } else {
+            em.persist(importation);
+            return true;
+        }
+    }
+
+    public boolean createExisting(Existing existing) {
+        Existing existingfromDB = null;
+        try {
+            existingfromDB = (Existing)
+                    em.createQuery("select e from Existing e where e.existing = :existing").setParameter("existing", existing.getExistingAmount()).getSingleResult();
+        } catch (NoResultException nre) {
+        }
+        if (existingfromDB != null) {
+            return false;
+        } else {
+            em.persist(existing);
+            return true;
+        }
+    }
+
+    public boolean createWithdrawal(Withdrawal withdrawal) {
+        Withdrawal withdrawalfromDB = null;
+        try {
+            withdrawalfromDB = (Withdrawal)
+                    em.createQuery("select w from Withdrawal w where w.withdrawal = :withdrawal").setParameter("withdrawal", withdrawal.getWithdrawalAmount()).getSingleResult();
+        } catch (NoResultException nre) {
+        }
+        if (withdrawalfromDB != null) {
+            return false;
+        } else {
+            em.persist(withdrawal);
+            return true;
+        }
+    }
+
+    public boolean createSale(Sale sale) {
+        Sale salefromDB = null;
+        try {
+            salefromDB = (Sale)
+                    em.createQuery("select s from Sale s where s.sale = :sale").setParameter("sale", sale.getSaleAmount()).getSingleResult();
+        } catch (NoResultException nre) {
+        }
+        if (salefromDB != null) {
+            return false;
+        } else {
+            em.persist(sale);
             return true;
         }
     }
