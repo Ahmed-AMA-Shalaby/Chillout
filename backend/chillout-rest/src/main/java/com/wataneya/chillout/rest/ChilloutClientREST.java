@@ -21,6 +21,7 @@ public class ChilloutClientREST {
 
     /****************************************************POST***********************************************************/
 
+    //region POST
     @POST
     @Path("/createUser")
     @Consumes("application/json")
@@ -153,6 +154,7 @@ public class ChilloutClientREST {
     @Path("/createWarehouse")
     @Consumes("application/json")
     public Response createWarehouse(Warehouse warehouse){
+        System.out.println(warehouse);
         try {
             return chilloutStoreService.createWarehouse(warehouse) ?
                     Response.ok(new BaseResponse(false, "Warehouse created successfully")).build() :
@@ -244,18 +246,11 @@ public class ChilloutClientREST {
             return Response.ok(new BaseResponse(true, "Error")).build();
         }
     }
-
-    /*****************************************************PUT***********************************************************/
-
-    @PUT
-    @Path("/updateUser")
-    @Consumes("application/json")
-    public Response updateUser(User user) {
-        return chilloutStoreService.updateUser(user) ? Response.ok(true).build() : Response.ok(false).build();
-    }
+    //endregion
 
     /*****************************************************GET***********************************************************/
 
+    //region GET
     @GET
     @Path("/retrieveUsers")
     @Produces("application/json")
@@ -353,4 +348,16 @@ public class ChilloutClientREST {
     public Response retrieveSales() {
         return Response.ok(chilloutQueryService.retrieveSales()).build();
     }
+    //endregion
+
+    /*****************************************************PUT***********************************************************/
+
+    //region PUT
+    @PUT
+    @Path("/updateUser")
+    @Consumes("application/json")
+    public Response updateUser(User user) {
+        return chilloutStoreService.updateUser(user) ? Response.ok(true).build() : Response.ok(false).build();
+    }
+    //endregion
 }

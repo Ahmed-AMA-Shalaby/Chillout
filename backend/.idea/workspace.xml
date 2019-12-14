@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12aafbd7-eb7c-44a2-9b44-eb17e511f17d" name="Default Changelist" comment="" />
+    <list default="true" id="12aafbd7-eb7c-44a2-9b44-eb17e511f17d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutStoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutStoreService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-ejb/target/chillout-ejb.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/chillout-ejb.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Warehouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-entities/target/chillout-entities.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/chillout-entities.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-rest/src/main/java/com/wataneya/chillout/rest/ChilloutClientREST.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/src/main/java/com/wataneya/chillout/rest/ChilloutClientREST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-rest/target/chillout-rest.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/target/chillout-rest.jar" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/chillout-war/src/main/webapp/WEB-INF/web.xml" root0="FORCE_HIGHLIGHTING" />
@@ -19,7 +33,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1TeReIFVCGJGjiOAn1W3zXuagXJ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/chillout-war/src" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -67,5 +83,16 @@
       <updated>1573818668816</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

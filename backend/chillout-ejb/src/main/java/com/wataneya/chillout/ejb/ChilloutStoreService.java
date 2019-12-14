@@ -12,6 +12,7 @@ public class ChilloutStoreService {
     @PersistenceContext(unitName = "chilloutdb")
     private EntityManager em;
 
+    //region Creation
     public boolean createUser(User user) {
         User userfromDB = null;
         try {
@@ -226,4 +227,9 @@ public class ChilloutStoreService {
             return true;
         }
     }
+    //endregion
+
+    //region Assignment
+
+    //endregion
 }
