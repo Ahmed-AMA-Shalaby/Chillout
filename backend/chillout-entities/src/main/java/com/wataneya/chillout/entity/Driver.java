@@ -20,18 +20,22 @@ public class Driver {
 
     private String lastName;
 
+    private boolean isHidden;
+
+
     @Column(unique = true)
-    private String phone;
+    private String phoneNumber;
 
     public Driver(){
 
     }
 
-    public Driver(String id, String firstName, String lastName, String phone) {
+    public Driver(String id, String firstName, String lastName, boolean isHidden, String phoneNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phone = phone;
+        this.isHidden = isHidden;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getId() {
@@ -58,22 +62,20 @@ public class Driver {
         this.lastName = lastName;
     }
 
-    public String getPhone() {
-        return phone;
+    public boolean isHidden() {
+        return isHidden;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 
-    @Override
-    public String toString() {
-        return "Driver{" +
-                "id='" + id + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
 

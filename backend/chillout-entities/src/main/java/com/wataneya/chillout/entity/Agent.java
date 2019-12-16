@@ -17,15 +17,18 @@ public class Agent {
     private String id;
 
     @Column(unique = true)
-    private String agent;
+    private String agentName;
+
+    private boolean isHidden;
 
     public Agent(){
 
     }
 
-    public Agent(String id, String agent) {
+    public Agent(String id, String agentName, boolean isHidden) {
         this.id = id;
-        this.agent = agent;
+        this.agentName = agentName;
+        this.isHidden = isHidden;
     }
 
     public String getId() {
@@ -36,20 +39,20 @@ public class Agent {
         this.id = id;
     }
 
-    public String getAgent() {
-        return agent;
+    public String getAgentName() {
+        return agentName;
     }
 
-    public void setAgent(String agent) {
-        this.agent = agent;
+    public void setAgentName(String agentName) {
+        this.agentName = agentName;
     }
 
-    @Override
-    public String toString() {
-        return "Agent{" +
-                "id='" + id + '\'' +
-                ", agent='" + agent + '\'' +
-                '}';
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 }
 

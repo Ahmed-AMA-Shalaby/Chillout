@@ -23,20 +23,23 @@ public class User {
     private String lastName;
 
     @Column(unique = true)
-    private String phone;
+    private String phoneNumber;
 
     private String password;
+
+    private boolean isHidden;
 
     public User(){
 
     }
 
-    public User(String id, String firstName, String lastName, String phone, String password) {
+    public User(String id, String firstName, String lastName, String phoneNumber, String password, boolean isHidden) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phone = phone;
+        this.phoneNumber = phoneNumber;
         this.password = password;
+        this.isHidden = isHidden;
     }
 
     public String getId() {
@@ -63,12 +66,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getPassword() {
@@ -79,15 +82,12 @@ public class User {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 }
 

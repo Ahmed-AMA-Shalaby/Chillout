@@ -16,16 +16,18 @@ public class Distance {
     @GeneratedValue(generator = "uuid")
     private String id;
 
-    @Column(unique = true)
     private int distance;
+
+    private boolean isHidden;
 
     public Distance(){
 
     }
 
-    public Distance(String id, int distance) {
+    public Distance(String id, int distance, boolean isHidden) {
         this.id = id;
         this.distance = distance;
+        this.isHidden = isHidden;
     }
 
     public String getId() {
@@ -44,12 +46,12 @@ public class Distance {
         this.distance = distance;
     }
 
-    @Override
-    public String toString() {
-        return "Distance{" +
-                "id='" + id + '\'' +
-                ", distance='" + distance + '\'' +
-                '}';
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 }
 

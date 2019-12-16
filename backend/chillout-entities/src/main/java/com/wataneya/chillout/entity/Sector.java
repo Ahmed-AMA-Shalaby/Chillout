@@ -17,15 +17,18 @@ public class Sector {
     private String id;
 
     @Column(unique = true)
-    private String sector;
+    private String sectorName;
+
+    private boolean isHidden;
 
     public Sector(){
 
     }
 
-    public Sector(String id, String sector) {
+    public Sector(String id, String sectorName, boolean isHidden) {
         this.id = id;
-        this.sector = sector;
+        this.sectorName = sectorName;
+        this.isHidden = isHidden;
     }
 
     public String getId() {
@@ -36,20 +39,20 @@ public class Sector {
         this.id = id;
     }
 
-    public String getSector() {
-        return sector;
+    public String getSectorName() {
+        return sectorName;
     }
 
-    public void setSector(String sector) {
-        this.sector = sector;
+    public void setSectorName(String sectorName) {
+        this.sectorName = sectorName;
     }
 
-    @Override
-    public String toString() {
-        return "sector{" +
-                "id='" + id + '\'' +
-                ", sector='" + sector + '\'' +
-                '}';
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 }
 

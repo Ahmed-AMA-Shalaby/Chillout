@@ -20,19 +20,23 @@ public class Company {
     private String id;
 
     @Column(unique = true)
-    private String company;
+    private String companyName;
+
+    private boolean isHidden;
 
     @ManyToMany(mappedBy = "companies",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Warehouse> warehouses = new HashSet<>();
 
+
     public Company(){
 
     }
 
-    public Company(String id, String company, Set<Warehouse> warehouses) {
+    public Company(String id, String companyName, boolean isHidden, Set<Warehouse> warehouses) {
         this.id = id;
-        this.company = company;
+        this.companyName = companyName;
+        this.isHidden = isHidden;
         this.warehouses = warehouses;
     }
 
@@ -44,12 +48,20 @@ public class Company {
         this.id = id;
     }
 
-    public String getCompany() {
-        return company;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 
     public Set<Warehouse> getWarehouses() {
@@ -58,15 +70,6 @@ public class Company {
 
     public void setWarehouses(Set<Warehouse> warehouses) {
         this.warehouses = warehouses;
-    }
-
-    @Override
-    public String toString() {
-        return "Company{" +
-                "id='" + id + '\'' +
-                ", company='" + company + '\'' +
-                ", warehouses=" + warehouses +
-                '}';
     }
 }
 

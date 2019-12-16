@@ -153,10 +153,13 @@ public class ChilloutClientREST {
     @POST
     @Path("/createWarehouse")
     @Consumes("application/json")
-    public Response createWarehouse(Warehouse warehouse){
-        System.out.println(warehouse);
+    public Response createWarehouse(String body){
+        Gson gson = new Gson();
+        JsonObject parsedBody = gson.fromJson(body, JsonObject.class);
+        Warehouse warehouse = gson.fromJson(parsedBody.get("warehouseData"), Warehouse.class);
+        String companyName = parsedBody.get("companyName").getAsString();
         try {
-            return chilloutStoreService.createWarehouse(warehouse) ?
+            return chilloutStoreService.createWarehouse(warehouse, companyName) ?
                     Response.ok(new BaseResponse(false, "Warehouse created successfully")).build() :
                     Response.ok(new BaseResponse(true, "Warehouse already exists")).build();
         } catch (Exception e) {

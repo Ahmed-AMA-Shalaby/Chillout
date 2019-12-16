@@ -19,13 +19,16 @@ public class Tank {
     @Column(unique = true)
     private int tankVolume;
 
+    private boolean isHidden;
+
     public Tank(){
 
     }
 
-    public Tank(String id, int tankVolume) {
+    public Tank(String id, int tankVolume, boolean isHidden) {
         this.id = id;
         this.tankVolume = tankVolume;
+        this.isHidden = isHidden;
     }
 
     public String getId() {
@@ -36,20 +39,20 @@ public class Tank {
         this.id = id;
     }
 
-    public int getTank() {
+    public int getTankVolume() {
         return tankVolume;
     }
 
-    public void setTank(int tankVolume) {
+    public void setTankVolume(int tankVolume) {
         this.tankVolume = tankVolume;
     }
 
-    @Override
-    public String toString() {
-        return "Tank{" +
-                "id='" + id + '\'' +
-                ", tank='" + tankVolume + '\'' +
-                '}';
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 }
 

@@ -17,7 +17,7 @@ public class ChilloutStoreService {
         User userfromDB = null;
         try {
             userfromDB = (User)
-                    em.createQuery("select u from User u where u.phone = :phone").setParameter("phone", user.getPhone()).getSingleResult();
+                    em.createQuery("select u from User u where u.phoneNumber = :phoneNumber").setParameter("phoneNumber", user.getPhoneNumber()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (userfromDB != null) {
@@ -37,7 +37,7 @@ public class ChilloutStoreService {
         Product productfromDB = null;
         try {
             productfromDB = (Product)
-                    em.createQuery("select p from Product p where p.product = :product").setParameter("product", product.getProduct()).getSingleResult();
+                    em.createQuery("select p from Product p where p.productName = :productName").setParameter("productName", product.getProductName()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (productfromDB != null) {
@@ -52,7 +52,7 @@ public class ChilloutStoreService {
         Sector sectorfromDB = null;
         try {
             sectorfromDB = (Sector)
-                    em.createQuery("select s from Sector s where s.sector = :sector").setParameter("sector", sector.getSector()).getSingleResult();
+                    em.createQuery("select s from Sector s where s.sectorName = :sectorName").setParameter("sectorName", sector.getSectorName()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (sectorfromDB != null) {
@@ -67,7 +67,7 @@ public class ChilloutStoreService {
         Tank tankfromDB = null;
         try {
             tankfromDB = (Tank)
-                    em.createQuery("select t from Tank t where t.tank = :tank").setParameter("tank", tank.getTank()).getSingleResult();
+                    em.createQuery("select t from Tank t where t.tankVolume = :tankVolume").setParameter("tankVolume", tank.getTankVolume()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (tankfromDB != null) {
@@ -82,7 +82,7 @@ public class ChilloutStoreService {
         Company companyfromDB = null;
         try {
             companyfromDB = (Company)
-                    em.createQuery("select c from Company c where c.company = :company").setParameter("company", company.getCompany()).getSingleResult();
+                    em.createQuery("select c from Company c where c.companyName = :companyName").setParameter("companyName", company.getCompanyName()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (companyfromDB != null) {
@@ -97,7 +97,7 @@ public class ChilloutStoreService {
         Agent agentfromDB = null;
         try {
             agentfromDB = (Agent)
-                    em.createQuery("select a from Agent a where a.agent = :agent").setParameter("agent", agent.getAgent()).getSingleResult();
+                    em.createQuery("select a from Agent a where a.agentName = :agentName").setParameter("agentName", agent.getAgentName()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (agentfromDB != null) {
@@ -112,7 +112,7 @@ public class ChilloutStoreService {
         Driver driverfromDB = null;
         try {
             driverfromDB = (Driver)
-                    em.createQuery("select d from Driver d where d.driver = :driver").setParameter("driver", driver.getPhone()).getSingleResult();
+                    em.createQuery("select d from Driver d where d.phoneNumber = :phoneNumber").setParameter("phoneNumber", driver.getPhoneNumber()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (driverfromDB != null) {
@@ -127,7 +127,7 @@ public class ChilloutStoreService {
         Station stationfromDB = null;
         try {
             stationfromDB = (Station)
-                    em.createQuery("select s from Station s where s.station = :station").setParameter("station", station.getStation()).getSingleResult();
+                    em.createQuery("select s from Station s where s.stationName = :stationName").setParameter("stationName", station.getStationName()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (stationfromDB != null) {
@@ -138,17 +138,19 @@ public class ChilloutStoreService {
         }
     }
 
-    public boolean createWarehouse(Warehouse warehouse) {
+    public boolean createWarehouse(Warehouse warehouse, String companyName) {
         Warehouse warehousefromDB = null;
         try {
             warehousefromDB = (Warehouse)
-                    em.createQuery("select w from Warehouse w where w.warehouse = :warehouse").setParameter("warehouse", warehouse.getWarehouse()).getSingleResult();
+                    em.createQuery("select w from Warehouse w where w.warehouseName = :warehouseName").setParameter("warehouseName", warehouse.getWarehouseName()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (warehousefromDB != null) {
             return false;
         } else {
             em.persist(warehouse);
+            assignWarehousetoCompany(warehouse.getId(), companyName);
+
             return true;
         }
     }
@@ -169,40 +171,20 @@ public class ChilloutStoreService {
     }
 
     public boolean createImportation(Importation importation) {
-        Importation importationfromDB = null;
-        try {
-            importationfromDB = (Importation)
-                    em.createQuery("select i from Importation i where i.importation = :importation").setParameter("importation", importation.getImportedAmount()).getSingleResult();
-        } catch (NoResultException nre) {
-        }
-        if (importationfromDB != null) {
-            return false;
-        } else {
-            em.persist(importation);
-            return true;
-        }
+        em.persist(importation);
+        return true;
     }
 
     public boolean createExisting(Existing existing) {
-        Existing existingfromDB = null;
-        try {
-            existingfromDB = (Existing)
-                    em.createQuery("select e from Existing e where e.existing = :existing").setParameter("existing", existing.getExistingAmount()).getSingleResult();
-        } catch (NoResultException nre) {
-        }
-        if (existingfromDB != null) {
-            return false;
-        } else {
-            em.persist(existing);
-            return true;
-        }
+        em.persist(existing);
+        return true;
     }
 
     public boolean createWithdrawal(Withdrawal withdrawal) {
         Withdrawal withdrawalfromDB = null;
         try {
             withdrawalfromDB = (Withdrawal)
-                    em.createQuery("select w from Withdrawal w where w.withdrawal = :withdrawal").setParameter("withdrawal", withdrawal.getWithdrawalAmount()).getSingleResult();
+                    em.createQuery("select w from Withdrawal w where w.withdrawalAmount = :withdrawalAmount").setParameter("withdrawalAmount", withdrawal.getWithdrawalAmount()).getSingleResult();
         } catch (NoResultException nre) {
         }
         if (withdrawalfromDB != null) {
@@ -214,22 +196,20 @@ public class ChilloutStoreService {
     }
 
     public boolean createSale(Sale sale) {
-        Sale salefromDB = null;
-        try {
-            salefromDB = (Sale)
-                    em.createQuery("select s from Sale s where s.sale = :sale").setParameter("sale", sale.getSaleAmount()).getSingleResult();
-        } catch (NoResultException nre) {
-        }
-        if (salefromDB != null) {
-            return false;
-        } else {
-            em.persist(sale);
-            return true;
-        }
+        em.persist(sale);
+        return true;
     }
     //endregion
 
     //region Assignment
-
+    public boolean assignWarehousetoCompany(String warehouseID, String companyName) {
+        Warehouse warehouse = (Warehouse) em.createQuery("From Warehouse w where w.id = :id")
+                .setParameter("id", warehouseID).getSingleResult();
+        Company company = (Company) em.createQuery("From Company c where c.companyName = :companyName")
+                .setParameter("companyName", companyName).getSingleResult();
+        warehouse.getCompanies().add(company);
+        em.merge(warehouse);
+        return true;
+    }
     //endregion
 }

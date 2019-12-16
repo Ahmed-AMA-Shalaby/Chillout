@@ -20,7 +20,9 @@ public class Warehouse {
     private String id;
 
     @Column(unique = true)
-    private String warehouse;
+    private String warehouseName;
+
+    private boolean isHidden;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIdentityReference(alwaysAsId = true)
@@ -30,9 +32,10 @@ public class Warehouse {
 
     }
 
-    public Warehouse(String id, String warehouse, Set<Company> companies) {
+    public Warehouse(String id, String warehouseName, boolean isHidden, Set<Company> companies) {
         this.id = id;
-        this.warehouse = warehouse;
+        this.warehouseName = warehouseName;
+        this.isHidden = isHidden;
         this.companies = companies;
     }
 
@@ -44,12 +47,20 @@ public class Warehouse {
         this.id = id;
     }
 
-    public String getWarehouse() {
-        return warehouse;
+    public String getWarehouseName() {
+        return warehouseName;
     }
 
-    public void setWarehouse(String warehouse) {
-        this.warehouse = warehouse;
+    public void setWarehouseName(String warehouseName) {
+        this.warehouseName = warehouseName;
+    }
+
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 
     public Set<Company> getCompanies() {
@@ -58,15 +69,6 @@ public class Warehouse {
 
     public void setCompanies(Set<Company> companies) {
         this.companies = companies;
-    }
-
-    @Override
-    public String toString() {
-        return "Warehouse{" +
-                "id='" + id + '\'' +
-                ", warehouse='" + warehouse + '\'' +
-                ", companies=" + companies +
-                '}';
     }
 }
 

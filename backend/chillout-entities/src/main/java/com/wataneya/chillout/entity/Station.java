@@ -17,15 +17,18 @@ public class Station {
     private String id;
 
     @Column(unique = true)
-    private String station;
+    private String stationName;
+
+    private boolean isHidden;
 
     public Station(){
 
     }
 
-    public Station(String id, String station) {
+    public Station(String id, String stationName, boolean isHidden) {
         this.id = id;
-        this.station = station;
+        this.stationName = stationName;
+        this.isHidden = isHidden;
     }
 
     public String getId() {
@@ -36,20 +39,20 @@ public class Station {
         this.id = id;
     }
 
-    public String getStation() {
-        return station;
+    public String getStationName() {
+        return stationName;
     }
 
-    public void setStation(String station) {
-        this.station = station;
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
     }
 
-    @Override
-    public String toString() {
-        return "station{" +
-                "id='" + id + '\'' +
-                ", station='" + station + '\'' +
-                '}';
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 }
 

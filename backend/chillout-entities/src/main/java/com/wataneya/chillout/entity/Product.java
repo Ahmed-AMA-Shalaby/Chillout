@@ -17,15 +17,18 @@ public class Product {
     private String id;
 
     @Column(unique = true)
-    private String product;
+    private String productName;
+
+    private boolean isHidden;
 
     public Product(){
 
     }
 
-    public Product(String id, String product) {
+    public Product(String id, String productName, boolean isHidden) {
         this.id = id;
-        this.product = product;
+        this.productName = productName;
+        this.isHidden = isHidden;
     }
 
     public String getId() {
@@ -36,20 +39,20 @@ public class Product {
         this.id = id;
     }
 
-    public String getProduct() {
-        return product;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id='" + id + '\'' +
-                ", product='" + product + '\'' +
-                '}';
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 }
 
