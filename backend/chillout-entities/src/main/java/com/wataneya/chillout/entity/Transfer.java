@@ -8,15 +8,15 @@ import javax.persistence.*;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
-@Table(name = "Importations")
+@Table(name = "Transfers")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class Importation {
+public class Transfer {
 
     @Id
     @GeneratedValue(generator = "uuid")
     private String id;
 
-    private int importedAmount;
+    private int transferredAmount;
 
     private int day;
 
@@ -26,13 +26,13 @@ public class Importation {
 
     private boolean isHidden;
 
-    public Importation(){
+    public Transfer(){
 
     }
 
-    public Importation(String id, int importedAmount, int day, int month, int year, boolean isHidden) {
+    public Transfer(String id, int transferredAmount, int day, int month, int year, boolean isHidden) {
         this.id = id;
-        this.importedAmount = importedAmount;
+        this.transferredAmount = transferredAmount;
         this.day = day;
         this.month = month;
         this.year = year;
@@ -47,12 +47,12 @@ public class Importation {
         this.id = id;
     }
 
-    public int getImportedAmount() {
-        return importedAmount;
+    public int getTransferredAmount() {
+        return transferredAmount;
     }
 
-    public void setImportedAmount(int importedAmount) {
-        this.importedAmount = importedAmount;
+    public void setTransferredAmount(int transferredAmount) {
+        this.transferredAmount = transferredAmount;
     }
 
     public int getDay() {

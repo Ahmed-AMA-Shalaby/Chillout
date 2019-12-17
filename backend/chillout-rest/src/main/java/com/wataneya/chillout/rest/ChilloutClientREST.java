@@ -187,16 +187,16 @@ public class ChilloutClientREST {
     }
 
     @POST
-    @Path("/createImportation")
+    @Path("/createTransfer")
     @Consumes("application/json")
-    public Response createImportation(Importation importation){
+    public Response createImportation(Transfer transfer){
         try {
-            return chilloutStoreService.createImportation(importation) ?
-                    Response.ok(new BaseResponse(false, "Importation created successfully")).build() :
-                    Response.ok(new BaseResponse(true, "Importation already exists")).build();
+            return chilloutStoreService.createTransfer(transfer) ?
+                    Response.ok(new BaseResponse(false, "Transfer created successfully")).build() :
+                    Response.ok(new BaseResponse(true, "Transfer already exists")).build();
         } catch (Exception e) {
             if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
-                return Response.ok(new BaseResponse(true, "Importation already exists")).build();
+                return Response.ok(new BaseResponse(true, "Transfer already exists")).build();
             }
             return Response.ok(new BaseResponse(true, "Error")).build();
         }
@@ -213,22 +213,6 @@ public class ChilloutClientREST {
         } catch (Exception e) {
             if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
                 return Response.ok(new BaseResponse(true, "Existing already exists")).build();
-            }
-            return Response.ok(new BaseResponse(true, "Error")).build();
-        }
-    }
-
-    @POST
-    @Path("/createWithdrawal")
-    @Consumes("application/json")
-    public Response createWithdrawal(Withdrawal withdrawal){
-        try {
-            return chilloutStoreService.createWithdrawal(withdrawal) ?
-                    Response.ok(new BaseResponse(false, "Withdrawal created successfully")).build() :
-                    Response.ok(new BaseResponse(true, "Withdrawal already exists")).build();
-        } catch (Exception e) {
-            if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
-                return Response.ok(new BaseResponse(true, "Withdrawal already exists")).build();
             }
             return Response.ok(new BaseResponse(true, "Error")).build();
         }
@@ -328,7 +312,7 @@ public class ChilloutClientREST {
     @Path("/retrieveImportations")
     @Produces("application/json")
     public Response retrieveImportations() {
-        return Response.ok(chilloutQueryService.retrieveImportations()).build();
+        return Response.ok(chilloutQueryService.retrieveTransfers()).build();
     }
 
     @GET
@@ -336,13 +320,6 @@ public class ChilloutClientREST {
     @Produces("application/json")
     public Response retrieveExistings() {
         return Response.ok(chilloutQueryService.retrieveExistings()).build();
-    }
-
-    @GET
-    @Path("/retrieveWithdrawals")
-    @Produces("application/json")
-    public Response retrieveWithdrawals() {
-        return Response.ok(chilloutQueryService.retrieveWithdrawals()).build();
     }
 
     @GET

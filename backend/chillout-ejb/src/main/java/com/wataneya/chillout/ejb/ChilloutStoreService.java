@@ -170,29 +170,14 @@ public class ChilloutStoreService {
         }
     }
 
-    public boolean createImportation(Importation importation) {
-        em.persist(importation);
+    public boolean createTransfer(Transfer transfer) {
+        em.persist(transfer);
         return true;
     }
 
     public boolean createExisting(Existing existing) {
         em.persist(existing);
         return true;
-    }
-
-    public boolean createWithdrawal(Withdrawal withdrawal) {
-        Withdrawal withdrawalfromDB = null;
-        try {
-            withdrawalfromDB = (Withdrawal)
-                    em.createQuery("select w from Withdrawal w where w.withdrawalAmount = :withdrawalAmount").setParameter("withdrawalAmount", withdrawal.getWithdrawalAmount()).getSingleResult();
-        } catch (NoResultException nre) {
-        }
-        if (withdrawalfromDB != null) {
-            return false;
-        } else {
-            em.persist(withdrawal);
-            return true;
-        }
     }
 
     public boolean createSale(Sale sale) {

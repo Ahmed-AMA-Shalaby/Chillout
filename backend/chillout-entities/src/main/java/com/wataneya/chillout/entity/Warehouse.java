@@ -24,18 +24,31 @@ public class Warehouse {
 
     private boolean isHidden;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIdentityReference(alwaysAsId = true)
+    private Set<Sector> sectors = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIdentityReference(alwaysAsId = true)
+    private Set<Product> products = new HashSet<>();
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Company> companies = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIdentityReference(alwaysAsId = true)
+    private Set<Station> stations = new HashSet<>();
 
     public Warehouse(){
 
     }
 
-    public Warehouse(String id, String warehouseName, boolean isHidden, Set<Company> companies) {
+    public Warehouse(String id, String warehouseName, boolean isHidden, Set<Sector> sectors, Set<Company> companies) {
         this.id = id;
         this.warehouseName = warehouseName;
         this.isHidden = isHidden;
+        this.sectors = sectors;
         this.companies = companies;
     }
 
@@ -63,6 +76,14 @@ public class Warehouse {
         isHidden = hidden;
     }
 
+    public Set<Sector> getSectors() {
+        return sectors;
+    }
+
+    public void setSectors(Set<Sector> sectors) {
+        this.sectors = sectors;
+    }
+
     public Set<Company> getCompanies() {
         return companies;
     }
@@ -70,5 +91,6 @@ public class Warehouse {
     public void setCompanies(Set<Company> companies) {
         this.companies = companies;
     }
+
 }
 

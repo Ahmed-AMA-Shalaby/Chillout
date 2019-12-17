@@ -8,7 +8,7 @@
     <class>com.wataneya.chillout.entity.Distance</class>
     <class>com.wataneya.chillout.entity.Driver</class>
     <class>com.wataneya.chillout.entity.Existing</class>
-    <class>com.wataneya.chillout.entity.Importation</class>
+    <class>com.wataneya.chillout.entity.Transfer</class>
     <class>com.wataneya.chillout.entity.Product</class>
     <class>com.wataneya.chillout.entity.Sale</class>
     <class>com.wataneya.chillout.entity.Station</class>

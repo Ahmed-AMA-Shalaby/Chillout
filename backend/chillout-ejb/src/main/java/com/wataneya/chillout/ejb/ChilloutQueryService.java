@@ -61,19 +61,14 @@ public class ChilloutQueryService {
         return (List<Distance>) q.getResultList();
     }
 
-    public List<Importation> retrieveImportations() {
-        Query q = em.createQuery("From Importation i");
-        return (List<Importation>) q.getResultList();
+    public List<Transfer> retrieveTransfers() {
+        Query q = em.createQuery("From Transfer t");
+        return (List<Transfer>) q.getResultList();
     }
 
     public List<Existing> retrieveExistings() {
         Query q = em.createQuery("From Existing e");
         return (List<Existing>) q.getResultList();
-    }
-
-    public List<Withdrawal> retrieveWithdrawals() {
-        Query q = em.createQuery("From Withdrawal w");
-        return (List<Withdrawal>) q.getResultList();
     }
 
     public List<Sale> retrieveSales() {

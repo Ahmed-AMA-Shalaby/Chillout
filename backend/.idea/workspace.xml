@@ -2,33 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12aafbd7-eb7c-44a2-9b44-eb17e511f17d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Trip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Documents/Chillout/Project documents/Chillout analysis.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Documents/Chillout/Project documents/Chillout analysis.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutQueryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutQueryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutStoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutStoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-ejb/target/chillout-ejb.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/chillout-ejb.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-ejb/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Distance.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Distance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Existing.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Existing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Importation.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Importation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Importation.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Transfer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Sale.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Sale.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Sector.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Sector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Station.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Tank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Vehicle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Warehouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Withdrawal.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Withdrawal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Withdrawal.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/target/chillout-entities.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/chillout-entities.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-rest/src/main/java/com/wataneya/chillout/rest/ChilloutClientREST.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/src/main/java/com/wataneya/chillout/rest/ChilloutClientREST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-rest/target/chillout-rest.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/target/chillout-rest.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-rest/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/target/maven-archiver/pom.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
