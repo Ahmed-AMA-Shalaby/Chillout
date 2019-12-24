@@ -1,6 +1,7 @@
 package com.wataneya.chillout.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -26,17 +27,32 @@ public class Transfer {
 
     private boolean isHidden;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIdentityReference(alwaysAsId = true)
+    private Product product;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIdentityReference(alwaysAsId = true)
+    private Station station;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIdentityReference(alwaysAsId = true)
+    private Warehouse warehouse;
+
     public Transfer(){
 
     }
 
-    public Transfer(String id, int transferredAmount, int day, int month, int year, boolean isHidden) {
+    public Transfer(String id, int transferredAmount, int day, int month, int year, boolean isHidden, Product product, Station station, Warehouse warehouse) {
         this.id = id;
         this.transferredAmount = transferredAmount;
         this.day = day;
         this.month = month;
         this.year = year;
         this.isHidden = isHidden;
+        this.product = product;
+        this.station = station;
+        this.warehouse = warehouse;
     }
 
     public String getId() {
@@ -85,6 +101,30 @@ public class Transfer {
 
     public void setHidden(boolean hidden) {
         isHidden = hidden;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Station getStation() {
+        return station;
+    }
+
+    public void setStation(Station station) {
+        this.station = station;
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 }
 

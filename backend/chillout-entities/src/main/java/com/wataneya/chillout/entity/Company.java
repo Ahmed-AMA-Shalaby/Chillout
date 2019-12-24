@@ -24,7 +24,7 @@ public class Company {
 
     private boolean isHidden;
 
-    @ManyToMany(mappedBy = "companies",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "companies",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Warehouse> warehouses = new HashSet<>();
 

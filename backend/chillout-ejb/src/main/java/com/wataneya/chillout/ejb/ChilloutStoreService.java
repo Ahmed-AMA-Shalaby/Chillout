@@ -23,14 +23,9 @@ public class ChilloutStoreService {
         if (userfromDB != null) {
             return false;
         } else {
-            em.persist(user);
+            em.merge(user);
             return true;
         }
-    }
-
-    public boolean updateUser(User user) {
-        em.merge(user);
-        return true;
     }
 
     public boolean createProduct(Product product) {
@@ -43,7 +38,7 @@ public class ChilloutStoreService {
         if (productfromDB != null) {
             return false;
         } else {
-            em.persist(product);
+            em.merge(product);
             return true;
         }
     }
@@ -58,7 +53,7 @@ public class ChilloutStoreService {
         if (sectorfromDB != null) {
             return false;
         } else {
-            em.persist(sector);
+            em.merge(sector);
             return true;
         }
     }
@@ -73,7 +68,7 @@ public class ChilloutStoreService {
         if (tankfromDB != null) {
             return false;
         } else {
-            em.persist(tank);
+            em.merge(tank);
             return true;
         }
     }
@@ -88,7 +83,7 @@ public class ChilloutStoreService {
         if (companyfromDB != null) {
             return false;
         } else {
-            em.persist(company);
+            em.merge(company);
             return true;
         }
     }
@@ -103,7 +98,7 @@ public class ChilloutStoreService {
         if (agentfromDB != null) {
             return false;
         } else {
-            em.persist(agent);
+            em.merge(agent);
             return true;
         }
     }
@@ -118,7 +113,7 @@ public class ChilloutStoreService {
         if (driverfromDB != null) {
             return false;
         } else {
-            em.persist(driver);
+            em.merge(driver);
             return true;
         }
     }
@@ -131,14 +126,18 @@ public class ChilloutStoreService {
         } catch (NoResultException nre) {
         }
         if (stationfromDB != null) {
+            stationfromDB.setSector(station.getSector());
+            stationfromDB.setProducts(station.getProducts());
+            stationfromDB.setAgent(station.getAgent());
+            stationfromDB.setTanks(station.getTanks());
             return false;
         } else {
-            em.persist(station);
+            em.merge(station);
             return true;
         }
     }
 
-    public boolean createWarehouse(Warehouse warehouse, String companyName) {
+    public boolean createWarehouse(Warehouse warehouse) {
         Warehouse warehousefromDB = null;
         try {
             warehousefromDB = (Warehouse)
@@ -146,55 +145,43 @@ public class ChilloutStoreService {
         } catch (NoResultException nre) {
         }
         if (warehousefromDB != null) {
+            warehousefromDB.setSector(warehouse.getSector());
+            warehousefromDB.setProducts(warehouse.getProducts());
+            warehousefromDB.setCompanies(warehouse.getCompanies());
+            em.merge(warehousefromDB);
             return false;
         } else {
-            em.persist(warehouse);
-            assignWarehousetoCompany(warehouse.getId(), companyName);
-
+            em.merge(warehouse);
             return true;
         }
     }
 
     public boolean createDistance(Distance distance) {
-        Distance distancefromDB = null;
-        try {
-            distancefromDB = (Distance)
-                    em.createQuery("select d from Distance d where d.distance = :distance").setParameter("distance", distance.getDistance()).getSingleResult();
-        } catch (NoResultException nre) {
-        }
-        if (distancefromDB != null) {
-            return false;
-        } else {
-            em.persist(distance);
-            return true;
-        }
+        em.merge(distance);
+        return true;
     }
 
     public boolean createTransfer(Transfer transfer) {
-        em.persist(transfer);
+        em.merge(transfer);
         return true;
     }
 
     public boolean createExisting(Existing existing) {
-        em.persist(existing);
+        em.merge(existing);
         return true;
     }
 
     public boolean createSale(Sale sale) {
-        em.persist(sale);
+        em.merge(sale);
+        return true;
+    }
+
+    public boolean createQuota(Quota quota) {
+        em.merge(quota);
         return true;
     }
     //endregion
 
-    //region Assignment
-    public boolean assignWarehousetoCompany(String warehouseID, String companyName) {
-        Warehouse warehouse = (Warehouse) em.createQuery("From Warehouse w where w.id = :id")
-                .setParameter("id", warehouseID).getSingleResult();
-        Company company = (Company) em.createQuery("From Company c where c.companyName = :companyName")
-                .setParameter("companyName", companyName).getSingleResult();
-        warehouse.getCompanies().add(company);
-        em.merge(warehouse);
-        return true;
-    }
+    //region Updating
     //endregion
 }

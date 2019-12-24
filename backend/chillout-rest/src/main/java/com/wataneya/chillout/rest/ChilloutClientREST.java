@@ -153,13 +153,13 @@ public class ChilloutClientREST {
     @POST
     @Path("/createWarehouse")
     @Consumes("application/json")
-    public Response createWarehouse(String body){
-        Gson gson = new Gson();
-        JsonObject parsedBody = gson.fromJson(body, JsonObject.class);
-        Warehouse warehouse = gson.fromJson(parsedBody.get("warehouseData"), Warehouse.class);
-        String companyName = parsedBody.get("companyName").getAsString();
+    public Response createWarehouse(Warehouse warehouse){
+//        Gson gson = new Gson();
+//        JsonObject parsedBody = gson.fromJson(body, JsonObject.class);
+//        Warehouse warehouse = gson.fromJson(parsedBody.get("warehouseData"), Warehouse.class);
+//        String companyName = parsedBody.get("companyName").getAsString();
         try {
-            return chilloutStoreService.createWarehouse(warehouse, companyName) ?
+            return chilloutStoreService.createWarehouse(warehouse) ?
                     Response.ok(new BaseResponse(false, "Warehouse created successfully")).build() :
                     Response.ok(new BaseResponse(true, "Warehouse already exists")).build();
         } catch (Exception e) {
@@ -189,7 +189,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createTransfer")
     @Consumes("application/json")
-    public Response createImportation(Transfer transfer){
+    public Response createTransfer(Transfer transfer){
         try {
             return chilloutStoreService.createTransfer(transfer) ?
                     Response.ok(new BaseResponse(false, "Transfer created successfully")).build() :
@@ -229,6 +229,22 @@ public class ChilloutClientREST {
         } catch (Exception e) {
             if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
                 return Response.ok(new BaseResponse(true, "Sale already exists")).build();
+            }
+            return Response.ok(new BaseResponse(true, "Error")).build();
+        }
+    }
+
+    @POST
+    @Path("/createQuota")
+    @Consumes("application/json")
+    public Response createQuota(Quota quota){
+        try {
+            return chilloutStoreService.createQuota(quota) ?
+                    Response.ok(new BaseResponse(false, "Quota created successfully")).build() :
+                    Response.ok(new BaseResponse(true, "Quota already exists")).build();
+        } catch (Exception e) {
+            if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
+                return Response.ok(new BaseResponse(true, "Quota already exists")).build();
             }
             return Response.ok(new BaseResponse(true, "Error")).build();
         }
@@ -309,9 +325,9 @@ public class ChilloutClientREST {
     }
 
     @GET
-    @Path("/retrieveImportations")
+    @Path("/retrieveTransfers")
     @Produces("application/json")
-    public Response retrieveImportations() {
+    public Response retrieveTransfers() {
         return Response.ok(chilloutQueryService.retrieveTransfers()).build();
     }
 
@@ -328,16 +344,17 @@ public class ChilloutClientREST {
     public Response retrieveSales() {
         return Response.ok(chilloutQueryService.retrieveSales()).build();
     }
+
+    @GET
+    @Path("/retrieveQuotas")
+    @Produces("application/json")
+    public Response retrieveQuotas() {
+        return Response.ok(chilloutQueryService.retrieveQuotas()).build();
+    }
     //endregion
 
     /*****************************************************PUT***********************************************************/
 
     //region PUT
-    @PUT
-    @Path("/updateUser")
-    @Consumes("application/json")
-    public Response updateUser(User user) {
-        return chilloutStoreService.updateUser(user) ? Response.ok(true).build() : Response.ok(false).build();
-    }
     //endregion
 }

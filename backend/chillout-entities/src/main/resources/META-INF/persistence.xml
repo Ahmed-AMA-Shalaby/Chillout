@@ -8,16 +8,17 @@
     <class>com.wataneya.chillout.entity.Distance</class>
     <class>com.wataneya.chillout.entity.Driver</class>
     <class>com.wataneya.chillout.entity.Existing</class>
-    <class>com.wataneya.chillout.entity.Transfer</class>
     <class>com.wataneya.chillout.entity.Product</class>
+    <class>com.wataneya.chillout.entity.Quota</class>
     <class>com.wataneya.chillout.entity.Sale</class>
+    <class>com.wataneya.chillout.entity.Sector</class>
     <class>com.wataneya.chillout.entity.Station</class>
     <class>com.wataneya.chillout.entity.Tank</class>
+    <class>com.wataneya.chillout.entity.Transfer</class>
     <class>com.wataneya.chillout.entity.Trip</class>
     <class>com.wataneya.chillout.entity.User</class>
     <class>com.wataneya.chillout.entity.Vehicle</class>
     <class>com.wataneya.chillout.entity.Warehouse</class>
-    <class>com.wataneya.chillout.entity.Withdrawal</class>
 
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
 

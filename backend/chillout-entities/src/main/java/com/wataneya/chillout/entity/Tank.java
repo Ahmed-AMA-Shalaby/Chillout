@@ -1,10 +1,13 @@
 package com.wataneya.chillout.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -21,14 +24,24 @@ public class Tank {
 
     private boolean isHidden;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIdentityReference(alwaysAsId = true)
+    private Product product;
+
+    @ManyToMany(mappedBy = "tanks", fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIdentityReference(alwaysAsId = true)
+    private Set<Station> stations = new HashSet<>();
+
     public Tank(){
 
     }
 
-    public Tank(String id, int tankVolume, boolean isHidden) {
+    public Tank(String id, int tankVolume, boolean isHidden, Product product, Set<Station> stations) {
         this.id = id;
         this.tankVolume = tankVolume;
         this.isHidden = isHidden;
+        this.product = product;
+        this.stations = stations;
     }
 
     public String getId() {
@@ -53,6 +66,22 @@ public class Tank {
 
     public void setHidden(boolean hidden) {
         isHidden = hidden;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Set<Station> getStations() {
+        return stations;
+    }
+
+    public void setStations(Set<Station> stations) {
+        this.stations = stations;
     }
 }
 

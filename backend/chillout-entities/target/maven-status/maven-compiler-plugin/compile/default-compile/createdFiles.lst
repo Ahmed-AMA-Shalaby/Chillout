@@ -1,11 +1,12 @@
 com\wataneya\chillout\entity\Sector.class
 com\wataneya\chillout\entity\Distance.class
-com\wataneya\chillout\entity\Importation.class
 com\wataneya\chillout\entity\Tank.class
 com\wataneya\chillout\entity\Product.class
 com\wataneya\chillout\entity\Company.class
 com\wataneya\chillout\entity\Trip.class
 com\wataneya\chillout\entity\Agent.class
+com\wataneya\chillout\entity\Quota.class
+com\wataneya\chillout\entity\Transfer.class
 com\wataneya\chillout\entity\Driver.class
 com\wataneya\chillout\entity\BaseResponse.class
 com\wataneya\chillout\entity\Sale.class
@@ -14,4 +15,3 @@ com\wataneya\chillout\entity\User.class
 com\wataneya\chillout\entity\Station.class
 com\wataneya\chillout\entity\Vehicle.class
 com\wataneya\chillout\entity\Warehouse.class
-com\wataneya\chillout\entity\Withdrawal.class

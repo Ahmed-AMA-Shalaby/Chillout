@@ -24,11 +24,11 @@ public class Sector {
 
     private boolean isHidden;
 
-    @OneToMany(mappedBy = "sectors",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sector",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Warehouse> warehouses = new HashSet<>();
 
-    @OneToMany(mappedBy = "sectors",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sector",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Station> stations = new HashSet<>();
 

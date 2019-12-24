@@ -24,31 +24,28 @@ public class Warehouse {
 
     private boolean isHidden;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
-    private Set<Sector> sectors = new HashSet<>();
+    private Sector sector;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Product> products = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Company> companies = new HashSet<>();
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonIdentityReference(alwaysAsId = true)
-    private Set<Station> stations = new HashSet<>();
 
     public Warehouse(){
 
     }
 
-    public Warehouse(String id, String warehouseName, boolean isHidden, Set<Sector> sectors, Set<Company> companies) {
+    public Warehouse(String id, String warehouseName, boolean isHidden, Sector sector, Set<Product> products, Set<Company> companies) {
         this.id = id;
         this.warehouseName = warehouseName;
         this.isHidden = isHidden;
-        this.sectors = sectors;
+        this.sector = sector;
+        this.products = products;
         this.companies = companies;
     }
 
@@ -76,12 +73,20 @@ public class Warehouse {
         isHidden = hidden;
     }
 
-    public Set<Sector> getSectors() {
-        return sectors;
+    public Sector getSector() {
+        return sector;
     }
 
-    public void setSectors(Set<Sector> sectors) {
-        this.sectors = sectors;
+    public void setSector(Sector sector) {
+        this.sector = sector;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
     public Set<Company> getCompanies() {
@@ -91,6 +96,5 @@ public class Warehouse {
     public void setCompanies(Set<Company> companies) {
         this.companies = companies;
     }
-
 }
 

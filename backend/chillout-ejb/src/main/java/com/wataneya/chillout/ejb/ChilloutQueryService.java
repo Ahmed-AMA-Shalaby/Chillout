@@ -75,4 +75,9 @@ public class ChilloutQueryService {
         Query q = em.createQuery("From Sale w");
         return (List<Sale>) q.getResultList();
     }
+
+    public List<Quota> retrieveQuotas() {
+        Query q = em.createQuery("From Quota q");
+        return (List<Quota>) q.getResultList();
+    }
 }

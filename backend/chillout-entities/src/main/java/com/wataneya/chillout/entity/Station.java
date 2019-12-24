@@ -24,27 +24,34 @@ public class Station {
 
     private boolean isHidden;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
-    private Set<Sector> sectors = new HashSet<>();
+    private Agent agent;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIdentityReference(alwaysAsId = true)
+    private Sector sector;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Product> products = new HashSet<>();
 
-    @ManyToMany(mappedBy = "stations", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
-    private Set<Warehouse> warehouses = new HashSet<>();
+    private Set<Tank> tanks = new HashSet<>();
 
     public Station(){
 
     }
 
-    public Station(String id, String stationName, boolean isHidden, Set<Sector> sectors) {
+    public Station(String id, String stationName, boolean isHidden, Agent agent, Sector sector, Set<Product> products, Set<Tank> tanks) {
         this.id = id;
         this.stationName = stationName;
         this.isHidden = isHidden;
-        this.sectors = sectors;
+        this.agent = agent;
+        this.sector = sector;
+        this.products = products;
+        this.tanks = tanks;
     }
 
     public String getId() {
@@ -71,12 +78,36 @@ public class Station {
         isHidden = hidden;
     }
 
-    public Set<Sector> getSectors() {
-        return sectors;
+    public Agent getAgent() {
+        return agent;
     }
 
-    public void setSectors(Set<Sector> sectors) {
-        this.sectors = sectors;
+    public void setAgent(Agent agent) {
+        this.agent = agent;
+    }
+
+    public Sector getSector() {
+        return sector;
+    }
+
+    public void setSector(Sector sector) {
+        this.sector = sector;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public Set<Tank> getTanks() {
+        return tanks;
+    }
+
+    public void setTanks(Set<Tank> tanks) {
+        this.tanks = tanks;
     }
 }
 

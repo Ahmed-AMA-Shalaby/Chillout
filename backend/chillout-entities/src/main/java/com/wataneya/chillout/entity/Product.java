@@ -24,11 +24,11 @@ public class Product {
 
     private boolean isHidden;
 
-    @ManyToMany(mappedBy = "products",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "products",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Warehouse> warehouses = new HashSet<>();
 
-    @ManyToMany(mappedBy = "products",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "products",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Station> stations = new HashSet<>();
 
@@ -84,4 +84,3 @@ public class Product {
         this.stations = stations;
     }
 }
-

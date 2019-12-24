@@ -22,7 +22,6 @@ public class Driver {
 
     private boolean isHidden;
 
-
     @Column(unique = true)
     private String phoneNumber;
 
