@@ -29,18 +29,23 @@ public class Quota {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
+    private Company company;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIdentityReference(alwaysAsId = true)
     private Warehouse warehouse;
 
     public Quota(){
 
     }
 
-    public Quota(String id, int quotaAmount, int month, boolean isHidden, Product product, Warehouse warehouse) {
+    public Quota(String id, int quotaAmount, int month, boolean isHidden, Product product, Company company, Warehouse warehouse) {
         this.id = id;
         this.quotaAmount = quotaAmount;
         this.month = month;
         this.isHidden = isHidden;
         this.product = product;
+        this.company = company;
         this.warehouse = warehouse;
     }
 
@@ -82,6 +87,14 @@ public class Quota {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public Warehouse getWarehouse() {

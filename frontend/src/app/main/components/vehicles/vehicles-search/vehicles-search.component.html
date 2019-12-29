@@ -20,14 +20,14 @@
         </div>
         <!-- / APP TITLE -->
   
-        <!-- SEARCH -->
+        <!-- FILTER -->
         <div class="search-wrapper mx-32 mx-md-0">
             <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                 <mat-icon>search</mat-icon>
-                <input #filter placeholder="Search for a vehicle">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search for a vehicle">
             </div>
         </div>
-        <!-- / SEARCH -->
+        <!-- / FILTER -->
   
         <!-- ADD BUTTON -->
         <button mat-raised-button (click)="ViewVehicles()" class="fuse-white mt-24 mt-md-0">
@@ -42,7 +42,7 @@
       <!-- CONTENT CARD -->
       <div class="content-card" *ngIf="vehicles" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
   
-        <generic-table [data]="vehicles" [cellLink]="'/vehicle/'" [type]="'vehicles'" [length] = "length" [pageSize]="pageSize" (pageParamters)='changePage($event)'></generic-table>
+        <generic-table [data]="vehicles" [cellLink]="'/vehicle/'" [type]="'Vehicle'" [filterValue]="filterValue"></generic-table>
   
       </div>
       <!-- / CONTENT CARD -->

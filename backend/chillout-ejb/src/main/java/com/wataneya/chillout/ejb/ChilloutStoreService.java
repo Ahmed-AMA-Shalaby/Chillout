@@ -180,8 +180,17 @@ public class ChilloutStoreService {
         em.merge(quota);
         return true;
     }
+
+    public boolean createVehicle(Vehicle vehicle) {
+        em.merge(vehicle);
+        return true;
+    }
     //endregion
 
     //region Updating
+    public boolean updateEntity( Vehicle vehicle ) {
+        em.merge(vehicle);
+        return true;
+    }
     //endregion
 }

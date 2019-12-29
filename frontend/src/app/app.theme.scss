@@ -80,13 +80,17 @@ $typography: mat-typography-config(
 // Import app and page component themes here to enable theming for them
 @import "src/app/layout/components/toolbar/toolbar.theme";
 @import "src/app/main/components/vehicles/vehicles-search/vehicles-search.theme";
+@import "src/app/main/components/drivers/drivers-search/drivers-search.theme";
 // Define a mixin for easier access
 @mixin components-theme($theme) {
 
     // Layout components
     @include toolbar-theme($theme);
 
-    //Sectors-Search Page
+    //Drivers-Search Page
+    @include drivers-search-theme($theme);
+
+    //Vehicles-Search Page
     @include vehicles-search-theme($theme);
 
 }

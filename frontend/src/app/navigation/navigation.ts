@@ -90,22 +90,22 @@ export const Navigation: FuseNavigation[] = [
         ]
     },
     {
-        id: 'storages',
-        title: 'Storages',
-        icon: 'storage',
+        id: 'warehouses',
+        title: 'Warehouses',
+        icon: 'account_balance',
         type: 'collapsable',
         children: [
             {
                 id: 'Create',
                 title: 'Create',
                 type: 'item',
-                url: '/storages/create'
+                url: '/warehouses/create'
             },
             {
                 id: 'Search',
                 title: 'Search',
                 type: 'item',
-                url: '/storages/search'
+                url: '/warehouses/search'
             }
         ]
     },
@@ -309,10 +309,10 @@ export const Navigation: FuseNavigation[] = [
                         url: '/endofmonthstationsneeds'
                     },
                     {
-                        id: 'storagesremaining',
-                        title: 'Storages remaining',
+                        id: 'warehousesremaining',
+                        title: 'Warehouses remaining',
                         type: 'item',
-                        url: '/storagesremaining'
+                        url: '/warehousesremaining'
                     }
                 ]
             }
@@ -411,22 +411,22 @@ export const Navigation: FuseNavigation[] = [
 //         ]
 //     },
 //     {
-//         id: 'storages',
+//         id: 'warehouses',
 //         title: 'مستودعات',
-//         icon: 'storage',
+//         icon: 'account_balance',
 //         type: 'collapsable',
 //         children: [
 //             {
 //                 id: 'Create',
 //                 title: 'إنشاء',
 //                 type: 'item',
-//                 url: '/storages/create'
+//                 url: '/warehouses/create'
 //             },
 //             {
 //                 id: 'Search',
 //                 title: 'بحث',
 //                 type: 'item',
-//                 url: '/storages/search'
+//                 url: '/warehouses/search'
 //             }
 //         ]
 //     },
@@ -630,10 +630,10 @@ export const Navigation: FuseNavigation[] = [
 //                         url: '/endofmonthstationsneeds'
 //                     },
 //                     {
-//                         id: 'storagesremaining',
+//                         id: 'warehousesremaining',
 //                         title: 'متبقى الخزانات',
 //                         type: 'item',
-//                         url: '/storagesremaining'
+//                         url: '/warehousesremaining'
 //                     }
 //                 ]
 //             }

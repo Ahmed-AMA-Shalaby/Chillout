@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -24,6 +26,10 @@ public class Trip {
     private int year;
 
     private boolean isHidden;
+
+    @OneToMany(mappedBy = "trip", fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIdentityReference(alwaysAsId = true)
+    private Set<Transfer> transfers = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
@@ -46,12 +52,13 @@ public class Trip {
 
     }
 
-    public Trip(String id, int day, int month, int year, boolean isHidden, Distance outboundDistance, Distance inboundDistance, Driver driver, Vehicle vehicle) {
+    public Trip(String id, int day, int month, int year, boolean isHidden, Set<Transfer> transfers, Distance outboundDistance, Distance inboundDistance, Driver driver, Vehicle vehicle) {
         this.id = id;
         this.day = day;
         this.month = month;
         this.year = year;
         this.isHidden = isHidden;
+        this.transfers = transfers;
         this.outboundDistance = outboundDistance;
         this.inboundDistance = inboundDistance;
         this.driver = driver;
@@ -96,6 +103,14 @@ public class Trip {
 
     public void setHidden(boolean hidden) {
         isHidden = hidden;
+    }
+
+    public Set<Transfer> getTransfers() {
+        return transfers;
+    }
+
+    public void setTransfers(Set<Transfer> transfers) {
+        this.transfers = transfers;
     }
 
     public Distance getOutboundDistance() {

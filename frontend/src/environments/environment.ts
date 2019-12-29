@@ -6,7 +6,12 @@ export const environment = {
   production: false,
   hmr: false,
   apis: {
-    baseUrl: 'http://localhost:8080/iap/iaprest/'
+    baseUrl: 'http://localhost:8080/chillout/chilloutrest/',
+    createVehicle: 'createVehicle',
+    retrieveVehicles: 'retrieveVehicles',
+    createDriver: 'createDriver',
+    retrieveDrivers: 'retrieveDrivers',
+    updateEntity:'updateEntity',
   }
 };
 /*

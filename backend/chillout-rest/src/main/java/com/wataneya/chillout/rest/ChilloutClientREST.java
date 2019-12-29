@@ -249,6 +249,22 @@ public class ChilloutClientREST {
             return Response.ok(new BaseResponse(true, "Error")).build();
         }
     }
+
+    @POST
+    @Path("/createVehicle")
+    @Consumes("application/json")
+    public Response createQuota(Vehicle vehicle){
+        try {
+            return chilloutStoreService.createVehicle(vehicle) ?
+                    Response.ok(new BaseResponse(false, "Vehicle created successfully")).build() :
+                    Response.ok(new BaseResponse(true, "Vehicle already exists")).build();
+        } catch (Exception e) {
+            if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
+                return Response.ok(new BaseResponse(true, "Vehicle already exists")).build();
+            }
+            return Response.ok(new BaseResponse(true, "Error")).build();
+        }
+    }
     //endregion
 
     /*****************************************************GET***********************************************************/
@@ -351,10 +367,33 @@ public class ChilloutClientREST {
     public Response retrieveQuotas() {
         return Response.ok(chilloutQueryService.retrieveQuotas()).build();
     }
+
+    @GET
+    @Path("/retrieveVehicles")
+    @Produces("application/json")
+    public Response retrieveVehicles() {
+        return Response.ok(chilloutQueryService.retrieveVehicles()).build();
+    }
     //endregion
 
     /*****************************************************PUT***********************************************************/
 
     //region PUT
+    @POST
+    @Path("/updateEntity")
+    @Consumes("application/json")
+    public Response updateEntity(Vehicle vehicle){
+        try {
+
+            return chilloutStoreService.updateEntity(vehicle) ?
+                    Response.ok(new BaseResponse(false, "Vehicle updated successfully")).build() :
+                    Response.ok(new BaseResponse(true, "Vehicle failed to update")).build();
+        } catch (Exception e) {
+            if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
+                return Response.ok(new BaseResponse(true, "Vehicle failed to update")).build();
+            }
+            return Response.ok(new BaseResponse(true, "Error")).build();
+        }
+    }
     //endregion
 }

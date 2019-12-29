@@ -15,6 +15,10 @@ import { LayoutModule } from 'app/layout/layout.module';
 import 'hammerjs';
 import { ColorSketchModule } from 'ngx-color/sketch';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
+import { VehicleService } from './main/services/vehicle.service';
+import { AppStorageService } from './main/services/app-storage.service';
+import { DriverService } from './main/services/driver.service';
+import { GenericService } from './main/services/generic.service';
 
 
 const appRoutes: Routes = [
@@ -36,6 +40,14 @@ const appRoutes: Routes = [
     {
         path: 'vehicles/search',
         loadChildren: './main/components/vehicles/vehicles-search/vehicles-search.module#VehiclesSearchModule'
+    },
+    {
+        path: 'drivers/create',
+        loadChildren: './main/components/drivers/drivers-create/drivers-create.module#DriversCreateModule'
+    },
+    {
+        path: 'drivers/search',
+        loadChildren: './main/components/drivers/drivers-search/drivers-search.module#DriversSearchModule'
     }
 ];
 
@@ -73,7 +85,11 @@ const appRoutes: Routes = [
             useValue: {
                 duration: 3000
             }
-        }
+        },
+        AppStorageService,
+        GenericService,
+        DriverService,
+        VehicleService
     ],
     bootstrap: [
         AppComponent

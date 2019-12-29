@@ -21,24 +21,25 @@ public class Distance {
 
     private boolean isHidden;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    @JsonIdentityReference(alwaysAsId = true)
-    private Station station;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
     private Warehouse warehouse;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIdentityReference(alwaysAsId = true)
+    private Station station;
+
     public Distance(){
 
     }
 
-    public Distance(String id, int distance, boolean isHidden, Station station, Warehouse warehouse) {
+    public Distance(String id, int distance, boolean isHidden, Warehouse warehouse, Station station) {
         this.id = id;
         this.distance = distance;
         this.isHidden = isHidden;
-        this.station = station;
         this.warehouse = warehouse;
+        this.station = station;
     }
 
     public String getId() {
@@ -65,20 +66,20 @@ public class Distance {
         isHidden = hidden;
     }
 
-    public Station getStation() {
-        return station;
-    }
-
-    public void setStation(Station station) {
-        this.station = station;
-    }
-
     public Warehouse getWarehouse() {
         return warehouse;
     }
 
     public void setWarehouse(Warehouse warehouse) {
         this.warehouse = warehouse;
+    }
+
+    public Station getStation() {
+        return station;
+    }
+
+    public void setStation(Station station) {
+        this.station = station;
     }
 }
 

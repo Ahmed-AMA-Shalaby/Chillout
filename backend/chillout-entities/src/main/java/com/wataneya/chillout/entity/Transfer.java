@@ -37,13 +37,21 @@ public class Transfer {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIdentityReference(alwaysAsId = true)
+    private Company company;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIdentityReference(alwaysAsId = true)
     private Warehouse warehouse;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIdentityReference(alwaysAsId = true)
+    private Trip trip;
 
     public Transfer(){
 
     }
 
-    public Transfer(String id, int transferredAmount, int day, int month, int year, boolean isHidden, Product product, Station station, Warehouse warehouse) {
+    public Transfer(String id, int transferredAmount, int day, int month, int year, boolean isHidden, Product product, Station station, Company company, Warehouse warehouse, Trip trip) {
         this.id = id;
         this.transferredAmount = transferredAmount;
         this.day = day;
@@ -52,7 +60,9 @@ public class Transfer {
         this.isHidden = isHidden;
         this.product = product;
         this.station = station;
+        this.company = company;
         this.warehouse = warehouse;
+        this.trip = trip;
     }
 
     public String getId() {
@@ -119,12 +129,28 @@ public class Transfer {
         this.station = station;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     public Warehouse getWarehouse() {
         return warehouse;
     }
 
     public void setWarehouse(Warehouse warehouse) {
         this.warehouse = warehouse;
+    }
+
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
     }
 }
 

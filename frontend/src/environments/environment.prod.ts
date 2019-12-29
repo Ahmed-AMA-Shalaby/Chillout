@@ -4,6 +4,6 @@ export const environment = {
     hmr       : false,
     apis: { 
         amiiboApi: 'http://www.amiiboapi.com/api/', 
-        baseUrl: 'http://localhost:8080/iap/iaprest/', 
+        baseUrl: 'http://localhost:8080/chillout/chilloutrest/', 
     },
 };

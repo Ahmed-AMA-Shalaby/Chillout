@@ -80,4 +80,9 @@ public class ChilloutQueryService {
         Query q = em.createQuery("From Quota q");
         return (List<Quota>) q.getResultList();
     }
+
+    public List<Vehicle> retrieveVehicles() {
+        Query q = em.createQuery("From Vehicle v");
+        return (List<Vehicle>) q.getResultList();
+    }
 }
