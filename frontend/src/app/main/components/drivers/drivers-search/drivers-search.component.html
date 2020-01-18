@@ -29,12 +29,22 @@
             </div>
             <!-- / FILTER -->
 
-            <!-- ADD BUTTON -->
-            <button mat-raised-button (click)="ViewDrivers()" class="fuse-white mt-24 mt-md-0">
-                <mat-icon>people</mat-icon>
-                <span> View All Drivers</span>
-            </button>
-            <!-- / ADD BUTTON -->
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <!-- EDIT BUTTON -->
+                <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
+                    [ngClass]="{'fuse-white': !editColor, 'fuse-navy': editColor}" matTooltip="Edit"
+                    [disabled]="deleteFlag">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <!-- / EDIT BUTTON -->
+                <!--  DELETE BUTTON -->
+                <button mat-mini-fab class="mx-16" (click)="toggleDelete()"
+                    [ngClass]="{'fuse-white': !deleteColor, 'red': deleteColor}" matTooltip="Delete"
+                    [disabled]="editFlag">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <!-- / DELETE BUTTON -->
+            </div>
 
         </div>
         <!-- / HEADER -->
@@ -42,7 +52,8 @@
         <!-- CONTENT CARD -->
         <div class="content-card" *ngIf="drivers" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
 
-            <generic-table [data]="drivers" [cellLink]="'/driver/'" [type]="'Driver'" [filterValue]="filterValue"'></generic-table>
+            <generic-table [data]="drivers" [cellLink]="'/driver/'" [type]="'Driver'" [filterValue]="filterValue"
+                [editMode]="editFlag" [deleteMode]="deleteFlag"></generic-table>
 
         </div>
         <!-- / CONTENT CARD -->

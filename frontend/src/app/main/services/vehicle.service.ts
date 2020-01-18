@@ -25,9 +25,4 @@ export class VehicleService {
     retrieveVehicles(): Observable<Vehicle[]> {
         return this.httpClient.get<Vehicle[]>(environment.apis.baseUrl + environment.apis.retrieveVehicles, this.httpOptions);
     }
-
-    updateEntity(entity): Observable<BaseResponse> {
-        const data = entity
-        return this.httpClient.post<BaseResponse>(environment.apis.baseUrl + environment.apis.updateEntity, data, this.httpOptions);
-    }
 }

@@ -1,8 +1,19 @@
-import { Component, OnInit, ViewChild, SimpleChanges, OnChanges, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, SimpleChanges, OnChanges, Input, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { Vehicle } from 'app/main/models/vehicle.model';
 import { GenericService } from 'app/main/services/generic.service';
+
+interface CustomVehicle {
+    id: string;
+    vehicleCode: string;
+    vehiclePlateNumbers: string;
+    vehiclePlateLetters: string;
+    vehicleCard: string;
+    trailerPlateNumbers: string;
+    trailerPlateLetters: string;
+    hidden?: boolean;
+}
 
 @Component({
     selector: 'generic-table',
@@ -11,12 +22,15 @@ import { GenericService } from 'app/main/services/generic.service';
     animations: fuseAnimations,
     encapsulation: ViewEncapsulation.None
 })
+
 export class GenericTableComponent implements OnInit, OnChanges {
 
     @Input() data: [];
-    @Input() cellLink: String;
-    @Input() type: String;
+    @Input() cellLink: string;
+    @Input() type: string;
     @Input() filterValue: string;
+    @Input() editMode: string;
+    @Input() deleteMode: string;
 
     dataSource: MatTableDataSource<{}>;
     originalColumns = [];
@@ -28,18 +42,11 @@ export class GenericTableComponent implements OnInit, OnChanges {
     constructor(private genericService: GenericService) { }
 
     ngOnInit(): void {
-        if (this.type === 'Vehicle') {
-            this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate'];
-            this.displayedColumns = ['Vehicle Code', 'Vehicle Plate', 'Vehicle Card', 'Trailer Plate'];
-            this.dataSource.filterPredicate = (data: Vehicle, filter: string) => {
-                return data.vehicleCode.startsWith(filter)
-            };
-
-        }
-        else if (this.type === "Driver") {
+        if (this.type === "Driver") {
             this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber'];
             this.displayedColumns = ['Driver First Name', 'Driver Middle Name', 'Driver Last Name', 'Driver Phone Number'];
         }
+        this.dataSource.paginator = this.paginator;
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -52,17 +59,11 @@ export class GenericTableComponent implements OnInit, OnChanges {
         this.dataSource.filter = this.filterValue;
     }
 
-    modifyData(filteredRow, column) {
+    modifyData(filteredRow) {
         let rowID = this.dataSource.filteredData[filteredRow]["id"]
-        // console.log("modifiedRowID: " +  rowID);
-        // console.log("modifiedColumnName: " +  column);
-        // console.log("modifiedDataValue: " +  this.dataSource.filteredData[filteredRow][column]);
-        // this.modifiedRow.emit({ id: rowID, key: column, value:this.dataSource.filteredData[filteredRow][column]})
         this.data.forEach(row => {
             if (row["id"] == rowID) {
-                console.log(this.type, this.dataSource.filteredData[filteredRow]);
-                
-                this.genericService.updateEntity(this.dataSource.filteredData[filteredRow])
+                this.genericService.updateEntity(this.type, this.dataSource.filteredData[filteredRow]).subscribe();
             }
         })
     }

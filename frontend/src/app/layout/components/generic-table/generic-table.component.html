@@ -3,9 +3,10 @@
     <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns; let i = index">
         <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
         <mat-cell *matCellDef="let data; let j  = index">
-            <!-- <p>{{data[originalColumns[i]]}}</p> -->
-            <mat-form-field floatLabel="never" appearance="outline" class="mt-20">
-                <input matInput (keyup)="modifyData(j)" placeholder="{{column}}" [value]="data[originalColumns[i]]" [(ngModel)]="data[originalColumns[i]]">
+            <p *ngIf="!editMode">{{data[originalColumns[i]]}}</p>
+            <mat-form-field floatLabel="never" appearance="outline" class="mt-20" *ngIf="editMode">
+                <input matInput (input)="modifyData(j)" placeholder="{{column}}" [value]="data[originalColumns[i]]"
+                    [(ngModel)]="data[originalColumns[i]]">
             </mat-form-field>
         </mat-cell>
     </ng-container>

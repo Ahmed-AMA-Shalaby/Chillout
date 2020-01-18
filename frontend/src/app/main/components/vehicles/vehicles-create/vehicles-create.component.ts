@@ -11,7 +11,7 @@ import { Vehicle } from 'app/main/models/vehicle.model';
 })
 export class VehiclesCreateComponent implements OnInit {
     vehicleForm: FormGroup;
-
+    
     constructor(
         private _formBuilder: FormBuilder,
         private snackbar: MatSnackBar,
@@ -21,24 +21,27 @@ export class VehiclesCreateComponent implements OnInit {
     ngOnInit() {
         this.vehicleForm = this._formBuilder.group({
             vehicleCode: ['', Validators.required],
-            vehiclePlate: ['', Validators.required],
+            vehiclePlateNumbers: ['', Validators.required],
+            vehiclePlateLetters: ['', Validators.required],
             vehicleCard: ['', Validators.required],
-            trailerPlate: ['', Validators.required]
+            trailerPlateNumbers: ['', Validators.required],
+            trailerPlateLetters: ['', Validators.required],
+
         });
     }
 
     createVehicle() {
         const vehicle = <Vehicle>{
-            vehicleCode: this.vehicleForm.value.vehicleCode,
-            vehiclePlate: this.vehicleForm.value.vehiclePlate,
-            vehicleCard: this.vehicleForm.value.vehicleCard,
-            trailerPlate: this.vehicleForm.value.trailerPlate
+            vehicleCode: this.vehicleForm.value.vehicleCode.replace(/\s/g, ''),
+            vehiclePlate: this.vehicleForm.value.vehiclePlateNumbers.replace(/\s/g, '') + "-" + this.vehicleForm.value.vehiclePlateLetters.replace(/\s/g, '') as any,
+            vehicleCard: this.vehicleForm.value.vehicleCard.replace(/\s/g, ''),
+            trailerPlate: this.vehicleForm.value.trailerPlateNumbers.replace(/\s/g, '') + "-" + this.vehicleForm.value.trailerPlateLetters.replace(/\s/g, '') as any
         }
         this.vehicleService.createVehicle(vehicle).subscribe(
-            data=>{
+            data => {
                 this.snackbar.open(data.message, "Ok");
             },
-            error=>{
+            error => {
                 this.snackbar.open(error.message, "Ok");
             }
         )

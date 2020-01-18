@@ -20,12 +20,23 @@
                             <mat-error>Vehicle Code is required!</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field appearance="outline" class="pr-4 pl-4">
-                            <mat-label>Vehicle Plate</mat-label>
-                            <input matInput formControlName="vehiclePlate" #vehiclePlate required>
-                            <mat-icon matSuffix class="secondary-text">local_shipping</mat-icon>
-                            <mat-error>Vehicle Plate is required!</mat-error>
-                        </mat-form-field>
+                        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="1 0 auto">
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Vehicle Plate Numbers</mat-label>
+                                <input matInput formControlName="vehiclePlateNumbers" #vehiclePlateNumbers required
+                                    pattern="[0-9]{3,4}">
+                                <mat-icon matSuffix class="secondary-text">local_shipping</mat-icon>
+                                <mat-error>Vehicle Plate Numbers are required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Vehicle Plate Letters</mat-label>
+                                <input matInput formControlName="vehiclePlateLetters" #vehiclePlateLetters required
+                                    pattern=".{2,3}">
+                                <mat-icon matSuffix class="secondary-text">local_shipping</mat-icon>
+                                <mat-error>Vehicle Plate Letters are required!</mat-error>
+                            </mat-form-field>
+                        </div>
 
                         <mat-form-field appearance="outline" class="pl-4">
                             <mat-label>Vehicle Card</mat-label>
@@ -33,13 +44,24 @@
                             <mat-icon matSuffix class="secondary-text">local_shipping</mat-icon>
                             <mat-error>Vehicle Card is required!</mat-error>
                         </mat-form-field>
-                        
-                        <mat-form-field appearance="outline">
-                            <mat-label>Trailer Plate</mat-label>
-                            <input matInput formControlName="trailerPlate" #trailerPlate required>
-                            <mat-icon matSuffix class="secondary-text">local_shipping</mat-icon>
-                            <mat-error>Trailer Plate is required!</mat-error>
-                        </mat-form-field>
+
+                        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="1 0 auto">
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Trailer Plate Numbers</mat-label>
+                                <input matInput formControlName="trailerPlateNumbers" #trailerPlateNumbers required
+                                    pattern="[0-9]{3,4}">
+                                <mat-icon matSuffix class="secondary-text">local_shipping</mat-icon>
+                                <mat-error>Trailer Plate Numbers are required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Trailer Plate Letters</mat-label>
+                                <input matInput formControlName="trailerPlateLetters" #trailerPlateLetters required
+                                    pattern=".{2,3}">
+                                <mat-icon matSuffix class="secondary-text">local_shipping</mat-icon>
+                                <mat-error>Trailer Plate Letters are required!</mat-error>
+                            </mat-form-field>
+                        </div>
                     </div>
 
                     <div class="pt-4" fxLayout="row" fxLayoutAlign="center center" fxFlex="1 0 auto">

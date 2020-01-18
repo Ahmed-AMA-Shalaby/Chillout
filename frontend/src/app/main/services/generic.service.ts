@@ -16,10 +16,8 @@ export class GenericService {
     constructor(private httpClient: HttpClient) {
     }
 
-    updateEntity(entity: {}): Observable<BaseResponse> {
-        const data = entity
-        console.log(data);
-        
+    updateEntity(type: String, entity: {}): Observable<BaseResponse> {
+        const data = { type: type, entity: entity }
         return this.httpClient.post<BaseResponse>(environment.apis.baseUrl + environment.apis.updateEntity, data, this.httpOptions);
     }
 }

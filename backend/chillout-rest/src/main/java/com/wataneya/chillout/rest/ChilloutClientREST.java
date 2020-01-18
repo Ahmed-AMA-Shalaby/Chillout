@@ -25,7 +25,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createUser")
     @Consumes("application/json")
-    public Response createUser(User user){
+    public Response createUser(User user) {
         try {
             return chilloutStoreService.createUser(user) ?
                     Response.ok(new BaseResponse(false, "User created successfully")).build() :
@@ -41,7 +41,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createProduct")
     @Consumes("application/json")
-    public Response createProduct(Product product){
+    public Response createProduct(Product product) {
         try {
             return chilloutStoreService.createProduct(product) ?
                     Response.ok(new BaseResponse(false, "Product created successfully")).build() :
@@ -57,7 +57,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createSector")
     @Consumes("application/json")
-    public Response createSector(Sector sector){
+    public Response createSector(Sector sector) {
         try {
             return chilloutStoreService.createSector(sector) ?
                     Response.ok(new BaseResponse(false, "Sector created successfully")).build() :
@@ -73,7 +73,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createTank")
     @Consumes("application/json")
-    public Response createTank(Tank tank){
+    public Response createTank(Tank tank) {
         try {
             return chilloutStoreService.createTank(tank) ?
                     Response.ok(new BaseResponse(false, "Tank created successfully")).build() :
@@ -89,7 +89,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createCompany")
     @Consumes("application/json")
-    public Response createCompany(Company company){
+    public Response createCompany(Company company) {
         try {
             return chilloutStoreService.createCompany(company) ?
                     Response.ok(new BaseResponse(false, "Company created successfully")).build() :
@@ -105,7 +105,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createAgent")
     @Consumes("application/json")
-    public Response createAgent(Agent agent){
+    public Response createAgent(Agent agent) {
         try {
             return chilloutStoreService.createAgent(agent) ?
                     Response.ok(new BaseResponse(false, "Agent created successfully")).build() :
@@ -121,7 +121,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createDriver")
     @Consumes("application/json")
-    public Response createDriver(Driver driver){
+    public Response createDriver(Driver driver) {
         try {
             return chilloutStoreService.createDriver(driver) ?
                     Response.ok(new BaseResponse(false, "Driver created successfully")).build() :
@@ -137,7 +137,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createStation")
     @Consumes("application/json")
-    public Response createStation(Station station){
+    public Response createStation(Station station) {
         try {
             return chilloutStoreService.createStation(station) ?
                     Response.ok(new BaseResponse(false, "Station created successfully")).build() :
@@ -153,7 +153,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createWarehouse")
     @Consumes("application/json")
-    public Response createWarehouse(Warehouse warehouse){
+    public Response createWarehouse(Warehouse warehouse) {
 //        Gson gson = new Gson();
 //        JsonObject parsedBody = gson.fromJson(body, JsonObject.class);
 //        Warehouse warehouse = gson.fromJson(parsedBody.get("warehouseData"), Warehouse.class);
@@ -173,7 +173,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createDistance")
     @Consumes("application/json")
-    public Response createDistance(Distance distance){
+    public Response createDistance(Distance distance) {
         try {
             return chilloutStoreService.createDistance(distance) ?
                     Response.ok(new BaseResponse(false, "Distance created successfully")).build() :
@@ -189,7 +189,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createTransfer")
     @Consumes("application/json")
-    public Response createTransfer(Transfer transfer){
+    public Response createTransfer(Transfer transfer) {
         try {
             return chilloutStoreService.createTransfer(transfer) ?
                     Response.ok(new BaseResponse(false, "Transfer created successfully")).build() :
@@ -205,7 +205,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createExisting")
     @Consumes("application/json")
-    public Response createExisting(Existing existing){
+    public Response createExisting(Existing existing) {
         try {
             return chilloutStoreService.createExisting(existing) ?
                     Response.ok(new BaseResponse(false, "Existing created successfully")).build() :
@@ -221,7 +221,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createSale")
     @Consumes("application/json")
-    public Response createSale(Sale sale){
+    public Response createSale(Sale sale) {
         try {
             return chilloutStoreService.createSale(sale) ?
                     Response.ok(new BaseResponse(false, "Sale created successfully")).build() :
@@ -237,7 +237,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createQuota")
     @Consumes("application/json")
-    public Response createQuota(Quota quota){
+    public Response createQuota(Quota quota) {
         try {
             return chilloutStoreService.createQuota(quota) ?
                     Response.ok(new BaseResponse(false, "Quota created successfully")).build() :
@@ -253,7 +253,7 @@ public class ChilloutClientREST {
     @POST
     @Path("/createVehicle")
     @Consumes("application/json")
-    public Response createQuota(Vehicle vehicle){
+    public Response createQuota(Vehicle vehicle) {
         try {
             return chilloutStoreService.createVehicle(vehicle) ?
                     Response.ok(new BaseResponse(false, "Vehicle created successfully")).build() :
@@ -382,10 +382,21 @@ public class ChilloutClientREST {
     @POST
     @Path("/updateEntity")
     @Consumes("application/json")
-    public Response updateEntity(Vehicle vehicle){
+    public Response updateEntity(String body) {
         try {
-
-            return chilloutStoreService.updateEntity(vehicle) ?
+            boolean status = false;
+            Gson gson = new Gson();
+            JsonObject parsedBody = gson.fromJson(body, JsonObject.class);
+            String type = parsedBody.get("type").getAsString();
+            if (type.equals("Vehicle")) {
+                Vehicle vehicle = gson.fromJson(parsedBody.get("entity"), Vehicle.class);
+                status = chilloutStoreService.updateEntity(vehicle);
+            }
+            else if (type.equals("Driver")) {
+                Driver driver = gson.fromJson(parsedBody.get("entity"), Driver.class);
+                status = chilloutStoreService.updateEntity(driver);
+            }
+            return status ?
                     Response.ok(new BaseResponse(false, "Vehicle updated successfully")).build() :
                     Response.ok(new BaseResponse(true, "Vehicle failed to update")).build();
         } catch (Exception e) {

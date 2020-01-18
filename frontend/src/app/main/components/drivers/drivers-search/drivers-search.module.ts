@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 
 import { DriversSearchComponent } from './drivers-search.component';
-import { MatTabsModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCardModule } from '@angular/material';
+import { MatTabsModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCardModule, MatTooltipModule } from '@angular/material';
 
 const routes = [
     {
@@ -30,7 +30,7 @@ const routes = [
         MatFormFieldModule,
         MatIconModule,
         MatCardModule,
-
+        MatTooltipModule,
         // App modules
         GenericTableModule
     ],

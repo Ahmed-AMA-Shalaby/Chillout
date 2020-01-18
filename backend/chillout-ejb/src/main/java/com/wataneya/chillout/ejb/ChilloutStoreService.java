@@ -188,8 +188,8 @@ public class ChilloutStoreService {
     //endregion
 
     //region Updating
-    public boolean updateEntity( Vehicle vehicle ) {
-        em.merge(vehicle);
+    public <Entity> boolean updateEntity( Entity entity ) {
+        em.merge(entity);
         return true;
     }
     //endregion

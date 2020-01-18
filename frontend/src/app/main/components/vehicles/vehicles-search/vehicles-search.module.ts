@@ -5,7 +5,9 @@ import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 
 import { VehiclesSearchComponent } from './vehicles-search.component';
-import { MatTabsModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCardModule } from '@angular/material';
+import { MatTabsModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCardModule, MatTooltipModule, MatTableModule, MatPaginatorModule } from '@angular/material';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 const routes = [
     {
@@ -20,17 +22,22 @@ const routes = [
     ],
     imports: [
         RouterModule.forChild(routes),
-
+        CommonModule,
+        FormsModule,
         FuseSharedModule,
 
         // Material
+        MatTableModule,
+        MatPaginatorModule,
         MatTabsModule,
         MatInputModule,
         MatButtonModule,
         MatFormFieldModule,
         MatIconModule,
         MatCardModule,
-
+        MatTooltipModule,
+        
+        
         // App modules
         GenericTableModule
     ],

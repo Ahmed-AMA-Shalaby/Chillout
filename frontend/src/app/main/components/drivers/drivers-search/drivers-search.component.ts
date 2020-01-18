@@ -13,6 +13,10 @@ import { DriverService } from 'app/main/services/driver.service';
 export class DriversSearchComponent implements OnInit {
     drivers: Driver[]
     filterValue: string
+    editFlag: boolean = false;
+    editColor: boolean = false;
+    deleteFlag: boolean = false;
+    deleteColor: boolean = false;
     constructor(private driverService: DriverService) { }
 
     ngOnInit() {
@@ -25,5 +29,15 @@ export class DriversSearchComponent implements OnInit {
 
     applyFilter(filterValue) {
         this.filterValue = filterValue;
+    }
+
+    toggleEdit() {
+        this.editFlag = !this.editFlag;
+        this.editColor = !this.editColor;
+    }
+
+    toggleDelete() {
+        this.deleteFlag = !this.deleteFlag;
+        this.deleteColor = !this.deleteColor;
     }
 }

@@ -3,49 +3,78 @@
     <!-- TOP BACKGROUND -->
     <div class="top-bg accent"></div>
     <!-- / TOP BACKGROUND -->
-  
+
     <!-- CENTER -->
     <div class="center">
-  
-      <!-- HEADER -->
-      <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
-        fxLayoutAlign.gt-sm="space-between center">
-  
-        <!-- APP TITLE -->
-        <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
-            <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                local_shipping
-            </mat-icon>
-          <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Vehicles</span>
-        </div>
-        <!-- / APP TITLE -->
-  
-        <!-- FILTER -->
-        <div class="search-wrapper mx-32 mx-md-0">
-            <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon>search</mat-icon>
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search for a vehicle">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+            fxLayoutAlign.gt-sm="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    local_shipping
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Vehicles</span>
             </div>
+            <!-- / APP TITLE -->
+
+            <!-- FILTER -->
+            <div class="search-wrapper mx-32 mx-md-0">
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon>search</mat-icon>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search for a vehicle">
+                </div>
+            </div>
+            <!-- / FILTER -->
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <!-- EDIT BUTTON -->
+                <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit"
+                    [disabled]="deleteFlag">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <!-- / EDIT BUTTON -->
+                <!--  DELETE BUTTON -->
+                <button mat-mini-fab class="mx-16" (click)="toggleDelete()"
+                    [ngClass]="{'fuse-white': !deleteFlag, 'red': deleteFlag}" matTooltip="Delete"
+                    [disabled]="editFlag">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <!-- / DELETE BUTTON -->
+            </div>
+
         </div>
-        <!-- / FILTER -->
-  
-        <!-- ADD BUTTON -->
-        <button mat-raised-button (click)="ViewVehicles()" class="fuse-white mt-24 mt-md-0">
-          <mat-icon>people</mat-icon>
-          <span> View All Vehicles</span>
-        </button>
-        <!-- / ADD BUTTON -->
-  
-      </div>
-      <!-- / HEADER -->
-  
-      <!-- CONTENT CARD -->
-      <div class="content-card" *ngIf="vehicles" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
-  
-        <generic-table [data]="vehicles" [cellLink]="'/vehicle/'" [type]="'Vehicle'" [filterValue]="filterValue"></generic-table>
-  
-      </div>
-      <!-- / CONTENT CARD -->
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" *ngIf="vehicles" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+
+            <mat-table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+
+                <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns; let i = index">
+                    <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
+                    <mat-cell *matCellDef="let vehicles; let j  = index">
+                        <p *ngIf="!editFlag">{{vehicles[originalColumns[i]]}}</p>
+                        <mat-form-field floatLabel="never" appearance="outline" class="mt-20" *ngIf="editFlag">
+                            <input matInput (input)="modifyData(j)" placeholder="{{column}}"
+                                [value]="vehicles[originalColumns[i]]" [(ngModel)]="vehicles[originalColumns[i]]">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+            </mat-table>
+
+            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                
+        </div>
+        <!-- / CONTENT CARD -->
     </div>
     <!-- / CENTER -->
-  </div>
+</div>
