@@ -24,11 +24,11 @@ public class Sector {
 
     private boolean isHidden;
 
-    @OneToMany(mappedBy = "sector",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "sector",fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Warehouse> warehouses = new HashSet<>();
 
-    @OneToMany(mappedBy = "sector",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "sector",fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Station> stations = new HashSet<>();
 
@@ -42,6 +42,14 @@ public class Sector {
         this.isHidden = isHidden;
         this.warehouses = warehouses;
         this.stations = stations;
+    }
+
+    public Sector(Sector sector){
+        this.setId(sector.getId());
+        this.setSectorName(sector.getSectorName());
+        this.setHidden(sector.isHidden());
+        this.setWarehouses(sector.getWarehouses());
+        this.setStations(sector.getStations());
     }
 
     public String getId() {

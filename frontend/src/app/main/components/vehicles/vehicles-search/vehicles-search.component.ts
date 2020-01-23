@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSnackBar } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { Vehicle } from 'app/main/models/vehicle.model';
-import { VehicleService } from 'app/main/services/vehicle.service';
 import { GenericService } from 'app/main/services/generic.service';
+import { environment } from 'environments/environment';
 
 interface CustomVehicle {
     id: string;
@@ -27,7 +27,7 @@ interface CustomVehicle {
 export class VehiclesSearchComponent implements OnInit {
     vehicles: []
     editFlag: boolean = false;
-    deleteFlag: boolean = false;
+    hideFlag: boolean = false;
     plateLettersOriginal = ["أ", "ب", "ج", "د", "ر", "س", "ص", "ط", "ع", "ف", "ق", "ل", "م", "ن", "ه", "و", "ى"];
     plateLettersHex = ["\uFE83", "\uFE8F", "\uFE9D", "\uFEA9", "\uFEAD", "\uFEB1", "\uFEB9", "\uFEC1", "\uFEC9", "\uFED1", "\uFED5", "\uFEDD", "\uFEE1", "\uFEE5", "\uFEE9", "\uFEED", "\uFEEF"];
 
@@ -38,12 +38,13 @@ export class VehiclesSearchComponent implements OnInit {
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
 
-    constructor(private vehicleService: VehicleService, private genericService: GenericService) { }
+    constructor(private genericService: GenericService,
+        private snackbar: MatSnackBar) { }
 
     ngOnInit() {
         this.vehicles = [];
         this.dataSource = new MatTableDataSource([]);
-        this.vehicleService.retrieveVehicles().subscribe(data => {
+        this.genericService.retrieveShownEntities(environment.entities.Vehicle).subscribe(data => {
             this.vehicles = data as [];
             this.displayIsolatedCharacter();
             this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate'];
@@ -56,10 +57,10 @@ export class VehiclesSearchComponent implements OnInit {
         })
     }
 
-    displayIsolatedCharacter(){
+    displayIsolatedCharacter() {
         this.vehicles.forEach((vehicle, vehicleIndex) => {
             let plate = "";
-            (vehicle as Vehicle).vehiclePlate.split('').forEach((character, characterIndex) => {
+            (vehicle as Vehicle).vehiclePlate.split('').forEach((character) => {
                 let isolatedLetter = this.plateLettersHex[this.plateLettersOriginal.indexOf(character)];
                 if (isolatedLetter != undefined) {
                     plate += isolatedLetter;
@@ -70,7 +71,7 @@ export class VehiclesSearchComponent implements OnInit {
             })
             this.vehicles[vehicleIndex]["vehiclePlate"] = plate as never;
             plate = "";
-            (vehicle as Vehicle).trailerPlate.split('').forEach((character, characterIndex) => {
+            (vehicle as Vehicle).trailerPlate.split('').forEach((character) => {
                 let isolatedLetter = this.plateLettersHex[this.plateLettersOriginal.indexOf(character)];
                 if (isolatedLetter != undefined) {
                     plate += isolatedLetter;
@@ -89,9 +90,9 @@ export class VehiclesSearchComponent implements OnInit {
 
     toggleEdit() {
         this.editFlag = !this.editFlag;
+        this.vehicles.length = 0;
         if (this.editFlag) {
-            this.vehicleService.retrieveVehicles().subscribe(data => {
-                this.vehicles.length = 0;
+            this.genericService.retrieveShownEntities(environment.entities.Vehicle).subscribe(data => {
                 data.forEach(vehicle => {
                     let customVehicle: CustomVehicle = {
                         id: (vehicle as Vehicle).id,
@@ -101,7 +102,7 @@ export class VehiclesSearchComponent implements OnInit {
                         vehicleCard: (vehicle as Vehicle).vehicleCard,
                         trailerPlateNumbers: (vehicle as Vehicle).trailerPlate.split('-')[0],
                         trailerPlateLetters: (vehicle as Vehicle).trailerPlate.split('-')[1],
-                        hidden: (vehicle as Vehicle).hidden
+                        hidden: (vehicle as Vehicle).isHidden
                     }
                     this.vehicles.push(customVehicle as never)
                 })
@@ -111,8 +112,7 @@ export class VehiclesSearchComponent implements OnInit {
             })
         }
         else {
-            this.vehicles.length = 0;
-            this.vehicleService.retrieveVehicles().subscribe(data => {
+            this.genericService.retrieveShownEntities(environment.entities.Vehicle).subscribe(data => {
                 data.forEach(vehicle => {
                     this.vehicles.push(vehicle as never)
                     this.displayIsolatedCharacter();
@@ -122,10 +122,6 @@ export class VehiclesSearchComponent implements OnInit {
                 this.dataSource.paginator = this.paginator;
             })
         }
-    }
-
-    toggleDelete() {
-        this.deleteFlag = !this.deleteFlag;
     }
 
     modifyData(filteredRow) {
@@ -139,8 +135,68 @@ export class VehiclesSearchComponent implements OnInit {
                     vehicleCard: this.dataSource.filteredData[filteredRow]["vehicleCard"].replace(/\s/g, ''),
                     trailerPlate: this.dataSource.filteredData[filteredRow]["trailerPlateNumbers"].replace(/\s/g, '') + '-' + this.dataSource.filteredData[filteredRow]["trailerPlateLetters"].replace(/\s/g, '')
                 }
-                this.genericService.updateEntity("Vehicle", vehicle).subscribe();
+                this.genericService.updateEntity("Vehicle", vehicle).subscribe(
+                    data => {
+                        this.snackbar.open(data.message);
+                    },
+                    error => {
+                        this.snackbar.open(error.message);
+                    }
+                );
             }
         })
     }
+
+    toggleHide() {
+        this.hideFlag = !this.hideFlag;
+        this.vehicles.length = 0;
+        if (this.hideFlag) {
+            this.genericService.retrieveAllEntities(environment.entities.Vehicle).subscribe(data => {
+                data.forEach(vehicle => {
+                    this.vehicles.push(vehicle as never)
+                    this.displayIsolatedCharacter();
+                })
+                this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate', 'hidden'];
+                this.displayedColumns = ['Vehicle Code', 'Vehicle Plate', 'Vehicle Card', 'Trailer Plate', ' '];
+                this.dataSource.paginator = this.paginator;
+            })
+        }
+        else {
+            this.genericService.retrieveShownEntities(environment.entities.Vehicle).subscribe(data => {
+                data.forEach(vehicle => {
+                    this.vehicles.push(vehicle as never)
+                    this.displayIsolatedCharacter();
+                })
+                this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate'];
+                this.displayedColumns = ['Vehicle Code', 'Vehicle Plate', 'Vehicle Card', 'Trailer Plate'];
+                this.dataSource.paginator = this.paginator;
+            })
+        }
+    }
+
+    toggleVehicleVisibility(filteredRow) {
+        let rowID = this.dataSource.filteredData[filteredRow]["id"]
+        this.vehicles.forEach((row, index) => {
+            if (row["id"] == rowID) {
+                let vehicle: Vehicle = {
+                    id: this.dataSource.filteredData[filteredRow]["id"],
+                    vehicleCode: this.dataSource.filteredData[filteredRow]["vehicleCode"],
+                    vehiclePlate: this.dataSource.filteredData[filteredRow]["vehiclePlate"],
+                    vehicleCard: this.dataSource.filteredData[filteredRow]["vehicleCard"],
+                    trailerPlate: this.dataSource.filteredData[filteredRow]["trailerPlate"],
+                    isHidden: !this.dataSource.filteredData[filteredRow]["hidden"]
+                }
+                this.vehicles[index]["hidden"] = !this.vehicles[index]["hidden"] as never
+                this.genericService.updateEntity("Vehicle", vehicle).subscribe(
+                    data => {
+                        this.snackbar.open(data.message);
+                    },
+                    error => {
+                        this.snackbar.open(error.message);
+                    }
+                );
+            }
+        })
+    }
+
 }

@@ -1,8 +1,8 @@
 export interface Driver {
-    id: String;
-    firstName: String;
-    middleName: String;
-    lastName: String;
-    phoneNumber: String;
-    hidden?: boolean;
+    id: string;
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    phoneNumber: string;
+    isHidden?: boolean;
 }

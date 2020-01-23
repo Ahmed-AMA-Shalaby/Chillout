@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GenericTableComponent } from './generic-table.component';
 import { RouterModule } from '@angular/router';
-import { MatPaginatorModule, MatTableModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatPaginatorModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatTooltipModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -18,6 +18,9 @@ import { FormsModule } from '@angular/forms';
         MatPaginatorModule,
         MatFormFieldModule,
         MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTooltipModule,
 
         RouterModule
     ],

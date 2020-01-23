@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { BaseResponse } from '../models/base_response.model';
 import { Observable } from 'rxjs';
@@ -16,8 +16,24 @@ export class GenericService {
     constructor(private httpClient: HttpClient) {
     }
 
+    createEntity(type: String, entity: {}): Observable<BaseResponse> {
+        const data = { type: type, entity: entity }
+        return this.httpClient.post<BaseResponse>(environment.apis.baseUrl + environment.apis.createEntity, data, this.httpOptions);
+    }
+    
     updateEntity(type: String, entity: {}): Observable<BaseResponse> {
         const data = { type: type, entity: entity }
         return this.httpClient.post<BaseResponse>(environment.apis.baseUrl + environment.apis.updateEntity, data, this.httpOptions);
     }
+    
+    retrieveAllEntities(entity: string): Observable<[]> {
+        let params = new HttpParams().set('entity', entity);
+        return this.httpClient.get<[]>(environment.apis.baseUrl + environment.apis.retrieveAllEntities, { headers: this.httpOptions.headers, params: params });
+    }
+
+    retrieveShownEntities(entity: string): Observable<[]> {
+        let params = new HttpParams().set('entity', entity);
+        return this.httpClient.get<[]>(environment.apis.baseUrl + environment.apis.retrieveShownEntities, { headers: this.httpOptions.headers, params: params });
+    }
+
 }

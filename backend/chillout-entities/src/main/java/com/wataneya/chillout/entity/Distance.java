@@ -21,12 +21,11 @@ public class Distance {
 
     private boolean isHidden;
 
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Warehouse warehouse;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Station station;
 
@@ -40,6 +39,14 @@ public class Distance {
         this.isHidden = isHidden;
         this.warehouse = warehouse;
         this.station = station;
+    }
+
+    public Distance(Distance distance){
+        this.setId(distance.getId());
+        this.setDistance(distance.getDistance());
+        this.setHidden(distance.isHidden());
+        this.setWarehouse(distance.getWarehouse());
+        this.setStation(distance.getStation());
     }
 
     public String getId() {

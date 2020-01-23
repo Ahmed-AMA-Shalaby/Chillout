@@ -24,19 +24,19 @@ public class Station {
 
     private boolean isHidden;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Agent agent;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Sector sector;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Product> products = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Tank> tanks = new HashSet<>();
 
@@ -52,6 +52,16 @@ public class Station {
         this.sector = sector;
         this.products = products;
         this.tanks = tanks;
+    }
+
+    public Station(Station station){
+        this.setId(station.getId());
+        this.setStationName(station.getStationName());
+        this.setHidden(station.isHidden());
+        this.setAgent(station.getAgent());
+        this.setSector(station.getSector());
+        this.setProducts(station.getProducts());
+        this.setTanks(station.getTanks());
     }
 
     public String getId() {

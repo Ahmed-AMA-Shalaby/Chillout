@@ -24,11 +24,11 @@ public class Tank {
 
     private boolean isHidden;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Product product;
 
-    @ManyToMany(mappedBy = "tanks", fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToMany(mappedBy = "tanks", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Station> stations = new HashSet<>();
 
@@ -42,6 +42,14 @@ public class Tank {
         this.isHidden = isHidden;
         this.product = product;
         this.stations = stations;
+    }
+
+    public Tank(Tank tank){
+        this.setId(tank.getId());
+        this.setTankVolume(tank.getTankVolume());
+        this.setHidden(tank.isHidden());
+        this.setProduct(tank.getProduct());
+        this.setStations(tank.getStations());
     }
 
     public String getId() {

@@ -24,7 +24,7 @@ public class Agent {
 
     private boolean isHidden;
 
-    @OneToMany(mappedBy = "agent",fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "agent",fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Station> stations = new HashSet<>();
 
@@ -37,6 +37,13 @@ public class Agent {
         this.agentName = agentName;
         this.isHidden = isHidden;
         this.stations = stations;
+    }
+
+    public Agent(Agent agent){
+        this.setId(agent.getId());
+        this.setAgentName(agent.getAgentName());
+        this.setHidden(agent.isHidden());
+        this.setStations(agent.getStations());
     }
 
     public String getId() {

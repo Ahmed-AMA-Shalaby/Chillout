@@ -24,11 +24,11 @@ public class Product {
 
     private boolean isHidden;
 
-    @ManyToMany(mappedBy = "products",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToMany(mappedBy = "products",fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Warehouse> warehouses = new HashSet<>();
 
-    @ManyToMany(mappedBy = "products",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToMany(mappedBy = "products",fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Station> stations = new HashSet<>();
 
@@ -42,6 +42,14 @@ public class Product {
         this.isHidden = isHidden;
         this.warehouses = warehouses;
         this.stations = stations;
+    }
+
+    public Product(Product product){
+        this.setId(product.getId());
+        this.setProductName(product.getProductName());
+        this.setHidden(product.isHidden());
+        this.setWarehouses(product.getWarehouses());
+        this.setStations(product.getStations());
     }
 
     public String getId() {

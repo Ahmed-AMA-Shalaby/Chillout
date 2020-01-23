@@ -15,9 +15,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import 'hammerjs';
 import { ColorSketchModule } from 'ngx-color/sketch';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
-import { VehicleService } from './main/services/vehicle.service';
 import { AppStorageService } from './main/services/app-storage.service';
-import { DriverService } from './main/services/driver.service';
 import { GenericService } from './main/services/generic.service';
 
 
@@ -87,9 +85,7 @@ const appRoutes: Routes = [
             }
         },
         AppStorageService,
-        GenericService,
-        DriverService,
-        VehicleService
+        GenericService
     ],
     bootstrap: [
         AppComponent

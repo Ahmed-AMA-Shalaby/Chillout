@@ -24,15 +24,15 @@ public class Warehouse {
 
     private boolean isHidden;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Sector sector;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Product> products = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Company> companies = new HashSet<>();
 
@@ -47,6 +47,15 @@ public class Warehouse {
         this.sector = sector;
         this.products = products;
         this.companies = companies;
+    }
+
+    public Warehouse(Warehouse warehouse){
+        this.setId(warehouse.getId());
+        this.setWarehouseName(warehouse.getWarehouseName());
+        this.setHidden(warehouse.isHidden());
+        this.setSector(warehouse.getSector());
+        this.setProducts(warehouse.getProducts());
+        this.setCompanies(warehouse.getCompanies());
     }
 
     public String getId() {

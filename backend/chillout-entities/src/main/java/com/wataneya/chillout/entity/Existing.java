@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -29,11 +27,11 @@ public class Existing {
 
     private boolean isHidden;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Product product;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Station station;
 
@@ -50,6 +48,17 @@ public class Existing {
         this.isHidden = isHidden;
         this.product = product;
         this.station = station;
+    }
+
+    public Existing(Existing existing){
+        this.setId(existing.getId());
+        this.setExistingAmount(existing.getExistingAmount());
+        this.setDay(existing.getDay());
+        this.setMonth(existing.getMonth());
+        this.setYear(existing.getYear());
+        this.setHidden(existing.isHidden());
+        this.setProduct(existing.getProduct());
+        this.setStation(existing.getStation());
     }
 
     public String getId() {

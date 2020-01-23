@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { VehicleService } from 'app/main/services/vehicle.service';
 import { Vehicle } from 'app/main/models/vehicle.model';
+import { GenericService } from 'app/main/services/generic.service';
+import { environment } from 'environments/environment';
 
 @Component({
     selector: 'vehicles-create',
@@ -11,11 +12,11 @@ import { Vehicle } from 'app/main/models/vehicle.model';
 })
 export class VehiclesCreateComponent implements OnInit {
     vehicleForm: FormGroup;
-    
+
     constructor(
         private _formBuilder: FormBuilder,
         private snackbar: MatSnackBar,
-        private vehicleService: VehicleService
+        private genericService: GenericService
     ) { }
 
     ngOnInit() {
@@ -37,7 +38,7 @@ export class VehiclesCreateComponent implements OnInit {
             vehicleCard: this.vehicleForm.value.vehicleCard.replace(/\s/g, ''),
             trailerPlate: this.vehicleForm.value.trailerPlateNumbers.replace(/\s/g, '') + "-" + this.vehicleForm.value.trailerPlateLetters.replace(/\s/g, '') as any
         }
-        this.vehicleService.createVehicle(vehicle).subscribe(
+        this.genericService.createEntity(environment.entities.Vehicle, vehicle).subscribe(
             data => {
                 this.snackbar.open(data.message, "Ok");
             },

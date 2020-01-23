@@ -27,11 +27,11 @@ public class Sale {
 
     private boolean isHidden;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Product product;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Station station;
 
@@ -48,6 +48,17 @@ public class Sale {
         this.isHidden = isHidden;
         this.product = product;
         this.station = station;
+    }
+
+    public Sale(Sale sale){
+        this.setId(sale.getId());
+        this.setSaleAmount(sale.getSaleAmount());
+        this.setDay(sale.getDay());
+        this.setMonth(sale.getMonth());
+        this.setYear(sale.getYear());
+        this.setHidden(sale.isHidden());
+        this.setProduct(sale.getProduct());
+        this.setStation(sale.getStation());
     }
 
     public String getId() {

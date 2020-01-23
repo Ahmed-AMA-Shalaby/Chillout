@@ -27,23 +27,23 @@ public class Transfer {
 
     private boolean isHidden;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Product product;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Station station;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Company company;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Warehouse warehouse;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Trip trip;
 
@@ -63,6 +63,20 @@ public class Transfer {
         this.company = company;
         this.warehouse = warehouse;
         this.trip = trip;
+    }
+
+    public Transfer(Transfer transfer){
+        this.setId(transfer.getId());
+        this.setTransferredAmount(transfer.getTransferredAmount());
+        this.setDay(transfer.getDay());
+        this.setMonth(transfer.getMonth());
+        this.setYear(transfer.getYear());
+        this.setHidden(transfer.isHidden());
+        this.setProduct(transfer.getProduct());
+        this.setStation(transfer.getStation());
+        this.setCompany(transfer.getCompany());
+        this.setWarehouse(transfer.getWarehouse());
+        this.setTrip(transfer.getTrip());
     }
 
     public String getId() {

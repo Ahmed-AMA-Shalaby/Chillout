@@ -24,10 +24,9 @@ public class Company {
 
     private boolean isHidden;
 
-    @ManyToMany(mappedBy = "companies",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToMany(mappedBy = "companies",fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Warehouse> warehouses = new HashSet<>();
-
 
     public Company(){
 
@@ -38,6 +37,13 @@ public class Company {
         this.companyName = companyName;
         this.isHidden = isHidden;
         this.warehouses = warehouses;
+    }
+
+    public Company(Company company){
+        this.setId(company.getId());
+        this.setCompanyName(company.getCompanyName());
+        this.setHidden(company.isHidden());
+        this.setWarehouses(company.getWarehouses());
     }
 
     public String getId() {

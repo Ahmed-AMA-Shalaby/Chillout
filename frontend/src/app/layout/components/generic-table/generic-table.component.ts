@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, SimpleChanges, OnChanges, Input, ViewEncapsulation } from '@angular/core';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSnackBar } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
-import { Vehicle } from 'app/main/models/vehicle.model';
 import { GenericService } from 'app/main/services/generic.service';
+import { environment } from 'environments/environment';
 
 interface CustomVehicle {
     id: string;
@@ -23,14 +23,14 @@ interface CustomVehicle {
     encapsulation: ViewEncapsulation.None
 })
 
-export class GenericTableComponent implements OnInit, OnChanges {
+export class GenericTableComponent implements OnChanges {
 
     @Input() data: [];
     @Input() cellLink: string;
     @Input() type: string;
     @Input() filterValue: string;
     @Input() editMode: string;
-    @Input() deleteMode: string;
+    @Input() hideMode: string;
 
     dataSource: MatTableDataSource<{}>;
     originalColumns = [];
@@ -39,21 +39,27 @@ export class GenericTableComponent implements OnInit, OnChanges {
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
 
-    constructor(private genericService: GenericService) { }
-
-    ngOnInit(): void {
-        if (this.type === "Driver") {
-            this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber'];
-            this.displayedColumns = ['Driver First Name', 'Driver Middle Name', 'Driver Last Name', 'Driver Phone Number'];
-        }
-        this.dataSource.paginator = this.paginator;
-    }
+    constructor(private genericService: GenericService,
+        private snackbar: MatSnackBar) { }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes) {
             if (changes.data) {
                 this.data = changes.data.currentValue;
                 this.dataSource = new MatTableDataSource(this.data);
+            }
+            if (changes.hideMode) {
+                if (this.type == environment.entities.Driver) {
+                    if (changes.hideMode.currentValue) {
+                        this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber', 'hidden'];
+                        this.displayedColumns = ['Driver First Name', 'Driver Middle Name', 'Driver Last Name', 'Driver Phone Number', ' '];
+                    }
+                    else {
+                        this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber'];
+                        this.displayedColumns = ['Driver First Name', 'Driver Middle Name', 'Driver Last Name', 'Driver Phone Number'];
+                    }
+                }
+                this.dataSource.paginator = this.paginator;
             }
         }
         this.dataSource.filter = this.filterValue;
@@ -63,7 +69,35 @@ export class GenericTableComponent implements OnInit, OnChanges {
         let rowID = this.dataSource.filteredData[filteredRow]["id"]
         this.data.forEach(row => {
             if (row["id"] == rowID) {
-                this.genericService.updateEntity(this.type, this.dataSource.filteredData[filteredRow]).subscribe();
+                let modifiedRow = this.dataSource.filteredData[filteredRow];
+                this.genericService.updateEntity(this.type, modifiedRow).subscribe(
+                    data => {
+                        this.snackbar.open(data.message);
+                    },
+                    error => {
+                        this.snackbar.open(error.message);
+                    }
+                );
+            }
+        })
+    }
+
+    toggleVisibility(filteredRow) {
+        let rowID = this.dataSource.filteredData[filteredRow]["id"]
+        this.data.forEach((row, index) => {
+            if (row["id"] == rowID) {
+                let modifiedRow = JSON.parse(JSON.stringify(this.dataSource.filteredData[filteredRow]).replace("\"hidden\":", "\"isHidden\":"));
+                delete modifiedRow["hidden"];
+                modifiedRow["isHidden"] = !modifiedRow["isHidden"];
+                this.data[index]["hidden"] = !this.data[index]["hidden"] as never;
+                this.genericService.updateEntity(this.type, modifiedRow).subscribe(
+                    data => {
+                        this.snackbar.open(data.message);
+                    },
+                    error => {
+                        this.snackbar.open(error.message);
+                    }
+                );
             }
         })
     }

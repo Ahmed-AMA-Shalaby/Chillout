@@ -21,17 +21,19 @@ public class Quota {
 
     private int month;
 
+    private int year;
+
     private boolean isHidden;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Product product;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Company company;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Warehouse warehouse;
 
@@ -39,14 +41,26 @@ public class Quota {
 
     }
 
-    public Quota(String id, int quotaAmount, int month, boolean isHidden, Product product, Company company, Warehouse warehouse) {
+    public Quota(String id, int quotaAmount, int month, int year, boolean isHidden, Product product, Company company, Warehouse warehouse) {
         this.id = id;
         this.quotaAmount = quotaAmount;
         this.month = month;
+        this.year = year;
         this.isHidden = isHidden;
         this.product = product;
         this.company = company;
         this.warehouse = warehouse;
+    }
+
+    public Quota(Quota quota){
+        this.setId(quota.getId());
+        this.setQuotaAmount(quota.getQuotaAmount());
+        this.setMonth(quota.getMonth());
+        this.setYear(quota.getYear());
+        this.setHidden(quota.isHidden());
+        this.setProduct(quota.getProduct());
+        this.setCompany(quota.getCompany());
+        this.setWarehouse(quota.getWarehouse());
     }
 
     public String getId() {
@@ -71,6 +85,14 @@ public class Quota {
 
     public void setMonth(int month) {
         this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public boolean isHidden() {

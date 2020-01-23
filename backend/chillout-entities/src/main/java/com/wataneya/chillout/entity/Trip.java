@@ -27,23 +27,23 @@ public class Trip {
 
     private boolean isHidden;
 
-    @OneToMany(mappedBy = "trip", fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "trip", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Transfer> transfers = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Distance outboundDistance;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Distance inboundDistance;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Driver driver;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIdentityReference(alwaysAsId = true)
     private Vehicle vehicle;
 
@@ -63,6 +63,19 @@ public class Trip {
         this.inboundDistance = inboundDistance;
         this.driver = driver;
         this.vehicle = vehicle;
+    }
+
+    public Trip(Trip trip){
+        this.setId(trip.getId());
+        this.setDay(trip.getDay());
+        this.setMonth(trip.getMonth());
+        this.setYear(trip.getYear());
+        this.setHidden(trip.isHidden());
+        this.setTransfers(trip.getTransfers());
+        this.setOutboundDistance(trip.getOutboundDistance());
+        this.setInboundDistance(trip.getInboundDistance());
+        this.setDriver(trip.getDriver());
+        this.setVehicle(trip.getVehicle());
     }
 
     public String getId() {

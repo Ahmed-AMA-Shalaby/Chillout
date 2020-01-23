@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { Driver } from 'app/main/models/driver.model';
-import { DriverService } from 'app/main/services/driver.service';
+import { GenericService } from 'app/main/services/generic.service';
+import { environment } from 'environments/environment';
 
 @Component({
     selector: 'drivers-search',
@@ -14,13 +15,11 @@ export class DriversSearchComponent implements OnInit {
     drivers: Driver[]
     filterValue: string
     editFlag: boolean = false;
-    editColor: boolean = false;
-    deleteFlag: boolean = false;
-    deleteColor: boolean = false;
-    constructor(private driverService: DriverService) { }
+    hideFlag: boolean = false;
+    constructor(private genericService: GenericService) { }
 
     ngOnInit() {
-        this.driverService.retrieveDrivers().subscribe(
+        this.genericService.retrieveShownEntities(environment.entities.Driver).subscribe(
             data => {
                 this.drivers = data;
             }
@@ -33,11 +32,20 @@ export class DriversSearchComponent implements OnInit {
 
     toggleEdit() {
         this.editFlag = !this.editFlag;
-        this.editColor = !this.editColor;
     }
 
-    toggleDelete() {
-        this.deleteFlag = !this.deleteFlag;
-        this.deleteColor = !this.deleteColor;
+    toggleHide() {
+        this.hideFlag = !this.hideFlag;
+        this.drivers.length = 0;
+        if (this.hideFlag) {
+            this.genericService.retrieveAllEntities(environment.entities.Driver).subscribe(data => {
+                this.drivers = data;
+            })
+        }
+        else {
+            this.genericService.retrieveShownEntities(environment.entities.Driver).subscribe(data => {
+                this.drivers = data;
+            })
+        }
     }
 }

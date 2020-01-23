@@ -7,11 +7,14 @@ export const environment = {
   hmr: false,
   apis: {
     baseUrl: 'http://localhost:8080/chillout/chilloutrest/',
-    createVehicle: 'createVehicle',
-    retrieveVehicles: 'retrieveVehicles',
-    createDriver: 'createDriver',
-    retrieveDrivers: 'retrieveDrivers',
+    createEntity: 'createEntity',
     updateEntity:'updateEntity',
+    retrieveAllEntities: 'retrieveAllEntities',
+    retrieveShownEntities: 'retrieveShownEntities',
+  },
+  entities:{
+      Vehicle: 'Vehicle',
+      Driver: 'Driver'
   }
 };
 /*

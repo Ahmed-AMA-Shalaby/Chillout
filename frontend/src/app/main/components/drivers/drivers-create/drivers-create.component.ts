@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { DriverService } from 'app/main/services/driver.service';
 import { Driver } from 'app/main/models/driver.model';
+import { GenericService } from 'app/main/services/generic.service';
+import { environment } from 'environments/environment';
 
 @Component({
     selector: 'drivers-create',
@@ -15,7 +16,7 @@ export class DriversCreateComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private snackbar: MatSnackBar,
-        private driverService: DriverService
+        private genericService: GenericService
     ) { }
 
     ngOnInit() {
@@ -34,7 +35,7 @@ export class DriversCreateComponent implements OnInit {
             lastName: this.driverForm.value.lastName,
             phoneNumber: this.driverForm.value.phoneNumber
         }
-        this.driverService.createDriver(driver).subscribe(
+        this.genericService.createEntity(environment.entities.Driver, driver).subscribe(
             data => {
                 this.snackbar.open(data.message, "Ok");
             },
