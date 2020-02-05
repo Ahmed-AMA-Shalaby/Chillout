@@ -32,6 +32,14 @@ const appRoutes: Routes = [
         loadChildren: './main/components/home/home.module#HomeModule'
     },
     {
+        path: 'sectors/create',
+        loadChildren: './main/components/sectors/sectors-create/sectors-create.module#SectorsCreateModule'
+    },
+    {
+        path: 'sectors/search',
+        loadChildren: './main/components/sectors/sectors-search/sectors-search.module#SectorsSearchModule'
+    },
+    {
         path: 'vehicles/create',
         loadChildren: './main/components/vehicles/vehicles-create/vehicles-create.module#VehiclesCreateModule'
     },

@@ -79,6 +79,7 @@ $typography: mat-typography-config(
 
 // Import app and page component themes here to enable theming for them
 @import "src/app/layout/components/toolbar/toolbar.theme";
+@import "src/app/main/components/sectors/sectors-search/sectors-search.theme";
 @import "src/app/main/components/vehicles/vehicles-search/vehicles-search.theme";
 @import "src/app/main/components/drivers/drivers-search/drivers-search.theme";
 // Define a mixin for easier access
@@ -86,6 +87,9 @@ $typography: mat-typography-config(
 
     // Layout components
     @include toolbar-theme($theme);
+
+    //Drivers-Search Page
+    @include sectors-search-theme($theme);
 
     //Drivers-Search Page
     @include drivers-search-theme($theme);

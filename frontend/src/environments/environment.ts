@@ -13,8 +13,22 @@ export const environment = {
     retrieveShownEntities: 'retrieveShownEntities',
   },
   entities:{
+      Agent:'Agent',
+      Company:'Company',
+      Distance:'Distance',
+      Driver: 'Driver',
+      Existing:'Existing',
+      Product:'Product',
+      Quota:'Quota',
+      Sale:'Sale',
+      Sector:'Sector',
+      Station:'Station',
+      Tank:'Tank',
+      Transfer:'Transfer',
+      Trip:'Trip',
+      User:'User',
       Vehicle: 'Vehicle',
-      Driver: 'Driver'
+      Warehouse:'Warehouse'
   }
 };
 /*

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, SimpleChanges, OnChanges, Input, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, SimpleChanges, OnChanges, Input, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSnackBar } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { GenericService } from 'app/main/services/generic.service';
@@ -49,15 +49,13 @@ export class GenericTableComponent implements OnChanges {
                 this.dataSource = new MatTableDataSource(this.data);
             }
             if (changes.hideMode) {
-                if (this.type == environment.entities.Driver) {
-                    if (changes.hideMode.currentValue) {
-                        this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber', 'hidden'];
-                        this.displayedColumns = ['Driver First Name', 'Driver Middle Name', 'Driver Last Name', 'Driver Phone Number', ' '];
-                    }
-                    else {
-                        this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber'];
-                        this.displayedColumns = ['Driver First Name', 'Driver Middle Name', 'Driver Last Name', 'Driver Phone Number'];
-                    }
+                if (this.type == environment.entities.Sector) {
+                    this.originalColumns = changes.hideMode.currentValue ? ['sectorName', 'hidden'] : ['sectorName']
+                    this.displayedColumns = changes.hideMode.currentValue ? ['Sector Name', ' '] : ['Sector Name']
+                }
+                else if (this.type == environment.entities.Driver) {
+                    this.originalColumns = changes.hideMode.currentValue ? ['firstName', 'middleName', 'lastName', 'phoneNumber', 'hidden'] : ['firstName', 'middleName', 'lastName', 'phoneNumber']
+                    this.displayedColumns = changes.hideMode.currentValue ? ['Driver First Name', 'Driver Middle Name', 'Driver Last Name', 'Driver Phone Number', ' '] : ['Driver First Name', 'Driver Middle Name', 'Driver Last Name', 'Driver Phone Number']
                 }
                 this.dataSource.paginator = this.paginator;
             }
