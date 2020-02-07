@@ -1,0 +1,61 @@
+<div id="companies-search" class="page-layout carded fullwidth">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+            fxLayoutAlign.gt-sm="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    people
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Companies</span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- FILTER -->
+            <div class="search-wrapper mx-32 mx-md-0">
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon>search</mat-icon>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search for a company">
+                </div>
+            </div>
+            <!-- / FILTER -->
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <!-- EDIT BUTTON -->
+                <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit"
+                    [disabled]="hideFlag">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <!-- / EDIT BUTTON -->
+                <!--  HIDE BUTTON -->
+                <button mat-mini-fab class="mx-16" (click)="toggleHide()"
+                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="Show / Hide" [disabled]="editFlag">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                <!-- / HIDE BUTTON -->
+            </div>
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" *ngIf="companies.length != 0" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+
+            <generic-table [data]="companies" [cellLink]="'/company/'" [type]="'Company'" [filterValue]="filterValue"
+                [editMode]="editFlag" [hideMode]="hideFlag"></generic-table>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

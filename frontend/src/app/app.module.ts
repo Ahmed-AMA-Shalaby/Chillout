@@ -32,12 +32,52 @@ const appRoutes: Routes = [
         loadChildren: './main/components/home/home.module#HomeModule'
     },
     {
+        path: 'agents/create',
+        loadChildren: './main/components/agents/agents-create/agents-create.module#AgentsCreateModule'
+    },
+    {
+        path: 'agents/search',
+        loadChildren: './main/components/agents/agents-search/agents-search.module#AgentsSearchModule'
+    },
+    {
+        path: 'companies/create',
+        loadChildren: './main/components/companies/companies-create/companies-create.module#CompaniesCreateModule'
+    },
+    {
+        path: 'companies/search',
+        loadChildren: './main/components/companies/companies-search/companies-search.module#CompaniesSearchModule'
+    },
+    {
+        path: 'drivers/create',
+        loadChildren: './main/components/drivers/drivers-create/drivers-create.module#DriversCreateModule'
+    },
+    {
+        path: 'drivers/search',
+        loadChildren: './main/components/drivers/drivers-search/drivers-search.module#DriversSearchModule'
+    },
+    {
+        path: 'products/create',
+        loadChildren: './main/components/products/products-create/products-create.module#ProductsCreateModule'
+    },
+    {
+        path: 'products/search',
+        loadChildren: './main/components/products/products-search/products-search.module#ProductsSearchModule'
+    },
+    {
         path: 'sectors/create',
         loadChildren: './main/components/sectors/sectors-create/sectors-create.module#SectorsCreateModule'
     },
     {
         path: 'sectors/search',
         loadChildren: './main/components/sectors/sectors-search/sectors-search.module#SectorsSearchModule'
+    },
+    {
+        path: 'users/create',
+        loadChildren: './main/components/users/users-create/users-create.module#UsersCreateModule'
+    },
+    {
+        path: 'users/search',
+        loadChildren: './main/components/users/users-search/users-search.module#UsersSearchModule'
     },
     {
         path: 'vehicles/create',
@@ -48,12 +88,12 @@ const appRoutes: Routes = [
         loadChildren: './main/components/vehicles/vehicles-search/vehicles-search.module#VehiclesSearchModule'
     },
     {
-        path: 'drivers/create',
-        loadChildren: './main/components/drivers/drivers-create/drivers-create.module#DriversCreateModule'
+        path: 'warehouses/create',
+        loadChildren: './main/components/warehouses/warehouses-create/warehouses-create.module#WarehousesCreateModule'
     },
     {
-        path: 'drivers/search',
-        loadChildren: './main/components/drivers/drivers-search/drivers-search.module#DriversSearchModule'
+        path: 'warehouses/search',
+        loadChildren: './main/components/warehouses/warehouses-search/warehouses-search.module#WarehousesSearchModule'
     }
 ];
 

@@ -25,7 +25,7 @@ interface CustomVehicle {
 })
 
 export class VehiclesSearchComponent implements OnInit {
-    vehicles: []
+    vehicles: [] = [];
     editFlag: boolean = false;
     hideFlag: boolean = false;
     plateLettersOriginal = ["أ", "ب", "ج", "د", "ر", "س", "ص", "ط", "ع", "ف", "ق", "ل", "م", "ن", "ه", "و", "ى"];

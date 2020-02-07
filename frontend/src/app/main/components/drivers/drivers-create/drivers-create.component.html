@@ -13,28 +13,30 @@
                     <div class="h2 mb-24">Create a New Driver</div>
 
                     <div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 0 auto">
-                        <mat-form-field appearance="outline" class="pr-4">
-                            <mat-label>Driver First Name</mat-label>
-                            <input matInput formControlName="firstName" #firstName required>
-                            <mat-icon matSuffix class="secondary-text">people</mat-icon>
-                            <mat-error>Driver First Name is required!</mat-error>
-                        </mat-form-field>
+                        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="1 0 auto">
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Driver First Name</mat-label>
+                                <input matInput formControlName="firstName" #firstName required>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Driver First Name is required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Driver Middle Name</mat-label>
+                                <input matInput formControlName="middleName" #middleName required>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Driver Middle Name is required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Driver Last Name</mat-label>
+                                <input matInput formControlName="lastName" #lastName required>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Driver Last Name is required!</mat-error>
+                            </mat-form-field>
+                        </div>
 
                         <mat-form-field appearance="outline" class="pr-4 pl-4">
-                            <mat-label>Driver Middle Name</mat-label>
-                            <input matInput formControlName="middleName" #middleName required>
-                            <mat-icon matSuffix class="secondary-text">people</mat-icon>
-                            <mat-error>Driver Middle Name is required!</mat-error>
-                        </mat-form-field>
-
-                        <mat-form-field appearance="outline" class="pl-4">
-                            <mat-label>Driver Last Name</mat-label>
-                            <input matInput formControlName="lastName" #lastName required>
-                            <mat-icon matSuffix class="secondary-text">people</mat-icon>
-                            <mat-error>Driver Last Name is required!</mat-error>
-                        </mat-form-field>
-                        
-                        <mat-form-field appearance="outline">
                             <mat-label>Driver Phone Number</mat-label>
                             <input matInput formControlName="phoneNumber" #phoneNumber required>
                             <mat-icon matSuffix class="secondary-text">people</mat-icon>

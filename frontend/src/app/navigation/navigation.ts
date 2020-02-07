@@ -10,6 +10,106 @@ export const Navigation: FuseNavigation[] = [
         url: '/home'
     },
     {
+        id: 'agents',
+        title: 'Agents',
+        icon: 'location_city',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Create',
+                title: 'Create',
+                type: 'item',
+                url: '/agents/create'
+            },
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/agents/search'
+            }
+        ]
+    },
+    {
+        id: 'companies',
+        title: 'Companies',
+        icon: 'business',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Create',
+                title: 'Create',
+                type: 'item',
+                url: '/companies/create'
+            },
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/companies/search'
+            }
+        ]
+    },
+    {
+        id: 'distances',
+        title: 'Distances',
+        icon: 'map',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Create',
+                title: 'Create',
+                type: 'item',
+                url: '/distances/create'
+            },
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/distances/search'
+            }
+        ]
+    },
+    {
+        id: 'drivers',
+        title: 'Drivers',
+        icon: 'people',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Create',
+                title: 'Create',
+                type: 'item',
+                url: '/drivers/create'
+            },
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/drivers/search'
+            }
+        ]
+    },
+    {
+        id: 'products',
+        title: 'Products',
+        icon: 'category',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Create',
+                title: 'Create',
+                type: 'item',
+                url: '/products/create'
+            },
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/products/search'
+            }
+        ]
+    },
+    {
         id: 'sectors',
         title: 'Sectors',
         icon: 'location_city',
@@ -70,126 +170,6 @@ export const Navigation: FuseNavigation[] = [
         ]
     },
     {
-        id: 'companies',
-        title: 'Companies',
-        icon: 'business',
-        type: 'collapsable',
-        children: [
-            {
-                id: 'Create',
-                title: 'Create',
-                type: 'item',
-                url: '/companies/create'
-            },
-            {
-                id: 'Search',
-                title: 'Search',
-                type: 'item',
-                url: '/companies/search'
-            }
-        ]
-    },
-    {
-        id: 'warehouses',
-        title: 'Warehouses',
-        icon: 'account_balance',
-        type: 'collapsable',
-        children: [
-            {
-                id: 'Create',
-                title: 'Create',
-                type: 'item',
-                url: '/warehouses/create'
-            },
-            {
-                id: 'Search',
-                title: 'Search',
-                type: 'item',
-                url: '/warehouses/search'
-            }
-        ]
-    },
-    {
-        id: 'products',
-        title: 'Products',
-        icon: 'category',
-        type: 'collapsable',
-        children: [
-            {
-                id: 'Create',
-                title: 'Create',
-                type: 'item',
-                url: '/products/create'
-            },
-            {
-                id: 'Search',
-                title: 'Search',
-                type: 'item',
-                url: '/products/search'
-            }
-        ]
-    },
-    {
-        id: 'vehicles',
-        title: 'Vehicles',
-        icon: 'local_shipping',
-        type: 'collapsable',
-        children: [
-            {
-                id: 'Create',
-                title: 'Create',
-                type: 'item',
-                url: '/vehicles/create'
-            },
-            {
-                id: 'Search',
-                title: 'Search',
-                type: 'item',
-                url: '/vehicles/search'
-            }
-        ]
-    },
-    {
-        id: 'drivers',
-        title: 'Drivers',
-        icon: 'people',
-        type: 'collapsable',
-        children: [
-            {
-                id: 'Create',
-                title: 'Create',
-                type: 'item',
-                url: '/drivers/create'
-            },
-            {
-                id: 'Search',
-                title: 'Search',
-                type: 'item',
-                url: '/drivers/search'
-            }
-        ]
-    },
-    {
-        id: 'distances',
-        title: 'Distances',
-        icon: 'map',
-        type: 'collapsable',
-        children: [
-            {
-                id: 'Create',
-                title: 'Create',
-                type: 'item',
-                url: '/distances/create'
-            },
-            {
-                id: 'Search',
-                title: 'Search',
-                type: 'item',
-                url: '/distances/search'
-            }
-        ]
-    },
-    {
         id: 'trips',
         title: 'Trips',
         icon: 'departure_board',
@@ -226,6 +206,46 @@ export const Navigation: FuseNavigation[] = [
                 title: 'Search',
                 type: 'item',
                 url: '/users/search'
+            }
+        ]
+    },
+    {
+        id: 'vehicles',
+        title: 'Vehicles',
+        icon: 'local_shipping',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Create',
+                title: 'Create',
+                type: 'item',
+                url: '/vehicles/create'
+            },
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/vehicles/search'
+            }
+        ]
+    },
+    {
+        id: 'warehouses',
+        title: 'Warehouses',
+        icon: 'account_balance',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Create',
+                title: 'Create',
+                type: 'item',
+                url: '/warehouses/create'
+            },
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/warehouses/search'
             }
         ]
     },

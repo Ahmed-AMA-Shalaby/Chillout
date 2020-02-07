@@ -12,8 +12,8 @@ import { environment } from 'environments/environment';
     encapsulation: ViewEncapsulation.None
 })
 export class SectorsSearchComponent implements OnInit {
-    sectors: Sector[]
-    filterValue: string
+    sectors: Sector[] = [];
+    filterValue: string;
     editFlag: boolean = false;
     hideFlag: boolean = false;
     constructor(private genericService: GenericService) { }

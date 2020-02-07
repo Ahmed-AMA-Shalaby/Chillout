@@ -12,8 +12,8 @@ import { environment } from 'environments/environment';
     encapsulation: ViewEncapsulation.None
 })
 export class DriversSearchComponent implements OnInit {
-    drivers: Driver[]
-    filterValue: string
+    drivers: Driver[] = [];
+    filterValue: string;
     editFlag: boolean = false;
     hideFlag: boolean = false;
     constructor(private genericService: GenericService) { }
