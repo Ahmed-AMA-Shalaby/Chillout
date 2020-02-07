@@ -88,6 +88,7 @@ export class GenericTableComponent implements OnChanges {
                 delete modifiedRow["hidden"];
                 modifiedRow["isHidden"] = !modifiedRow["isHidden"];
                 this.data[index]["hidden"] = !this.data[index]["hidden"] as never;
+                modifiedRow = JSON.parse(JSON.stringify(modifiedRow).replace("\"isHidden\":", "\"hidden\":"));
                 this.genericService.updateEntity(this.type, modifiedRow).subscribe(
                     data => {
                         this.snackbar.open(data.message);

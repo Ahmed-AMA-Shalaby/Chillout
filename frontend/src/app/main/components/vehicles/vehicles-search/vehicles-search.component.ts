@@ -187,6 +187,7 @@ export class VehiclesSearchComponent implements OnInit {
                     isHidden: !this.dataSource.filteredData[filteredRow]["hidden"]
                 }
                 this.vehicles[index]["hidden"] = !this.vehicles[index]["hidden"] as never
+                vehicle = JSON.parse(JSON.stringify(vehicle).replace("\"isHidden\":", "\"hidden\":"));
                 this.genericService.updateEntity("Vehicle", vehicle).subscribe(
                     data => {
                         this.snackbar.open(data.message);

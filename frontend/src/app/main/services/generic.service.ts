@@ -22,8 +22,7 @@ export class GenericService {
     }
     
     updateEntity(type: String, entity: {}): Observable<BaseResponse> {
-        const data = { type: type, entity: entity }
-        return this.httpClient.post<BaseResponse>(environment.apis.baseUrl + environment.apis.updateEntity, data, this.httpOptions);
+        return this.httpClient.post<BaseResponse>(environment.apis.baseUrl + environment.apis[`update${type}`], entity, this.httpOptions);
     }
     
     retrieveAllEntities(entity: string): Observable<[]> {

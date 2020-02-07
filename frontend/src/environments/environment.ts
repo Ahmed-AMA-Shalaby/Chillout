@@ -3,33 +3,48 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  hmr: false,
-  apis: {
-    baseUrl: 'http://localhost:8080/chillout/chilloutrest/',
-    createEntity: 'createEntity',
-    updateEntity:'updateEntity',
-    retrieveAllEntities: 'retrieveAllEntities',
-    retrieveShownEntities: 'retrieveShownEntities',
-  },
-  entities:{
-      Agent:'Agent',
-      Company:'Company',
-      Distance:'Distance',
-      Driver: 'Driver',
-      Existing:'Existing',
-      Product:'Product',
-      Quota:'Quota',
-      Sale:'Sale',
-      Sector:'Sector',
-      Station:'Station',
-      Tank:'Tank',
-      Transfer:'Transfer',
-      Trip:'Trip',
-      User:'User',
-      Vehicle: 'Vehicle',
-      Warehouse:'Warehouse'
-  }
+    production: false,
+    hmr: false,
+    apis: {
+        baseUrl: 'http://localhost:8080/chillout/chilloutrest/',
+        createEntity: 'createEntity',
+        updateAgent: 'updateAgent',
+        updateCompany: 'updateCompany',
+        updateDistance: 'updateDistance',
+        updateDriver: 'updateDriver',
+        updateExisting: 'updateExisting',
+        updateProduct: 'updateProduct',
+        updateQuota: 'updateQuota',
+        updateSale: 'updateSale',
+        updateSector: 'updateSector',
+        updateStation: 'updateStation',
+        updateTank: 'updateTank',
+        updateTransfer: 'updateTransfer',
+        updateTrip: 'updateTrip',
+        updateUser: 'updateUser',
+        updateVehicle: 'updateVehicle',
+        updateWarehouse: 'updateWarehouse',
+        retrieveAllEntities: 'retrieveAllEntities',
+        retrieveShownEntities: 'retrieveShownEntities',
+    },
+    entities: {
+        Agent: 'Agent',
+        Company: 'Company',
+        Distance: 'Distance',
+        Driver: 'Driver',
+        Existing: 'Existing',
+        Product: 'Product',
+        Quota: 'Quota',
+        Sale: 'Sale',
+        Sector: 'Sector',
+        Station: 'Station',
+        Tank: 'Tank',
+        Transfer: 'Transfer',
+        Trip: 'Trip',
+        User: 'User',
+        Vehicle: 'Vehicle',
+        Warehouse: 'Warehouse'
+    }
 };
 /*
  * For easier debugging in development mode, you can import the following file

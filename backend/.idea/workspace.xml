@@ -3,12 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="12aafbd7-eb7c-44a2-9b44-eb17e511f17d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutStoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutStoreService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-ejb/target/chillout-ejb.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/chillout-ejb.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-ejb/target/classes/com/wataneya/chillout/ejb/ChilloutStoreService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/classes/com/wataneya/chillout/ejb/ChilloutStoreService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-ejb/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/target/chillout-entities.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/chillout-entities.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-rest/src/main/java/com/wataneya/chillout/rest/ChilloutClientREST.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/src/main/java/com/wataneya/chillout/rest/ChilloutClientREST.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-rest/target/chillout-rest.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/target/chillout-rest.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-rest/target/classes/com/wataneya/chillout/rest/ChilloutClientREST.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/target/classes/com/wataneya/chillout/rest/ChilloutClientREST.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-rest/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/target/maven-archiver/pom.properties" afterDir="false" />
@@ -17,6 +18,21 @@
       <change beforePath="$PROJECT_DIR$/chillout-war/target/Chillout_backend/WEB-INF/lib/chillout-entities-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-war/target/Chillout_backend/WEB-INF/lib/chillout-entities-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-war/target/Chillout_backend/WEB-INF/lib/chillout-rest-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-war/target/Chillout_backend/WEB-INF/lib/chillout-rest-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-war/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-war/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/Warehouse.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/Warehouse.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/agent.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/agent.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/company.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/company.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/distance.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/distance.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/existing.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/existing.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/product.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/product.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/quota.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/quota.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/sale.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/sale.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/sector.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/sector.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/station.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/station.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/tank.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/tank.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/transfer.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/transfer.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/trip.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/trip.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/services/generic.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/services/generic.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/environments/environment.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

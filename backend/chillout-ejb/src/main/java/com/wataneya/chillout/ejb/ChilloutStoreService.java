@@ -164,4 +164,9 @@ public class ChilloutStoreService {
         return true;
     }
     //endregion
+
+    public boolean updateSector(Sector sector) {
+        em.merge(sector);
+        return true;
+    }
 }
