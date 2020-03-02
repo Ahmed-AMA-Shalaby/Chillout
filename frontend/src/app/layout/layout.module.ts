@@ -8,7 +8,7 @@ import { VerticalLayout1Module } from 'app/layout/vertical/layout-1/layout-1.mod
     ],
     exports: [
         VerticalLayout1Module
-    ]
+    ],
 })
 export class LayoutModule
 {

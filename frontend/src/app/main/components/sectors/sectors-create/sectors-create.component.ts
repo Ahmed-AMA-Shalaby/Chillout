@@ -29,7 +29,7 @@ export class SectorsCreateComponent implements OnInit {
         const sector = <Sector>{
             sectorName: this.sectorForm.value.sectorName
         }
-        this.genericService.createEntity(environment.entities.Sector, sector).subscribe(
+        this.genericService.updateEntity(environment.entities.Sector, sector).subscribe(
             data => {
                 this.snackbar.open(data.message, "Ok");
             },

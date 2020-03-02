@@ -1,12 +1,10 @@
 package com.wataneya.chillout.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.*;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -110,6 +108,20 @@ public class User {
 
     public void setHidden(boolean hidden) {
         isHidden = hidden;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", isHidden=" + isHidden +
+                '}';
     }
 }
 

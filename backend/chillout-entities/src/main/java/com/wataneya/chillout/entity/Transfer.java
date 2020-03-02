@@ -1,7 +1,6 @@
 package com.wataneya.chillout.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -28,23 +27,18 @@ public class Transfer {
     private boolean isHidden;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Product product;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Station station;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Company company;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Warehouse warehouse;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Trip trip;
 
     public Transfer(){
@@ -165,6 +159,23 @@ public class Transfer {
 
     public void setTrip(Trip trip) {
         this.trip = trip;
+    }
+
+    @Override
+    public String toString() {
+        return "Transfer{" +
+                "id='" + id + '\'' +
+                ", transferredAmount=" + transferredAmount +
+                ", day=" + day +
+                ", month=" + month +
+                ", year=" + year +
+                ", isHidden=" + isHidden +
+                ", product=" + product +
+                ", station=" + station +
+                ", company=" + company +
+                ", warehouse=" + warehouse +
+                ", trip=" + trip +
+                '}';
     }
 }
 

@@ -1,0 +1,157 @@
+<div *ngIf="station" id="about" class="p-24" fxLayout="row wrap">
+
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="65">
+
+        <div class="station-box info-box general" fxLayout="column">
+
+            <header class="accent" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="title">General Information</div>
+                <div></div>
+                <button mat-icon-button class="mx-16" (click)="toggleEdit()"
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit" [disabled]="addFlag">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </header>
+
+            <div *ngIf="station" class="content">
+                <div class="info-line">
+                    <div class="title">Code:</div>
+                    <div *ngIf="!editFlag" class="info">{{station.stationCode}}</div>
+                    <mat-form-field floatLabel="never" *ngIf="editFlag">
+                        <mat-label>Code</mat-label>
+                        <input matInput class="info" [value]="station.stationCode" [(ngModel)]="station.stationCode">
+                    </mat-form-field>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Name:</div>
+                    <div *ngIf="!editFlag" class="info">{{station.stationName}}</div>
+                    <mat-form-field floatLabel="never" *ngIf="editFlag">
+                        <mat-label>Name</mat-label>
+                        <input matInput class="info" [value]="station.stationName" [(ngModel)]="station.stationName">
+                    </mat-form-field>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Location:</div>
+                    <div *ngIf="!editFlag" class="info">{{station.stationLocation}}</div>
+                    <mat-form-field floatLabel="never" *ngIf="editFlag">
+                        <mat-label>Location</mat-label>
+                        <input matInput class="info" [value]="station.stationLocation"
+                            [(ngModel)]="station.stationLocation">
+                    </mat-form-field>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Agent:</div>
+                    <div *ngIf="!editFlag" class="info">{{station.agent.agentName}}</div>
+                    <mat-form-field floatLabel="never" *ngIf="editFlag">
+                        <mat-label>Agent</mat-label>
+                        <mat-select [(ngModel)]="station.agent">
+                            <mat-option *ngFor="let agent of agents" [value]="agent">
+                                {{agent.agentName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Sector:</div>
+                    <div *ngIf="!editFlag" class="info">{{station.sector.sectorName}}</div>
+                    <mat-form-field floatLabel="never" *ngIf="editFlag">
+                        <mat-label>Sector</mat-label>
+                        <mat-select [(ngModel)]="station.sector">
+                            <mat-option *ngFor="let sector of sectors" [value]="sector">
+                                {{sector.sectorName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="about-sidebar" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="35">
+
+        <div class="station-box groups" fxLayout="column">
+
+            <header class="accent" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="title">Products</div>
+                <div class="title">Tanks</div>
+                <button mat-icon-button class="mx-4" (click)="toggleAdd()"
+                    [ngClass]="{'fuse-white': !addFlag, 'green': addFlag}" matTooltip="Add a product"
+                    [disabled]="editFlag">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </header>
+
+            <div class="content">
+
+                <div *ngIf="!addFlag">
+
+                    <div class="tank" *ngFor="let tank of station.tanks; let i = index" fxLayout="row"
+                        fxLayoutAlign="space-between center">
+
+                        <div *ngIf="!editFlag" class="info">{{tank.product.productName}}</div>
+                        <mat-form-field floatLabel="never" *ngIf="editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="mr-16">
+                            <mat-label>Product</mat-label>
+                            <mat-select [(ngModel)]="station.tanks[i].product">
+                                <mat-option *ngFor="let product of products" [value]="product">
+                                    {{product.productName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <div *ngIf="!editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="info">{{adjustThousands(tank.tankVolume)}} litres</div>
+                        <mat-form-field floatLabel="never" *ngIf="editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="mr-16">
+                            <mat-label>Tank</mat-label>
+                            <input matInput class="info" [(ngModel)]="station.tanks[i].tankVolume"
+                                [value]="tank.tankVolume">
+                        </mat-form-field>
+
+                        <button *ngIf="!editFlag && !addFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'"
+                            mat-icon-button class="mx-4"
+                            (click)="removeProduct(i, tank.product.productName, tank.tankVolume)" ngClass="warn"
+                            matTooltip="Remove product">
+                            <mat-icon>close</mat-icon>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div *ngIf="addFlag">
+
+                    <div class="tank" fxLayout="row" fxLayoutAlign="space-between center">
+
+                        <mat-form-field floatLabel="never" class="mr-16">
+                            <mat-label>Product</mat-label>
+                            <mat-select [(ngModel)]="newProduct">
+                                <mat-option *ngFor="let product of products" [value]="product">
+                                    {{product.productName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="never" class="mr-16">
+                            <mat-label>Tank Volume</mat-label>
+                            <input matInput class="info" [(ngModel)]="newTankVolume" type="number" min="0">
+                        </mat-form-field>
+
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <button mat-raised-button ngClass="green-700" (click)="addTank()">Add Product</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>

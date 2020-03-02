@@ -39,7 +39,7 @@ export class UsersCreateComponent implements OnInit {
             password: this.userForm.value.password,
             role: this.userForm.value.role
         }
-        this.genericService.createEntity(environment.entities.User, user).subscribe(
+        this.genericService.updateEntity(environment.entities.User, user).subscribe(
             data => {
                 this.snackbar.open(data.message, "Ok");
             },

@@ -38,7 +38,7 @@ export class VehiclesCreateComponent implements OnInit {
             vehicleCard: this.vehicleForm.value.vehicleCard.replace(/\s/g, ''),
             trailerPlate: this.vehicleForm.value.trailerPlateNumbers.replace(/\s/g, '') + "-" + this.vehicleForm.value.trailerPlateLetters.replace(/\s/g, '') as any
         }
-        this.genericService.createEntity(environment.entities.Vehicle, vehicle).subscribe(
+        this.genericService.updateEntity(environment.entities.Vehicle, vehicle).subscribe(
             data => {
                 this.snackbar.open(data.message, "Ok");
             },

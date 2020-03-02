@@ -29,7 +29,7 @@ export class ProductsCreateComponent implements OnInit {
         const product = <Product>{
             productName: this.productForm.value.productName
         }
-        this.genericService.createEntity(environment.entities.Product, product).subscribe(
+        this.genericService.updateEntity(environment.entities.Product, product).subscribe(
             data => {
                 this.snackbar.open(data.message, "Ok");
             },

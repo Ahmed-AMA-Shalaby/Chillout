@@ -1,7 +1,8 @@
+import { Product } from './product.model';
+
 export interface Tank {
     id: string;
     tankVolume: number;
-    isHidden?: boolean;
-    product: string;
-    stations: string[];
+    hidden?: boolean;
+    product: Product;
 }

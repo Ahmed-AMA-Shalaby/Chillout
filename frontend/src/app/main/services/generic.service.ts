@@ -16,15 +16,15 @@ export class GenericService {
     constructor(private httpClient: HttpClient) {
     }
 
-    createEntity(type: String, entity: {}): Observable<BaseResponse> {
-        const data = { type: type, entity: entity }
-        return this.httpClient.post<BaseResponse>(environment.apis.baseUrl + environment.apis.createEntity, data, this.httpOptions);
-    }
-    
+    // createEntity(type: String, entity: {}): Observable<BaseResponse> {
+    //     const data = { type: type, entity: entity }
+    //     return this.httpClient.post<BaseResponse>(environment.apis.baseUrl + environment.apis.createEntity, data, this.httpOptions);
+    // }
+
     updateEntity(type: String, entity: {}): Observable<BaseResponse> {
         return this.httpClient.post<BaseResponse>(environment.apis.baseUrl + environment.apis[`update${type}`], entity, this.httpOptions);
     }
-    
+
     retrieveAllEntities(entity: string): Observable<[]> {
         let params = new HttpParams().set('entity', entity);
         return this.httpClient.get<[]>(environment.apis.baseUrl + environment.apis.retrieveAllEntities, { headers: this.httpOptions.headers, params: params });
@@ -33,6 +33,11 @@ export class GenericService {
     retrieveShownEntities(entity: string): Observable<[]> {
         let params = new HttpParams().set('entity', entity);
         return this.httpClient.get<[]>(environment.apis.baseUrl + environment.apis.retrieveShownEntities, { headers: this.httpOptions.headers, params: params });
+    }
+
+    retrieveEntitybyID(type: string, entityID: string): Observable<{}> {
+        let params = new HttpParams().set('entity', type).set('entityID', entityID);
+        return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveEntitybyID, { headers: this.httpOptions.headers, params: params });
     }
 
 }

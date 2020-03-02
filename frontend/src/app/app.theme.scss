@@ -83,6 +83,7 @@ $typography: mat-typography-config(
 @import "src/app/main/components/companies/companies-search/companies-search.theme";
 @import "src/app/main/components/drivers/drivers-search/drivers-search.theme";
 @import "src/app/main/components/products/products-search/products-search.theme";
+@import "src/app/main/components/stations/stations-search/stations-search.theme";
 @import "src/app/main/components/sectors/sectors-search/sectors-search.theme";
 @import "src/app/main/components/users/users-search/users-search.theme";
 @import "src/app/main/components/vehicles/vehicles-search/vehicles-search.theme";
@@ -96,7 +97,7 @@ $typography: mat-typography-config(
     //Agents-Search Page
     @include agents-search-theme($theme);
 
-    //Agents-Search Page
+    //Companies-Search Page
     @include companies-search-theme($theme);
 
     //Drivers-Search Page
@@ -105,8 +106,11 @@ $typography: mat-typography-config(
     //Products-Search Page
     @include products-search-theme($theme);
 
-    //Drivers-Search Page
+    //Sectors-Search Page
     @include sectors-search-theme($theme);
+
+    //Stations-Search Page
+    @include stations-search-theme($theme);
 
     //Users-Search Page
     @include users-search-theme($theme);

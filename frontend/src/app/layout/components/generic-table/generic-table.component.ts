@@ -4,17 +4,6 @@ import { fuseAnimations } from '@fuse/animations';
 import { GenericService } from 'app/main/services/generic.service';
 import { environment } from 'environments/environment';
 
-interface CustomVehicle {
-    id: string;
-    vehicleCode: string;
-    vehiclePlateNumbers: string;
-    vehiclePlateLetters: string;
-    vehicleCard: string;
-    trailerPlateNumbers: string;
-    trailerPlateLetters: string;
-    hidden?: boolean;
-}
-
 @Component({
     selector: 'generic-table',
     templateUrl: './generic-table.component.html',
@@ -69,9 +58,17 @@ export class GenericTableComponent implements OnChanges {
                     this.originalColumns = changes.hideMode.currentValue ? ['sectorName', 'hidden'] : ['sectorName']
                     this.displayedColumns = changes.hideMode.currentValue ? ['Sector Name', ' '] : ['Sector Name']
                 }
+                else if (this.type == environment.entities.Station) {
+                    this.originalColumns = changes.hideMode.currentValue ? ['stationCode', 'stationName', 'hidden'] : ['stationCode', 'stationName']
+                    this.displayedColumns = changes.hideMode.currentValue ? ['Station Code', 'Station Name', ' '] : ['Station Code', 'Station Name']
+                }
+                else if (this.type == environment.entities.Tank) {
+                    this.originalColumns = changes.hideMode.currentValue ? ['tankVolume', 'hidden'] : ['tankVolume']
+                    this.displayedColumns = changes.hideMode.currentValue ? ['Tank Volume', ' '] : ['Tank Volume']
+                }
                 else if (this.type == environment.entities.User) {
                     this.originalColumns = changes.hideMode.currentValue ? ['firstName', 'middleName', 'lastName', 'phoneNumber', 'role', 'hidden'] : ['firstName', 'middleName', 'lastName', 'phoneNumber', 'role']
-                    this.displayedColumns = changes.hideMode.currentValue ? ['Driver First Name', 'Driver Middle Name', 'Driver Last Name', 'Driver Phone Number', 'Role', ' '] : ['Driver First Name', 'Driver Middle Name', 'Driver Last Name', 'Driver Phone Number', 'Role']
+                    this.displayedColumns = changes.hideMode.currentValue ? ['User First Name', 'User Middle Name', 'User Last Name', 'User Phone Number', 'Role', ' '] : ['User First Name', 'User Middle Name', 'User Last Name', 'User Phone Number', 'Role']
                 }
                 else if (this.type == environment.entities.Warehouse) {
                     this.originalColumns = changes.hideMode.currentValue ? ['warehouseName', 'hidden'] : ['warehouseName']
@@ -104,11 +101,8 @@ export class GenericTableComponent implements OnChanges {
         let rowID = this.dataSource.filteredData[filteredRow]["id"]
         this.data.forEach((row, index) => {
             if (row["id"] == rowID) {
-                let modifiedRow = JSON.parse(JSON.stringify(this.dataSource.filteredData[filteredRow]).replace("\"hidden\":", "\"isHidden\":"));
-                delete modifiedRow["hidden"];
-                modifiedRow["isHidden"] = !modifiedRow["isHidden"];
-                this.data[index]["hidden"] = !this.data[index]["hidden"] as never;
-                modifiedRow = JSON.parse(JSON.stringify(modifiedRow).replace("\"isHidden\":", "\"hidden\":"));
+                let modifiedRow = this.dataSource.filteredData[filteredRow];
+                modifiedRow["hidden"] = !modifiedRow["hidden"];
                 this.genericService.updateEntity(this.type, modifiedRow).subscribe(
                     data => {
                         this.snackbar.open(data.message);

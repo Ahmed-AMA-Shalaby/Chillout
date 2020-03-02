@@ -7,7 +7,7 @@ export const environment = {
     hmr: false,
     apis: {
         baseUrl: 'http://localhost:8080/chillout/chilloutrest/',
-        createEntity: 'createEntity',
+        // createEntity: 'createEntity',
         updateAgent: 'updateAgent',
         updateCompany: 'updateCompany',
         updateDistance: 'updateDistance',
@@ -26,6 +26,7 @@ export const environment = {
         updateWarehouse: 'updateWarehouse',
         retrieveAllEntities: 'retrieveAllEntities',
         retrieveShownEntities: 'retrieveShownEntities',
+        retrieveEntitybyID: 'retrieveEntitybyID',
     },
     entities: {
         Agent: 'Agent',

@@ -1,7 +1,6 @@
 package com.wataneya.chillout.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -26,15 +25,12 @@ public class Quota {
     private boolean isHidden;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Product product;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Company company;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Warehouse warehouse;
 
     public Quota(){
@@ -125,5 +121,19 @@ public class Quota {
 
     public void setWarehouse(Warehouse warehouse) {
         this.warehouse = warehouse;
+    }
+
+    @Override
+    public String toString() {
+        return "Quota{" +
+                "id='" + id + '\'' +
+                ", quotaAmount=" + quotaAmount +
+                ", month=" + month +
+                ", year=" + year +
+                ", isHidden=" + isHidden +
+                ", product=" + product +
+                ", company=" + company +
+                ", warehouse=" + warehouse +
+                '}';
     }
 }

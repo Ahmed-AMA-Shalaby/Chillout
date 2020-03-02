@@ -1,13 +1,10 @@
 package com.wataneya.chillout.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -19,29 +16,22 @@ public class Tank {
     @GeneratedValue(generator = "uuid")
     private String id;
 
-    @Column(unique = true)
     private int tankVolume;
 
     private boolean isHidden;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Product product;
-
-    @ManyToMany(mappedBy = "tanks", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
-    private Set<Station> stations = new HashSet<>();
 
     public Tank(){
 
     }
 
-    public Tank(String id, int tankVolume, boolean isHidden, Product product, Set<Station> stations) {
+    public Tank(String id, int tankVolume, boolean isHidden, Product product) {
         this.id = id;
         this.tankVolume = tankVolume;
         this.isHidden = isHidden;
         this.product = product;
-        this.stations = stations;
     }
 
     public Tank(Tank tank){
@@ -49,7 +39,6 @@ public class Tank {
         this.setTankVolume(tank.getTankVolume());
         this.setHidden(tank.isHidden());
         this.setProduct(tank.getProduct());
-        this.setStations(tank.getStations());
     }
 
     public String getId() {
@@ -84,12 +73,14 @@ public class Tank {
         this.product = product;
     }
 
-    public Set<Station> getStations() {
-        return stations;
-    }
-
-    public void setStations(Set<Station> stations) {
-        this.stations = stations;
+    @Override
+    public String toString() {
+        return "Tank{" +
+                "id='" + id + '\'' +
+                ", tankVolume=" + tankVolume +
+                ", isHidden=" + isHidden +
+                ", product=" + product +
+                '}';
     }
 }
 

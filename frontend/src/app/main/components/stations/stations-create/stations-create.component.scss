@@ -1,0 +1,7 @@
+mat-form-field {
+    width: fit-content;
+}
+
+::ng-deep .mat-select {
+    width: 180px !important;
+}

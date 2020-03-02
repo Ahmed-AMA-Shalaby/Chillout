@@ -36,9 +36,7 @@ export class WarehousesCreateComponent implements OnInit {
             warehouseName: this.warehouseForm.value.warehouseName,
             sector: this.warehouseForm.value.sector
         }
-        console.log(warehouse);
-        
-        this.genericService.createEntity(environment.entities.Warehouse, warehouse).subscribe(
+        this.genericService.updateEntity(environment.entities.Warehouse, warehouse).subscribe(
             data => {
                 this.snackbar.open(data.message, "Ok");
             },

@@ -150,26 +150,6 @@ export const Navigation: FuseNavigation[] = [
         ]
     },
     {
-        id: 'tanks',
-        title: 'Tanks',
-        icon: 'delete_outline',
-        type: 'collapsable',
-        children: [
-            {
-                id: 'Create',
-                title: 'Create',
-                type: 'item',
-                url: '/tanks/create'
-            },
-            {
-                id: 'Search',
-                title: 'Search',
-                type: 'item',
-                url: '/tanks/search'
-            }
-        ]
-    },
-    {
         id: 'trips',
         title: 'Trips',
         icon: 'departure_board',

@@ -14,9 +14,10 @@ import { LayoutModule } from 'app/layout/layout.module';
 
 import 'hammerjs';
 import { ColorSketchModule } from 'ngx-color/sketch';
-import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
 import { AppStorageService } from './main/services/app-storage.service';
 import { GenericService } from './main/services/generic.service';
+import { GenericDialogComponent } from './layout/components/generic-dialog/generic-dialog.component';
 
 
 const appRoutes: Routes = [
@@ -72,6 +73,18 @@ const appRoutes: Routes = [
         loadChildren: './main/components/sectors/sectors-search/sectors-search.module#SectorsSearchModule'
     },
     {
+        path: 'stations/create',
+        loadChildren: './main/components/stations/stations-create/stations-create.module#StationsCreateModule'
+    },
+    {
+        path: 'stations/search',
+        loadChildren: './main/components/stations/stations-search/stations-search.module#StationsSearchModule'
+    },
+    {
+        path: 'station/:id',
+        loadChildren: './main/components/stations/stations-search/station/station.module#StationModule'
+    },
+    {
         path: 'users/create',
         loadChildren: './main/components/users/users-create/users-create.module#UsersCreateModule'
     },
@@ -99,7 +112,8 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        GenericDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -124,6 +138,7 @@ const appRoutes: Routes = [
 
         // Material
         MatSnackBarModule,
+        MatDialogModule
     ],
     providers: [
         {
@@ -137,6 +152,9 @@ const appRoutes: Routes = [
     ],
     bootstrap: [
         AppComponent
+    ],
+    entryComponents: [
+        GenericDialogComponent
     ]
 })
 export class AppModule {

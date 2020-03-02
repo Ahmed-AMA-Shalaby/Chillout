@@ -1,13 +1,10 @@
 package com.wataneya.chillout.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -24,26 +21,20 @@ public class Agent {
 
     private boolean isHidden;
 
-    @OneToMany(mappedBy = "agent",fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
-    private Set<Station> stations = new HashSet<>();
-
     public Agent(){
 
     }
 
-    public Agent(String id, String agentName, boolean isHidden, Set<Station> stations) {
+    public Agent(String id, String agentName, boolean isHidden) {
         this.id = id;
         this.agentName = agentName;
         this.isHidden = isHidden;
-        this.stations = stations;
     }
 
     public Agent(Agent agent){
         this.setId(agent.getId());
         this.setAgentName(agent.getAgentName());
         this.setHidden(agent.isHidden());
-        this.setStations(agent.getStations());
     }
 
     public String getId() {
@@ -70,12 +61,13 @@ public class Agent {
         isHidden = hidden;
     }
 
-    public Set<Station> getStations() {
-        return stations;
-    }
-
-    public void setStations(Set<Station> stations) {
-        this.stations = stations;
+    @Override
+    public String toString() {
+        return "Agent{" +
+                "id='" + id + '\'' +
+                ", agentName='" + agentName + '\'' +
+                ", isHidden=" + isHidden +
+                '}';
     }
 }
 

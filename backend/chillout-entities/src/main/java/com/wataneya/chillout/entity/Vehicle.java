@@ -90,5 +90,17 @@ public class Vehicle {
     public void setHidden(boolean hidden) {
         isHidden = hidden;
     }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "id='" + id + '\'' +
+                ", vehicleCode='" + vehicleCode + '\'' +
+                ", vehiclePlate='" + vehiclePlate + '\'' +
+                ", vehicleCard='" + vehicleCard + '\'' +
+                ", trailerPlate='" + trailerPlate + '\'' +
+                ", isHidden=" + isHidden +
+                '}';
+    }
 }
 

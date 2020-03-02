@@ -1,13 +1,10 @@
 package com.wataneya.chillout.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -27,38 +24,28 @@ public class Trip {
 
     private boolean isHidden;
 
-    @OneToMany(mappedBy = "trip", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
-    private Set<Transfer> transfers = new HashSet<>();
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Distance outboundDistance;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Distance inboundDistance;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Driver driver;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Vehicle vehicle;
-
 
     public Trip(){
 
     }
 
-    public Trip(String id, int day, int month, int year, boolean isHidden, Set<Transfer> transfers, Distance outboundDistance, Distance inboundDistance, Driver driver, Vehicle vehicle) {
+    public Trip(String id, int day, int month, int year, boolean isHidden, Distance outboundDistance, Distance inboundDistance, Driver driver, Vehicle vehicle) {
         this.id = id;
         this.day = day;
         this.month = month;
         this.year = year;
         this.isHidden = isHidden;
-        this.transfers = transfers;
         this.outboundDistance = outboundDistance;
         this.inboundDistance = inboundDistance;
         this.driver = driver;
@@ -71,7 +58,6 @@ public class Trip {
         this.setMonth(trip.getMonth());
         this.setYear(trip.getYear());
         this.setHidden(trip.isHidden());
-        this.setTransfers(trip.getTransfers());
         this.setOutboundDistance(trip.getOutboundDistance());
         this.setInboundDistance(trip.getInboundDistance());
         this.setDriver(trip.getDriver());
@@ -118,14 +104,6 @@ public class Trip {
         isHidden = hidden;
     }
 
-    public Set<Transfer> getTransfers() {
-        return transfers;
-    }
-
-    public void setTransfers(Set<Transfer> transfers) {
-        this.transfers = transfers;
-    }
-
     public Distance getOutboundDistance() {
         return outboundDistance;
     }
@@ -156,5 +134,20 @@ public class Trip {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "id='" + id + '\'' +
+                ", day=" + day +
+                ", month=" + month +
+                ", year=" + year +
+                ", isHidden=" + isHidden +
+                ", outboundDistance=" + outboundDistance +
+                ", inboundDistance=" + inboundDistance +
+                ", driver=" + driver +
+                ", vehicle=" + vehicle +
+                '}';
     }
 }

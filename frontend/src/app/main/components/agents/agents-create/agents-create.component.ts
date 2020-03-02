@@ -29,7 +29,7 @@ export class AgentsCreateComponent implements OnInit {
         const agent = <Agent>{
             agentName: this.agentForm.value.agentName
         }
-        this.genericService.createEntity(environment.entities.Agent, agent).subscribe(
+        this.genericService.updateEntity(environment.entities.Agent, agent).subscribe(
             data => {
                 this.snackbar.open(data.message, "Ok");
             },

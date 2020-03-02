@@ -1,7 +1,6 @@
 package com.wataneya.chillout.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -25,15 +24,12 @@ public class Warehouse {
     private boolean isHidden;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Sector sector;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Set<Product> products = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Set<Company> companies = new HashSet<>();
 
     public Warehouse(){
@@ -104,6 +100,18 @@ public class Warehouse {
 
     public void setCompanies(Set<Company> companies) {
         this.companies = companies;
+    }
+
+    @Override
+    public String toString() {
+        return "Warehouse{" +
+                "id='" + id + '\'' +
+                ", warehouseName='" + warehouseName + '\'' +
+                ", isHidden=" + isHidden +
+                ", sector=" + sector +
+                ", products=" + products +
+                ", companies=" + companies +
+                '}';
     }
 }
 

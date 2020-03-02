@@ -22,14 +22,13 @@
 
                         <mat-form-field appearance="outline" class="pr-4 pl-4">
                             <mat-label>Sector</mat-label>
-                            <!-- <input matInput formControlName="role" #role required> -->
                             <mat-select formControlName="sector" #sector required>
                                 <mat-option *ngFor="let sector of sectors" [value]="sector">
                                     {{sector.sectorName}}
                                 </mat-option>
                             </mat-select>
                             <mat-icon matSuffix class="secondary-text">people</mat-icon>
-                            <mat-error>User Role is required!</mat-error>
+                            <mat-error>Sector is required!</mat-error>
                         </mat-form-field>
                     </div>
 

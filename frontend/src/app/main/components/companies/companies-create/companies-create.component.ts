@@ -29,7 +29,7 @@ export class CompaniesCreateComponent implements OnInit {
         const company = <Company>{
             companyName: this.companyForm.value.companyName
         }
-        this.genericService.createEntity(environment.entities.Company, company).subscribe(
+        this.genericService.updateEntity(environment.entities.Company, company).subscribe(
             data => {
                 this.snackbar.open(data.message, "Ok");
             },

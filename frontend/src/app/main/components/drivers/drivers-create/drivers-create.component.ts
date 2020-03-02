@@ -35,7 +35,7 @@ export class DriversCreateComponent implements OnInit {
             lastName: this.driverForm.value.lastName,
             phoneNumber: this.driverForm.value.phoneNumber
         }
-        this.genericService.createEntity(environment.entities.Driver, driver).subscribe(
+        this.genericService.updateEntity(environment.entities.Driver, driver).subscribe(
             data => {
                 this.snackbar.open(data.message, "Ok");
             },

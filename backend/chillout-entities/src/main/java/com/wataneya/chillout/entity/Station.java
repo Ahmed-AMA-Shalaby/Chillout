@@ -1,7 +1,6 @@
 package com.wataneya.chillout.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -20,47 +19,47 @@ public class Station {
     private String id;
 
     @Column(unique = true)
+    private int stationCode;
+
+    @Column(unique = true)
     private String stationName;
+
+    private String stationLocation;
 
     private boolean isHidden;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Agent agent;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
     private Sector sector;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
-    private Set<Product> products = new HashSet<>();
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Tank> tanks = new HashSet<>();
 
     public Station(){
 
     }
 
-    public Station(String id, String stationName, boolean isHidden, Agent agent, Sector sector, Set<Product> products, Set<Tank> tanks) {
+    public Station(String id, int stationCode, String stationName, String stationLocation, boolean isHidden, Agent agent, Sector sector, Set<Tank> tanks) {
         this.id = id;
+        this.stationCode = stationCode;
         this.stationName = stationName;
+        this.stationLocation = stationLocation;
         this.isHidden = isHidden;
         this.agent = agent;
         this.sector = sector;
-        this.products = products;
         this.tanks = tanks;
     }
 
     public Station(Station station){
         this.setId(station.getId());
+        this.setStationCode(station.getStationCode());
         this.setStationName(station.getStationName());
+        this.setStationLocation(station.getStationLocation());
         this.setHidden(station.isHidden());
         this.setAgent(station.getAgent());
         this.setSector(station.getSector());
-        this.setProducts(station.getProducts());
         this.setTanks(station.getTanks());
     }
 
@@ -72,12 +71,28 @@ public class Station {
         this.id = id;
     }
 
+    public int getStationCode() {
+        return stationCode;
+    }
+
+    public void setStationCode(int stationCode) {
+        this.stationCode = stationCode;
+    }
+
     public String getStationName() {
         return stationName;
     }
 
     public void setStationName(String stationName) {
         this.stationName = stationName;
+    }
+
+    public String getStationLocation() {
+        return stationLocation;
+    }
+
+    public void setStationLocation(String stationLocation) {
+        this.stationLocation = stationLocation;
     }
 
     public boolean isHidden() {
@@ -104,20 +119,26 @@ public class Station {
         this.sector = sector;
     }
 
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-
     public Set<Tank> getTanks() {
         return tanks;
     }
 
     public void setTanks(Set<Tank> tanks) {
         this.tanks = tanks;
+    }
+
+    @Override
+    public String toString() {
+        return "Station{" +
+                "id='" + id + '\'' +
+                ", stationCode=" + stationCode +
+                ", stationName='" + stationName + '\'' +
+                ", stationLocation='" + stationLocation + '\'' +
+                ", isHidden=" + isHidden +
+                ", agent=" + agent +
+                ", sector=" + sector +
+                ", tanks=" + tanks +
+                '}';
     }
 }
 

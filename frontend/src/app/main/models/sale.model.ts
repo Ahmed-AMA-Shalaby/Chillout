@@ -1,3 +1,6 @@
+import { Product } from './product.model';
+import { Station } from './station.model';
+
 export interface Sale {
     id: string;
     saleAmount: number;
@@ -5,6 +8,6 @@ export interface Sale {
     month: number;
     year:number;
     isHidden?: boolean;
-    product:string;
-    station:string;
+    product: Product;
+    station: Station;
 }

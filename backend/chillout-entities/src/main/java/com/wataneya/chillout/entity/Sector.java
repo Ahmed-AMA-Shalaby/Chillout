@@ -1,13 +1,10 @@
 package com.wataneya.chillout.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -24,32 +21,20 @@ public class Sector {
 
     private boolean isHidden;
 
-    @OneToMany(mappedBy = "sector",fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
-    private Set<Warehouse> warehouses = new HashSet<>();
-
-    @OneToMany(mappedBy = "sector",fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JsonIdentityReference(alwaysAsId = true)
-    private Set<Station> stations = new HashSet<>();
-
     public Sector(){
 
     }
 
-    public Sector(String id, String sectorName, boolean isHidden, Set<Warehouse> warehouses, Set<Station> stations) {
+    public Sector(String id, String sectorName, boolean isHidden) {
         this.id = id;
         this.sectorName = sectorName;
         this.isHidden = isHidden;
-        this.warehouses = warehouses;
-        this.stations = stations;
     }
 
     public Sector(Sector sector){
         this.setId(sector.getId());
         this.setSectorName(sector.getSectorName());
         this.setHidden(sector.isHidden());
-        this.setWarehouses(sector.getWarehouses());
-        this.setStations(sector.getStations());
     }
 
     public String getId() {
@@ -76,20 +61,13 @@ public class Sector {
         isHidden = hidden;
     }
 
-    public Set<Warehouse> getWarehouses() {
-        return warehouses;
-    }
-
-    public void setWarehouses(Set<Warehouse> warehouses) {
-        this.warehouses = warehouses;
-    }
-
-    public Set<Station> getStations() {
-        return stations;
-    }
-
-    public void setStations(Set<Station> stations) {
-        this.stations = stations;
+    @Override
+    public String toString() {
+        return "Sector{" +
+                "id='" + id + '\'' +
+                ", sectorName='" + sectorName + '\'' +
+                ", isHidden=" + isHidden +
+                '}';
     }
 }
 

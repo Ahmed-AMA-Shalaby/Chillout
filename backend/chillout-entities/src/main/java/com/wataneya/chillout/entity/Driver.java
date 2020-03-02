@@ -87,5 +87,17 @@ public class Driver {
     public void setHidden(boolean hidden) {
         isHidden = hidden;
     }
+
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", isHidden=" + isHidden +
+                '}';
+    }
 }
 
