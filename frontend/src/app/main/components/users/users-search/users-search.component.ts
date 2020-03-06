@@ -32,6 +32,12 @@ export class UsersSearchComponent implements OnInit {
 
     toggleEdit() {
         this.editFlag = !this.editFlag;
+        this.users.length = 0;
+        this.genericService.retrieveShownEntities(environment.entities.User).subscribe(
+            data => {
+                this.users = data;
+            }
+        )
     }
 
     toggleHide() {

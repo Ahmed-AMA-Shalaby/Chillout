@@ -32,6 +32,12 @@ export class DriversSearchComponent implements OnInit {
 
     toggleEdit() {
         this.editFlag = !this.editFlag;
+        this.drivers.length = 0;
+        this.genericService.retrieveShownEntities(environment.entities.Driver).subscribe(
+            data => {
+                this.drivers = data;
+            }
+        )
     }
 
     toggleHide() {

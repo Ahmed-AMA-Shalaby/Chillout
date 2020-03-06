@@ -30,10 +30,6 @@ export class WarehousesSearchComponent implements OnInit {
         this.filterValue = filterValue;
     }
 
-    toggleEdit() {
-        this.editFlag = !this.editFlag;
-    }
-
     toggleHide() {
         this.hideFlag = !this.hideFlag;
         this.warehouses.length = 0;

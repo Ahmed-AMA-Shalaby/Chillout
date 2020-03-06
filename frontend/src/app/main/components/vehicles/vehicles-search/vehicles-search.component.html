@@ -59,7 +59,7 @@
                         <p *ngIf="!editFlag && originalColumns[i] != 'hidden'">{{vehicles[originalColumns[i]]}}</p>
                         <button mat-icon-button class="mx-16" *ngIf="!editFlag && originalColumns[i] == 'hidden'" (click)="toggleVehicleVisibility(j + (paginator.pageIndex * paginator.pageSize))">
                             <mat-icon *ngIf="vehicles[originalColumns[i]] == true" matTooltip="Show">visibility</mat-icon>
-                            <mat-icon *ngIf="vehicles[originalColumns[i]] == false" matTooltip="Show / Hide">visibility_off</mat-icon>
+                            <mat-icon *ngIf="vehicles[originalColumns[i]] == false" matTooltip="Hide">visibility_off</mat-icon>
                         </button>
                         <mat-form-field floatLabel="never" appearance="outline" class="mt-20" *ngIf="editFlag">
                             <input matInput (input)="modifyData(j + (paginator.pageIndex * paginator.pageSize))" placeholder="{{column}}"

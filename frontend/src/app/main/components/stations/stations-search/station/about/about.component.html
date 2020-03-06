@@ -48,7 +48,7 @@
                     <mat-form-field floatLabel="never" *ngIf="editFlag">
                         <mat-label>Agent</mat-label>
                         <mat-select [(ngModel)]="station.agent">
-                            <mat-option *ngFor="let agent of agents" [value]="agent">
+                            <mat-option *ngFor="let agent of agents" [value]="station.agent.id === agent.id ? station.agent : agent">
                                 {{agent.agentName}}
                             </mat-option>
                         </mat-select>
@@ -61,7 +61,7 @@
                     <mat-form-field floatLabel="never" *ngIf="editFlag">
                         <mat-label>Sector</mat-label>
                         <mat-select [(ngModel)]="station.sector">
-                            <mat-option *ngFor="let sector of sectors" [value]="sector">
+                            <mat-option *ngFor="let sector of sectors" [value]="station.sector.id === sector.id ? station.sector : sector">
                                 {{sector.sectorName}}
                             </mat-option>
                         </mat-select>
@@ -98,8 +98,8 @@
 
                         <div *ngIf="!editFlag" class="info">{{tank.product.productName}}</div>
                         <mat-form-field floatLabel="never" *ngIf="editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="mr-16">
-                            <mat-label>Product</mat-label>
-                            <mat-select [(ngModel)]="station.tanks[i].product">
+                            <mat-label>{{station.tanks[i].product.productName}}</mat-label>
+                            <mat-select [(ngModel)]="station.tanks[i].product" (ngModelChange)="toggleEdit()">
                                 <mat-option *ngFor="let product of products" [value]="product">
                                     {{product.productName}}
                                 </mat-option>
@@ -108,7 +108,6 @@
 
                         <div *ngIf="!editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="info">{{adjustThousands(tank.tankVolume)}} litres</div>
                         <mat-form-field floatLabel="never" *ngIf="editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="mr-16">
-                            <mat-label>Tank</mat-label>
                             <input matInput class="info" [(ngModel)]="station.tanks[i].tankVolume"
                                 [value]="tank.tankVolume">
                         </mat-form-field>
@@ -145,7 +144,7 @@
                     </div>
 
                     <div fxLayout="row" fxLayoutAlign="center center">
-                        <button mat-raised-button ngClass="green-700" (click)="addTank()">Add Product</button>
+                        <button mat-raised-button ngClass="green-700" (click)="addTank()" [disabled]="!newTankVolume || !newProduct">Add Product</button>
                     </div>
 
                 </div>

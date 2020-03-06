@@ -4,7 +4,7 @@ import { Station } from './station.model';
 export interface Distance {
     id: string;
     distance: number;
-    isHidden?: boolean;
+    hidden?: boolean;
     warehouse: Warehouse;
     station: Station
 }

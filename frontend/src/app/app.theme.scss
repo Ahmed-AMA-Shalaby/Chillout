@@ -80,7 +80,7 @@ $typography: mat-typography-config(
 // Import app and page component themes here to enable theming for them
 @import "src/app/layout/components/toolbar/toolbar.theme";
 @import "src/app/main/components/agents/agents-search/agents-search.theme";
-@import "src/app/main/components/companies/companies-search/companies-search.theme";
+@import "src/app/main/components/distances/distances-search/distances-search.theme";
 @import "src/app/main/components/drivers/drivers-search/drivers-search.theme";
 @import "src/app/main/components/products/products-search/products-search.theme";
 @import "src/app/main/components/stations/stations-search/stations-search.theme";
@@ -97,8 +97,8 @@ $typography: mat-typography-config(
     //Agents-Search Page
     @include agents-search-theme($theme);
 
-    //Companies-Search Page
-    @include companies-search-theme($theme);
+    //Distances-Search Page
+    @include distances-search-theme($theme);
 
     //Drivers-Search Page
     @include drivers-search-theme($theme);

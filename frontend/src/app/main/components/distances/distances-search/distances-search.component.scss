@@ -1,8 +1,12 @@
 @import "src/@fuse/scss/fuse";
 
-companies-search {
+mat-form-field {
+    width: 180px !important;
+}
 
-    #companies-search {
+distances-search {
+
+    #distances-search {
 
         .top-bg {
 
@@ -12,7 +16,7 @@ companies-search {
         }
 
         > .center {
-
+            
             > .header {
 
                 .search-wrapper {

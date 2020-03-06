@@ -1,9 +1,9 @@
-@mixin companies-search-theme($theme) {
+@mixin distances-search-theme($theme) {
 
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
 
-    companies-search {
+    distances-search {
 
         .header {
 

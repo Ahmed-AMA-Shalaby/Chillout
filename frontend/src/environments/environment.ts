@@ -9,7 +9,6 @@ export const environment = {
         baseUrl: 'http://localhost:8080/chillout/chilloutrest/',
         // createEntity: 'createEntity',
         updateAgent: 'updateAgent',
-        updateCompany: 'updateCompany',
         updateDistance: 'updateDistance',
         updateDriver: 'updateDriver',
         updateExisting: 'updateExisting',
@@ -30,7 +29,6 @@ export const environment = {
     },
     entities: {
         Agent: 'Agent',
-        Company: 'Company',
         Distance: 'Distance',
         Driver: 'Driver',
         Existing: 'Existing',

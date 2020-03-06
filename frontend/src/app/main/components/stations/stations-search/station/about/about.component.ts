@@ -3,13 +3,13 @@ import { fuseAnimations } from '@fuse/animations';
 import { Station } from 'app/main/models/station.model';
 import { ActivatedRoute } from '@angular/router';
 import { GenericService } from 'app/main/services/generic.service';
-import { Agent } from 'http';
 import { Sector } from 'app/main/models/sector.model';
 import { Product } from 'app/main/models/product.model';
 import { Tank } from 'app/main/models/tank.model';
 import { MatSnackBar, MatDialog, MatDialogConfig } from '@angular/material';
 import { environment } from 'environments/environment';
 import { GenericDialogComponent } from 'app/layout/components/generic-dialog/generic-dialog.component';
+import { Agent } from 'app/main/models/agent.model';
 
 @Component({
     selector: 'station-about',
@@ -37,10 +37,6 @@ export class AboutComponent implements OnInit {
         this.genericService.retrieveEntitybyID(environment.entities.Station, this.route.snapshot.params["id"]).subscribe(station => {
             this.station = station as Station;
         })
-    }
-
-    getAvailableProducts() {
-
     }
 
     toggleEdit() {
@@ -127,9 +123,9 @@ export class AboutComponent implements OnInit {
         }
         this.station.tanks.push(tank)
         this.newTankVolume = null;
-        this.newProduct = <Product>{}
+        this.newProduct = null
         this.addFlag = !this.addFlag;
-        this.genericService.updateEntity("Station", this.station).subscribe(
+        this.genericService.updateEntity(environment.entities.Station, this.station).subscribe(
             data => {
                 this.snackbar.open(data.message, "Ok");
             },

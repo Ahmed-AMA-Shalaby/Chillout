@@ -28,19 +28,6 @@ public class ChilloutStoreService {
 //                em.merge(entity);
 //                return true;
 //            }
-//        } else if (entity instanceof Company) {
-//            Company companyfromDB = null;
-//            try {
-//                companyfromDB = (Company)
-//                        em.createQuery("select c from Company c where c.companyName = :companyName").setParameter("companyName", ((Company) entity).getCompanyName()).getSingleResult();
-//            } catch (NoResultException nre) {
-//            }
-//            if (companyfromDB != null) {
-//                return false;
-//            } else {
-//                em.merge(entity);
-//                return true;
-//            }
 //        } else if (entity instanceof Distance) {
 //            em.merge(entity);
 //            return true;

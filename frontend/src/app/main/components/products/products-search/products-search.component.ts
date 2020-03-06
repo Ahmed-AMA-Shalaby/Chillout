@@ -32,6 +32,12 @@ export class ProductsSearchComponent implements OnInit {
 
     toggleEdit() {
         this.editFlag = !this.editFlag;
+        this.products.length = 0;
+        this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(
+            data => {
+                this.products = data;
+            }
+        )
     }
 
     toggleHide() {

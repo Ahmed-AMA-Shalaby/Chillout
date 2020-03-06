@@ -4,15 +4,13 @@
     <list default="true" id="12aafbd7-eb7c-44a2-9b44-eb17e511f17d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Documents/Chillout/Project documents/Chillout analysis.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Documents/Chillout/Project documents/Chillout analysis.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Documents/Chillout/Project documents/Chillout analysis.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../Documents/Chillout/Project documents/Chillout analysis.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Documents/Images/Chillout.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Documents/Images/Chillout.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutQueryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutQueryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutStoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutStoreService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-ejb/target/chillout-ejb.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/chillout-ejb.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-ejb/target/classes/com/wataneya/chillout/ejb/ChilloutQueryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/classes/com/wataneya/chillout/ejb/ChilloutQueryService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-ejb/target/classes/com/wataneya/chillout/ejb/ChilloutStoreService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/classes/com/wataneya/chillout/ejb/ChilloutStoreService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-ejb/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Company.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Distance.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Distance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Driver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Existing.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Existing.java" afterDir="false" />
@@ -29,7 +27,7 @@
       <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Warehouse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/target/chillout-entities.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/chillout-entities.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Agent.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Agent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Company.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Company.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Company.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Distance.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Distance.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Driver.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Driver.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Existing.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Existing.class" afterDir="false" />
@@ -45,6 +43,8 @@
       <change beforePath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Vehicle.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Vehicle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Warehouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/classes/com/wataneya/chillout/entity/Warehouse.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-entities/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-entities/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-rest/src/main/java/com/wataneya/chillout/rest/ChilloutClientREST.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/src/main/java/com/wataneya/chillout/rest/ChilloutClientREST.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-rest/target/chillout-rest.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/target/chillout-rest.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-rest/target/classes/com/wataneya/chillout/rest/ChilloutClientREST.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/target/classes/com/wataneya/chillout/rest/ChilloutClientREST.class" afterDir="false" />
@@ -56,33 +56,49 @@
       <change beforePath="$PROJECT_DIR$/chillout-war/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-war/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.theme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.theme.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/components/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/components/footer/footer.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/components/generic-table/generic-table.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/components/generic-table/generic-table.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/components/generic-table/generic-table.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/components/generic-table/generic-table.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/layout.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/layout.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/agents/agents-create/agents-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/agents/agents-create/agents-create.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/companies/companies-create/companies-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/companies/companies-create/companies-create.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/drivers/drivers-create/drivers-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/drivers/drivers-create/drivers-create.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/products/products-create/products-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/products/products-create/products-create.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/sectors/sectors-create/sectors-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/sectors/sectors-create/sectors-create.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/users/users-create/users-create.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/users/users-create/users-create.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/users/users-create/users-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/users/users-create/users-create.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/vehicles/vehicles-create/vehicles-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/vehicles/vehicles-create/vehicles-create.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/agents/agents-search/agents-search.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/agents/agents-search/agents-search.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/companies/companies-create/companies-create.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/companies/companies-create/companies-create.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/companies/companies-create/companies-create.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/companies/companies-create/companies-create.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/companies/companies-search/companies-search.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/companies/companies-search/companies-search.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/companies/companies-search/companies-search.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/companies/companies-search/companies-search.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/companies/companies-search/companies-search.theme.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/drivers/drivers-search/drivers-search.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/drivers/drivers-search/drivers-search.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/products/products-search/products-search.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/products/products-search/products-search.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/sectors/sectors-search/sectors-search.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/sectors/sectors-search/sectors-search.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/stations/stations-create/stations-create.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/stations/stations-create/stations-create.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/stations/stations-create/stations-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/stations/stations-create/stations-create.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/stations/stations-search/station/about/about.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/stations/stations-search/station/about/about.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/stations/stations-search/station/about/about.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/stations/stations-search/station/about/about.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/stations/stations-search/stations-search.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/stations/stations-search/stations-search.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/stations/stations-search/stations-search.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/stations/stations-search/stations-search.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/users/users-search/users-search.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/users/users-search/users-search.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/vehicles/vehicles-search/vehicles-search.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/vehicles/vehicles-search/vehicles-search.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/vehicles/vehicles-search/vehicles-search.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/vehicles/vehicles-search/vehicles-search.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/warehouses/warehouses-create/warehouses-create.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/warehouses/warehouses-create/warehouses-create.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/warehouses/warehouses-create/warehouses-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/warehouses/warehouses-create/warehouses-create.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/warehouses/warehouses-search/warehouses-search.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/warehouses/warehouses-search/warehouses-search.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/warehouses/warehouses-search/warehouses-search.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/warehouses/warehouses-search/warehouses-search.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/Warehouse.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/Warehouse.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/agent.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/agent.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/company.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/company.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/company.model.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/distance.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/distance.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/driver.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/driver.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/existing.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/existing.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/product.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/product.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/quota.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/quota.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/sale.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/sale.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/sector.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/sector.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/station.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/station.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/tank.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/tank.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/transfer.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/transfer.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/trip.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/trip.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/services/generic.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/services/generic.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/user.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/models/vehicle.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/models/vehicle.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/navigation/navigation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/navigation/navigation.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/environments/environment.ts" afterDir="false" />
     </list>
@@ -172,17 +188,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Transfer.java</url>
-          <line>20</line>
-          <properties field="day" class="com.wataneya.chillout.entity.Transfer" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

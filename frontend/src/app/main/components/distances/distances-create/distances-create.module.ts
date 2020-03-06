@@ -3,19 +3,19 @@ import { RouterModule } from '@angular/router';
 
 import { FuseSharedModule } from '@fuse/shared.module';
 
-import { CompaniesCreateComponent } from './companies-create.component';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { DistancesCreateComponent } from './distances-create.component';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatOptionModule } from '@angular/material';
 
 const routes = [
     {
         path: '**',
-        component: CompaniesCreateComponent
+        component: DistancesCreateComponent
     }
 ];
 
 @NgModule({
     declarations: [
-        CompaniesCreateComponent
+        DistancesCreateComponent
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -26,12 +26,14 @@ const routes = [
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+        MatSelectModule,
+        MatOptionModule
     ],
     exports: [
-        CompaniesCreateComponent
+        DistancesCreateComponent
     ]
 })
 
-export class CompaniesCreateModule {
+export class DistancesCreateModule {
 }

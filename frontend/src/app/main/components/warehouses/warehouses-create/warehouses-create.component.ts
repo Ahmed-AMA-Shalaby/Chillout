@@ -24,6 +24,7 @@ export class WarehousesCreateComponent implements OnInit {
     ngOnInit() {
         this.warehouseForm = this._formBuilder.group({
             warehouseName: ['', Validators.required],
+            companyName: ['', Validators.required],
             sector: ['', Validators.required]
         });
         this.genericService.retrieveShownEntities(environment.entities.Sector).subscribe(sectors => {
@@ -34,6 +35,7 @@ export class WarehousesCreateComponent implements OnInit {
     createWarehouse() {
         const warehouse = <Warehouse>{
             warehouseName: this.warehouseForm.value.warehouseName,
+            companyName: this.warehouseForm.value.companyName,
             sector: this.warehouseForm.value.sector
         }
         this.genericService.updateEntity(environment.entities.Warehouse, warehouse).subscribe(

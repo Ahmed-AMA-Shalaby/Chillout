@@ -5,8 +5,8 @@ import { Station } from 'app/main/models/station.model';
 import { GenericService } from 'app/main/services/generic.service';
 import { environment } from 'environments/environment';
 import { Sector } from 'app/main/models/sector.model';
-import { Agent } from 'http';
 import { Product } from 'app/main/models/product.model';
+import { Agent } from 'app/main/models/agent.model';
 
 @Component({
     selector: 'stations-create',

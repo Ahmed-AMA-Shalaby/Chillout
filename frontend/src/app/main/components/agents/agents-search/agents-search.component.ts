@@ -32,6 +32,12 @@ export class AgentsSearchComponent implements OnInit {
 
     toggleEdit() {
         this.editFlag = !this.editFlag;
+        this.agents.length = 0;
+        this.genericService.retrieveShownEntities(environment.entities.Agent).subscribe(
+            data => {
+                this.agents = data;
+            }
+        )
     }
 
     toggleHide() {

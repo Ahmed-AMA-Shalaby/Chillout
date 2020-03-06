@@ -7,7 +7,7 @@ export interface Trip {
     day: number;
     month: number;
     year:number;
-    isHidden?: boolean;
+    hidden?: boolean;
     transfers:string[];
     outboundDistance: Distance;
     inboundDistance: Distance;

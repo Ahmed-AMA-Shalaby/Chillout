@@ -2,7 +2,6 @@ com\wataneya\chillout\entity\Sector.class
 com\wataneya\chillout\entity\Distance.class
 com\wataneya\chillout\entity\Tank.class
 com\wataneya\chillout\entity\Product.class
-com\wataneya\chillout\entity\Company.class
 com\wataneya\chillout\entity\Trip.class
 com\wataneya\chillout\entity\Agent.class
 com\wataneya\chillout\entity\Quota.class

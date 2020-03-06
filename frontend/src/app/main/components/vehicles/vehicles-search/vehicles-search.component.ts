@@ -38,8 +38,10 @@ export class VehiclesSearchComponent implements OnInit {
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
 
-    constructor(private genericService: GenericService,
-        private snackbar: MatSnackBar) { }
+    constructor(
+        private genericService: GenericService,
+        private snackbar: MatSnackBar
+        ) { }
 
     ngOnInit() {
         this.vehicles = [];
@@ -102,7 +104,7 @@ export class VehiclesSearchComponent implements OnInit {
                         vehicleCard: (vehicle as Vehicle).vehicleCard,
                         trailerPlateNumbers: (vehicle as Vehicle).trailerPlate.split('-')[0],
                         trailerPlateLetters: (vehicle as Vehicle).trailerPlate.split('-')[1],
-                        hidden: (vehicle as Vehicle).isHidden
+                        hidden: (vehicle as Vehicle).hidden
                     }
                     this.vehicles.push(customVehicle as never)
                 })
@@ -135,7 +137,7 @@ export class VehiclesSearchComponent implements OnInit {
                     vehicleCard: this.dataSource.filteredData[filteredRow]["vehicleCard"].replace(/\s/g, ''),
                     trailerPlate: this.dataSource.filteredData[filteredRow]["trailerPlateNumbers"].replace(/\s/g, '') + '-' + this.dataSource.filteredData[filteredRow]["trailerPlateLetters"].replace(/\s/g, '')
                 }
-                this.genericService.updateEntity("Vehicle", vehicle).subscribe(
+                this.genericService.updateEntity(environment.entities.Vehicle, vehicle).subscribe(
                     data => {
                         this.snackbar.open(data.message);
                     },
@@ -184,11 +186,10 @@ export class VehiclesSearchComponent implements OnInit {
                     vehiclePlate: this.dataSource.filteredData[filteredRow]["vehiclePlate"],
                     vehicleCard: this.dataSource.filteredData[filteredRow]["vehicleCard"],
                     trailerPlate: this.dataSource.filteredData[filteredRow]["trailerPlate"],
-                    isHidden: !this.dataSource.filteredData[filteredRow]["hidden"]
+                    hidden: !this.dataSource.filteredData[filteredRow]["hidden"]
                 }
                 this.vehicles[index]["hidden"] = !this.vehicles[index]["hidden"] as never
-                vehicle = JSON.parse(JSON.stringify(vehicle).replace("\"isHidden\":", "\"hidden\":"));
-                this.genericService.updateEntity("Vehicle", vehicle).subscribe(
+                this.genericService.updateEntity(environment.entities.Vehicle, vehicle).subscribe(
                     data => {
                         this.snackbar.open(data.message);
                     },

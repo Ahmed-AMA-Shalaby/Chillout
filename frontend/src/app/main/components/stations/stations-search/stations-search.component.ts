@@ -30,10 +30,6 @@ export class StationsSearchComponent implements OnInit {
         this.filterValue = filterValue;
     }
 
-    toggleEdit() {
-        this.editFlag = !this.editFlag;
-    }
-
     toggleHide() {
         this.hideFlag = !this.hideFlag;
         this.stations.length = 0;

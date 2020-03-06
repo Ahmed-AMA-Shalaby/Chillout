@@ -35,9 +35,6 @@ public class ChilloutClientREST {
 //            if (type.equals("Agent")) {
 //                Agent agent = new Agent(gson.fromJson(parsedBody.get("entity"), Agent.class));
 //                status = chilloutStoreService.createEntity(agent);
-//            } else if (type.equals("Company")) {
-//                Company company = new Company(gson.fromJson(parsedBody.get("entity"), Company.class));
-//                status = chilloutStoreService.createEntity(company);
 //            } else if (type.equals("Distance")) {
 //                Distance distance = new Distance(gson.fromJson(parsedBody.get("entity"), Distance.class));
 //                status = chilloutStoreService.createEntity(distance);
@@ -133,19 +130,8 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(agent);
             return Response.ok(new BaseResponse(false, "Agent updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Agent failed to update")).build();
-        }
-    }
-
-    @POST
-    @Path("/updateCompany")
-    @Consumes("application/json")
-    public Response updateCompany(Company company) {
-        try {
-            chilloutStoreService.updateEntity(company);
-            return Response.ok(new BaseResponse(false, "Company updated successfully")).build();
-        } catch (Exception e) {
-            return Response.ok(new BaseResponse(true, "Company failed to update")).build();
         }
     }
 
@@ -157,6 +143,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(distance);
             return Response.ok(new BaseResponse(false, "Distance updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Distance failed to update")).build();
         }
     }
@@ -169,6 +156,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(driver);
             return Response.ok(new BaseResponse(false, "Driver updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Driver failed to update")).build();
         }
     }
@@ -181,6 +169,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(existing);
             return Response.ok(new BaseResponse(false, "Existing updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Existing failed to update")).build();
         }
     }
@@ -193,6 +182,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(product);
             return Response.ok(new BaseResponse(false, "Product updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Product failed to update")).build();
         }
     }
@@ -205,6 +195,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(quota);
             return Response.ok(new BaseResponse(false, "Quota updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Quota failed to update")).build();
         }
     }
@@ -217,6 +208,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(sale);
             return Response.ok(new BaseResponse(false, "Sale updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Sale failed to update")).build();
         }
     }
@@ -229,6 +221,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(sector);
             return Response.ok(new BaseResponse(false, "Sector updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Sector failed to update")).build();
         }
     }
@@ -241,6 +234,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(station);
             return Response.ok(new BaseResponse(false, "Station updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Station failed to update")).build();
         }
     }
@@ -253,6 +247,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(tank);
             return Response.ok(new BaseResponse(false, "Tank updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Tank failed to update")).build();
         }
     }
@@ -265,6 +260,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(transfer);
             return Response.ok(new BaseResponse(false, "Transfer updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Transfer failed to update")).build();
         }
     }
@@ -277,6 +273,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(trip);
             return Response.ok(new BaseResponse(false, "Trip updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Trip failed to update")).build();
         }
     }
@@ -289,6 +286,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(user);
             return Response.ok(new BaseResponse(false, "User updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "User failed to update")).build();
         }
     }
@@ -313,6 +311,7 @@ public class ChilloutClientREST {
             chilloutStoreService.updateEntity(warehouse);
             return Response.ok(new BaseResponse(false, "Warehouse updated successfully")).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Warehouse failed to update")).build();
         }
     }

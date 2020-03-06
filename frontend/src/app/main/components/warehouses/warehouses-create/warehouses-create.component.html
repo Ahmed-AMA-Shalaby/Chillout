@@ -20,6 +20,13 @@
                             <mat-error>Warehouse Name is required!</mat-error>
                         </mat-form-field>
 
+                        <mat-form-field appearance="outline" class="pr-4">
+                            <mat-label>Company Name</mat-label>
+                            <input matInput formControlName="companyName" #CompanyName required>
+                            <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                            <mat-error>Company Name is required!</mat-error>
+                        </mat-form-field>
+
                         <mat-form-field appearance="outline" class="pr-4 pl-4">
                             <mat-label>Sector</mat-label>
                             <mat-select formControlName="sector" #sector required>

@@ -1,0 +1,115 @@
+<div id="distances-search" class="page-layout carded fullwidth">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+            fxLayoutAlign.gt-sm="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    people
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Distances</span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- FILTER -->
+            <div class="search-wrapper mx-32 mx-md-0">
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon>search</mat-icon>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search for a distance">
+                </div>
+            </div>
+            <!-- / FILTER -->
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <!-- EDIT BUTTON -->
+                <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit"
+                    [disabled]="hideFlag">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <!-- / EDIT BUTTON -->
+                <!--  HIDE BUTTON -->
+                <button mat-mini-fab class="mx-16" (click)="toggleHide()"
+                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="Show / Hide">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                <!-- / HIDE BUTTON -->
+            </div>
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" *ngIf="distances.length != 0"
+            [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+
+            <mat-table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+
+                <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns; let i = index">
+                    <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
+                    <mat-cell *matCellDef="let distances; let j  = index">
+                        <p *ngIf="!editFlag && originalColumns[i] == 'distance'">{{distances[originalColumns[i]]}}</p>
+                        <p *ngIf="!editFlag && originalColumns[i] == 'warehouse'">
+                            {{distances[originalColumns[i]]["warehouseName"]}}</p>
+                        <p *ngIf="!editFlag && originalColumns[i] == 'station'">
+                            {{distances[originalColumns[i]]["stationName"]}}</p>
+                        <button mat-icon-button class="mx-16" *ngIf="!editFlag && originalColumns[i] == 'hidden'"
+                            (click)="toggleDistanceVisibility(j + (paginator.pageIndex * paginator.pageSize))">
+                            <mat-icon *ngIf="distances[originalColumns[i]] == true" matTooltip="Show">visibility
+                            </mat-icon>
+                            <mat-icon *ngIf="distances[originalColumns[i]] == false" matTooltip="Hide">visibility_off
+                            </mat-icon>
+                        </button>
+                        <div *ngIf="editFlag">
+                            <div *ngIf="originalColumns[i] =='distance'">
+                                <mat-form-field floatLabel="never" appearance="outline" class="mt-20">
+                                    <input matInput (input)="modifyData(j + (paginator.pageIndex * paginator.pageSize))"
+                                        placeholder="{{column}}" [value]="distances[originalColumns[i]]"
+                                        [(ngModel)]="distances[originalColumns[i]]">
+                                </mat-form-field>
+                            </div>
+                            <div *ngIf="originalColumns[i] =='warehouse'">
+                                <mat-form-field floatLabel="never" appearance="outline" class="mt-20">
+                                    <mat-select [(ngModel)]="distances[originalColumns[i]]"
+                                        (ngModelChange)="modifyData(j + (paginator.pageIndex * paginator.pageSize))">
+                                        <mat-option *ngFor="let warehouse of warehouses" [value]="distances[originalColumns[i]].id === warehouse.id ? distances[originalColumns[i]] : warehouse">
+                                            {{warehouse.warehouseName}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div *ngIf="originalColumns[i] =='station'">
+                                <mat-form-field floatLabel="never" appearance="outline" class="mt-20">
+                                    <mat-select [(ngModel)]="distances[originalColumns[i]]"
+                                        (ngModelChange)="modifyData(j + (paginator.pageIndex * paginator.pageSize))">
+                                        <mat-option *ngFor="let station of stations" [value]="distances[originalColumns[i]].id ===station.id ? distances[originalColumns[i]] : station">
+                                            {{station.stationName}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

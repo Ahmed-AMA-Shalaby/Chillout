@@ -4,5 +4,5 @@ export interface Driver {
     middleName: string;
     lastName: string;
     phoneNumber: string;
-    isHidden?: boolean;
+    hidden?: boolean;
 }

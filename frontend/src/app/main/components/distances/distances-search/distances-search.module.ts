@@ -4,19 +4,19 @@ import { RouterModule } from '@angular/router';
 
 import { FuseSharedModule } from '@fuse/shared.module';
 
-import { CompaniesSearchComponent } from './companies-search.component';
-import { MatTabsModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCardModule, MatTooltipModule } from '@angular/material';
+import { DistancesSearchComponent } from './distances-search.component';
+import { MatTabsModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCardModule, MatTooltipModule, MatTableModule, MatPaginatorModule, MatSelectModule, MatOptionModule } from '@angular/material';
 
 const routes = [
     {
         path: '**',
-        component: CompaniesSearchComponent
+        component: DistancesSearchComponent
     }
 ];
 
 @NgModule({
     declarations: [
-        CompaniesSearchComponent
+        DistancesSearchComponent
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -24,6 +24,8 @@ const routes = [
         FuseSharedModule,
 
         // Material
+        MatTableModule,
+        MatPaginatorModule,
         MatTabsModule,
         MatInputModule,
         MatButtonModule,
@@ -31,13 +33,16 @@ const routes = [
         MatIconModule,
         MatCardModule,
         MatTooltipModule,
+        MatSelectModule,
+        MatOptionModule,
+        
         // App modules
         GenericTableModule
     ],
     exports: [
-        CompaniesSearchComponent
+        DistancesSearchComponent
     ]
 })
 
-export class CompaniesSearchModule {
+export class DistancesSearchModule {
 }

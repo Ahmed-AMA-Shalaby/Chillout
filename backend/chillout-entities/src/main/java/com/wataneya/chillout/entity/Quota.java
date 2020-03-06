@@ -1,7 +1,5 @@
 package com.wataneya.chillout.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -9,7 +7,6 @@ import javax.persistence.*;
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
 @Table(name = "Quotas")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Quota {
 
     @Id
@@ -28,23 +25,19 @@ public class Quota {
     private Product product;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Company company;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Warehouse warehouse;
 
     public Quota(){
 
     }
 
-    public Quota(String id, int quotaAmount, int month, int year, boolean isHidden, Product product, Company company, Warehouse warehouse) {
+    public Quota(String id, int quotaAmount, int month, int year, boolean isHidden, Product product, Warehouse warehouse) {
         this.id = id;
         this.quotaAmount = quotaAmount;
         this.month = month;
         this.year = year;
         this.isHidden = isHidden;
         this.product = product;
-        this.company = company;
         this.warehouse = warehouse;
     }
 
@@ -55,7 +48,6 @@ public class Quota {
         this.setYear(quota.getYear());
         this.setHidden(quota.isHidden());
         this.setProduct(quota.getProduct());
-        this.setCompany(quota.getCompany());
         this.setWarehouse(quota.getWarehouse());
     }
 
@@ -107,14 +99,6 @@ public class Quota {
         this.product = product;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
     public Warehouse getWarehouse() {
         return warehouse;
     }
@@ -132,7 +116,6 @@ public class Quota {
                 ", year=" + year +
                 ", isHidden=" + isHidden +
                 ", product=" + product +
-                ", company=" + company +
                 ", warehouse=" + warehouse +
                 '}';
     }

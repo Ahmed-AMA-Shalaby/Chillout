@@ -30,16 +30,9 @@
             <!-- / FILTER -->
 
             <div fxLayout="row" fxLayoutAlign="center center">
-                <!-- EDIT BUTTON -->
-                <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit"
-                    [disabled]="hideFlag">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <!-- / EDIT BUTTON -->
                 <!--  HIDE BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleHide()"
-                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="Show / Hide" [disabled]="editFlag">
+                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="Show / Hide">
                     <mat-icon>visibility</mat-icon>
                 </button>
                 <!-- / HIDE BUTTON -->

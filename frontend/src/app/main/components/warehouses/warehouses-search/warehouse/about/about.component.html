@@ -1,0 +1,125 @@
+<div *ngIf="warehouse" id="about" class="p-24" fxLayout="row wrap">
+
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="65">
+
+        <div class="warehouse-box info-box general" fxLayout="column">
+
+            <header class="accent" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="title">General Information</div>
+                <div></div>
+                <button mat-icon-button class="mx-16" (click)="toggleEdit()"
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit" [disabled]="addFlag">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </header>
+
+            <div *ngIf="warehouse" class="content">
+                <div class="info-line">
+                    <div class="title">Name:</div>
+                    <div *ngIf="!editFlag" class="info">{{warehouse.warehouseName}}</div>
+                    <mat-form-field floatLabel="never" *ngIf="editFlag">
+                        <mat-label>Name</mat-label>
+                        <input matInput class="info" [value]="warehouse.warehouseName"
+                            [(ngModel)]="warehouse.warehouseName">
+                    </mat-form-field>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Company:</div>
+                    <div *ngIf="!editFlag" class="info">{{warehouse.companyName}}</div>
+                    <mat-form-field floatLabel="never" *ngIf="editFlag">
+                        <mat-label>Company</mat-label>
+                        <input matInput class="info" [value]="warehouse.companyName"
+                            [(ngModel)]="warehouse.companyName">
+                    </mat-form-field>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Sector:</div>
+                    <div *ngIf="!editFlag" class="info">{{warehouse.sector.sectorName}}</div>
+                    <mat-form-field floatLabel="never" *ngIf="editFlag">
+                        <mat-label>Sector</mat-label>
+                        <mat-select [(ngModel)]="warehouse.sector">
+                            <mat-option *ngFor="let sector of sectors"
+                                [value]="warehouse.sector.id === sector.id ? warehouse.sector : sector">
+                                {{sector.sectorName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="about-sidebar" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="35">
+
+        <div class="warehouse-box groups" fxLayout="column">
+
+            <header class="accent" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="title">Products</div>
+                <button mat-icon-button class="mx-4" (click)="toggleAdd()"
+                    [ngClass]="{'fuse-white': !addFlag, 'green': addFlag}" matTooltip="Add a product"
+                    [disabled]="editFlag">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </header>
+
+            <div class="content">
+
+                <div *ngIf="!addFlag">
+
+                    <div class="product" *ngFor="let product of warehouse.products; let i = index" fxLayout="row"
+                        fxLayoutAlign="space-between center">
+
+                        <div *ngIf="!editFlag" class="info">{{product.productName}}</div>
+                        <mat-form-field floatLabel="never"
+                            *ngIf="editFlag && product.productName != 'إجمالى المبالغ الإضافيه'" class="mr-16">
+                            <mat-label>{{warehouse.products[i].productName}}</mat-label>
+                            <mat-select [(ngModel)]="warehouse.products[i]" (ngModelChange)="toggleEdit()">
+                                <mat-option *ngFor="let product of products" [value]="product">
+                                    {{product.productName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <button *ngIf="!editFlag && !addFlag && product.productName != 'إجمالى المبالغ الإضافيه'"
+                            mat-icon-button class="mx-4" (click)="removeProduct(i, product.productName)" ngClass="warn"
+                            matTooltip="Remove product">
+                            <mat-icon>close</mat-icon>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div *ngIf="addFlag">
+
+                    <div class="product" fxLayout="row" fxLayoutAlign="center center">
+
+                        <mat-form-field floatLabel="never" class="mr-16">
+                            <mat-label>Product</mat-label>
+                            <mat-select [(ngModel)]="newProduct">
+                                <mat-option *ngFor="let product of products" [value]="product">
+                                    {{product.productName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <button mat-raised-button ngClass="green-700" (click)="addProduct()"
+                            [disabled]="!newProduct">Add Product</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>

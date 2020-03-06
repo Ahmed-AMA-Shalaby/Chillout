@@ -41,12 +41,12 @@ const appRoutes: Routes = [
         loadChildren: './main/components/agents/agents-search/agents-search.module#AgentsSearchModule'
     },
     {
-        path: 'companies/create',
-        loadChildren: './main/components/companies/companies-create/companies-create.module#CompaniesCreateModule'
+        path: 'distances/create',
+        loadChildren: './main/components/distances/distances-create/distances-create.module#DistancesCreateModule'
     },
     {
-        path: 'companies/search',
-        loadChildren: './main/components/companies/companies-search/companies-search.module#CompaniesSearchModule'
+        path: 'distances/search',
+        loadChildren: './main/components/distances/distances-search/distances-search.module#DistancesSearchModule'
     },
     {
         path: 'drivers/create',
@@ -107,6 +107,10 @@ const appRoutes: Routes = [
     {
         path: 'warehouses/search',
         loadChildren: './main/components/warehouses/warehouses-search/warehouses-search.module#WarehousesSearchModule'
+    },
+    {
+        path: 'warehouse/:id',
+        loadChildren: './main/components/warehouses/warehouses-search/warehouse/warehouse.module#WarehouseModule'
     }
 ];
 

@@ -1,7 +1,5 @@
 package com.wataneya.chillout.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -9,7 +7,6 @@ import javax.persistence.*;
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
 @Table(name = "Transfers")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Transfer {
 
     @Id
@@ -33,9 +30,6 @@ public class Transfer {
     private Station station;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Company company;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Warehouse warehouse;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -45,7 +39,7 @@ public class Transfer {
 
     }
 
-    public Transfer(String id, int transferredAmount, int day, int month, int year, boolean isHidden, Product product, Station station, Company company, Warehouse warehouse, Trip trip) {
+    public Transfer(String id, int transferredAmount, int day, int month, int year, boolean isHidden, Product product, Station station, Warehouse warehouse, Trip trip) {
         this.id = id;
         this.transferredAmount = transferredAmount;
         this.day = day;
@@ -54,7 +48,6 @@ public class Transfer {
         this.isHidden = isHidden;
         this.product = product;
         this.station = station;
-        this.company = company;
         this.warehouse = warehouse;
         this.trip = trip;
     }
@@ -68,7 +61,6 @@ public class Transfer {
         this.setHidden(transfer.isHidden());
         this.setProduct(transfer.getProduct());
         this.setStation(transfer.getStation());
-        this.setCompany(transfer.getCompany());
         this.setWarehouse(transfer.getWarehouse());
         this.setTrip(transfer.getTrip());
     }
@@ -137,14 +129,6 @@ public class Transfer {
         this.station = station;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
     public Warehouse getWarehouse() {
         return warehouse;
     }
@@ -172,7 +156,6 @@ public class Transfer {
                 ", isHidden=" + isHidden +
                 ", product=" + product +
                 ", station=" + station +
-                ", company=" + company +
                 ", warehouse=" + warehouse +
                 ", trip=" + trip +
                 '}';

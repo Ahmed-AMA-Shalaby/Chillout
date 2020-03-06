@@ -30,26 +30,6 @@ export const Navigation: FuseNavigation[] = [
         ]
     },
     {
-        id: 'companies',
-        title: 'Companies',
-        icon: 'business',
-        type: 'collapsable',
-        children: [
-            {
-                id: 'Create',
-                title: 'Create',
-                type: 'item',
-                url: '/companies/create'
-            },
-            {
-                id: 'Search',
-                title: 'Search',
-                type: 'item',
-                url: '/companies/search'
-            }
-        ]
-    },
-    {
         id: 'distances',
         title: 'Distances',
         icon: 'map',
@@ -387,26 +367,6 @@ export const Navigation: FuseNavigation[] = [
 //                 title: 'بحث',
 //                 type: 'item',
 //                 url: '/tanks/search'
-//             }
-//         ]
-//     },
-//     {
-//         id: 'companies',
-//         title: 'شركات',
-//         icon: 'business',
-//         type: 'collapsable',
-//         children: [
-//             {
-//                 id: 'Create',
-//                 title: 'إنشاء',
-//                 type: 'item',
-//                 url: '/companies/create'
-//             },
-//             {
-//                 id: 'Search',
-//                 title: 'بحث',
-//                 type: 'item',
-//                 url: '/companies/search'
 //             }
 //         ]
 //     },

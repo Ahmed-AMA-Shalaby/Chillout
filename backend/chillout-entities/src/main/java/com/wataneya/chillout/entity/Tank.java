@@ -1,7 +1,5 @@
 package com.wataneya.chillout.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -9,7 +7,6 @@ import javax.persistence.*;
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
 @Table(name = "Tanks")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Tank {
 
     @Id
