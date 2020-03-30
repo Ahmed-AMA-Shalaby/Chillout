@@ -83,11 +83,14 @@ $typography: mat-typography-config(
 @import "src/app/main/components/distances/distances-search/distances-search.theme";
 @import "src/app/main/components/drivers/drivers-search/drivers-search.theme";
 @import "src/app/main/components/products/products-search/products-search.theme";
+@import "src/app/main/components/quotas/quotas-search/quotas-search.theme";
 @import "src/app/main/components/stations/stations-search/stations-search.theme";
 @import "src/app/main/components/sectors/sectors-search/sectors-search.theme";
 @import "src/app/main/components/users/users-search/users-search.theme";
 @import "src/app/main/components/vehicles/vehicles-search/vehicles-search.theme";
 @import "src/app/main/components/warehouses/warehouses-search/warehouses-search.theme";
+@import "src/app/main/components/acknowledgements/sales/sales.theme";
+@import "src/app/main/components/acknowledgements/existings/existings.theme";
 // Define a mixin for easier access
 @mixin components-theme($theme) {
 
@@ -106,6 +109,9 @@ $typography: mat-typography-config(
     //Products-Search Page
     @include products-search-theme($theme);
 
+    //Quotas-Search Page
+    @include quotas-search-theme($theme);
+
     //Sectors-Search Page
     @include sectors-search-theme($theme);
 
@@ -121,6 +127,11 @@ $typography: mat-typography-config(
     //Warehouses-Search Page
     @include warehouses-search-theme($theme);
 
+    //Sales Page
+    @include sales-theme($theme);
+
+    //Existing Page
+    @include existings-theme($theme);
 }
 
 // -----------------------------------------------------------------------------------------------------

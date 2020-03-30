@@ -19,8 +19,6 @@ public class Quota {
 
     private int year;
 
-    private boolean isHidden;
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Product product;
 
@@ -31,12 +29,11 @@ public class Quota {
 
     }
 
-    public Quota(String id, int quotaAmount, int month, int year, boolean isHidden, Product product, Warehouse warehouse) {
+    public Quota(String id, int quotaAmount, int month, int year, Product product, Warehouse warehouse) {
         this.id = id;
         this.quotaAmount = quotaAmount;
         this.month = month;
         this.year = year;
-        this.isHidden = isHidden;
         this.product = product;
         this.warehouse = warehouse;
     }
@@ -46,7 +43,6 @@ public class Quota {
         this.setQuotaAmount(quota.getQuotaAmount());
         this.setMonth(quota.getMonth());
         this.setYear(quota.getYear());
-        this.setHidden(quota.isHidden());
         this.setProduct(quota.getProduct());
         this.setWarehouse(quota.getWarehouse());
     }
@@ -83,14 +79,6 @@ public class Quota {
         this.year = year;
     }
 
-    public boolean isHidden() {
-        return isHidden;
-    }
-
-    public void setHidden(boolean hidden) {
-        isHidden = hidden;
-    }
-
     public Product getProduct() {
         return product;
     }
@@ -114,7 +102,6 @@ public class Quota {
                 ", quotaAmount=" + quotaAmount +
                 ", month=" + month +
                 ", year=" + year +
-                ", isHidden=" + isHidden +
                 ", product=" + product +
                 ", warehouse=" + warehouse +
                 '}';

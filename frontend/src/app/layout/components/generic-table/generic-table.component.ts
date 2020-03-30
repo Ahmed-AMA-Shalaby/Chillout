@@ -82,8 +82,8 @@ export class GenericTableComponent implements OnChanges {
                     this.dataSource.filterPredicate = (data: User, filter: string) => !filter || data.firstName.startsWith(filter) || data.middleName.startsWith(filter) || data.lastName.startsWith(filter) || data.phoneNumber.startsWith(filter) || data.phoneNumber.startsWith(filter);
                 }
                 else if (this.type == environment.entities.Warehouse) {
-                    this.originalColumns = changes.hideMode.currentValue ? ['warehouseName', 'hidden'] : ['warehouseName']
-                    this.displayedColumns = changes.hideMode.currentValue ? ['Warehouse Name', ' '] : ['Warehouse Name']
+                    this.originalColumns = changes.hideMode.currentValue ? ['warehouseName', 'companyName', 'hidden'] : ['warehouseName', 'companyName']
+                    this.displayedColumns = changes.hideMode.currentValue ? ['Warehouse Name', 'Company Name', ' '] : ['Warehouse Name', 'Company Name']
                     this.dataSource.filterPredicate = (data: Warehouse, filter: string) => !filter || data.warehouseName.startsWith(filter);
                 }
                 this.dataSource.paginator = this.paginator;

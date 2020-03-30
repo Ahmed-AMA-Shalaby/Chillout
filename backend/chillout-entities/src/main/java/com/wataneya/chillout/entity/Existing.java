@@ -21,8 +21,6 @@ public class Existing {
 
     private int year;
 
-    private boolean isHidden;
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Product product;
 
@@ -33,13 +31,12 @@ public class Existing {
 
     }
 
-    public Existing(String id, int existingAmount, int day, int month, int year, boolean isHidden, Product product, Station station) {
+    public Existing(String id, int existingAmount, int day, int month, int year, Product product, Station station) {
         this.id = id;
         this.existingAmount = existingAmount;
         this.day = day;
         this.month = month;
         this.year = year;
-        this.isHidden = isHidden;
         this.product = product;
         this.station = station;
     }
@@ -50,7 +47,6 @@ public class Existing {
         this.setDay(existing.getDay());
         this.setMonth(existing.getMonth());
         this.setYear(existing.getYear());
-        this.setHidden(existing.isHidden());
         this.setProduct(existing.getProduct());
         this.setStation(existing.getStation());
     }
@@ -95,14 +91,6 @@ public class Existing {
         this.year = year;
     }
 
-    public boolean isHidden() {
-        return isHidden;
-    }
-
-    public void setHidden(boolean hidden) {
-        isHidden = hidden;
-    }
-
     public Product getProduct() {
         return product;
     }
@@ -127,7 +115,6 @@ public class Existing {
                 ", day=" + day +
                 ", month=" + month +
                 ", year=" + year +
-                ", isHidden=" + isHidden +
                 ", product=" + product +
                 ", station=" + station +
                 '}';

@@ -90,6 +90,26 @@ export const Navigation: FuseNavigation[] = [
         ]
     },
     {
+        id: 'quotas',
+        title: 'Quotas',
+        icon: 'category',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Create',
+                title: 'Create',
+                type: 'item',
+                url: '/quotas/create'
+            },
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/quotas/search'
+            }
+        ]
+    },
+    {
         id: 'sectors',
         title: 'Sectors',
         icon: 'location_city',
@@ -206,6 +226,26 @@ export const Navigation: FuseNavigation[] = [
                 title: 'Search',
                 type: 'item',
                 url: '/warehouses/search'
+            }
+        ]
+    },
+    {
+        id: 'acknowledgement',
+        title: 'Acknowledgements',
+        icon: 'account_balance',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'sales',
+                title: 'Sales',
+                type: 'item',
+                url: '/acknowledgements/sales'
+            },
+            {
+                id: 'existings',
+                title: 'Existings',
+                type: 'item',
+                url: '/acknowledgements/existings'
             }
         ]
     },

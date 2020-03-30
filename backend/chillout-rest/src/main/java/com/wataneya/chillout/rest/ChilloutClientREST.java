@@ -117,6 +117,39 @@ public class ChilloutClientREST {
             return Response.ok(entity + " not found").build();
         }
     }
+
+    @GET
+    @Path("/retrieveQuotasbyYearandMonth")
+    @Produces("application/json")
+    public Response retrieveQuotasbyYearandMonth(@QueryParam("year") int year, @QueryParam("month") int month) {
+        try {
+            return Response.ok(chilloutQueryService.retrieveQuotasbyYearandMonth(year, month)).build();
+        } catch (Exception e) {
+            return Response.ok("Quotas not found").build();
+        }
+    }
+
+    @GET
+    @Path("/retrieveSalesbyDate")
+    @Produces("application/json")
+    public Response retrieveSalesbyDate(@QueryParam("year") int year, @QueryParam("month") int month, @QueryParam("day") int day) {
+        try {
+            return Response.ok(chilloutQueryService.retrieveSalesbyDate(year, month, day)).build();
+        } catch (Exception e) {
+            return Response.ok("Sales not found").build();
+        }
+    }
+
+    @GET
+    @Path("/retrieveExistingsbyDate")
+    @Produces("application/json")
+    public Response retrieveExsitingsbyDate(@QueryParam("year") int year, @QueryParam("month") int month, @QueryParam("day") int day) {
+        try {
+            return Response.ok(chilloutQueryService.retrieveExistingsbyDate(year, month, day)).build();
+        } catch (Exception e) {
+            return Response.ok("Existings not found").build();
+        }
+    }
     //endregion
 
     /*****************************************************PUT***********************************************************/
@@ -317,4 +350,3 @@ public class ChilloutClientREST {
     }
     //endregion
 }
-//Keep doing like  update sector ... gson can't parse the relations, but jackson core can deserialize like it serialized the relations :S (Not the generic way)

@@ -16,11 +16,6 @@ export class GenericService {
     constructor(private httpClient: HttpClient) {
     }
 
-    // createEntity(type: String, entity: {}): Observable<BaseResponse> {
-    //     const data = { type: type, entity: entity }
-    //     return this.httpClient.post<BaseResponse>(environment.apis.baseUrl + environment.apis.createEntity, data, this.httpOptions);
-    // }
-
     updateEntity(type: String, entity: {}): Observable<BaseResponse> {
         return this.httpClient.post<BaseResponse>(environment.apis.baseUrl + environment.apis[`update${type}`], entity, this.httpOptions);
     }
@@ -40,4 +35,18 @@ export class GenericService {
         return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveEntitybyID, { headers: this.httpOptions.headers, params: params });
     }
 
+    retrieveQuotasbyYearandMonth(year: number, month: number): Observable<{}> {
+        let params = new HttpParams().set('year', JSON.stringify(year)).set('month', JSON.stringify(month));
+        return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveQuotasbyYearandMonth, { headers: this.httpOptions.headers, params: params });
+    }
+    
+    retrieveSalesbyDate(year: number, month: number, day: number): Observable<{}> {
+        let params = new HttpParams().set('year', JSON.stringify(year)).set('month', JSON.stringify(month)).set('day', JSON.stringify(day));
+        return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveSalesbyDate, { headers: this.httpOptions.headers, params: params });
+    }
+
+    retrieveExistingsbyDate(year: number, month: number, day: number): Observable<{}> {
+        let params = new HttpParams().set('year', JSON.stringify(year)).set('month', JSON.stringify(month)).set('day', JSON.stringify(day));
+        return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveExistingsbyDate, { headers: this.httpOptions.headers, params: params });
+    }
 }

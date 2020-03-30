@@ -1,0 +1,20 @@
+@mixin existings-theme($theme) {
+
+    $foreground: map-get($theme, foreground);
+
+    existings {
+
+        .header {
+
+            .search-wrapper {
+
+                .search {
+
+                    input {
+                        color: map-get($foreground, text);
+                    }
+                }
+            }
+        }
+    }
+}

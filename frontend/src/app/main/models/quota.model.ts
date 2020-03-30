@@ -6,7 +6,6 @@ export interface Quota {
     quotaAmount: number;
     month: number;
     year: number;
-    hidden?: boolean;
     product: Product;
     warehouse: Warehouse;
 }

@@ -1,0 +1,114 @@
+<div id="quotas-search" class="page-layout carded fullwidth">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+            fxLayoutAlign.gt-sm="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    people
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Quotas</span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- FILTER -->
+            <div class="search-wrapper mx-32 mx-md-0 fuse-white">
+                <form name="dateForm" [formGroup]="dateForm">
+                    <mat-form-field appearance="never" class="pr-4">
+                        <div class="search mt-12" fxFlex fxLayout="row" fxLayoutAlign="center center">
+                            <!-- <mat-label>Month and Year</mat-label> -->
+                            <input matInput [matDatepicker]="datepicker" [formControl]="date" formControlName="date"
+                                [attr.disabled]="true">
+                            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                            <mat-datepicker #datepicker startView="multi-year"
+                                (yearSelected)="chosenYearHandler($event)"
+                                (monthSelected)="chosenMonthHandler($event, datepicker)" disabled="false">
+                            </mat-datepicker>
+                        </div>
+                    </mat-form-field>
+                </form>
+            </div>
+            <!-- / FILTER -->
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <!-- EDIT BUTTON -->
+                <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <!-- / EDIT BUTTON -->
+            </div>
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" *ngIf="quotas.length != 0" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+
+            <mat-table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+
+                <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns; let i = index">
+                    <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
+                    <mat-cell *matCellDef="let quotas; let j  = index">
+                        <p *ngIf="!editFlag && originalColumns[i] == 'quotaAmount'">
+                            {{quotas[originalColumns[i]]}}</p>
+                        <p *ngIf="!editFlag && originalColumns[i] == 'warehouse'">
+                            {{quotas[originalColumns[i]]["companyName"]}} -
+                            {{quotas[originalColumns[i]]["warehouseName"]}}</p>
+                        <p *ngIf="!editFlag && originalColumns[i] == 'product'">
+                            {{quotas[originalColumns[i]]["productName"]}}</p>
+                        <div *ngIf="editFlag">
+                            <div *ngIf="originalColumns[i] == 'quotaAmount'">
+                                <mat-form-field floatLabel="never" appearance="outline" class="mt-20">
+                                    <input matInput (input)="modifyData(j + (paginator.pageIndex * paginator.pageSize))"
+                                        placeholder="{{column}}" [value]="quotas[originalColumns[i]]"
+                                        [(ngModel)]="quotas[originalColumns[i]]">
+                                </mat-form-field>
+                            </div>
+                            <div *ngIf="originalColumns[i] =='warehouse'">
+                                <mat-form-field floatLabel="never" appearance="outline" class="mt-20">
+                                    <mat-select [(ngModel)]="quotas[originalColumns[i]]"
+                                        (ngModelChange)="modifyData(j + (paginator.pageIndex * paginator.pageSize))">
+                                        <mat-option *ngFor="let warehouse of warehouses"
+                                            [value]="quotas[originalColumns[i]].id === warehouse.id ? quotas[originalColumns[i]] : warehouse">
+                                            {{warehouse.companyName}} - {{warehouse.warehouseName}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div *ngIf="originalColumns[i] =='product'">
+                                <mat-form-field floatLabel="never" appearance="outline" class="mt-20">
+                                    <mat-select [(ngModel)]="quotas[originalColumns[i]]"
+                                        (ngModelChange)="modifyData(j + (paginator.pageIndex * paginator.pageSize))">
+                                        <mat-option *ngFor="let product of products"
+                                            [value]="quotas[originalColumns[i]].id ===product.id ? quotas[originalColumns[i]] : product">
+                                            {{product.productName}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

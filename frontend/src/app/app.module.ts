@@ -65,6 +65,14 @@ const appRoutes: Routes = [
         loadChildren: './main/components/products/products-search/products-search.module#ProductsSearchModule'
     },
     {
+        path: 'quotas/create',
+        loadChildren: './main/components/quotas/quotas-create/quotas-create.module#QuotasCreateModule'
+    },
+    {
+        path: 'quotas/search',
+        loadChildren: './main/components/quotas/quotas-search/quotas-search.module#QuotasSearchModule'
+    },
+    {
         path: 'sectors/create',
         loadChildren: './main/components/sectors/sectors-create/sectors-create.module#SectorsCreateModule'
     },
@@ -111,6 +119,14 @@ const appRoutes: Routes = [
     {
         path: 'warehouse/:id',
         loadChildren: './main/components/warehouses/warehouses-search/warehouse/warehouse.module#WarehouseModule'
+    },
+    {
+        path: 'acknowledgements/sales',
+        loadChildren: './main/components/acknowledgements/sales/sales.module#SalesModule'
+    },
+    {
+        path: 'acknowledgements/existings',
+        loadChildren: './main/components/acknowledgements/existings/existings.module#ExistingsModule'
     }
 ];
 

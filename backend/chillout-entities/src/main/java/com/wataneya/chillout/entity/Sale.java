@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
-@Table(name = "Sale")
+@Table(name = "Sales")
 public class Sale {
 
     @Id
@@ -20,8 +20,6 @@ public class Sale {
 
     private int year;
 
-    private boolean isHidden;
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Product product;
 
@@ -32,13 +30,12 @@ public class Sale {
 
     }
 
-    public Sale(String id, int saleAmount, int day, int month, int year, boolean isHidden, Product product, Station station) {
+    public Sale(String id, int saleAmount, int day, int month, int year, Product product, Station station) {
         this.id = id;
         this.saleAmount = saleAmount;
         this.day = day;
         this.month = month;
         this.year = year;
-        this.isHidden = isHidden;
         this.product = product;
         this.station = station;
     }
@@ -49,7 +46,6 @@ public class Sale {
         this.setDay(sale.getDay());
         this.setMonth(sale.getMonth());
         this.setYear(sale.getYear());
-        this.setHidden(sale.isHidden());
         this.setProduct(sale.getProduct());
         this.setStation(sale.getStation());
     }
@@ -94,14 +90,6 @@ public class Sale {
         this.year = year;
     }
 
-    public boolean isHidden() {
-        return isHidden;
-    }
-
-    public void setHidden(boolean hidden) {
-        isHidden = hidden;
-    }
-
     public Product getProduct() {
         return product;
     }
@@ -126,7 +114,6 @@ public class Sale {
                 ", day=" + day +
                 ", month=" + month +
                 ", year=" + year +
-                ", isHidden=" + isHidden +
                 ", product=" + product +
                 ", station=" + station +
                 '}';

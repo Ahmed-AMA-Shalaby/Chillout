@@ -28,4 +28,36 @@ public class ChilloutQueryService {
             return null;
         return object;
     }
+
+    public List<Quota> retrieveQuotasbyYearandMonth(int year, int month) {
+        List quotas = em.createQuery("From Quota q where q.year = :year and q.month = :month")
+                .setParameter("year", year)
+                .setParameter("month", month)
+                .getResultList();
+        if (quotas == null)
+            return null;
+        return quotas;
+    }
+
+    public List<Sale> retrieveSalesbyDate(int year, int month, int day) {
+        List sales = em.createQuery("From Sale s where s.year = :year and s.month = :month and s.day = :day")
+                .setParameter("year", year)
+                .setParameter("month", month)
+                .setParameter("day", day)
+                .getResultList();
+        if (sales == null)
+            return null;
+        return sales;
+    }
+
+    public List<Existing> retrieveExistingsbyDate(int year, int month, int day) {
+        List existings = em.createQuery("From Existing e where e.year = :year and e.month = :month and e.day = :day")
+                .setParameter("year", year)
+                .setParameter("month", month)
+                .setParameter("day", day)
+                .getResultList();
+        if (existings == null)
+            return null;
+        return existings;
+    }
 }

@@ -7,7 +7,6 @@ export interface Existing {
     day: number;
     month: number;
     year: number;
-    hidden?: boolean;
     product: Product
     station: Station
 }
