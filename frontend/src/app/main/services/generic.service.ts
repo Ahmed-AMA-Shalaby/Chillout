@@ -49,4 +49,9 @@ export class GenericService {
         let params = new HttpParams().set('year', JSON.stringify(year)).set('month', JSON.stringify(month)).set('day', JSON.stringify(day));
         return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveExistingsbyDate, { headers: this.httpOptions.headers, params: params });
     }
+
+    retrieveTripsbyDate(year: number, month: number, day: number): Observable<{}> {
+        let params = new HttpParams().set('year', JSON.stringify(year)).set('month', JSON.stringify(month)).set('day', JSON.stringify(day));
+        return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveTripsbyDate, { headers: this.httpOptions.headers, params: params });
+    }
 }

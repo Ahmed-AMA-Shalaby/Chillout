@@ -21,7 +21,7 @@ export class SectorsCreateComponent implements OnInit {
 
     ngOnInit() {
         this.sectorForm = this._formBuilder.group({
-            sectorName: ['', Validators.required]
+            sectorName: [null, Validators.required]
         });
     }
 

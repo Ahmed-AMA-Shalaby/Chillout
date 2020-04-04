@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
-@Table(name = "Sales")
+@Table(name = "Sales", uniqueConstraints = {@UniqueConstraint(columnNames = {"day", "month", "year", "product_id", "station_id"})})
 public class Sale {
 
     @Id

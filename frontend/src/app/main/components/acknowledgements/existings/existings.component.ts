@@ -64,7 +64,7 @@ export class ExistingsComponent implements OnInit {
 
     ngOnInit() {
         this.dateForm = this._formBuilder.group({
-            date: ['', Validators.required]
+            date: [null, Validators.required]
         });
         this.dateForm.get('date').disable();
         this.dataSource = new MatTableDataSource([]);

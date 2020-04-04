@@ -8,17 +8,15 @@ import java.util.Set;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
-@Table(name = "Stations")
+@Table(name = "Stations", uniqueConstraints = {@UniqueConstraint(columnNames = {"stationCode", "stationName"})})
 public class Station {
 
     @Id
     @GeneratedValue(generator = "uuid")
     private String id;
 
-    @Column(unique = true)
     private int stationCode;
 
-    @Column(unique = true)
     private String stationName;
 
     private String stationLocation;

@@ -26,11 +26,11 @@ export class StationsCreateComponent implements OnInit {
 
     ngOnInit() {
         this.stationForm = this._formBuilder.group({
-            stationCode: ['', Validators.required],
-            stationName: ['', Validators.required],
-            stationLocation: ['', Validators.required],
-            agent: ['', Validators.required],
-            sector: ['', Validators.required]
+            stationCode: [null, Validators.required],
+            stationName: [null, Validators.required],
+            stationLocation: [null, Validators.required],
+            agent: [null, Validators.required],
+            sector: [null, Validators.required]
         });
         this.genericService.retrieveShownEntities(environment.entities.Agent).subscribe(agents => {
             this.agents = agents;

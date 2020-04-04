@@ -60,4 +60,15 @@ public class ChilloutQueryService {
             return null;
         return existings;
     }
+
+    public List<Trip> retrieveTripsbyDate(int year, int month, int day) {
+        List trips = em.createQuery("From Trip t where t.year = :year and t.month = :month and t.day = :day")
+                .setParameter("year", year)
+                .setParameter("month", month)
+                .setParameter("day", day)
+                .getResultList();
+        if (trips == null)
+            return null;
+        return trips;
+    }
 }

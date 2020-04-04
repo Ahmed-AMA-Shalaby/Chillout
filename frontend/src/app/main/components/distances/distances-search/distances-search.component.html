@@ -32,17 +32,10 @@
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!-- EDIT BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit"
-                    [disabled]="hideFlag">
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <!-- / EDIT BUTTON -->
-                <!--  HIDE BUTTON -->
-                <button mat-mini-fab class="mx-16" (click)="toggleHide()"
-                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="Show / Hide">
-                    <mat-icon>visibility</mat-icon>
-                </button>
-                <!-- / HIDE BUTTON -->
             </div>
 
         </div>
@@ -59,16 +52,9 @@
                     <mat-cell *matCellDef="let distances; let j  = index">
                         <p *ngIf="!editFlag && originalColumns[i] == 'distance'">{{distances[originalColumns[i]]}}</p>
                         <p *ngIf="!editFlag && originalColumns[i] == 'warehouse'">
-                            {{distances[originalColumns[i]]["warehouseName"]}}</p>
+                            {{distances[originalColumns[i]]["companyName"]}} - {{distances[originalColumns[i]]["warehouseName"]}}</p>
                         <p *ngIf="!editFlag && originalColumns[i] == 'station'">
                             {{distances[originalColumns[i]]["stationName"]}}</p>
-                        <button mat-icon-button class="mx-16" *ngIf="!editFlag && originalColumns[i] == 'hidden'"
-                            (click)="toggleDistanceVisibility(j + (paginator.pageIndex * paginator.pageSize))">
-                            <mat-icon *ngIf="distances[originalColumns[i]] == true" matTooltip="Show">visibility
-                            </mat-icon>
-                            <mat-icon *ngIf="distances[originalColumns[i]] == false" matTooltip="Hide">visibility_off
-                            </mat-icon>
-                        </button>
                         <div *ngIf="editFlag">
                             <div *ngIf="originalColumns[i] =='distance'">
                                 <mat-form-field floatLabel="never" appearance="outline" class="mt-20">

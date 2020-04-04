@@ -21,10 +21,10 @@ export class DriversCreateComponent implements OnInit {
 
     ngOnInit() {
         this.driverForm = this._formBuilder.group({
-            firstName: ['', Validators.required],
-            middleName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            phoneNumber: ['', Validators.required]
+            firstName: [null, Validators.required],
+            middleName: [null, Validators.required],
+            lastName: [null, Validators.required],
+            phoneNumber: [null, Validators.required]
         });
     }
 

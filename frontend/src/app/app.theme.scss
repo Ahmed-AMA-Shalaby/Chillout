@@ -84,8 +84,10 @@ $typography: mat-typography-config(
 @import "src/app/main/components/drivers/drivers-search/drivers-search.theme";
 @import "src/app/main/components/products/products-search/products-search.theme";
 @import "src/app/main/components/quotas/quotas-search/quotas-search.theme";
-@import "src/app/main/components/stations/stations-search/stations-search.theme";
 @import "src/app/main/components/sectors/sectors-search/sectors-search.theme";
+@import "src/app/main/components/stations/stations-search/stations-search.theme";
+@import "src/app/main/components/trips/trips-create/trips-create.theme";
+@import "src/app/main/components/trips/trips-search/trips-search.theme";
 @import "src/app/main/components/users/users-search/users-search.theme";
 @import "src/app/main/components/vehicles/vehicles-search/vehicles-search.theme";
 @import "src/app/main/components/warehouses/warehouses-search/warehouses-search.theme";
@@ -117,6 +119,12 @@ $typography: mat-typography-config(
 
     //Stations-Search Page
     @include stations-search-theme($theme);
+
+    //Trips-Create Page
+    @include trips-create-theme($theme);
+
+    //Trips-Search Page
+    @include trips-search-theme($theme);
 
     //Users-Search Page
     @include users-search-theme($theme);
@@ -272,4 +280,10 @@ body.theme-pink-dark {
     );
 
     @include fuse-color-classes($palettes);
+}
+
+
+body.theme-default .mat-step-header .mat-step-icon-selected, body.theme-default .mat-step-header .mat-step-icon-state-done, body.theme-default .mat-step-header .mat-step-icon-state-edit {
+    background-color: #3f51b5;
+    color: #fff;
 }

@@ -19,11 +19,9 @@ export class StationsSearchComponent implements OnInit {
     constructor(private genericService: GenericService) { }
 
     ngOnInit() {
-        this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(
-            data => {
-                this.stations = data;
-            }
-        )
+        this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
+            this.stations = stations;
+        })
     }
 
     applyFilter(filterValue) {

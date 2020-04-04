@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
-@Table(name = "Distances")
+@Table(name = "Distances", uniqueConstraints = {@UniqueConstraint(columnNames = {"warehouse_id", "station_id"})})
 public class Distance {
 
     @Id
@@ -15,30 +15,28 @@ public class Distance {
 
     private int distance;
 
-    private boolean isHidden;
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "station_id")
     private Station station;
 
-    public Distance(){
+    public Distance() {
 
     }
 
-    public Distance(String id, int distance, boolean isHidden, Warehouse warehouse, Station station) {
+    public Distance(String id, int distance, Warehouse warehouse, Station station) {
         this.id = id;
         this.distance = distance;
-        this.isHidden = isHidden;
         this.warehouse = warehouse;
         this.station = station;
     }
 
-    public Distance(Distance distance){
+    public Distance(Distance distance) {
         this.setId(distance.getId());
         this.setDistance(distance.getDistance());
-        this.setHidden(distance.isHidden());
         this.setWarehouse(distance.getWarehouse());
         this.setStation(distance.getStation());
     }
@@ -57,14 +55,6 @@ public class Distance {
 
     public void setDistance(int distance) {
         this.distance = distance;
-    }
-
-    public boolean isHidden() {
-        return isHidden;
-    }
-
-    public void setHidden(boolean hidden) {
-        isHidden = hidden;
     }
 
     public Warehouse getWarehouse() {
@@ -88,10 +78,8 @@ public class Distance {
         return "Distance{" +
                 "id='" + id + '\'' +
                 ", distance=" + distance +
-                ", isHidden=" + isHidden +
                 ", warehouse=" + warehouse +
                 ", station=" + station +
                 '}';
     }
 }
-

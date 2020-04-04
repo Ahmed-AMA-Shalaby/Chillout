@@ -1,0 +1,261 @@
+<div id="trips-create" class="page-layout carded fullwidth">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+            fxLayoutAlign.gt-sm="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    people
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Trips</span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- FILTER -->
+            <div class="search-wrapper mx-32 mx-md-0 fuse-white">
+                <form name="dateForm" [formGroup]="dateForm">
+                    <mat-form-field appearance="never" class="pr-4">
+                        <div class="search mt-12" fxFlex fxLayout="row" fxLayoutAlign="center center">
+                            <input matInput [matDatepicker]="datepicker" [formControl]="date" formControlName="date"
+                                [attr.disabled]="true">
+                            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                            <mat-datepicker #datepicker startView="multi-year" disabled="false">
+                            </mat-datepicker>
+                        </div>
+                    </mat-form-field>
+                </form>
+            </div>
+            <!-- / FILTER -->
+
+            <div></div>
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+
+            <mat-horizontal-stepper linear #stepper>
+
+                <mat-step [stepControl]="transfer1Form" label="Transfer 1">
+                    <form [formGroup]="transfer1Form">
+                        <div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 0 auto">
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Station</mat-label>
+                                <mat-select formControlName="station" #station required>
+                                    <mat-option *ngFor="let station of stations" [value]="station">
+                                        {{station.stationName}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Station is required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Product</mat-label>
+                                <mat-select formControlName="product" #product required>
+                                    <mat-option *ngFor="let product of products" [value]="product">
+                                        {{product.productName}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Product is required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4">
+                                <mat-label>Transferred Amount</mat-label>
+                                <input matInput formControlName="transferredAmount" #transferredAmount required
+                                    type="number" min="0">
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Transferred Amount is required!</mat-error>
+                            </mat-form-field>
+
+                            <br>
+
+                            <button mat-raised-button color="accent" matStepperNext>Next</button>
+                        </div>
+
+                    </form>
+                </mat-step>
+
+                <mat-step [stepControl]="transfer2Form" label="Transfer 2" [optional]="transfer2Form.pristine">
+                    <form [formGroup]="transfer2Form">
+                        <div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 0 auto">
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Station</mat-label>
+                                <mat-select formControlName="station" #station required>
+                                    <mat-option *ngFor="let station of stations" [value]="station">
+                                        {{station.stationName}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Station is required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Product</mat-label>
+                                <mat-select formControlName="product" #product required>
+                                    <mat-option *ngFor="let product of products" [value]="product">
+                                        {{product.productName}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Product is required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4">
+                                <mat-label>Transferred Amount</mat-label>
+                                <input matInput formControlName="transferredAmount" #transferredAmount required
+                                    type="number" min="0">
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Transferred Amount is required!</mat-error>
+                            </mat-form-field>
+
+                            <br>
+
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <button mat-raised-button color="accent" class="mx-16"
+                                    matStepperPrevious>Previous</button>
+                                <button mat-raised-button color="accent" class="mx-16" matStepperNext>Next</button>
+                            </div>
+
+                            <br>
+
+                            <button mat-raised-button color="warn" (click)="transfer2Form.reset()">Reset</button>
+
+                        </div>
+
+                    </form>
+                </mat-step>
+
+                <mat-step [stepControl]="transfer3Form" label="Transfer 3" optional>
+                    <form [formGroup]="transfer3Form">
+                        <div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 0 auto">
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Station</mat-label>
+                                <mat-select formControlName="station" #station required>
+                                    <mat-option *ngFor="let station of stations" [value]="station">
+                                        {{station.stationName}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Station is required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Product</mat-label>
+                                <mat-select formControlName="product" #product required>
+                                    <mat-option *ngFor="let product of products" [value]="product">
+                                        {{product.productName}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Product is required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4">
+                                <mat-label>Transferred Amount</mat-label>
+                                <input matInput formControlName="transferredAmount" #transferredAmount required
+                                    type="number" min="0">
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Transferred Amount is required!</mat-error>
+                            </mat-form-field>
+
+                            <br>
+
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <button mat-raised-button color="accent" class="mx-16"
+                                    matStepperPrevious>Previous</button>
+                                <button mat-raised-button color="accent" class="mx-16" matStepperNext>Next</button>
+                            </div>
+
+                            <br>
+
+                            <button mat-raised-button color="warn" (click)="transfer3Form.reset()">Reset</button>
+
+                        </div>
+
+                    </form>
+                </mat-step>
+
+                <mat-step [stepControl]="tripForm" label="Trip">
+                    <form [formGroup]="tripForm">
+                        <div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 0 auto">
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Outbound Warehouse</mat-label>
+                                <mat-select formControlName="outboundWarehouse" #outboundWarehouse required>
+                                    <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
+                                        {{warehouse.companyName}} - {{warehouse.warehouseName}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Outbound Warehouse is required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Driver</mat-label>
+                                <mat-select formControlName="driver" #driver required>
+                                    <mat-option *ngFor="let driver of drivers" [value]="driver">
+                                        {{driver.firstName}} {{driver.middleName}} {{driver.lastName}} /
+                                        {{driver.phoneNumber}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Driver is required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Vehicle</mat-label>
+                                <mat-select formControlName="vehicle" #vehicle required>
+                                    <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">
+                                        {{vehicle.vehicleCode}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Vehicle is required!</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="pr-4 pl-4">
+                                <mat-label>Inbound Warehouse</mat-label>
+                                <mat-select formControlName="inboundWarehouse" #inboundWarehouse required>
+                                    <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
+                                        {{warehouse.companyName}} - {{warehouse.warehouseName}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                                <mat-error>Inbound Warehouse is required!</mat-error>
+                            </mat-form-field>
+
+                            <br>
+
+                            <div fxLayout="row" fxLayoutAlign="center center" fxFlex="1 0 auto">
+                                <button mat-raised-button color="accent" class="mx-16" matStepperPrevious>Previous</button>
+                                <button mat-raised-button class="green mx-16" [disabled]="tripForm.invalid"
+                                    (click)="createTrip(stepper)">Create</button>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </mat-step>
+            
+            </mat-horizontal-stepper>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

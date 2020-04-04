@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
-@Table(name = "Existings")
+@Table(name = "Existings", uniqueConstraints = {@UniqueConstraint(columnNames = {"day", "month", "year", "product_id", "station_id"})})
 public class Existing {
 
     @Id
@@ -22,9 +22,11 @@ public class Existing {
     private int year;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "station_id")
     private Station station;
 
     public Existing(){

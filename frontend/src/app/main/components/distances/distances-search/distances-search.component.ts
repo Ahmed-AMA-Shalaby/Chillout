@@ -19,7 +19,6 @@ export class DistancesSearchComponent implements OnInit {
     warehouses: Warehouse[];
     stations: Station[];
     editFlag: boolean = false;
-    hideFlag: boolean = false;
 
     dataSource: MatTableDataSource<{}>;
     originalColumns = [];
@@ -36,7 +35,7 @@ export class DistancesSearchComponent implements OnInit {
     ngOnInit() {
         this.distances = [];
         this.dataSource = new MatTableDataSource([]);
-        this.genericService.retrieveShownEntities(environment.entities.Distance).subscribe(data => {
+        this.genericService.retrieveAllEntities(environment.entities.Distance).subscribe(data => {
             this.distances = data;
             this.originalColumns = ['distance', 'warehouse', 'station'];
             this.displayedColumns = ['Distance', 'Warehouse', 'Station'];
@@ -61,7 +60,7 @@ export class DistancesSearchComponent implements OnInit {
         })
         this.editFlag = !this.editFlag;
         this.distances.length = 0;
-        this.genericService.retrieveShownEntities(environment.entities.Distance).subscribe(data => {
+        this.genericService.retrieveAllEntities(environment.entities.Distance).subscribe(data => {
             data.forEach(distance => {
                 this.distances.push(distance)
             })
@@ -76,49 +75,6 @@ export class DistancesSearchComponent implements OnInit {
         this.distances.forEach(row => {
             if (row["id"] == rowID) {
                 let modifiedRow = this.dataSource.filteredData[filteredRow];
-                this.genericService.updateEntity(environment.entities.Distance, modifiedRow).subscribe(
-                    data => {
-                        this.snackbar.open(data.message);
-                    },
-                    error => {
-                        this.snackbar.open(error.message);
-                    }
-                );
-            }
-        })
-    }
-
-    toggleHide() {
-        this.hideFlag = !this.hideFlag;
-        this.distances.length = 0;
-        if (this.hideFlag) {
-            this.genericService.retrieveAllEntities(environment.entities.Distance).subscribe(data => {
-                data.forEach(distance => {
-                    this.distances.push(distance)
-                })
-                this.originalColumns = ['distance', 'warehouse', 'station', 'hidden'];
-                this.displayedColumns = ['Distance', 'Warehouse', 'Station', ' '];
-                this.dataSource.paginator = this.paginator;
-            })
-        }
-        else {
-            this.genericService.retrieveShownEntities(environment.entities.Distance).subscribe(data => {
-                data.forEach(distance => {
-                    this.distances.push(distance)
-                })
-                this.originalColumns = ['distance', 'warehouse', 'station'];
-                this.displayedColumns = ['Distance', 'Warehouse', 'Station'];
-                this.dataSource.paginator = this.paginator;
-            })
-        }
-    }
-
-    toggleDistanceVisibility(filteredRow) {
-        let rowID = this.dataSource.filteredData[filteredRow]["id"]
-        this.distances.forEach((row, index) => {
-            if (row["id"] == rowID) {
-                let modifiedRow = this.dataSource.filteredData[filteredRow];
-                this.distances[index]["hidden"] = !this.distances[index]["hidden"]
                 this.genericService.updateEntity(environment.entities.Distance, modifiedRow).subscribe(
                     data => {
                         this.snackbar.open(data.message);

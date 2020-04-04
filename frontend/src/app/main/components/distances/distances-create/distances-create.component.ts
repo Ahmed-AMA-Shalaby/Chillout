@@ -13,8 +13,8 @@ import { Warehouse } from 'app/main/models/warehouse.model';
     styleUrls: ['./distances-create.component.scss']
 })
 export class DistancesCreateComponent implements OnInit {
-    stations: Station[];
     warehouses: Warehouse[];
+    stations: Station[];
     distanceForm: FormGroup;
 
     constructor(
@@ -25,15 +25,15 @@ export class DistancesCreateComponent implements OnInit {
 
     ngOnInit() {
         this.distanceForm = this._formBuilder.group({
-            distance: ['', Validators.required],
-            warehouse: ['', Validators.required],
-            station: ['', Validators.required]
+            distance: [null, Validators.required],
+            warehouse: [null, Validators.required],
+            station: [null, Validators.required]
         });
-        this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
-            this.stations = stations;
-        })
         this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(warehouses => {
             this.warehouses = warehouses;
+        })
+        this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
+            this.stations = stations;
         })
     }
 

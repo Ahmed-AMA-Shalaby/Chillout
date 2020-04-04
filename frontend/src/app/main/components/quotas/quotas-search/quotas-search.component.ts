@@ -64,7 +64,7 @@ export class QuotasSearchComponent implements OnInit {
 
     ngOnInit() {
         this.dateForm = this._formBuilder.group({
-            date: ['', Validators.required]
+            date: [null, Validators.required]
         });
         this.dateForm.get('date').disable();
         this.quotas = [];

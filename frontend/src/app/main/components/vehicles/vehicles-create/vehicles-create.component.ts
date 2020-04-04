@@ -21,12 +21,12 @@ export class VehiclesCreateComponent implements OnInit {
 
     ngOnInit() {
         this.vehicleForm = this._formBuilder.group({
-            vehicleCode: ['', Validators.required],
-            vehiclePlateNumbers: ['', Validators.required],
-            vehiclePlateLetters: ['', Validators.required],
-            vehicleCard: ['', Validators.required],
-            trailerPlateNumbers: ['', Validators.required],
-            trailerPlateLetters: ['', Validators.required],
+            vehicleCode: [null, Validators.required],
+            vehiclePlateNumbers: [null, Validators.required],
+            vehiclePlateLetters: [null, Validators.required],
+            vehicleCard: [null, Validators.required],
+            trailerPlateNumbers: [null, Validators.required],
+            trailerPlateLetters: [null, Validators.required],
 
         });
     }

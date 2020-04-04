@@ -21,35 +21,24 @@ public class Transfer {
 
     private int year;
 
-    private boolean isHidden;
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Product product;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Station station;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Warehouse warehouse;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Trip trip;
-
     public Transfer(){
 
     }
 
-    public Transfer(String id, int transferredAmount, int day, int month, int year, boolean isHidden, Product product, Station station, Warehouse warehouse, Trip trip) {
+    public Transfer(String id, int transferredAmount, int day, int month, int year, Product product, Station station) {
         this.id = id;
         this.transferredAmount = transferredAmount;
         this.day = day;
         this.month = month;
         this.year = year;
-        this.isHidden = isHidden;
         this.product = product;
         this.station = station;
-        this.warehouse = warehouse;
-        this.trip = trip;
     }
 
     public Transfer(Transfer transfer){
@@ -58,11 +47,8 @@ public class Transfer {
         this.setDay(transfer.getDay());
         this.setMonth(transfer.getMonth());
         this.setYear(transfer.getYear());
-        this.setHidden(transfer.isHidden());
         this.setProduct(transfer.getProduct());
         this.setStation(transfer.getStation());
-        this.setWarehouse(transfer.getWarehouse());
-        this.setTrip(transfer.getTrip());
     }
 
     public String getId() {
@@ -105,14 +91,6 @@ public class Transfer {
         this.year = year;
     }
 
-    public boolean isHidden() {
-        return isHidden;
-    }
-
-    public void setHidden(boolean hidden) {
-        isHidden = hidden;
-    }
-
     public Product getProduct() {
         return product;
     }
@@ -129,22 +107,6 @@ public class Transfer {
         this.station = station;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
-    }
-
-    public Trip getTrip() {
-        return trip;
-    }
-
-    public void setTrip(Trip trip) {
-        this.trip = trip;
-    }
-
     @Override
     public String toString() {
         return "Transfer{" +
@@ -153,11 +115,8 @@ public class Transfer {
                 ", day=" + day +
                 ", month=" + month +
                 ", year=" + year +
-                ", isHidden=" + isHidden +
                 ", product=" + product +
                 ", station=" + station +
-                ", warehouse=" + warehouse +
-                ", trip=" + trip +
                 '}';
     }
 }

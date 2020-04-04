@@ -93,6 +93,14 @@ const appRoutes: Routes = [
         loadChildren: './main/components/stations/stations-search/station/station.module#StationModule'
     },
     {
+        path: 'trips/create',
+        loadChildren: './main/components/trips/trips-create/trips-create.module#TripsCreateModule'
+    },
+    {
+        path: 'trips/search',
+        loadChildren: './main/components/trips/trips-search/trips-search.module#TripsSearchModule'
+    },
+    {
         path: 'users/create',
         loadChildren: './main/components/users/users-create/users-create.module#UsersCreateModule'
     },

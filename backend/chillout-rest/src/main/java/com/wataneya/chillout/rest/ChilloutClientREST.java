@@ -150,6 +150,17 @@ public class ChilloutClientREST {
             return Response.ok("Existings not found").build();
         }
     }
+
+    @GET
+    @Path("/retrieveTripsbyDate")
+    @Produces("application/json")
+    public Response retrieveTripsbyDate(@QueryParam("year") int year, @QueryParam("month") int month, @QueryParam("day") int day) {
+        try {
+            return Response.ok(chilloutQueryService.retrieveTripsbyDate(year, month, day)).build();
+        } catch (Exception e) {
+            return Response.ok("Trips not found").build();
+        }
+    }
     //endregion
 
     /*****************************************************PUT***********************************************************/

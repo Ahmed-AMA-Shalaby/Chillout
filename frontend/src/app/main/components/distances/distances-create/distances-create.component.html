@@ -24,7 +24,7 @@
                             <mat-label>Warehouse</mat-label>
                             <mat-select formControlName="warehouse" #warehouse required>
                                 <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
-                                    {{warehouse.warehouseName}}
+                                    {{warehouse.companyName}} - {{warehouse.warehouseName}}
                                 </mat-option>
                             </mat-select>
                             <mat-icon matSuffix class="secondary-text">people</mat-icon>

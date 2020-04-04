@@ -21,7 +21,7 @@ export class AgentsCreateComponent implements OnInit {
 
     ngOnInit() {
         this.agentForm = this._formBuilder.group({
-            agentName: ['', Validators.required]
+            agentName: [null, Validators.required]
         });
     }
 

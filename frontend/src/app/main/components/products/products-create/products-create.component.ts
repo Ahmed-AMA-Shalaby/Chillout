@@ -21,7 +21,7 @@ export class ProductsCreateComponent implements OnInit {
 
     ngOnInit() {
         this.productForm = this._formBuilder.group({
-            productName: ['', Validators.required]
+            productName: [null, Validators.required]
         });
     }
 

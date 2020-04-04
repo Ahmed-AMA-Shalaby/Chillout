@@ -52,9 +52,9 @@ export class QuotasCreateComponent implements OnInit {
 
     ngOnInit() {
         this.quotaForm = this._formBuilder.group({
-            date: ['', Validators.required],
-            warehouse: ['', Validators.required],
-            product: ['', Validators.required],
+            date: [null, Validators.required],
+            warehouse: [null, Validators.required],
+            product: [null, Validators.required],
         });
         this.quotaForm.get('date').disable();
         this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {

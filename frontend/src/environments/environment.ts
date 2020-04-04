@@ -28,7 +28,8 @@ export const environment = {
         retrieveEntitybyID: 'retrieveEntitybyID',
         retrieveQuotasbyYearandMonth: 'retrieveQuotasbyYearandMonth',
         retrieveSalesbyDate: 'retrieveSalesbyDate',
-        retrieveExistingsbyDate: 'retrieveExistingsbyDate'
+        retrieveExistingsbyDate: 'retrieveExistingsbyDate',
+        retrieveTripsbyDate: 'retrieveTripsbyDate'
     },
     entities: {
         Agent: 'Agent',

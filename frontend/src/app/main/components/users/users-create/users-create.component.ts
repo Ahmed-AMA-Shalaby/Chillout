@@ -21,12 +21,12 @@ export class UsersCreateComponent implements OnInit {
 
     ngOnInit() {
         this.userForm = this._formBuilder.group({
-            firstName: ['', Validators.required],
-            middleName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            phoneNumber: ['', Validators.required],
-            password: ['', Validators.required],
-            role: ['', Validators.required]
+            firstName: [null, Validators.required],
+            middleName: [null, Validators.required],
+            lastName: [null, Validators.required],
+            phoneNumber: [null, Validators.required],
+            password: [null, Validators.required],
+            role: [null, Validators.required]
         });
     }
 
