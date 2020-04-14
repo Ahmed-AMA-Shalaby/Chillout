@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatToolbarModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatButtonModule } from '@angular/material';
 
 import { FuseSearchBarModule, FuseShortcutsModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';
@@ -12,6 +12,8 @@ import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.componen
     ],
     imports: [
         MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
 
         FuseSharedModule,
         FuseSearchBarModule,

@@ -6,5 +6,4 @@ export interface User {
     phoneNumber: string;
     password: string;
     role: string;
-    hidden?: boolean;
 }

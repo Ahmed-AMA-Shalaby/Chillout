@@ -20,6 +20,11 @@ export class GenericService {
         return this.httpClient.post<BaseResponse>(environment.apis.baseUrl + environment.apis[`update${type}`], entity, this.httpOptions);
     }
 
+    checkUser(phoneNumber: string, password: string): Observable<{}> {
+        let body = { phoneNumber: phoneNumber, password: password }
+        return this.httpClient.post<{}>(environment.apis.baseUrl + environment.apis.checkUser, body, this.httpOptions);
+    }
+
     retrieveAllEntities(entity: string): Observable<[]> {
         let params = new HttpParams().set('entity', entity);
         return this.httpClient.get<[]>(environment.apis.baseUrl + environment.apis.retrieveAllEntities, { headers: this.httpOptions.headers, params: params });
@@ -39,7 +44,7 @@ export class GenericService {
         let params = new HttpParams().set('year', JSON.stringify(year)).set('month', JSON.stringify(month));
         return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveQuotasbyYearandMonth, { headers: this.httpOptions.headers, params: params });
     }
-    
+
     retrieveSalesbyDate(year: number, month: number, day: number): Observable<{}> {
         let params = new HttpParams().set('year', JSON.stringify(year)).set('month', JSON.stringify(month)).set('day', JSON.stringify(day));
         return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveSalesbyDate, { headers: this.httpOptions.headers, params: params });
@@ -53,5 +58,10 @@ export class GenericService {
     retrieveTripsbyDate(year: number, month: number, day: number): Observable<{}> {
         let params = new HttpParams().set('year', JSON.stringify(year)).set('month', JSON.stringify(month)).set('day', JSON.stringify(day));
         return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveTripsbyDate, { headers: this.httpOptions.headers, params: params });
+    }
+
+    deleteEntity(type: string, id: string): Observable<BaseResponse> {
+        let params = new HttpParams().set('entity', type).set('id', id);
+        return this.httpClient.delete<BaseResponse>(environment.apis.baseUrl + environment.apis.deleteEntity, { headers: this.httpOptions.headers, params: params });
     }
 }

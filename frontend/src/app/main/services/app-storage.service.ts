@@ -1,20 +1,16 @@
-import { environment } from '../../../environments/environment';
-
+import { environment } from 'environments/environment';
+import { User } from '../models/user.model';
 
 export class AppStorageService {
-    public storeOnSessionStorage(key: string, value: any): void {
-        sessionStorage.setItem(key, JSON.stringify(value));
+    public storeUser(user: User): void {
+        sessionStorage.setItem(environment.entities.User, JSON.stringify(user));
     }
 
-    public removeFromSessionStorage(key: string): void {
-        sessionStorage.removeItem(key);
+    public removeUser(): void {
+        sessionStorage.removeItem(environment.entities.User);
     }
 
-    public loadFromSessionStorage(key: string): any {
-        return JSON.parse(sessionStorage.getItem(key));
-    }   
-
-    public clearStorage(){
-        sessionStorage.clear();
+    public loadUser(): User {
+        return JSON.parse(sessionStorage.getItem(environment.entities.User));
     }
 }

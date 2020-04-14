@@ -12,7 +12,7 @@ import { environment } from 'environments/environment';
 })
 export class UsersCreateComponent implements OnInit {
     userForm: FormGroup;
-
+    roles: string[];
     constructor(
         private _formBuilder: FormBuilder,
         private snackbar: MatSnackBar,
@@ -28,6 +28,7 @@ export class UsersCreateComponent implements OnInit {
             password: [null, Validators.required],
             role: [null, Validators.required]
         });
+        this.roles = Object.values(environment.roles)
     }
 
     createUser() {

@@ -9,7 +9,7 @@
                 <mat-icon *ngIf="data[originalColumns[i]] == true" matTooltip="Show">visibility</mat-icon>
                 <mat-icon *ngIf="data[originalColumns[i]] == false" matTooltip="Show / Hide">visibility_off</mat-icon>
             </button>
-            <mat-form-field floatLabel="never" appearance="outline" class="mt-20" *ngIf="editMode">
+            <mat-form-field floatLabel="never" appearance="outline" class="mt-20" *ngIf="editMode" style="width: 70%;">
                 <input matInput (input)="modifyData(j + (paginator.pageIndex * paginator.pageSize))"
                     placeholder="{{column}}" [value]="data[originalColumns[i]]" [(ngModel)]="data[originalColumns[i]]">
             </mat-form-field>

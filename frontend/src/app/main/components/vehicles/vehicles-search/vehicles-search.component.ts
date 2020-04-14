@@ -4,13 +4,14 @@ import { fuseAnimations } from '@fuse/animations';
 import { Vehicle } from 'app/main/models/vehicle.model';
 import { GenericService } from 'app/main/services/generic.service';
 import { environment } from 'environments/environment';
+import { AppStorageService } from 'app/main/services/app-storage.service';
 
 interface CustomVehicle {
     id: string;
-    vehicleCode: string;
+    vehicleCode: number;
     vehiclePlateNumbers: string;
     vehiclePlateLetters: string;
-    vehicleCard: string;
+    vehicleCard: number;
     trailerPlateNumbers: string;
     trailerPlateLetters: string;
     hidden?: boolean;
@@ -34,13 +35,15 @@ export class VehiclesSearchComponent implements OnInit {
     dataSource: MatTableDataSource<{}>;
     originalColumns = [];
     displayedColumns = [];
+    administratorFlag: boolean = true;
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
 
     constructor(
         private genericService: GenericService,
-        private snackbar: MatSnackBar
+        private snackbar: MatSnackBar,
+        private storageService: AppStorageService
         ) { }
 
     ngOnInit() {
@@ -53,10 +56,11 @@ export class VehiclesSearchComponent implements OnInit {
             this.displayedColumns = ['Vehicle Code', 'Vehicle Plate', 'Vehicle Card', 'Trailer Plate'];
             this.dataSource = new MatTableDataSource(this.vehicles);
             this.dataSource.filterPredicate = (data: Vehicle, filter: string) => {
-                return data.vehicleCode.startsWith(filter)
+                return data.vehicleCode.toString().startsWith(filter)
             };
             this.dataSource.paginator = this.paginator;
         })
+        this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
 
     displayIsolatedCharacter() {

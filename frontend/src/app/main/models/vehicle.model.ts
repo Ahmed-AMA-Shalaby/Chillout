@@ -1,8 +1,8 @@
 export interface Vehicle {
     id: string;
-    vehicleCode: string;
+    vehicleCode: number;
     vehiclePlate: string;
-    vehicleCard: string;
+    vehicleCard: number;
     trailerPlate: string;
     hidden?: boolean;
 }

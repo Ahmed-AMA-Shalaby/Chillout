@@ -53,11 +53,8 @@
                         <mat-form-field appearance="outline" class="pr-4 pl-4">
                             <mat-label>User Role</mat-label>
                             <mat-select formControlName="role" #role required>
-                                <mat-option [value]="'Administrator'">
-                                    Administrator
-                                </mat-option>
-                                <mat-option [value]="'Operator'">
-                                    Operator
+                                <mat-option *ngFor="let role of roles" [value]="role">
+                                    {{role}}
                                 </mat-option>
                             </mat-select>
                             <mat-icon matSuffix class="secondary-text">people</mat-icon>

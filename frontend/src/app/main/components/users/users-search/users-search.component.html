@@ -30,19 +30,12 @@
             <!-- / FILTER -->
 
             <div fxLayout="row" fxLayoutAlign="center center">
-                <!-- EDIT BUTTON -->
-                <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit"
-                    [disabled]="hideFlag">
-                    <mat-icon>edit</mat-icon>
+                <!--  DELETE BUTTON -->
+                <button mat-mini-fab class="mx-16" (click)="toggleDelete()"
+                    [ngClass]="{'fuse-white': !deleteFlag, 'red': deleteFlag}" matTooltip="Delete" *ngIf="administratorFlag">
+                    <mat-icon>delete</mat-icon>
                 </button>
-                <!-- / EDIT BUTTON -->
-                <!--  HIDE BUTTON -->
-                <button mat-mini-fab class="mx-16" (click)="toggleHide()"
-                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="Show / Hide" [disabled]="editFlag">
-                    <mat-icon>visibility</mat-icon>
-                </button>
-                <!-- / HIDE BUTTON -->
+                <!-- / DELETE BUTTON -->
             </div>
 
         </div>
@@ -51,8 +44,26 @@
         <!-- CONTENT CARD -->
         <div class="content-card" *ngIf="users.length != 0" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
 
-            <generic-table [data]="users" [cellLink]="'/user/'" [type]="'User'" [filterValue]="filterValue"
-                [editMode]="editFlag" [hideMode]="hideFlag"></generic-table>
+            <mat-table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+
+                <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns; let i = index">
+                    <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
+                    <mat-cell *matCellDef="let users; let j  = index" class="mat-sort-header-cell">
+                        <p *ngIf="originalColumns[i] != 'delete'">{{users[originalColumns[i]]}}</p>
+                        <button mat-icon-button class="mx-16" *ngIf="originalColumns[i] == 'delete'"
+                            (click)="deleteUser(j + (paginator.pageIndex * paginator.pageSize))">
+                            <mat-icon matTooltip="Delete">delete
+                            </mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" class="row"></mat-row>
+            </mat-table>
+
+            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 
         </div>
         <!-- / CONTENT CARD -->

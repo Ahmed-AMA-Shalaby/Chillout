@@ -6,6 +6,7 @@ import { environment } from 'environments/environment';
 import { MatSnackBar, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Warehouse } from 'app/main/models/warehouse.model';
 import { Station } from 'app/main/models/station.model';
+import { AppStorageService } from 'app/main/services/app-storage.service';
 
 @Component({
     selector: 'distances-search',
@@ -23,14 +24,16 @@ export class DistancesSearchComponent implements OnInit {
     dataSource: MatTableDataSource<{}>;
     originalColumns = [];
     displayedColumns = [];
+    administratorFlag: boolean = true;
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
 
     constructor(
         private genericService: GenericService,
-        private snackbar: MatSnackBar
-    ) { }
+        private snackbar: MatSnackBar,
+        private storageService: AppStorageService
+        ) { }
 
     ngOnInit() {
         this.distances = [];
@@ -45,6 +48,7 @@ export class DistancesSearchComponent implements OnInit {
             };
             this.dataSource.paginator = this.paginator;
         })
+        this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
 
     applyFilter(filterValue) {

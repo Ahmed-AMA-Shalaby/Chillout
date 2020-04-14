@@ -29,7 +29,9 @@ export const environment = {
         retrieveQuotasbyYearandMonth: 'retrieveQuotasbyYearandMonth',
         retrieveSalesbyDate: 'retrieveSalesbyDate',
         retrieveExistingsbyDate: 'retrieveExistingsbyDate',
-        retrieveTripsbyDate: 'retrieveTripsbyDate'
+        retrieveTripsbyDate: 'retrieveTripsbyDate',
+        checkUser: 'checkUser',
+        deleteEntity: 'deleteEntity'
     },
     entities: {
         Agent: 'Agent',
@@ -47,6 +49,10 @@ export const environment = {
         User: 'User',
         Vehicle: 'Vehicle',
         Warehouse: 'Warehouse'
+    },
+    roles: {
+        Administrator: 'Administrator',
+        Operator: 'Operator'
     }
 };
 /*

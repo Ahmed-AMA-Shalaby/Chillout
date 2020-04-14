@@ -1,0 +1,54 @@
+<div id="login" class="inner-scroll" fxLayout="row" fxLayoutAlign="start">
+
+    <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+
+        <div class="logo" [@animate]="{value:'*',params:{scale:'0.2'}}">
+            <img src="assets/images/backgrounds/chillout.png">
+        </div>
+
+        <div class="title" [@animate]="{value:'*',params:{delay:'50ms',y:'25px'}}">
+            Welcome to Chillout gas stations office!
+        </div>
+
+    </div>
+
+    <div id="login-form-wrapper" fusePerfectScrollbar [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+
+        <div id="login-form">
+
+            <div class="logo" fxHide.gt-xs>
+                <img src="assets/images/backgrounds/chillout.png">
+            </div>
+
+            <div class="title">LOGIN TO YOUR ACCOUNT</div>
+
+            <form name="loginForm" [formGroup]="loginForm" novalidate>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput formControlName="phoneNumber">
+                    <mat-icon matSuffix class="secondary-text">phone</mat-icon>
+                    <mat-error>
+                        Phone Number is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    <mat-error>
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN"
+                    [disabled]="loginForm.invalid" (click)="login()">
+                    LOGIN
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -6,7 +6,9 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import * as _moment from 'moment';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Trip } from 'app/main/models/trip.model';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSnackBar } from '@angular/material';
+import { environment } from 'environments/environment';
+import { AppStorageService } from 'app/main/services/app-storage.service';
 const moment = _moment;
 
 export const MY_FORMATS = {
@@ -40,18 +42,22 @@ export class TripsSearchComponent implements OnInit {
     date = new FormControl(moment());
     dateForm: FormGroup;
     trips: Trip[] = [];
+    deleteFlag: boolean = false;
 
     dataSource: MatTableDataSource<{}>;
     originalColumns = [];
     displayedColumns = [];
+    administratorFlag: boolean = true;
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
 
     constructor(
         private _formBuilder: FormBuilder,
-        private genericService: GenericService
-    ) { }
+        private genericService: GenericService,
+        private snackbar: MatSnackBar,
+        private storageService: AppStorageService
+        ) { }
 
     ngOnInit() {
         this.dateForm = this._formBuilder.group({
@@ -59,30 +65,90 @@ export class TripsSearchComponent implements OnInit {
         });
         this.dateForm.get('date').disable();
 
-
         this.trips = [];
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveTripsbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
             this.trips = data as Trip[];
-            this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'station', 'inboundDistance'];
-            this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Farthest Station', 'Inbound Warehouse'];
+            this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'details', 'inboundDistance', 'distance'];
+            this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Details', 'Inbound Warehouse', 'Total Distance'];
             this.dataSource = new MatTableDataSource(this.trips);
             this.dataSource.filterPredicate = (data: Trip, filter: string) => {
                 return data.vehicle.vehicleCode.toString().startsWith(filter)
             };
             this.dataSource.paginator = this.paginator;
         })
-
-
+        this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
 
     applyFilter(filterValue) {
         this.dataSource.filter = filterValue;
     }
 
+    toggleDelete() {
+        this.deleteFlag = !this.deleteFlag;
+        this.trips.length = 0;
+        if (this.deleteFlag) {
+            this.genericService.retrieveTripsbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+                (data as Trip[]).forEach(trip => {
+                    this.trips.push(trip as never)
+                })
+                this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'station', 'inboundDistance', 'delete'];
+                this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Farthest Station', 'Inbound Warehouse', ' '];
+                this.dataSource.paginator = this.paginator;
+            })
+        }
+        else {
+            this.genericService.retrieveTripsbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+                (data as Trip[]).forEach(trip => {
+                    this.trips.push(trip as never)
+                })
+                this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'station', 'inboundDistance'];
+                this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Farthest Station', 'Inbound Warehouse'];
+                this.dataSource.paginator = this.paginator;
+            })
+        }
+    }
+
+    deleteTrip(filteredRow) {
+        let rowID = this.dataSource.filteredData[filteredRow]["id"]
+        this.trips.forEach((row, index) => {
+            if (row["id"] == rowID) {
+                let deletedTrip = this.trips.splice(index, 1)[0] as Trip
+                this.genericService.deleteEntity(environment.entities.Trip, rowID).subscribe(
+                    data => {
+                        this.snackbar.open(data.message);
+                    },
+                    error => {
+                        this.snackbar.open(error.message);
+                    }
+                );
+                this.trips.map(trip => {
+                    if (trip.vehicle.vehicleCode === deletedTrip.vehicle.vehicleCode && trip.order > deletedTrip.order) {
+                        return trip.order -= 1;
+                    }
+                })
+                this.trips.forEach(trip => {
+                    this.genericService.updateEntity(environment.entities.Trip, trip).subscribe(
+                        data => {
+                            this.snackbar.open(data.message);
+                        },
+                        error => {
+                            this.snackbar.open(error.message);
+                        }
+                    );
+                })
+                this.dataSource = new MatTableDataSource(this.trips);
+            }
+        })
+    }
+
     retrieveCurrentTrips() {
         this.genericService.retrieveTripsbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
             this.trips = data as Trip[];
+            this.dataSource = new MatTableDataSource(this.trips);
+            this.dataSource.filterPredicate = (data: Trip, filter: string) => {
+                return data.vehicle.vehicleCode.toString().startsWith(filter)
+            };
         })
     }
 

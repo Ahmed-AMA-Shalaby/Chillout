@@ -8,7 +8,7 @@
                 <div class="title">General Information</div>
                 <div></div>
                 <button mat-icon-button class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit" [disabled]="addFlag">
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit" [disabled]="addFlag" *ngIf="administratorFlag">
                     <mat-icon>edit</mat-icon>
                 </button>
             </header>
@@ -84,7 +84,7 @@
                 <div class="title">Tanks</div>
                 <button mat-icon-button class="mx-4" (click)="toggleAdd()"
                     [ngClass]="{'fuse-white': !addFlag, 'green': addFlag}" matTooltip="Add a product"
-                    [disabled]="editFlag">
+                    [disabled]="editFlag" *ngIf="administratorFlag">
                     <mat-icon>add</mat-icon>
                 </button>
             </header>
@@ -112,7 +112,7 @@
                                 [value]="tank.tankVolume">
                         </mat-form-field>
 
-                        <button *ngIf="!editFlag && !addFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'"
+                        <button *ngIf="!editFlag && !addFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه' && administratorFlag"
                             mat-icon-button class="mx-4"
                             (click)="removeProduct(i, tank.product.productName, tank.tankVolume)" ngClass="warn"
                             matTooltip="Remove product">

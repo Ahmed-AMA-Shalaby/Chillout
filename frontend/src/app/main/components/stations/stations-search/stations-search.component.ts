@@ -3,6 +3,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { Station } from 'app/main/models/station.model';
 import { GenericService } from 'app/main/services/generic.service';
 import { environment } from 'environments/environment';
+import { AppStorageService } from 'app/main/services/app-storage.service';
 
 @Component({
     selector: 'stations-search',
@@ -16,12 +17,17 @@ export class StationsSearchComponent implements OnInit {
     filterValue: string;
     editFlag: boolean = false;
     hideFlag: boolean = false;
-    constructor(private genericService: GenericService) { }
+    administratorFlag: boolean = true;
+    constructor(
+        private genericService: GenericService,
+        private storageService: AppStorageService
+        ) { }
 
     ngOnInit() {
         this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
             this.stations = stations;
         })
+        this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
 
     applyFilter(filterValue) {

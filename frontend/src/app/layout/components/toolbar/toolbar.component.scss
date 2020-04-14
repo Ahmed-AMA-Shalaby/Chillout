@@ -16,45 +16,11 @@ toolbar {
         color: inherit !important;
     }
 
-    .logo {
-        display: flex;
-        align-items: center;
+    .button{
+        margin-right: 16px;
 
-        .logo-icon {
-            width: 38px;
+        .span{
+            padding-right: 8px;
         }
-    }
-
-    .user-button,
-    fuse-search-bar,
-    .language-button,
-    .chat-panel-toggle-button,
-    .quick-panel-toggle-button {
-        min-width: 64px;
-        height: 64px;
-
-        @include media-breakpoint('xs') {
-            height: 56px;
-        }
-    }
-
-    .navbar-toggle-button {
-        min-width: 56px;
-        height: 56px;
-    }
-
-    .toolbar-separator {
-        height: 64px;
-        width: 1px;
-
-        @include media-breakpoint('xs') {
-            height: 56px;
-        }
-    }
-
-    .ibm-logo {
-        width: 4%;
-        height: 4%;
-        margin: 0 auto;
     }
 }

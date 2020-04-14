@@ -25,13 +25,11 @@ public class User {
 
     private String role;
 
-    private boolean isHidden;
-
     public User(){
 
     }
 
-    public User(String id, String firstName, String middleName, String lastName, String phoneNumber, String password, String role, boolean isHidden) {
+    public User(String id, String firstName, String middleName, String lastName, String phoneNumber, String password, String role) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -39,7 +37,6 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.role = role;
-        this.isHidden = isHidden;
     }
 
     public String getId() {
@@ -98,14 +95,6 @@ public class User {
         this.role = role;
     }
 
-    public boolean isHidden() {
-        return isHidden;
-    }
-
-    public void setHidden(boolean hidden) {
-        isHidden = hidden;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -116,7 +105,6 @@ public class User {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
-                ", isHidden=" + isHidden +
                 '}';
     }
 }

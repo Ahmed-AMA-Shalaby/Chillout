@@ -9,7 +9,9 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 
-import { Navigation } from 'app/navigation/navigation';
+import { administratorNavigation, operatorNavigation } from 'app/navigation/navigation';
+import { environment } from 'environments/environment';
+import { AppStorageService } from './main/services/app-storage.service';
 
 @Component({
     selector: 'app',
@@ -41,12 +43,19 @@ export class AppComponent implements OnInit, OnDestroy {
         private _fuseSidebarService: FuseSidebarService,
         private _fuseSplashScreenService: FuseSplashScreenService,
         private _platform: Platform,
+        private storageService: AppStorageService
     ) {
         // Register the navigation to the service
-        this._fuseNavigationService.register('Admin', Navigation);
-
-        this._fuseNavigationService.setCurrentNavigation('Admin');
-
+        this._fuseNavigationService.register(environment.roles.Administrator, administratorNavigation);
+        this._fuseNavigationService.register(environment.roles.Operator, operatorNavigation);
+        if (this.storageService.loadUser()) {
+            if (this.storageService.loadUser().role === environment.roles.Administrator) {
+                this._fuseNavigationService.setCurrentNavigation(environment.roles.Administrator);
+            }
+            else {
+                this._fuseNavigationService.setCurrentNavigation(environment.roles.Operator);
+            }
+        }
         // Add is-mobile class to the body if the platform is mobile
         if (this._platform.ANDROID || this._platform.IOS) {
             this.document.body.classList.add('is-mobile');

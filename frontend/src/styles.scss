@@ -3,3 +3,17 @@
 
 // Import app.theme.scss
 @import "app/app.theme";
+
+
+
+
+mat-header-cell {
+    display: flex;
+    justify-content: center;
+}
+
+mat-cell {
+    display: flex;
+    justify-content: center;
+}
+

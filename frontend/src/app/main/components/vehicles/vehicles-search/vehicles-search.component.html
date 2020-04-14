@@ -32,14 +32,15 @@
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!-- EDIT BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit"
-                    [disabled]="hideFlag">
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit" [disabled]="hideFlag"
+                    *ngIf="administratorFlag">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <!-- / EDIT BUTTON -->
                 <!--  HIDE BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleHide()"
-                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="Show / Hide" [disabled]="editFlag">
+                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="Show / Hide"
+                    [disabled]="editFlag" *ngIf="administratorFlag">
                     <mat-icon>visibility</mat-icon>
                 </button>
                 <!-- / HIDE BUTTON -->
@@ -49,7 +50,8 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card" *ngIf="vehicles.length != 0" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+        <div class="content-card" *ngIf="vehicles.length != 0"
+            [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
 
             <mat-table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
 
@@ -57,13 +59,17 @@
                     <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
                     <mat-cell *matCellDef="let vehicles; let j  = index">
                         <p *ngIf="!editFlag && originalColumns[i] != 'hidden'">{{vehicles[originalColumns[i]]}}</p>
-                        <button mat-icon-button class="mx-16" *ngIf="!editFlag && originalColumns[i] == 'hidden'" (click)="toggleVehicleVisibility(j + (paginator.pageIndex * paginator.pageSize))">
-                            <mat-icon *ngIf="vehicles[originalColumns[i]] == true" matTooltip="Show">visibility</mat-icon>
-                            <mat-icon *ngIf="vehicles[originalColumns[i]] == false" matTooltip="Hide">visibility_off</mat-icon>
+                        <button mat-icon-button class="mx-16" *ngIf="!editFlag && originalColumns[i] == 'hidden'"
+                            (click)="toggleVehicleVisibility(j + (paginator.pageIndex * paginator.pageSize))">
+                            <mat-icon *ngIf="vehicles[originalColumns[i]] == true" matTooltip="Show">visibility
+                            </mat-icon>
+                            <mat-icon *ngIf="vehicles[originalColumns[i]] == false" matTooltip="Hide">visibility_off
+                            </mat-icon>
                         </button>
-                        <mat-form-field floatLabel="never" appearance="outline" class="mt-20" *ngIf="editFlag">
-                            <input matInput (input)="modifyData(j + (paginator.pageIndex * paginator.pageSize))" placeholder="{{column}}"
-                                [value]="vehicles[originalColumns[i]]" [(ngModel)]="vehicles[originalColumns[i]]">
+                        <mat-form-field floatLabel="never" appearance="outline" class="mt-20" *ngIf="editFlag" style="width: 70%;">
+                            <input matInput (input)="modifyData(j + (paginator.pageIndex * paginator.pageSize))"
+                                placeholder="{{column}}" [value]="vehicles[originalColumns[i]]"
+                                [(ngModel)]="vehicles[originalColumns[i]]">
                         </mat-form-field>
                     </mat-cell>
                 </ng-container>

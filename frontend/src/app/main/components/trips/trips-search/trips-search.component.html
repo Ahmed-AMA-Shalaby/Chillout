@@ -44,6 +44,15 @@
             </div>
             <!-- / FILTER -->
 
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <!--  DELETE BUTTON -->
+                <button mat-mini-fab class="mx-16" (click)="toggleDelete()"
+                    [ngClass]="{'fuse-white': !deleteFlag, 'red': deleteFlag}" matTooltip="Delete" *ngIf="administratorFlag">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <!-- / DELETE BUTTON -->
+            </div>
+
         </div>
         <!-- / HEADER -->
 
@@ -54,21 +63,34 @@
 
                 <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns; let i = index">
                     <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
-                    <mat-cell *matCellDef="let trips; let j  = index">
+                    <mat-cell *matCellDef="let trips; let j  = index" class="mat-sort-header-cell">
                         <p *ngIf="originalColumns[i] == 'order'">{{trips[originalColumns[i]]}}</p>
                         <p *ngIf="originalColumns[i] == 'vehicle'">
                             {{trips[originalColumns[i]]["vehicleCode"]}}</p>
                         <p *ngIf="originalColumns[i] == 'outboundDistance'">
-                            {{trips[originalColumns[i]]["warehouse"]["companyName"]}} - {{trips[originalColumns[i]]["warehouse"]["warehouseName"]}}</p>
-                        <p *ngIf="originalColumns[i] == 'station'">
-                            {{trips["outboundDistance"]["station"]["stationName"]}}</p>
+                            {{trips[originalColumns[i]]["warehouse"]["companyName"]}} -
+                            {{trips[originalColumns[i]]["warehouse"]["warehouseName"]}}</p>
+                        <div *ngIf="originalColumns[i] == 'details'">
+                            <p *ngFor="let transfer of trips.transfers">
+                                <b>{{transfer["station"]["stationName"]}}:</b> {{transfer["product"]["productName"]}}
+                                ({{transfer["transferredAmount"]}} لتر)
+                            </p>
+                        </div>
                         <p *ngIf="originalColumns[i] == 'inboundDistance'">
-                            {{trips[originalColumns[i]]["warehouse"]["companyName"]}} - {{trips[originalColumns[i]]["warehouse"]["warehouseName"]}}</p>
+                            {{trips[originalColumns[i]]["warehouse"]["companyName"]}} -
+                            {{trips[originalColumns[i]]["warehouse"]["warehouseName"]}}</p>
+                        <p *ngIf="originalColumns[i] == 'distance'">
+                            {{trips["outboundDistance"]["distance"] + trips["inboundDistance"]["distance"]}}</p>
+                        <button mat-icon-button class="mx-16" *ngIf="originalColumns[i] == 'delete'"
+                            (click)="deleteTrip(j + (paginator.pageIndex * paginator.pageSize))">
+                            <mat-icon matTooltip="Delete">delete
+                            </mat-icon>
+                        </button>
                     </mat-cell>
                 </ng-container>
 
                 <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"  class="row" matRipple [routerLink]="'/trip/'+ row.id"></mat-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" class="row"></mat-row>
             </mat-table>
 
             <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"

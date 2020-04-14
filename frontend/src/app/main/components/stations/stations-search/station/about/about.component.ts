@@ -10,6 +10,7 @@ import { MatSnackBar, MatDialog, MatDialogConfig } from '@angular/material';
 import { environment } from 'environments/environment';
 import { GenericDialogComponent } from 'app/layout/components/generic-dialog/generic-dialog.component';
 import { Agent } from 'app/main/models/agent.model';
+import { AppStorageService } from 'app/main/services/app-storage.service';
 
 @Component({
     selector: 'station-about',
@@ -26,17 +27,20 @@ export class AboutComponent implements OnInit {
     addFlag: boolean = false;
     newTankVolume: number;
     newProduct: Product;
+    administratorFlag: boolean = true;
     constructor(
         private route: ActivatedRoute,
         private snackbar: MatSnackBar,
         private genericService: GenericService,
-        private dialog: MatDialog
-    ) { }
+        private dialog: MatDialog,
+        private storageService: AppStorageService
+        ) { }
 
     ngOnInit() {
         this.genericService.retrieveEntitybyID(environment.entities.Station, this.route.snapshot.params["id"]).subscribe(station => {
             this.station = station as Station;
         })
+        this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
 
     toggleEdit() {

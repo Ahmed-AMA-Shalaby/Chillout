@@ -20,75 +20,6 @@ public class ChilloutClientREST {
     @EJB
     private ChilloutQueryService chilloutQueryService;
 
-    /****************************************************POST***********************************************************/
-
-    //region POST
-//    @POST
-//    @Path("/createEntity")
-//    @Consumes("application/json")
-//    public Response createEntity(String body) {
-//        boolean status = false;
-//        Gson gson = new Gson();
-//        JsonObject parsedBody = gson.fromJson(body, JsonObject.class);
-//        String type = parsedBody.get("type").getAsString();
-//        try {
-//            if (type.equals("Agent")) {
-//                Agent agent = new Agent(gson.fromJson(parsedBody.get("entity"), Agent.class));
-//                status = chilloutStoreService.createEntity(agent);
-//            } else if (type.equals("Distance")) {
-//                Distance distance = new Distance(gson.fromJson(parsedBody.get("entity"), Distance.class));
-//                status = chilloutStoreService.createEntity(distance);
-//            } else if (type.equals("Driver")) {
-//                Driver driver = gson.fromJson(parsedBody.get("entity"), Driver.class);
-//                status = chilloutStoreService.createEntity(driver);
-//            } else if (type.equals("Existing")) {
-//                Existing existing = new Existing(gson.fromJson(parsedBody.get("entity"), Existing.class));
-//                status = chilloutStoreService.createEntity(existing);
-//            } else if (type.equals("Product")) {
-//                Product product = new Product(gson.fromJson(parsedBody.get("entity"), Product.class));
-//                status = chilloutStoreService.createEntity(product);
-//            } else if (type.equals("Quota")) {
-//                Quota quota = new Quota(gson.fromJson(parsedBody.get("entity"), Quota.class));
-//                status = chilloutStoreService.createEntity(quota);
-//            } else if (type.equals("Sale")) {
-//                Sale sale = new Sale(gson.fromJson(parsedBody.get("entity"), Sale.class));
-//                status = chilloutStoreService.createEntity(sale);
-//            } else if (type.equals("Sector")) {
-//                Sector sector = new Sector(gson.fromJson(parsedBody.get("entity"), Sector.class));
-//                status = chilloutStoreService.createEntity(sector);
-//            } else if (type.equals("Station")) {
-//                Station station = new Station(gson.fromJson(parsedBody.get("entity"), Station.class));
-//                status = chilloutStoreService.createEntity(station);
-//            } else if (type.equals("Tank")) {
-//                Tank tank = new Tank(gson.fromJson(parsedBody.get("entity"), Tank.class));
-//                status = chilloutStoreService.createEntity(tank);
-//            } else if (type.equals("Transfer")) {
-//                Transfer transfer = new Transfer(gson.fromJson(parsedBody.get("entity"), Transfer.class));
-//                status = chilloutStoreService.createEntity(transfer);
-//            } else if (type.equals("Trip")) {
-//                Trip trip = new Trip(gson.fromJson(parsedBody.get("entity"), Trip.class));
-//                status = chilloutStoreService.createEntity(trip);
-//            } else if (type.equals("User")) {
-//                User user = gson.fromJson(parsedBody.get("entity"), User.class);
-//                status = chilloutStoreService.createEntity(user);
-//            } else if (type.equals("Vehicle")) {
-//                Vehicle vehicle = gson.fromJson(parsedBody.get("entity"), Vehicle.class);
-//                status = chilloutStoreService.createEntity(vehicle);
-//            } else if (type.equals("Warehouse")) {
-//                Warehouse warehouse = new Warehouse(gson.fromJson(parsedBody.get("entity"), Warehouse.class));
-//                status = chilloutStoreService.createEntity(warehouse);
-//            }
-//            return status ?
-//                    Response.ok(new BaseResponse(false, type + " was created successfully")).build() :
-//                    Response.ok(new BaseResponse(true, type + " failed to be created")).build();
-//        } catch (Exception e) {
-//            if (e.getCause().getMessage().equals("ARJUNA016053: Could not commit transaction.")) {
-//                return Response.ok(new BaseResponse(true, type + " failed to be created")).build();
-//            }
-//            return Response.ok(new BaseResponse(true, "Error")).build();
-//        }
-//    }
-    //endregion
 
     /*****************************************************GET***********************************************************/
 
@@ -163,9 +94,9 @@ public class ChilloutClientREST {
     }
     //endregion
 
-    /*****************************************************PUT***********************************************************/
+    /****************************************************POST***********************************************************/
 
-    //region PUT
+    //region POST
     @POST
     @Path("/updateAgent")
     @Consumes("application/json")
@@ -357,6 +288,38 @@ public class ChilloutClientREST {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return Response.ok(new BaseResponse(true, "Warehouse failed to update")).build();
+        }
+    }
+
+    @POST
+    @Path("/checkUser")
+    @Consumes("application/json")
+    public Response checkUser(String body) {
+        Gson gson = new Gson();
+        JsonObject parsedBody = gson.fromJson(body, JsonObject.class);
+        String phoneNumber = parsedBody.get("phoneNumber").getAsString();
+        String password = parsedBody.get("password").getAsString();
+        try {
+            return Response.ok(chilloutStoreService.checkUser(phoneNumber, password)).build();
+        } catch (Exception e) {
+            return Response.ok(new BaseResponse(true, "User not found")).build();
+        }
+    }
+    //endregion
+
+    /***************************************************DELETE**********************************************************/
+
+    //region DELETE
+    @DELETE
+    @Path("deleteEntity")
+    @Produces("application/json")
+    public Response deleteEntity(@QueryParam("entity") String entity, @QueryParam("id") String id) {
+        try {
+            chilloutStoreService.deleteEntity(entity, id);
+            return Response.ok(new BaseResponse(false, entity + " deleted successfully")).build();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return Response.ok(new BaseResponse(true, entity + " failed to delete")).build();
         }
     }
     //endregion

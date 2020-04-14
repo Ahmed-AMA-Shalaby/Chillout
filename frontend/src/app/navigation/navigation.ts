@@ -1,7 +1,7 @@
 import { FuseNavigation } from '@fuse/types';
 
 // English
-export const Navigation: FuseNavigation[] = [
+export const administratorNavigation: FuseNavigation[] = [
     {
         id: 'home',
         title: 'Home',
@@ -221,6 +221,279 @@ export const Navigation: FuseNavigation[] = [
                 type: 'item',
                 url: '/warehouses/create'
             },
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/warehouses/search'
+            }
+        ]
+    },
+    {
+        id: 'acknowledgement',
+        title: 'Acknowledgements',
+        icon: 'account_balance',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'sales',
+                title: 'Sales',
+                type: 'item',
+                url: '/acknowledgements/sales'
+            },
+            {
+                id: 'existings',
+                title: 'Existings',
+                type: 'item',
+                url: '/acknowledgements/existings'
+            }
+        ]
+    },
+    {
+        id: 'reports',
+        title: 'Reports',
+        icon: 'import_contacts',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'dailyreports',
+                title: 'Daily reports',
+                type: 'collapsable',
+                children: [
+                    {
+                        id: 'withdrawals',
+                        title: 'Withdrawals',
+                        type: 'item',
+                        url: '/withdrawals'
+                    },
+                    {
+                        id: 'sales',
+                        title: 'Sales',
+                        type: 'item',
+                        url: '/sales'
+                    },
+                    {
+                        id: 'importedproduct',
+                        title: 'Imported Product',
+                        type: 'item',
+                        url: '/importedproduct'
+                    },
+                    {
+                        id: 'supplyplan',
+                        title: 'Supply Plan',
+                        type: 'item',
+                        url: '/supplyplan'
+                    }
+                ]
+            },
+            {
+                id: 'monthlyreports',
+                title: 'Monthly reports',
+                type: 'collapsable',
+                children: [
+                    {
+                        id: 'withdrawals',
+                        title: 'Withdrawals',
+                        type: 'item',
+                        url: '/withdrawals'
+                    },
+                    {
+                        id: 'sales',
+                        title: 'Sales',
+                        type: 'item',
+                        url: '/sales'
+                    },
+                    {
+                        id: 'importedproduct',
+                        title: 'Imported product',
+                        type: 'item',
+                        url: '/importedproduct'
+                    }
+                ]
+            },
+            {
+                id: 'specialreports',
+                title: 'Special reports',
+                type: 'collapsable',
+                children: [
+                    {
+                        id: 'averageimportedproduct',
+                        title: 'Average imported product',
+                        type: 'item',
+                        url: '/averageimportedproduct'
+                    },
+                    {
+                        id: 'endofmonthstationsneeds',
+                        title: 'End of month stations\' needs',
+                        type: 'item',
+                        url: '/endofmonthstationsneeds'
+                    },
+                    {
+                        id: 'warehousesremaining',
+                        title: 'Warehouses remaining',
+                        type: 'item',
+                        url: '/warehousesremaining'
+                    }
+                ]
+            }
+        ]
+    }
+];
+
+export const operatorNavigation: FuseNavigation[] = [
+    {
+        id: 'home',
+        title: 'Home',
+        icon: 'home',
+        type: 'item',
+        url: '/home'
+    },
+    {
+        id: 'agents',
+        title: 'Agents',
+        icon: 'location_city',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/agents/search'
+            }
+        ]
+    },
+    {
+        id: 'distances',
+        title: 'Distances',
+        icon: 'map',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/distances/search'
+            }
+        ]
+    },
+    {
+        id: 'drivers',
+        title: 'Drivers',
+        icon: 'people',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/drivers/search'
+            }
+        ]
+    },
+    {
+        id: 'products',
+        title: 'Products',
+        icon: 'category',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/products/search'
+            }
+        ]
+    },
+    {
+        id: 'quotas',
+        title: 'Quotas',
+        icon: 'category',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/quotas/search'
+            }
+        ]
+    },
+    {
+        id: 'sectors',
+        title: 'Sectors',
+        icon: 'location_city',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/sectors/search'
+            }
+        ]
+    },
+    {
+        id: 'stations',
+        title: 'Stations',
+        icon: 'local_gas_station',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/stations/search'
+            }
+        ]
+    },
+    {
+        id: 'trips',
+        title: 'Trips',
+        icon: 'departure_board',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/trips/search'
+            }
+        ]
+    },
+    {
+        id: 'users',
+        title: 'Users',
+        icon: 'person_pin',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/users/search'
+            }
+        ]
+    },
+    {
+        id: 'vehicles',
+        title: 'Vehicles',
+        icon: 'local_shipping',
+        type: 'collapsable',
+        children: [
+            {
+                id: 'Search',
+                title: 'Search',
+                type: 'item',
+                url: '/vehicles/search'
+            }
+        ]
+    },
+    {
+        id: 'warehouses',
+        title: 'Warehouses',
+        icon: 'account_balance',
+        type: 'collapsable',
+        children: [
             {
                 id: 'Search',
                 title: 'Search',

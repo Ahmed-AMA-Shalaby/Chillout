@@ -32,14 +32,15 @@
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!-- EDIT BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit"
-                    [disabled]="hideFlag">
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit" [disabled]="hideFlag"
+                    *ngIf="administratorFlag">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <!-- / EDIT BUTTON -->
                 <!--  HIDE BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleHide()"
-                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="Show / Hide" [disabled]="editFlag">
+                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="Show / Hide"
+                    [disabled]="editFlag" *ngIf="administratorFlag">
                     <mat-icon>visibility</mat-icon>
                 </button>
                 <!-- / HIDE BUTTON -->
@@ -49,7 +50,8 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card" *ngIf="products.length != 0" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+        <div class="content-card" *ngIf="products.length != 0"
+            [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
 
             <generic-table [data]="products" [cellLink]="'/product/'" [type]="'Product'" [filterValue]="filterValue"
                 [editMode]="editFlag" [hideMode]="hideFlag"></generic-table>

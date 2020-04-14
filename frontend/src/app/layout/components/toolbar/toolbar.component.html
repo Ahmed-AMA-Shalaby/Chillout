@@ -1,6 +1,11 @@
 <mat-toolbar class="p-0 mat-elevation-z1">
 
-    <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
+    <div fxFlex fxFill fxLayout="row" fxLayoutAlign="end center">
+
+        <button mat-raised-button *ngIf="logoutFlag" color="accent" class="button" (click)="logout()">
+            <span class="span">Logout</span>
+            <mat-icon>exit_to_app</mat-icon>
+        </button>
 
     </div>
 

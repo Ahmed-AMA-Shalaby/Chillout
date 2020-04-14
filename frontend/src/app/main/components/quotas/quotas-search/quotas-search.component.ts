@@ -11,6 +11,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatDatepicker } from '@angular/material/datepicker';
 import * as _moment from 'moment';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { AppStorageService } from 'app/main/services/app-storage.service';
 const moment = _moment;
 
 
@@ -52,6 +53,7 @@ export class QuotasSearchComponent implements OnInit {
     originalColumns = [];
     displayedColumns = [];
     dateForm: FormGroup;
+    administratorFlag: boolean = true;
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
@@ -59,8 +61,9 @@ export class QuotasSearchComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private genericService: GenericService,
-        private snackbar: MatSnackBar
-    ) { }
+        private snackbar: MatSnackBar,
+        private storageService: AppStorageService
+        ) { }
 
     ngOnInit() {
         this.dateForm = this._formBuilder.group({
@@ -76,6 +79,7 @@ export class QuotasSearchComponent implements OnInit {
             this.dataSource = new MatTableDataSource(this.quotas);
             this.dataSource.paginator = this.paginator;
         })
+        this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
 
     toggleEdit() {
