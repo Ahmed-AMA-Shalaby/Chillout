@@ -43,14 +43,26 @@ export class DistancesCreateComponent implements OnInit {
             warehouse: this.distanceForm.value.warehouse,
             station: this.distanceForm.value.station,
         }
-        
-        this.genericService.updateEntity(environment.entities.Distance, distance).subscribe(
-            data => {
-                this.snackbar.open(data.message, "Ok");
-            },
-            error => {
-                this.snackbar.open(error.message, "Ok");
+
+        this.genericService.retrieveAllEntities(environment.entities.Distance).subscribe(distances => {
+            let distanceExists = false;
+            for (let distanceIndex = 0; distanceIndex < distances.length; distanceIndex++) {
+                if ((distances as Distance[])[distanceIndex].warehouse.id === distance.warehouse.id && (distances as Distance[])[distanceIndex].station.id === distance.station.id) {
+                    distanceExists = true;
+                    this.snackbar.open("Distance failed to update", "Ok");
+                    return;
+                }
             }
-        )
+            if (!distanceExists) {
+                this.genericService.updateEntity(environment.entities.Distance, distance).subscribe(
+                    data => {
+                        this.snackbar.open(data.message, "Ok");
+                    },
+                    error => {
+                        this.snackbar.open(error.message, "Ok");
+                    }
+                )
+            }
+        })
     }
 }

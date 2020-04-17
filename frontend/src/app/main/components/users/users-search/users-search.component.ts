@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { GenericService } from 'app/main/services/generic.service';
 import { environment } from 'environments/environment';
@@ -29,8 +29,9 @@ export class UsersSearchComponent implements OnInit {
     constructor(
         private genericService: GenericService,
         private snackbar: MatSnackBar,
-        private storageService: AppStorageService
-        ) { }
+        private storageService: AppStorageService,
+        private cdr: ChangeDetectorRef
+    ) { }
 
     ngOnInit() {
         this.users = [];
@@ -40,6 +41,7 @@ export class UsersSearchComponent implements OnInit {
             this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber', 'role'];
             this.displayedColumns = ['First Name', 'Middle Name', 'Last Name', 'Phone Number', 'Role'];
             this.dataSource = new MatTableDataSource(this.users);
+            this.cdr.detectChanges();
             this.dataSource.filterPredicate = (data: User, filter: string) => {
                 return data.firstName.startsWith(filter) || data.middleName.startsWith(filter) || data.lastName.startsWith(filter);
             };
@@ -62,6 +64,7 @@ export class UsersSearchComponent implements OnInit {
                 })
                 this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber', 'role', 'delete'];
                 this.displayedColumns = ['First Name', 'Middle Name', 'Last Name', 'Phone Number', 'Role', ' '];
+                this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
             })
         }
@@ -72,6 +75,7 @@ export class UsersSearchComponent implements OnInit {
                 })
                 this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber', 'role'];
                 this.displayedColumns = ['First Name', 'Middle Name', 'Last Name', 'Phone Number', 'Role'];
+                this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
             })
         }
@@ -94,6 +98,5 @@ export class UsersSearchComponent implements OnInit {
             }
         })
     }
-
 
 }

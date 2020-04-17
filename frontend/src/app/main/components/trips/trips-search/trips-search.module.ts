@@ -6,6 +6,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 import { TripsSearchComponent } from './trips-search.component';
 import { MatTabsModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCardModule, MatTooltipModule, MatDatepickerModule, MatTableModule, MatPaginatorModule } from '@angular/material';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 const routes = [
     {
@@ -34,6 +35,7 @@ const routes = [
         MatCardModule,
         MatTooltipModule,
         MatDatepickerModule,
+        MatTableExporterModule,
         // App modules
         GenericTableModule
     ],

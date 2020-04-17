@@ -1,0 +1,20 @@
+@mixin companies-report-theme($theme) {
+
+    $foreground: map-get($theme, foreground);
+
+    companies-report {
+
+        .header {
+
+            .search-wrapper {
+
+                .search {
+
+                    input {
+                        color: map-get($foreground, text);
+                    }
+                }
+            }
+        }
+    }
+}

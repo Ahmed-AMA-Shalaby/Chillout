@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { GenericService } from 'app/main/services/generic.service';
 import { MatSnackBar, MatHorizontalStepper } from '@angular/material';
@@ -54,6 +54,9 @@ export class TripsCreateComponent implements OnInit {
     transfer3Form: FormGroup;
     tripForm: FormGroup;
     products: Product[];
+    transfer1products: Product[];
+    transfer2products: Product[];
+    transfer3products: Product[];
     stations: Station[];
     warehouses: Warehouse[];
     drivers: Driver[];
@@ -178,7 +181,7 @@ export class TripsCreateComponent implements OnInit {
         }
 
 
-        this.genericService.retrieveTripsbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+        this.genericService.retrieveEntitiesbyDate(environment.entities.Trip, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
             let trips = data as Trip[];
             let orderCount = 1;
             trips.forEach(trip => {
@@ -187,7 +190,7 @@ export class TripsCreateComponent implements OnInit {
                 }
             })
             trip.order = orderCount;
-            
+
             this.genericService.updateEntity(environment.entities.Trip, trip).subscribe(
                 data => {
                     this.snackbar.open(data.message, "Ok");
@@ -196,7 +199,6 @@ export class TripsCreateComponent implements OnInit {
                     this.snackbar.open(error.message, "Ok");
                 }
             )
-
             stepper.reset();
         })
     }
@@ -237,5 +239,48 @@ export class TripsCreateComponent implements OnInit {
             }
         }
         return { outboundDistance: outboundDistance.distance, inboundDistance: inboundDistance }
+    }
+
+    restrictProducts(outboundWarehouse: Warehouse) {
+        this.products = this.products.filter(product => {
+            for (let productIndex = 0; productIndex < outboundWarehouse.products.length; productIndex++) {
+                if (outboundWarehouse.products[productIndex].id === product.id) {
+                    return true;
+                }
+            }
+        });
+    }
+
+    restrictTransfer1products(station: Station) {
+        this.transfer1products = this.products
+        this.transfer1products = this.transfer1products.filter(product => {
+            for (let tankIndex = 0; tankIndex < station.tanks.length; tankIndex++) {
+                if (station.tanks[tankIndex].product.id === product.id) {
+                    return true;
+                }
+            }
+        });
+    }
+
+    restrictTransfer2products(station: Station) {
+        this.transfer2products = this.products
+        this.transfer2products = this.transfer2products.filter(product => {
+            for (let tankIndex = 0; tankIndex < station.tanks.length; tankIndex++) {
+                if (station.tanks[tankIndex].product.id === product.id) {
+                    return true;
+                }
+            }
+        });
+    }
+
+    restrictTransfer3products(station: Station) {
+        this.transfer3products = this.products
+        this.transfer3products = this.transfer3products.filter(product => {
+            for (let tankIndex = 0; tankIndex < station.tanks.length; tankIndex++) {
+                if (station.tanks[tankIndex].product.id === product.id) {
+                    return true;
+                }
+            }
+        });
     }
 }

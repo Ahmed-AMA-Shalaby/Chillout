@@ -1,0 +1,20 @@
+@mixin quotas-theme($theme) {
+
+    $foreground: map-get($theme, foreground);
+
+    quotas {
+
+        .header {
+
+            .search-wrapper {
+
+                .search {
+
+                    input {
+                        color: map-get($foreground, text);
+                    }
+                }
+            }
+        }
+    }
+}

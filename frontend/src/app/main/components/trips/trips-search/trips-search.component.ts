@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { GenericService } from 'app/main/services/generic.service';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
@@ -9,6 +9,7 @@ import { Trip } from 'app/main/models/trip.model';
 import { MatTableDataSource, MatPaginator, MatSnackBar } from '@angular/material';
 import { environment } from 'environments/environment';
 import { AppStorageService } from 'app/main/services/app-storage.service';
+import { MatTableExporterDirective } from 'mat-table-exporter';
 const moment = _moment;
 
 export const MY_FORMATS = {
@@ -52,11 +53,15 @@ export class TripsSearchComponent implements OnInit {
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
 
+    @ViewChild('exporter')
+    exporter: MatTableExporterDirective
+
     constructor(
         private _formBuilder: FormBuilder,
         private genericService: GenericService,
         private snackbar: MatSnackBar,
-        private storageService: AppStorageService
+        private storageService: AppStorageService,
+        private cdr: ChangeDetectorRef
         ) { }
 
     ngOnInit() {
@@ -64,19 +69,8 @@ export class TripsSearchComponent implements OnInit {
             date: [null, Validators.required]
         });
         this.dateForm.get('date').disable();
-
-        this.trips = [];
-        this.dataSource = new MatTableDataSource([]);
-        this.genericService.retrieveTripsbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
-            this.trips = data as Trip[];
-            this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'details', 'inboundDistance', 'distance'];
-            this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Details', 'Inbound Warehouse', 'Total Distance'];
-            this.dataSource = new MatTableDataSource(this.trips);
-            this.dataSource.filterPredicate = (data: Trip, filter: string) => {
-                return data.vehicle.vehicleCode.toString().startsWith(filter)
-            };
-            this.dataSource.paginator = this.paginator;
-        })
+        
+        this.retrieveCurrentTrips();
         this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
 
@@ -88,22 +82,24 @@ export class TripsSearchComponent implements OnInit {
         this.deleteFlag = !this.deleteFlag;
         this.trips.length = 0;
         if (this.deleteFlag) {
-            this.genericService.retrieveTripsbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+            this.genericService.retrieveEntitiesbyDate(environment.entities.Trip, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
                 (data as Trip[]).forEach(trip => {
                     this.trips.push(trip as never)
                 })
-                this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'station', 'inboundDistance', 'delete'];
-                this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Farthest Station', 'Inbound Warehouse', ' '];
+                this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'details', 'inboundDistance', 'distance', 'delete'];
+                this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Details', 'Inbound Warehouse', 'Total Distance', ' '];
+                this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
             })
         }
         else {
-            this.genericService.retrieveTripsbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+            this.genericService.retrieveEntitiesbyDate(environment.entities.Trip, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
                 (data as Trip[]).forEach(trip => {
                     this.trips.push(trip as never)
                 })
-                this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'station', 'inboundDistance'];
-                this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Farthest Station', 'Inbound Warehouse'];
+                this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'details', 'inboundDistance', 'distance'];
+                this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Details', 'Inbound Warehouse', 'Total Distance'];
+                this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
             })
         }
@@ -143,13 +139,27 @@ export class TripsSearchComponent implements OnInit {
     }
 
     retrieveCurrentTrips() {
-        this.genericService.retrieveTripsbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+        this.dataSource = new MatTableDataSource([]);
+        this.genericService.retrieveEntitiesbyDate(environment.entities.Trip, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
             this.trips = data as Trip[];
+            this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'details', 'inboundDistance', 'distance'];
+            this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Details', 'Inbound Warehouse', 'Total Distance'];
             this.dataSource = new MatTableDataSource(this.trips);
+            this.cdr.detectChanges();
             this.dataSource.filterPredicate = (data: Trip, filter: string) => {
                 return data.vehicle.vehicleCode.toString().startsWith(filter)
             };
+            this.dataSource.paginator = this.paginator;
         })
+    }
+
+    exportTable() {
+        if (this.dataSource.filter) {
+            this.exporter.exportTable('xlsx', { fileName: `Trips-${this.date.value.date()}_${this.date.value.month() + 1}_${this.date.value.year()}(${this.dataSource.filter})` })
+        }
+        else {
+            this.exporter.exportTable('xlsx', { fileName: `Trips-${this.date.value.date()}_${this.date.value.month() + 1}_${this.date.value.year()}` })
+        }
     }
 
 }

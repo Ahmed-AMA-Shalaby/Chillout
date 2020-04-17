@@ -8,17 +8,15 @@ import java.util.Set;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
-@Table(name = "Warehouses")
+@Table(name = "Warehouses", uniqueConstraints = {@UniqueConstraint(columnNames = {"warehouseName", "companyName"})})
 public class Warehouse {
 
     @Id
     @GeneratedValue(generator = "uuid")
     private String id;
 
-    @Column(unique = true)
     private String warehouseName;
 
-    @Column(unique = true)
     private String companyName;
 
     private boolean isHidden;
@@ -29,7 +27,7 @@ public class Warehouse {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Product> products = new HashSet<>();
 
-    public Warehouse(){
+    public Warehouse() {
 
     }
 
@@ -42,7 +40,7 @@ public class Warehouse {
         this.products = products;
     }
 
-    public Warehouse(Warehouse warehouse){
+    public Warehouse(Warehouse warehouse) {
         this.setId(warehouse.getId());
         this.setWarehouseName(warehouse.getWarehouseName());
         this.setCompanyName(warehouse.getCompanyName());

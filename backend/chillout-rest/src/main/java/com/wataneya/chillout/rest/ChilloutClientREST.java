@@ -50,46 +50,24 @@ public class ChilloutClientREST {
     }
 
     @GET
-    @Path("/retrieveQuotasbyYearandMonth")
+    @Path("/retrieveEntitiesbyYearandMonth")
     @Produces("application/json")
-    public Response retrieveQuotasbyYearandMonth(@QueryParam("year") int year, @QueryParam("month") int month) {
+    public Response retrieveEntitiesbyYearandMonth(@QueryParam("entity") String entity, @QueryParam("year") int year, @QueryParam("month") int month) {
         try {
-            return Response.ok(chilloutQueryService.retrieveQuotasbyYearandMonth(year, month)).build();
+            return Response.ok(chilloutQueryService.retrieveEntitiesbyYearandMonth(entity, year, month)).build();
         } catch (Exception e) {
-            return Response.ok("Quotas not found").build();
+            return Response.ok(entity + "s not found").build();
         }
     }
 
     @GET
-    @Path("/retrieveSalesbyDate")
+    @Path("/retrieveEntitiesbyDate")
     @Produces("application/json")
-    public Response retrieveSalesbyDate(@QueryParam("year") int year, @QueryParam("month") int month, @QueryParam("day") int day) {
+    public Response retrieveEntitiesbyDate(@QueryParam("entity") String entity, @QueryParam("year") int year, @QueryParam("month") int month, @QueryParam("day") int day) {
         try {
-            return Response.ok(chilloutQueryService.retrieveSalesbyDate(year, month, day)).build();
+            return Response.ok(chilloutQueryService.retrieveEntitiesbyDate(entity, year, month, day)).build();
         } catch (Exception e) {
-            return Response.ok("Sales not found").build();
-        }
-    }
-
-    @GET
-    @Path("/retrieveExistingsbyDate")
-    @Produces("application/json")
-    public Response retrieveExsitingsbyDate(@QueryParam("year") int year, @QueryParam("month") int month, @QueryParam("day") int day) {
-        try {
-            return Response.ok(chilloutQueryService.retrieveExistingsbyDate(year, month, day)).build();
-        } catch (Exception e) {
-            return Response.ok("Existings not found").build();
-        }
-    }
-
-    @GET
-    @Path("/retrieveTripsbyDate")
-    @Produces("application/json")
-    public Response retrieveTripsbyDate(@QueryParam("year") int year, @QueryParam("month") int month, @QueryParam("day") int day) {
-        try {
-            return Response.ok(chilloutQueryService.retrieveTripsbyDate(year, month, day)).build();
-        } catch (Exception e) {
-            return Response.ok("Trips not found").build();
+            return Response.ok(entity + "s not found").build();
         }
     }
     //endregion

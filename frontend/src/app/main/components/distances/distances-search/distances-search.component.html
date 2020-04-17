@@ -32,7 +32,8 @@
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!-- EDIT BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit" *ngIf="administratorFlag">
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit"
+                    *ngIf="administratorFlag">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <!-- / EDIT BUTTON -->
@@ -52,7 +53,8 @@
                     <mat-cell *matCellDef="let distances; let j  = index">
                         <p *ngIf="!editFlag && originalColumns[i] == 'distance'">{{distances[originalColumns[i]]}}</p>
                         <p *ngIf="!editFlag && originalColumns[i] == 'warehouse'">
-                            {{distances[originalColumns[i]]["companyName"]}} - {{distances[originalColumns[i]]["warehouseName"]}}</p>
+                            {{distances[originalColumns[i]]["companyName"]}} -
+                            {{distances[originalColumns[i]]["warehouseName"]}}</p>
                         <p *ngIf="!editFlag && originalColumns[i] == 'station'">
                             {{distances[originalColumns[i]]["stationName"]}}</p>
                         <div *ngIf="editFlag">
@@ -66,9 +68,11 @@
                             <div *ngIf="originalColumns[i] =='warehouse'">
                                 <mat-form-field floatLabel="never" appearance="outline" class="mt-20">
                                     <mat-select [(ngModel)]="distances[originalColumns[i]]"
-                                        (ngModelChange)="modifyData(j + (paginator.pageIndex * paginator.pageSize))">
-                                        <mat-option *ngFor="let warehouse of warehouses" [value]="distances[originalColumns[i]].id === warehouse.id ? distances[originalColumns[i]] : warehouse">
-                                            {{warehouse.warehouseName}}
+                                        (ngModelChange)="modifyData(j + (paginator.pageIndex * paginator.pageSize))"
+                                        style="width: 180px;">
+                                        <mat-option *ngFor="let warehouse of warehouses"
+                                            [value]="distances[originalColumns[i]].id === warehouse.id ? distances[originalColumns[i]] : warehouse">
+                                            {{warehouse.companyName}} - {{warehouse.warehouseName}}
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
@@ -76,8 +80,10 @@
                             <div *ngIf="originalColumns[i] =='station'">
                                 <mat-form-field floatLabel="never" appearance="outline" class="mt-20">
                                     <mat-select [(ngModel)]="distances[originalColumns[i]]"
-                                        (ngModelChange)="modifyData(j + (paginator.pageIndex * paginator.pageSize))">
-                                        <mat-option *ngFor="let station of stations" [value]="distances[originalColumns[i]].id ===station.id ? distances[originalColumns[i]] : station">
+                                        (ngModelChange)="modifyData(j + (paginator.pageIndex * paginator.pageSize))"
+                                        style="width: 180px;">
+                                        <mat-option *ngFor="let station of stations"
+                                            [value]="distances[originalColumns[i]].id ===station.id ? distances[originalColumns[i]] : station">
                                             {{station.stationName}}
                                         </mat-option>
                                     </mat-select>
@@ -91,7 +97,7 @@
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             </mat-table>
 
-            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
+            <mat-paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
                 [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 
         </div>

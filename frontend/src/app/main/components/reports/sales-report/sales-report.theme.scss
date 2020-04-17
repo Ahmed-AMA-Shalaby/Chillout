@@ -1,0 +1,20 @@
+@mixin sales-report-theme($theme) {
+
+    $foreground: map-get($theme, foreground);
+
+    sales-report {
+
+        .header {
+
+            .search-wrapper {
+
+                .search {
+
+                    input {
+                        color: map-get($foreground, text);
+                    }
+                }
+            }
+        }
+    }
+}

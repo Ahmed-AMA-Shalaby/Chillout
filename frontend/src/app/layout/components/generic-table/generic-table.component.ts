@@ -36,8 +36,10 @@ export class GenericTableComponent implements OnChanges {
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
 
-    constructor(private genericService: GenericService,
-        private snackbar: MatSnackBar) { }
+    constructor(
+        private genericService: GenericService,
+        private snackbar: MatSnackBar,
+        ) { }
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes) {
@@ -84,7 +86,7 @@ export class GenericTableComponent implements OnChanges {
                 else if (this.type == environment.entities.Warehouse) {
                     this.originalColumns = changes.hideMode.currentValue ? ['warehouseName', 'companyName', 'hidden'] : ['warehouseName', 'companyName']
                     this.displayedColumns = changes.hideMode.currentValue ? ['Warehouse Name', 'Company Name', ' '] : ['Warehouse Name', 'Company Name']
-                    this.dataSource.filterPredicate = (data: Warehouse, filter: string) => !filter || data.warehouseName.startsWith(filter);
+                    this.dataSource.filterPredicate = (data: Warehouse, filter: string) => !filter || data.warehouseName.startsWith(filter) || data.companyName.startsWith(filter);
                 }
                 this.dataSource.paginator = this.paginator;
             }
@@ -126,4 +128,5 @@ export class GenericTableComponent implements OnChanges {
             }
         })
     }
+
 }

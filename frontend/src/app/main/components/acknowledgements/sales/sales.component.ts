@@ -82,7 +82,7 @@ export class SalesComponent implements OnInit {
                 this.displayedColumns.sort();
                 this.displayedColumns.push("إجمالى المبالغ الإضافيه");
             })
-            this.genericService.retrieveSalesbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+            this.genericService.retrieveEntitiesbyDate(environment.entities.Sale, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
                 this.sales = data as Sale[];
             })
             this.dataSource = new MatTableDataSource(this.stations);
@@ -122,7 +122,7 @@ export class SalesComponent implements OnInit {
             }
         })
 
-        this.genericService.retrieveSalesbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+        this.genericService.retrieveEntitiesbyDate(environment.entities.Sale, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
             this.sales = data as Sale[];
             let saleFound = false;
             this.sales.forEach(sale => {
@@ -164,7 +164,6 @@ export class SalesComponent implements OnInit {
                 );
             }
         })
-
     }
 
     adjustSalesDisplay(rowIndex: number, columnIndex: number) {
@@ -186,7 +185,7 @@ export class SalesComponent implements OnInit {
     }
 
     retrieveCurrentSales(){
-        this.genericService.retrieveSalesbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+        this.genericService.retrieveEntitiesbyDate(environment.entities.Sale, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
             this.sales = data as Sale[];
         })
     }

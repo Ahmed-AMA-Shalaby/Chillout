@@ -40,24 +40,14 @@ export class GenericService {
         return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveEntitybyID, { headers: this.httpOptions.headers, params: params });
     }
 
-    retrieveQuotasbyYearandMonth(year: number, month: number): Observable<{}> {
-        let params = new HttpParams().set('year', JSON.stringify(year)).set('month', JSON.stringify(month));
-        return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveQuotasbyYearandMonth, { headers: this.httpOptions.headers, params: params });
+    retrieveEntitiesbyYearandMonth(type:string, year: number, month: number): Observable<{}> {
+        let params = new HttpParams().set('entity', type).set('year', JSON.stringify(year)).set('month', JSON.stringify(month));
+        return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveEntitiesbyYearandMonth, { headers: this.httpOptions.headers, params: params });
     }
 
-    retrieveSalesbyDate(year: number, month: number, day: number): Observable<{}> {
-        let params = new HttpParams().set('year', JSON.stringify(year)).set('month', JSON.stringify(month)).set('day', JSON.stringify(day));
-        return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveSalesbyDate, { headers: this.httpOptions.headers, params: params });
-    }
-
-    retrieveExistingsbyDate(year: number, month: number, day: number): Observable<{}> {
-        let params = new HttpParams().set('year', JSON.stringify(year)).set('month', JSON.stringify(month)).set('day', JSON.stringify(day));
-        return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveExistingsbyDate, { headers: this.httpOptions.headers, params: params });
-    }
-
-    retrieveTripsbyDate(year: number, month: number, day: number): Observable<{}> {
-        let params = new HttpParams().set('year', JSON.stringify(year)).set('month', JSON.stringify(month)).set('day', JSON.stringify(day));
-        return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveTripsbyDate, { headers: this.httpOptions.headers, params: params });
+    retrieveEntitiesbyDate(type:string, year: number, month: number, day: number): Observable<{}> {
+        let params = new HttpParams().set('entity', type).set('year', JSON.stringify(year)).set('month', JSON.stringify(month)).set('day', JSON.stringify(day));
+        return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveEntitiesbyDate, { headers: this.httpOptions.headers, params: params });
     }
 
     deleteEntity(type: string, id: string): Observable<BaseResponse> {

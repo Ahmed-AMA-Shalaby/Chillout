@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { Distance } from 'app/main/models/distance.model';
 import { GenericService } from 'app/main/services/generic.service';
@@ -32,19 +32,20 @@ export class DistancesSearchComponent implements OnInit {
     constructor(
         private genericService: GenericService,
         private snackbar: MatSnackBar,
-        private storageService: AppStorageService
-        ) { }
+        private storageService: AppStorageService,
+        private cdr: ChangeDetectorRef
+    ) { }
 
     ngOnInit() {
-        this.distances = [];
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveAllEntities(environment.entities.Distance).subscribe(data => {
             this.distances = data;
             this.originalColumns = ['distance', 'warehouse', 'station'];
-            this.displayedColumns = ['Distance', 'Warehouse', 'Station'];
+            this.displayedColumns = ['Distance', 'Company - Warehouse', 'Station'];
             this.dataSource = new MatTableDataSource(this.distances);
+            this.cdr.detectChanges();
             this.dataSource.filterPredicate = (data: Distance, filter: string) => {
-                return data.distance.toString().startsWith(filter)
+                return data.warehouse.companyName.startsWith(filter) ||data.warehouse.warehouseName.startsWith(filter) || data.station.stationName.startsWith(filter)
             };
             this.dataSource.paginator = this.paginator;
         })
@@ -69,7 +70,8 @@ export class DistancesSearchComponent implements OnInit {
                 this.distances.push(distance)
             })
             this.originalColumns = ['distance', 'warehouse', 'station'];
-            this.displayedColumns = ['Distance', 'Warehouse', 'Station'];
+            this.displayedColumns = ['Distance', 'Company - Warehouse', 'Station'];
+            this.cdr.detectChanges();
             this.dataSource.paginator = this.paginator;
         })
     }

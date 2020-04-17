@@ -4,19 +4,20 @@ import { RouterModule } from '@angular/router';
 
 import { FuseSharedModule } from '@fuse/shared.module';
 
-import { QuotasSearchComponent } from './quotas-search.component';
-import { MatTabsModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCardModule, MatTooltipModule, MatTableModule, MatPaginatorModule, MatSelectModule, MatOptionModule, MatDatepickerModule } from '@angular/material';
+import { DistancesReportComponent } from './distances-report.component';
+import { MatTabsModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCardModule, MatTooltipModule, MatTableModule, MatSelectModule, MatOptionModule, MatDatepickerModule } from '@angular/material';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 const routes = [
     {
         path: '**',
-        component: QuotasSearchComponent
+        component: DistancesReportComponent
     }
 ];
 
 @NgModule({
     declarations: [
-        QuotasSearchComponent
+        DistancesReportComponent
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -25,7 +26,6 @@ const routes = [
 
         // Material
         MatTableModule,
-        MatPaginatorModule,
         MatTabsModule,
         MatInputModule,
         MatButtonModule,
@@ -36,14 +36,15 @@ const routes = [
         MatSelectModule,
         MatOptionModule,
         MatDatepickerModule,
-        
+        MatTableExporterModule,
+
         // App modules
         GenericTableModule
     ],
     exports: [
-        QuotasSearchComponent
+        DistancesReportComponent
     ]
 })
 
-export class QuotasSearchModule {
+export class DistancesReportModule {
 }

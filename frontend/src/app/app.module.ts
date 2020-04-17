@@ -89,16 +89,8 @@ const appRoutes: Routes = [
         canActivate: [AuthGuardService]
     },
     {
-        path: 'quotas/create',
-        loadChildren: './main/components/quotas/quotas-create/quotas-create.module#QuotasCreateModule',
-        canActivate: [RoleGuardService],
-        data: {
-            expectedRole: environment.roles.Administrator
-        }
-    },
-    {
-        path: 'quotas/search',
-        loadChildren: './main/components/quotas/quotas-search/quotas-search.module#QuotasSearchModule',
+        path: 'quotas',
+        loadChildren: './main/components/quotas/quotas.module#QuotasModule',
         canActivate: [AuthGuardService]
     },
     {
@@ -197,6 +189,36 @@ const appRoutes: Routes = [
     {
         path: 'acknowledgements/existings',
         loadChildren: './main/components/acknowledgements/existings/existings.module#ExistingsModule',
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'reports/distances',
+        loadChildren: './main/components/reports/distances-report/distances-report.module#DistancesReportModule',
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'reports/imports',
+        loadChildren: './main/components/reports/imports-report/imports-report.module#ImportsReportModule',
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'reports/sales',
+        loadChildren: './main/components/reports/sales-report/sales-report.module#SalesReportModule',
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'reports/withdrawals/companies',
+        loadChildren: './main/components/reports/withdrawals/companies-report/companies-report.module#CompaniesReportModule',
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'reports/withdrawals/remainings',
+        loadChildren: './main/components/reports/withdrawals/remainings-report/remainings-report.module#RemainingsReportModule',
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'reports/withdrawals/warehouses',
+        loadChildren: './main/components/reports/withdrawals/warehouses-report/warehouses-report.module#WarehousesReportModule',
         canActivate: [AuthGuardService]
     }
 ];

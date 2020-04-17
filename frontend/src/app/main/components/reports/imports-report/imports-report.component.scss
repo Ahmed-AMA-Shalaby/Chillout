@@ -2,9 +2,9 @@
 
 
 
-quotas-search {
+imports-report {
 
-    #quotas-search {
+    #imports-report {
 
         .top-bg {
 
@@ -18,7 +18,8 @@ quotas-search {
             > .header {
 
                 .search-wrapper {
-                    max-width: 210px;
+                    width: 100%;
+                    max-width: 250px;
                     border-radius: 28px;
                     overflow: hidden;
                     @include mat-elevation(1);
@@ -33,9 +34,15 @@ quotas-search {
                         padding: 0 18px;
 
                         input {
-                            width: 100%;
+                            width: 120px;
                             height: 48px;
-                            padding: 0 16px;
+                            padding-right: 10px;
+                            padding-left: 10px;
+                        }
+
+                        mat-datepicker-toggle{
+                            position: relative;
+                            transform: translateX(20px);
                         }
 
                     }

@@ -1,0 +1,102 @@
+<div id="imports-report" class="page-layout carded fullwidth">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+            fxLayoutAlign.gt-sm="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    people
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Imports</span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- FILTER -->
+            <div class="search-wrapper mx-32 mx-md-0 fuse-white">
+                <form name="startdateForm" [formGroup]="startdateForm">
+                    <mat-form-field appearance="never" class="pr-4">
+                        <div class="search mt-12" fxFlex fxLayout="row" fxLayoutAlign="center center">
+                            <span style="margin-left: 80px;"><b>From:</b></span>
+                            <input matInput [matDatepicker]="startdatepicker" [formControl]="startdate"
+                                formControlName="startdate" [attr.disabled]="true">
+                            <mat-datepicker-toggle style="position: relative; transform: translateX(0px);" matSuffix
+                                [for]="startdatepicker"></mat-datepicker-toggle>
+                            <mat-datepicker #startdatepicker startView="multi-year" (closed)="updateEndDatePicker()"
+                                disabled="false">
+                            </mat-datepicker>
+                        </div>
+                    </mat-form-field>
+                </form>
+            </div>
+
+            <div class="search-wrapper mx-32 mx-md-0 fuse-white">
+                <form name="enddateForm" [formGroup]="enddateForm">
+                    <mat-form-field appearance="never" class="pr-4" style="width: 100%;">
+                        <div class="search mt-12" fxFlex fxLayout="row" fxLayoutAlign="center center">
+                            <span><b>To:</b></span>
+                            <input matInput [matDatepicker]="enddatepicker" [formControl]="enddate"
+                                formControlName="enddate" [attr.disabled]="true" [min]="minEndDate" [max]="maxEndDate">
+                            <mat-datepicker-toggle matSuffix [for]="enddatepicker"></mat-datepicker-toggle>
+                            <mat-datepicker #enddatepicker startView="month" (closed)="retrieveCurrentTrips()"
+                                disabled="false">
+                            </mat-datepicker>
+                        </div>
+                    </mat-form-field>
+                </form>
+            </div>
+            <!-- / FILTER -->
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <!--  EXPORT BUTTON -->
+                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="Export"
+                    [disabled]="dataSource.filteredData.length === 0">
+                    <mat-icon>archive</mat-icon>
+                </button>
+                <!-- / EXPORT BUTTON -->
+            </div>
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+
+            <mat-table matTableExporter #exporter="matTableExporter" [dataSource]="dataSource"
+                [@animateStagger]="{value:'50'}">
+
+                <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns; let i = index">
+                    <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
+                    <mat-cell *matCellDef="let station; let j  = index">
+                        <p *ngIf="originalColumns[i] == 'station'">
+                            {{station["stationName"]}}</p>
+                        <p *ngIf="originalColumns[i] != 'station'">
+                            {{adjustImportsDisplay(j,i)}}</p>
+                        <p *ngIf="originalColumns[i] != 'station' && !checkProductInStation(j,i)">0</p>
+                    </mat-cell>
+                    <mat-footer-cell *matFooterCellDef>
+                        <p><b>{{total[i]}}</b></p>
+                    </mat-footer-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                <mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></mat-footer-row>
+            </mat-table>
+
+            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

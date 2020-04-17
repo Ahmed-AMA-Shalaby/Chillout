@@ -82,7 +82,7 @@ export class ExistingsComponent implements OnInit {
                 this.displayedColumns.sort();
                 this.displayedColumns.push("إجمالى المبالغ الإضافيه");
             })
-            this.genericService.retrieveExistingsbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+            this.genericService.retrieveEntitiesbyDate(environment.entities.Existing, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
                 this.existings = data as Existing[];
             })
             this.dataSource = new MatTableDataSource(this.stations);
@@ -122,7 +122,7 @@ export class ExistingsComponent implements OnInit {
             }
         })
 
-        this.genericService.retrieveExistingsbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+        this.genericService.retrieveEntitiesbyDate(environment.entities.Existing, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
             this.existings = data as Existing[];
             let existingFound = false;
             this.existings.forEach(existing => {
@@ -186,7 +186,7 @@ export class ExistingsComponent implements OnInit {
     }
 
     retrieveCurrentExistings() {
-        this.genericService.retrieveExistingsbyDate(this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+        this.genericService.retrieveEntitiesbyDate(environment.entities.Existing, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
             this.existings = data as Existing[];
         })
     }

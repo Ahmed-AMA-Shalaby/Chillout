@@ -12,7 +12,7 @@ export const administratorNavigation: FuseNavigation[] = [
     {
         id: 'agents',
         title: 'Agents',
-        icon: 'location_city',
+        icon: 'business',
         type: 'collapsable',
         children: [
             {
@@ -92,27 +92,14 @@ export const administratorNavigation: FuseNavigation[] = [
     {
         id: 'quotas',
         title: 'Quotas',
-        icon: 'category',
-        type: 'collapsable',
-        children: [
-            {
-                id: 'Create',
-                title: 'Create',
-                type: 'item',
-                url: '/quotas/create'
-            },
-            {
-                id: 'Search',
-                title: 'Search',
-                type: 'item',
-                url: '/quotas/search'
-            }
-        ]
+        icon: 'cloud',
+        type: 'item',
+        url: '/quotas'
     },
     {
         id: 'sectors',
         title: 'Sectors',
-        icon: 'location_city',
+        icon: 'pie_chart',
         type: 'collapsable',
         children: [
             {
@@ -232,7 +219,7 @@ export const administratorNavigation: FuseNavigation[] = [
     {
         id: 'acknowledgement',
         title: 'Acknowledgements',
-        icon: 'account_balance',
+        icon: 'done_all',
         type: 'collapsable',
         children: [
             {
@@ -256,83 +243,45 @@ export const administratorNavigation: FuseNavigation[] = [
         type: 'collapsable',
         children: [
             {
-                id: 'dailyreports',
-                title: 'Daily reports',
-                type: 'collapsable',
-                children: [
-                    {
-                        id: 'withdrawals',
-                        title: 'Withdrawals',
-                        type: 'item',
-                        url: '/withdrawals'
-                    },
-                    {
-                        id: 'sales',
-                        title: 'Sales',
-                        type: 'item',
-                        url: '/sales'
-                    },
-                    {
-                        id: 'importedproduct',
-                        title: 'Imported Product',
-                        type: 'item',
-                        url: '/importedproduct'
-                    },
-                    {
-                        id: 'supplyplan',
-                        title: 'Supply Plan',
-                        type: 'item',
-                        url: '/supplyplan'
-                    }
-                ]
+                id: 'distances-report',
+                title: 'Distances Covered',
+                type: 'item',
+                url: '/reports/distances'
             },
             {
-                id: 'monthlyreports',
-                title: 'Monthly reports',
-                type: 'collapsable',
-                children: [
-                    {
-                        id: 'withdrawals',
-                        title: 'Withdrawals',
-                        type: 'item',
-                        url: '/withdrawals'
-                    },
-                    {
-                        id: 'sales',
-                        title: 'Sales',
-                        type: 'item',
-                        url: '/sales'
-                    },
-                    {
-                        id: 'importedproduct',
-                        title: 'Imported product',
-                        type: 'item',
-                        url: '/importedproduct'
-                    }
-                ]
+                id: 'imports-report',
+                title: 'Imports',
+                type: 'item',
+                url: '/reports/imports'
             },
             {
-                id: 'specialreports',
-                title: 'Special reports',
+                id: 'sales-report',
+                title: 'Sales',
+                type: 'item',
+                url: '/reports/sales'
+            },
+            {
+                id: 'withdrawals-reports',
+                title: 'Withdrawals',
                 type: 'collapsable',
                 children: [
                     {
-                        id: 'averageimportedproduct',
-                        title: 'Average imported product',
+                        id: 'companies-report',
+                        title: 'Companies',
                         type: 'item',
-                        url: '/averageimportedproduct'
+                        url: '/reports/withdrawals/companies'
                     },
                     {
-                        id: 'endofmonthstationsneeds',
-                        title: 'End of month stations\' needs',
+                        id: 'remainings-report',
+                        title: 'Remainings',
                         type: 'item',
-                        url: '/endofmonthstationsneeds'
+                        url: '/reports/withdrawals/remainings'
                     },
                     {
-                        id: 'warehousesremaining',
-                        title: 'Warehouses remaining',
+                        id: 'warehouses-report',
+                        title: 'Warehouses',
                         type: 'item',
-                        url: '/warehousesremaining'
+                        url: '/reports/withdrawals/warehouses'
                     }
                 ]
             }
@@ -351,7 +300,7 @@ export const operatorNavigation: FuseNavigation[] = [
     {
         id: 'agents',
         title: 'Agents',
-        icon: 'location_city',
+        icon: 'business',
         type: 'collapsable',
         children: [
             {
@@ -407,21 +356,14 @@ export const operatorNavigation: FuseNavigation[] = [
     {
         id: 'quotas',
         title: 'Quotas',
-        icon: 'category',
-        type: 'collapsable',
-        children: [
-            {
-                id: 'Search',
-                title: 'Search',
-                type: 'item',
-                url: '/quotas/search'
-            }
-        ]
+        icon: 'cloud',
+        type: 'item',
+        url: '/quotas'
     },
     {
         id: 'sectors',
         title: 'Sectors',
-        icon: 'location_city',
+        icon: 'pie_chart',
         type: 'collapsable',
         children: [
             {
@@ -505,7 +447,7 @@ export const operatorNavigation: FuseNavigation[] = [
     {
         id: 'acknowledgement',
         title: 'Acknowledgements',
-        icon: 'account_balance',
+        icon: 'done_all',
         type: 'collapsable',
         children: [
             {
@@ -529,83 +471,45 @@ export const operatorNavigation: FuseNavigation[] = [
         type: 'collapsable',
         children: [
             {
-                id: 'dailyreports',
-                title: 'Daily reports',
-                type: 'collapsable',
-                children: [
-                    {
-                        id: 'withdrawals',
-                        title: 'Withdrawals',
-                        type: 'item',
-                        url: '/withdrawals'
-                    },
-                    {
-                        id: 'sales',
-                        title: 'Sales',
-                        type: 'item',
-                        url: '/sales'
-                    },
-                    {
-                        id: 'importedproduct',
-                        title: 'Imported Product',
-                        type: 'item',
-                        url: '/importedproduct'
-                    },
-                    {
-                        id: 'supplyplan',
-                        title: 'Supply Plan',
-                        type: 'item',
-                        url: '/supplyplan'
-                    }
-                ]
+                id: 'distances-report',
+                title: 'Distances Covered',
+                type: 'item',
+                url: '/reports/distances'
             },
             {
-                id: 'monthlyreports',
-                title: 'Monthly reports',
-                type: 'collapsable',
-                children: [
-                    {
-                        id: 'withdrawals',
-                        title: 'Withdrawals',
-                        type: 'item',
-                        url: '/withdrawals'
-                    },
-                    {
-                        id: 'sales',
-                        title: 'Sales',
-                        type: 'item',
-                        url: '/sales'
-                    },
-                    {
-                        id: 'importedproduct',
-                        title: 'Imported product',
-                        type: 'item',
-                        url: '/importedproduct'
-                    }
-                ]
+                id: 'imports-report',
+                title: 'Imports',
+                type: 'item',
+                url: '/reports/imports'
             },
             {
-                id: 'specialreports',
-                title: 'Special reports',
+                id: 'sales-report',
+                title: 'Sales',
+                type: 'item',
+                url: '/reports/sales'
+            },
+            {
+                id: 'withdrawals-reports',
+                title: 'Withdrawals',
                 type: 'collapsable',
                 children: [
                     {
-                        id: 'averageimportedproduct',
-                        title: 'Average imported product',
+                        id: 'companies-report',
+                        title: 'Companies',
                         type: 'item',
-                        url: '/averageimportedproduct'
+                        url: '/reports/withdrawals/companies'
                     },
                     {
-                        id: 'endofmonthstationsneeds',
-                        title: 'End of month stations\' needs',
+                        id: 'remainings-report',
+                        title: 'Remainings',
                         type: 'item',
-                        url: '/endofmonthstationsneeds'
+                        url: '/reports/withdrawals/remainings'
                     },
                     {
-                        id: 'warehousesremaining',
-                        title: 'Warehouses remaining',
+                        id: 'warehouses-report',
+                        title: 'Warehouses',
                         type: 'item',
-                        url: '/warehousesremaining'
+                        url: '/reports/withdrawals/warehouses'
                     }
                 ]
             }

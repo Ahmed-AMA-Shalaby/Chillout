@@ -84,7 +84,7 @@ $typography: mat-typography-config(
 @import "src/app/main/components/distances/distances-search/distances-search.theme";
 @import "src/app/main/components/drivers/drivers-search/drivers-search.theme";
 @import "src/app/main/components/products/products-search/products-search.theme";
-@import "src/app/main/components/quotas/quotas-search/quotas-search.theme";
+@import "src/app/main/components/quotas/quotas.theme";
 @import "src/app/main/components/sectors/sectors-search/sectors-search.theme";
 @import "src/app/main/components/stations/stations-search/stations-search.theme";
 @import "src/app/main/components/trips/trips-create/trips-create.theme";
@@ -94,6 +94,12 @@ $typography: mat-typography-config(
 @import "src/app/main/components/warehouses/warehouses-search/warehouses-search.theme";
 @import "src/app/main/components/acknowledgements/sales/sales.theme";
 @import "src/app/main/components/acknowledgements/existings/existings.theme";
+@import "src/app/main/components/reports/sales-report/sales-report.theme";
+@import "src/app/main/components/reports/imports-report/imports-report.theme";
+@import "src/app/main/components/reports/withdrawals/companies-report/companies-report.theme";
+@import "src/app/main/components/reports/withdrawals/remainings-report/remainings-report.theme";
+@import "src/app/main/components/reports/withdrawals/warehouses-report/warehouses-report.theme";
+@import "src/app/main/components/reports/distances-report/distances-report.theme";
 // Define a mixin for easier access
 @mixin components-theme($theme) {
 
@@ -115,8 +121,8 @@ $typography: mat-typography-config(
     //Products-Search Page
     @include products-search-theme($theme);
 
-    //Quotas-Search Page
-    @include quotas-search-theme($theme);
+    //Quotas Page
+    @include quotas-theme($theme);
 
     //Sectors-Search Page
     @include sectors-search-theme($theme);
@@ -144,6 +150,24 @@ $typography: mat-typography-config(
 
     //Existing Page
     @include existings-theme($theme);
+
+    //Sales-Report
+    @include sales-report-theme($theme);
+
+    //Imports-Report
+    @include imports-report-theme($theme);
+
+    //Companies-Report
+    @include companies-report-theme($theme);
+
+    //Remainings-Report
+    @include remainings-report-theme($theme);
+
+    //Withdrawals-Report
+    @include warehouses-report-theme($theme);
+
+    //Distances-Report
+    @include distances-report-theme($theme);
 }
 
 // -----------------------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSnackBar } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { Vehicle } from 'app/main/models/vehicle.model';
@@ -43,8 +43,9 @@ export class VehiclesSearchComponent implements OnInit {
     constructor(
         private genericService: GenericService,
         private snackbar: MatSnackBar,
-        private storageService: AppStorageService
-        ) { }
+        private storageService: AppStorageService,
+        private cdr: ChangeDetectorRef
+    ) { }
 
     ngOnInit() {
         this.vehicles = [];
@@ -55,6 +56,7 @@ export class VehiclesSearchComponent implements OnInit {
             this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate'];
             this.displayedColumns = ['Vehicle Code', 'Vehicle Plate', 'Vehicle Card', 'Trailer Plate'];
             this.dataSource = new MatTableDataSource(this.vehicles);
+            this.cdr.detectChanges();
             this.dataSource.filterPredicate = (data: Vehicle, filter: string) => {
                 return data.vehicleCode.toString().startsWith(filter)
             };
@@ -114,6 +116,7 @@ export class VehiclesSearchComponent implements OnInit {
                 })
                 this.originalColumns = ['vehicleCode', 'vehiclePlateNumbers', 'vehiclePlateLetters', 'vehicleCard', 'trailerPlateNumbers', 'trailerPlateLetters'];
                 this.displayedColumns = ['Vehicle Code', 'Vehicle Plate Numbers', 'Vehicle Plate Letters', 'Vehicle Card', 'Trailer Plate Numbers', 'Trailer Plate Letters'];
+                this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
             })
         }
@@ -125,6 +128,7 @@ export class VehiclesSearchComponent implements OnInit {
                 })
                 this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate'];
                 this.displayedColumns = ['Vehicle Code', 'Vehicle Plate', 'Vehicle Card', 'Trailer Plate'];
+                this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
             })
         }
@@ -164,6 +168,7 @@ export class VehiclesSearchComponent implements OnInit {
                 })
                 this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate', 'hidden'];
                 this.displayedColumns = ['Vehicle Code', 'Vehicle Plate', 'Vehicle Card', 'Trailer Plate', ' '];
+                this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
             })
         }
@@ -175,6 +180,7 @@ export class VehiclesSearchComponent implements OnInit {
                 })
                 this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate'];
                 this.displayedColumns = ['Vehicle Code', 'Vehicle Plate', 'Vehicle Card', 'Trailer Plate'];
+                this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
             })
         }

@@ -29,46 +29,24 @@ public class ChilloutQueryService {
         return object;
     }
 
-    public List<Quota> retrieveQuotasbyYearandMonth(int year, int month) {
-        List quotas = em.createQuery("From Quota q where q.year = :year and q.month = :month")
+    public List retrieveEntitiesbyYearandMonth(String entity, int year, int month) {
+        List list = em.createQuery("From " + entity + " e where e.year = :year and e.month = :month")
                 .setParameter("year", year)
                 .setParameter("month", month)
                 .getResultList();
-        if (quotas == null)
+        if (list == null)
             return null;
-        return quotas;
+        return list;
     }
 
-    public List<Sale> retrieveSalesbyDate(int year, int month, int day) {
-        List sales = em.createQuery("From Sale s where s.year = :year and s.month = :month and s.day = :day")
+    public List retrieveEntitiesbyDate(String entity, int year, int month, int day) {
+        List list = em.createQuery("From " + entity + " e where e.year = :year and e.month = :month and e.day = :day")
                 .setParameter("year", year)
                 .setParameter("month", month)
                 .setParameter("day", day)
                 .getResultList();
-        if (sales == null)
+        if (list == null)
             return null;
-        return sales;
-    }
-
-    public List<Existing> retrieveExistingsbyDate(int year, int month, int day) {
-        List existings = em.createQuery("From Existing e where e.year = :year and e.month = :month and e.day = :day")
-                .setParameter("year", year)
-                .setParameter("month", month)
-                .setParameter("day", day)
-                .getResultList();
-        if (existings == null)
-            return null;
-        return existings;
-    }
-
-    public List<Trip> retrieveTripsbyDate(int year, int month, int day) {
-        List trips = em.createQuery("From Trip t where t.year = :year and t.month = :month and t.day = :day")
-                .setParameter("year", year)
-                .setParameter("month", month)
-                .setParameter("day", day)
-                .getResultList();
-        if (trips == null)
-            return null;
-        return trips;
+        return list;
     }
 }

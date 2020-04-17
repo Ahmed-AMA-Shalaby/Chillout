@@ -1,8 +1,8 @@
-@mixin quotas-search-theme($theme) {
+@mixin warehouses-report-theme($theme) {
 
     $foreground: map-get($theme, foreground);
 
-    quotas-search {
+    warehouses-report {
 
         .header {
 
