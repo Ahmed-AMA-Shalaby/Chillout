@@ -1,0 +1,20 @@
+@mixin needs-report-theme($theme) {
+
+    $foreground: map-get($theme, foreground);
+
+    needs-report {
+
+        .header {
+
+            .search-wrapper {
+
+                .search {
+
+                    input {
+                        color: map-get($foreground, text);
+                    }
+                }
+            }
+        }
+    }
+}

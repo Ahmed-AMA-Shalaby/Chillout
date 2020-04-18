@@ -16,21 +16,21 @@
                         <mat-form-field appearance="outline" class="pr-4">
                             <mat-label>Station Code</mat-label>
                             <input matInput formControlName="stationCode" #StationCode required type="number" min="0">
-                            <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                            <mat-icon matSuffix class="secondary-text">local_gas_station</mat-icon>
                             <mat-error>Station Code is required!</mat-error>
                         </mat-form-field>
 
                         <mat-form-field appearance="outline" class="pr-4">
                             <mat-label>Station Name</mat-label>
                             <input matInput formControlName="stationName" #StationName required>
-                            <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                            <mat-icon matSuffix class="secondary-text">local_gas_station</mat-icon>
                             <mat-error>Station Name is required!</mat-error>
                         </mat-form-field>
 
                         <mat-form-field appearance="outline" class="pr-4">
                             <mat-label>Station Location</mat-label>
                             <textarea matInput formControlName="stationLocation" #StationLocation required></textarea>
-                            <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                            <mat-icon matSuffix class="secondary-text">local_gas_station</mat-icon>
                             <mat-error>Station Location is required!</mat-error>
                         </mat-form-field>
 
@@ -41,7 +41,7 @@
                                     {{agent.agentName}}
                                 </mat-option>
                             </mat-select>
-                            <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                            <mat-icon matSuffix class="secondary-text">local_gas_station</mat-icon>
                             <mat-error>Agent is required!</mat-error>
                         </mat-form-field>
                         
@@ -52,7 +52,7 @@
                                     {{sector.sectorName}}
                                 </mat-option>
                             </mat-select>
-                            <mat-icon matSuffix class="secondary-text">people</mat-icon>
+                            <mat-icon matSuffix class="secondary-text">local_gas_station</mat-icon>
                             <mat-error>Sector is required!</mat-error>
                         </mat-form-field>
                     </div>

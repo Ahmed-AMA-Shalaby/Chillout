@@ -3,50 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="12aafbd7-eb7c-44a2-9b44-eb17e511f17d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutQueryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/src/main/java/com/wataneya/chillout/ejb/ChilloutQueryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-ejb/target/chillout-ejb.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/chillout-ejb.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-ejb/target/classes/com/wataneya/chillout/ejb/ChilloutQueryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/classes/com/wataneya/chillout/ejb/ChilloutQueryService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-ejb/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-ejb/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/java/com/wataneya/chillout/entity/Warehouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-entities/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/src/main/resources/META-INF/persistence.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/target/chillout-entities.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/chillout-entities.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chillout-entities/target/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/classes/META-INF/persistence.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-entities/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-entities/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-rest/src/main/java/com/wataneya/chillout/rest/ChilloutClientREST.java" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/src/main/java/com/wataneya/chillout/rest/ChilloutClientREST.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-rest/target/chillout-rest.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/target/chillout-rest.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chillout-rest/target/classes/com/wataneya/chillout/rest/ChilloutClientREST.class" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/target/classes/com/wataneya/chillout/rest/ChilloutClientREST.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-rest/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-rest/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-war/target/Chillout_backend.war" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-war/target/Chillout_backend.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-war/target/Chillout_backend/WEB-INF/lib/chillout-ejb-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-war/target/Chillout_backend/WEB-INF/lib/chillout-ejb-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-war/target/Chillout_backend/WEB-INF/lib/chillout-entities-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-war/target/Chillout_backend/WEB-INF/lib/chillout-entities-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-war/target/Chillout_backend/WEB-INF/lib/chillout-rest-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-war/target/Chillout_backend/WEB-INF/lib/chillout-rest-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chillout-war/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chillout-war/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.theme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.theme.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/components/generic-table/generic-table.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/components/generic-table/generic-table.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/components/navbar/vertical/style-1/style-1.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/components/navbar/vertical/style-1/style-1.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/components/navbar/vertical/style-1/style-1.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/components/navbar/vertical/style-1/style-1.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/acknowledgements/existings/existings.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/acknowledgements/existings/existings.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/acknowledgements/existings/existings.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/acknowledgements/existings/existings.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/acknowledgements/sales/sales.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/acknowledgements/sales/sales.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/quotas/quotas-create/quotas-create.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/quotas/quotas-create/quotas-create.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/quotas/quotas-create/quotas-create.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/quotas/quotas-create/quotas-create.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/quotas/quotas-search/quotas-search.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/quotas/quotas-search/quotas-search.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/quotas/quotas-search/quotas-search.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/quotas/quotas-search/quotas-search.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/quotas/quotas-search/quotas-search.theme.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/trips/trips-create/trips-create.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/trips/trips-create/trips-create.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/trips/trips-create/trips-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/trips/trips-create/trips-create.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/trips/trips-search/trips-search.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/trips/trips-search/trips-search.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/trips/trips-search/trips-search.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/trips/trips-search/trips-search.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/trips/trips-search/trips-search.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/trips/trips-search/trips-search.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/components/trips/trips-search/trips-search.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/components/trips/trips-search/trips-search.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/services/generic.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/main/services/generic.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/navigation/navigation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/navigation/navigation.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/environments/environment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/styles.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

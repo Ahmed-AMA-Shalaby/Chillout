@@ -255,6 +255,12 @@ export const administratorNavigation: FuseNavigation[] = [
                 url: '/reports/imports'
             },
             {
+                id: 'needs-report',
+                title: 'Needs',
+                type: 'item',
+                url: '/reports/needs'
+            },
+            {
                 id: 'sales-report',
                 title: 'Sales',
                 type: 'item',
@@ -481,6 +487,12 @@ export const operatorNavigation: FuseNavigation[] = [
                 title: 'Imports',
                 type: 'item',
                 url: '/reports/imports'
+            },
+            {
+                id: 'needs-report',
+                title: 'Needs',
+                type: 'item',
+                url: '/reports/needs'
             },
             {
                 id: 'sales-report',

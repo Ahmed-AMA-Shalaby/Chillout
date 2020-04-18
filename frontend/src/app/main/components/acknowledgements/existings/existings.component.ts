@@ -199,16 +199,21 @@ export class ExistingsComponent implements OnInit {
                 modifiedColumn = product;
             }
         })
-
-        for (let existingIndex = 0; existingIndex < this.existings.length; existingIndex++) {
-            if (this.existings[existingIndex].station.stationName === modifiedRow.stationName && this.existings[existingIndex].product.productName === modifiedColumn.productName) {
-                for (let tankIndex = 0; tankIndex < this.existings[existingIndex].station.tanks.length; tankIndex++) {
-                    if (this.existings[existingIndex].station.tanks[tankIndex].product.productName === modifiedColumn.productName && this.existings[existingIndex].existingAmount > this.existings[existingIndex].station.tanks[tankIndex].tankVolume) {
-                        return true;
+        
+        if (modifiedColumn.productName !== "إجمالى المبالغ الإضافيه") {
+            for (let existingIndex = 0; existingIndex < this.existings.length; existingIndex++) {
+                if (this.existings[existingIndex].station.stationName === modifiedRow.stationName && this.existings[existingIndex].product.productName === modifiedColumn.productName) {
+                    for (let tankIndex = 0; tankIndex < this.existings[existingIndex].station.tanks.length; tankIndex++) {
+                        if (this.existings[existingIndex].station.tanks[tankIndex].product.productName === modifiedColumn.productName && this.existings[existingIndex].existingAmount > this.existings[existingIndex].station.tanks[tankIndex].tankVolume) {
+                            return false;
+                        }
                     }
                 }
             }
+            return true;
         }
-        return false;
+        else{
+            return true;
+        }
     }
 }

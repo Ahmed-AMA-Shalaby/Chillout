@@ -202,6 +202,11 @@ const appRoutes: Routes = [
         canActivate: [AuthGuardService]
     },
     {
+        path: 'reports/needs',
+        loadChildren: './main/components/reports/needs-report/needs-report.module#NeedsReportModule',
+        canActivate: [AuthGuardService]
+    },
+    {
         path: 'reports/sales',
         loadChildren: './main/components/reports/sales-report/sales-report.module#SalesReportModule',
         canActivate: [AuthGuardService]

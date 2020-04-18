@@ -14,7 +14,7 @@
             <!-- APP TITLE -->
             <div class="logo mb-24 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
                 <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    people
+                    done_all
                 </mat-icon>
                 <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Existings</span>
             </div>
@@ -60,7 +60,7 @@
                         <p *ngIf="originalColumns[i] == 'station'">
                             {{station["stationName"]}}</p>
                         <p *ngIf="!editFlag && originalColumns[i] != 'station'"
-                            [ngClass]="{'fuse-white': !checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column), 'red': checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column)}">
+                            [ngClass]="{'fuse-white': checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column), 'red': !checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column)}">
                             {{adjustExistingsDisplay(j,i)}}</p>
                         <p *ngIf="originalColumns[i] != 'station' && !checkProductInStation(j,i)">N/A</p>
                         <div *ngIf="editFlag && originalColumns[i] != 'station' && checkProductInStation(j,i)">
@@ -69,7 +69,7 @@
                                 <input matInput
                                     (input)="modifyData(stations[j + (paginator.pageIndex * paginator.pageSize)], column, $event.target.value)"
                                     placeholder="{{column}}" [value]="adjustExistingsDisplay(j,i)"
-                                    [ngClass]="{'fuse-white': !checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column), 'red': checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column)}">
+                                    [ngClass]="{'fuse-white': checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column), 'red': !checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column)}">
                             </mat-form-field>
                         </div>
                     </mat-cell>

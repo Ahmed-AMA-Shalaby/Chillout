@@ -26,9 +26,13 @@
       <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform"/>
       <property name="hibernate.ogm.datastore.database" value="chilloutdb"/>
       <property name="hibernate.ogm.datastore.create_database" value="true"/>
+      <property name="hibernate.ogm.datastore.username" value="Chillout"/>
+      <property name="hibernate.ogm.datastore.password" value="01234567890"/>
       <property name="hibernate.ogm.datastore.host" value="localhost"/>
       <property name="hibernate.ogm.datastore.port" value="27017"/>
       <property name="hibernate.ogm.datastore.provider" value="MONGODB"/>
+      <property name="hibernate.ogm.mongodb.authentication_database" value="chilloutdb"/>
+      <property name="hibernate.ogm.mongodb.authentication_mechanism" value="SCRAM_SHA_1"/>
 
       <property name="hibernate.event.merge.entity_copy_observer" value="allow"/>
       <property name="hibernate.enable_lazy_load_no_trans" value="true"/>

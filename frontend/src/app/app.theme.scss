@@ -94,12 +94,13 @@ $typography: mat-typography-config(
 @import "src/app/main/components/warehouses/warehouses-search/warehouses-search.theme";
 @import "src/app/main/components/acknowledgements/sales/sales.theme";
 @import "src/app/main/components/acknowledgements/existings/existings.theme";
-@import "src/app/main/components/reports/sales-report/sales-report.theme";
+@import "src/app/main/components/reports/distances-report/distances-report.theme";
 @import "src/app/main/components/reports/imports-report/imports-report.theme";
+@import "src/app/main/components/reports/needs-report/needs-report.theme";
+@import "src/app/main/components/reports/sales-report/sales-report.theme";
 @import "src/app/main/components/reports/withdrawals/companies-report/companies-report.theme";
 @import "src/app/main/components/reports/withdrawals/remainings-report/remainings-report.theme";
 @import "src/app/main/components/reports/withdrawals/warehouses-report/warehouses-report.theme";
-@import "src/app/main/components/reports/distances-report/distances-report.theme";
 // Define a mixin for easier access
 @mixin components-theme($theme) {
 
@@ -151,11 +152,17 @@ $typography: mat-typography-config(
     //Existing Page
     @include existings-theme($theme);
 
-    //Sales-Report
-    @include sales-report-theme($theme);
+    //Distances-Report
+    @include distances-report-theme($theme);
 
     //Imports-Report
     @include imports-report-theme($theme);
+
+    //Needs-Report
+    @include needs-report-theme($theme);
+
+    //Sales-Report
+    @include sales-report-theme($theme);
 
     //Companies-Report
     @include companies-report-theme($theme);
@@ -165,9 +172,6 @@ $typography: mat-typography-config(
 
     //Withdrawals-Report
     @include warehouses-report-theme($theme);
-
-    //Distances-Report
-    @include distances-report-theme($theme);
 }
 
 // -----------------------------------------------------------------------------------------------------
