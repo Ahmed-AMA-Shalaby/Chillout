@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { GenericService } from 'app/main/services/generic.service';
 import { environment } from 'environments/environment';
@@ -69,6 +69,7 @@ export class CompaniesReportComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private genericService: GenericService,
         private snackbar: MatSnackBar,
+        private cdr: ChangeDetectorRef,
         private paginatorLabel: MatPaginatorIntl,
     ) { }
 
@@ -81,6 +82,7 @@ export class CompaniesReportComponent implements OnInit {
             enddate: [null, Validators.required]
         });
         this.enddateForm.get('enddate').disable();
+        this.companies = [];
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(warehouses => {
             this.warehouses = warehouses;
@@ -99,6 +101,7 @@ export class CompaniesReportComponent implements OnInit {
 
             this.retrieveCurrentTrips();
             this.dataSource = new MatTableDataSource(this.companies);
+            this.cdr.detectChanges();
             this.dataSource.paginator = this.paginator;
             this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
             this.paginatorLabel.nextPageLabel = "الصفحة التاليه"

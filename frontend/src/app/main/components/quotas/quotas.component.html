@@ -42,7 +42,7 @@
                 <!-- EDIT BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
                     [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل"
-                    *ngIf="administratorFlag">
+                    *ngIf="administratorFlag" [disabled]="dataSource.filteredData.length === 0">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <!-- / EDIT BUTTON -->
@@ -58,7 +58,7 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+        <div class="content-card" *ngIf="quotas.length != 0" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
 
             <mat-table matTableExporter #exporter="matTableExporter" [dataSource]="dataSource"
                 [@animateStagger]="{value:'50'}">

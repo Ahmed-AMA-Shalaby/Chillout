@@ -21,18 +21,21 @@ public class Vehicle {
 
     private String trailerPlate;
 
+    private String vehiclePhoneNumber;
+
     private boolean isHidden;
 
     public Vehicle(){
 
     }
 
-    public Vehicle(String id, String vehicleCode, String vehiclePlate, String vehicleCard, String trailerPlate, boolean isHidden) {
+    public Vehicle(String id, String vehicleCode, String vehiclePlate, String vehicleCard, String trailerPlate, String vehiclePhoneNumber, boolean isHidden) {
         this.id = id;
         this.vehicleCode = vehicleCode;
         this.vehiclePlate = vehiclePlate;
         this.vehicleCard = vehicleCard;
         this.trailerPlate = trailerPlate;
+        this.vehiclePhoneNumber = vehiclePhoneNumber;
         this.isHidden = isHidden;
     }
 
@@ -76,6 +79,14 @@ public class Vehicle {
         this.trailerPlate = trailerPlate;
     }
 
+    public String getVehiclePhoneNumber() {
+        return vehiclePhoneNumber;
+    }
+
+    public void setVehiclePhoneNumber(String vehiclePhoneNumber) {
+        this.vehiclePhoneNumber = vehiclePhoneNumber;
+    }
+
     public boolean isHidden() {
         return isHidden;
     }
@@ -92,6 +103,7 @@ public class Vehicle {
                 ", vehiclePlate='" + vehiclePlate + '\'' +
                 ", vehicleCard='" + vehicleCard + '\'' +
                 ", trailerPlate='" + trailerPlate + '\'' +
+                ", vehiclePhoneNumber='" + vehiclePhoneNumber + '\'' +
                 ", isHidden=" + isHidden +
                 '}';
     }

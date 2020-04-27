@@ -32,7 +32,7 @@
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!-- EDIT BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل" [disabled]="hideFlag"
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل" [disabled]="hideFlag || dataSource.filteredData.length === 0"
                     *ngIf="administratorFlag">
                     <mat-icon>edit</mat-icon>
                 </button>
@@ -40,7 +40,7 @@
                 <!--  HIDE BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleHide()"
                     [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="إظهار / إخفاء"
-                    [disabled]="editFlag" *ngIf="administratorFlag">
+                    [disabled]="editFlag || dataSource.filteredData.length === 0" *ngIf="administratorFlag">
                     <mat-icon>visibility</mat-icon>
                 </button>
                 <!-- / HIDE BUTTON -->

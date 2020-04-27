@@ -33,13 +33,13 @@
                 <!-- EDIT BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
                     [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل"
-                    [disabled]="hideFlag" *ngIf="administratorFlag">
+                    [disabled]="hideFlag || sectors.length == 0" *ngIf="administratorFlag">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <!-- / EDIT BUTTON -->
                 <!--  HIDE BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleHide()"
-                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="إظهار / إخفاء" [disabled]="editFlag" *ngIf="administratorFlag">
+                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="إظهار / إخفاء" [disabled]="editFlag || sectors.length == 0" *ngIf="administratorFlag">
                     <mat-icon>visibility</mat-icon>
                 </button>
                 <!-- / HIDE BUTTON -->

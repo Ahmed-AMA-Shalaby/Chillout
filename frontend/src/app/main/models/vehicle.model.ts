@@ -4,5 +4,6 @@ export interface Vehicle {
     vehiclePlate: string;
     vehicleCard: number;
     trailerPlate: string;
+    vehiclePhoneNumber: string;
     hidden?: boolean;
 }

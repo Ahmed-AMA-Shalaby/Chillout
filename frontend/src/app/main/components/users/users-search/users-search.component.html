@@ -33,7 +33,7 @@
                 <!--  DELETE BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleDelete()"
                     [ngClass]="{'fuse-white': !deleteFlag, 'red': deleteFlag}" matTooltip="حذف"
-                    *ngIf="administratorFlag">
+                    *ngIf="administratorFlag" [disabled]="dataSource.filteredData.length === 0">
                     <mat-icon>delete</mat-icon>
                 </button>
                 <!-- / DELETE BUTTON -->

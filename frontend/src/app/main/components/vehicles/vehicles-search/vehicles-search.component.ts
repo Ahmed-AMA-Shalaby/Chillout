@@ -14,6 +14,7 @@ interface CustomVehicle {
     vehicleCard: number;
     trailerPlateNumbers: string;
     trailerPlateLetters: string;
+    vehiclePhoneNumber: string;
     hidden?: boolean;
 }
 
@@ -54,8 +55,8 @@ export class VehiclesSearchComponent implements OnInit {
         this.genericService.retrieveShownEntities(environment.entities.Vehicle).subscribe(data => {
             this.vehicles = data as [];
             this.displayIsolatedCharacter();
-            this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate'];
-            this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره'];
+            this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate', 'vehiclePhoneNumber'];
+            this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره', 'رقم هاتف المركبه'];
             this.dataSource = new MatTableDataSource(this.vehicles);
             this.cdr.detectChanges();
             this.dataSource.filterPredicate = (data: Vehicle, filter: string) => {
@@ -114,17 +115,18 @@ export class VehiclesSearchComponent implements OnInit {
                         vehicleCard: (vehicle as Vehicle).vehicleCard,
                         trailerPlateNumbers: (vehicle as Vehicle).trailerPlate.split('-')[0],
                         trailerPlateLetters: (vehicle as Vehicle).trailerPlate.split('-')[1],
+                        vehiclePhoneNumber: (vehicle as Vehicle).vehiclePhoneNumber,
                         hidden: (vehicle as Vehicle).hidden
                     }
                     this.vehicles.push(customVehicle as never)
                 })
-                this.originalColumns = ['vehicleCode', 'vehiclePlateNumbers', 'vehiclePlateLetters', 'vehicleCard', 'trailerPlateNumbers', 'trailerPlateLetters'];
-                this.displayedColumns = ['كود المركبه', 'أرقام لوحة المركبه', 'حروف لوحة المركبه', 'كارت المركبه', 'أرقام لوحة المقطوره', 'حروف لوحة المقطوره'];
+                this.originalColumns = ['vehicleCode', 'vehiclePlateNumbers', 'vehiclePlateLetters', 'vehicleCard', 'trailerPlateNumbers', 'trailerPlateLetters', 'vehiclePhoneNumber'];
+                this.displayedColumns = ['كود المركبه', 'أرقام لوحة المركبه', 'حروف لوحة المركبه', 'كارت المركبه', 'أرقام لوحة المقطوره', 'حروف لوحة المقطوره', 'رقم هاتف المركبه'];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
-            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
-            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
-            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
+                this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+                this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+                this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
         else {
@@ -133,13 +135,13 @@ export class VehiclesSearchComponent implements OnInit {
                     this.vehicles.push(vehicle as never)
                     this.displayIsolatedCharacter();
                 })
-                this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate'];
-                this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره'];
-                this.cdr.detectChanges();
+                this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate', 'vehiclePhoneNumber'];
+            this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره', 'رقم هاتف المركبه'];
+            this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
-            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
-            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
-            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
+                this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+                this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+                this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
     }
@@ -153,7 +155,8 @@ export class VehiclesSearchComponent implements OnInit {
                     vehicleCode: this.dataSource.filteredData[filteredRow]["vehicleCode"].replace(/\s/g, ''),
                     vehiclePlate: this.dataSource.filteredData[filteredRow]["vehiclePlateNumbers"].replace(/\s/g, '') + '-' + this.dataSource.filteredData[filteredRow]["vehiclePlateLetters"].replace(/\s/g, ''),
                     vehicleCard: this.dataSource.filteredData[filteredRow]["vehicleCard"].replace(/\s/g, ''),
-                    trailerPlate: this.dataSource.filteredData[filteredRow]["trailerPlateNumbers"].replace(/\s/g, '') + '-' + this.dataSource.filteredData[filteredRow]["trailerPlateLetters"].replace(/\s/g, '')
+                    trailerPlate: this.dataSource.filteredData[filteredRow]["trailerPlateNumbers"].replace(/\s/g, '') + '-' + this.dataSource.filteredData[filteredRow]["trailerPlateLetters"].replace(/\s/g, ''),
+                    vehiclePhoneNumber: this.dataSource.filteredData[filteredRow]["vehiclePhoneNumber"].replace(/\s/g, ''),
                 }
                 this.genericService.updateEntity(environment.entities.Vehicle, vehicle).subscribe(
                     data => {
@@ -176,13 +179,13 @@ export class VehiclesSearchComponent implements OnInit {
                     this.vehicles.push(vehicle as never)
                     this.displayIsolatedCharacter();
                 })
-                this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate', 'hidden'];
-                this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره', ' '];
+                this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate', 'vehiclePhoneNumber', 'hidden'];
+                this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره', 'رقم هاتف المركبه', ' '];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
-            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
-            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
-            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
+                this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+                this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+                this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
         else {
@@ -191,13 +194,13 @@ export class VehiclesSearchComponent implements OnInit {
                     this.vehicles.push(vehicle as never)
                     this.displayIsolatedCharacter();
                 })
-                this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate'];
-                this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره'];
+                this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate', 'vehiclePhoneNumber'];
+                this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره', 'رقم هاتف المركبه'];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
-            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
-            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
-            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
+                this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+                this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+                this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
     }
@@ -212,6 +215,7 @@ export class VehiclesSearchComponent implements OnInit {
                     vehiclePlate: this.dataSource.filteredData[filteredRow]["vehiclePlate"],
                     vehicleCard: this.dataSource.filteredData[filteredRow]["vehicleCard"],
                     trailerPlate: this.dataSource.filteredData[filteredRow]["trailerPlate"],
+                    vehiclePhoneNumber: this.dataSource.filteredData[filteredRow]["vehiclePhoneNumber"],
                     hidden: !this.dataSource.filteredData[filteredRow]["hidden"]
                 }
                 this.vehicles[index]["hidden"] = !this.vehicles[index]["hidden"] as never

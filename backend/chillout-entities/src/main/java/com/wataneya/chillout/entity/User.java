@@ -1,11 +1,12 @@
 package com.wataneya.chillout.entity;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
-@Table(name = "Users")
+@Table(name = "Users", uniqueConstraints = {@UniqueConstraint(columnNames = {"phoneNumber"})})
 public class User {
 
     @Id
@@ -18,14 +19,13 @@ public class User {
 
     private String lastName;
 
-    @Column(unique = true)
     private String phoneNumber;
 
     private String password;
 
     private String role;
 
-    public User(){
+    public User() {
 
     }
 

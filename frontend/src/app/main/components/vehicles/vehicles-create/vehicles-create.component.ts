@@ -27,16 +27,17 @@ export class VehiclesCreateComponent implements OnInit {
             vehicleCard: [null, Validators.required],
             trailerPlateNumbers: [null, Validators.required],
             trailerPlateLetters: [null, Validators.required],
-
+            vehiclePhoneNumber:  [null, Validators.required]
         });
     }
 
     createVehicle() {
         const vehicle = <Vehicle>{
-            vehicleCode: this.vehicleForm.value.vehicleCode.replace(/\s/g, ''),
-            vehiclePlate: this.vehicleForm.value.vehiclePlateNumbers.replace(/\s/g, '') + "-" + this.vehicleForm.value.vehiclePlateLetters.replace(/\s/g, '') as any,
-            vehicleCard: this.vehicleForm.value.vehicleCard.replace(/\s/g, ''),
-            trailerPlate: this.vehicleForm.value.trailerPlateNumbers.replace(/\s/g, '') + "-" + this.vehicleForm.value.trailerPlateLetters.replace(/\s/g, '') as any
+            vehicleCode: this.vehicleForm.value.vehicleCode,
+            vehiclePlate: this.vehicleForm.value.vehiclePlateNumbers + "-" + this.vehicleForm.value.vehiclePlateLetters.replace(/\s/g, '') as any,
+            vehicleCard: this.vehicleForm.value.vehicleCard,
+            trailerPlate: this.vehicleForm.value.trailerPlateNumbers + "-" + this.vehicleForm.value.trailerPlateLetters.replace(/\s/g, '') as any,
+            vehiclePhoneNumber: this.vehicleForm.value.vehiclePhoneNumber.replace(/\s/g, '')
         }
         this.genericService.updateEntity(environment.entities.Vehicle, vehicle).subscribe(
             data => {

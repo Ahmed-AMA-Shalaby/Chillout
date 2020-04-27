@@ -68,7 +68,7 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+        <div class="content-card" *ngIf="stations.length != 0" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
 
             <mat-table matTableExporter #exporter="matTableExporter" [dataSource]="dataSource"
                 [@animateStagger]="{value:'50'}">

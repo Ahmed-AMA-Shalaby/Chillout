@@ -82,6 +82,7 @@ export class SalesReportComponent implements OnInit {
             enddate: [null, Validators.required]
         });
         this.enddateForm.get('enddate').disable();
+        this.stations = [];
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
             this.stations = stations;

@@ -96,7 +96,7 @@ export class AboutComponent implements OnInit {
         dialogConfig.disableClose = true;
         dialogConfig.data = {
             title: "Warning!",
-            content: "Are you sure that you want to remove the product " + product + " and its associated " + this.adjustThousands(tankVolume) + " litres ?"
+            content: "هل أنت متأكد من أنك تريد إزالة المنتج " + product + " و خزانه ال " + this.adjustThousands(tankVolume) + " لترات ?"
         };
 
         const dialogRef = this.dialog.open(GenericDialogComponent, dialogConfig);

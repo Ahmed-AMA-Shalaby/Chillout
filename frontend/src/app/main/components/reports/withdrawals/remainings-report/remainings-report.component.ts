@@ -84,6 +84,7 @@ export class RemainingsReportComponent implements OnInit {
             enddate: [null, Validators.required]
         });
         this.enddateForm.get('enddate').disable();
+        this.warehouses = [];
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(warehouses => {
             this.warehouses = warehouses;

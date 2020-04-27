@@ -33,7 +33,7 @@
                 <!--  HIDE BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleHide()"
                     [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="إظهار / إخفاء"
-                    *ngIf="administratorFlag">
+                    *ngIf="administratorFlag" [disabled]="stations.length == 0">
                     <mat-icon>visibility</mat-icon>
                 </button>
                 <!-- / HIDE BUTTON -->

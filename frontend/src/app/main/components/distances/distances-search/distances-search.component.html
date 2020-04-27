@@ -33,7 +33,7 @@
                 <!-- EDIT BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
                     [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل"
-                    *ngIf="administratorFlag">
+                    *ngIf="administratorFlag" [disabled]="dataSource.filteredData.length === 0">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <!-- / EDIT BUTTON -->

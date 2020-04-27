@@ -72,6 +72,7 @@ export class NeedsReportComponent implements OnInit {
             date: [null, Validators.required]
         });
         this.dateForm.get('date').disable();
+        this.stations = [];
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
             this.stations = stations;

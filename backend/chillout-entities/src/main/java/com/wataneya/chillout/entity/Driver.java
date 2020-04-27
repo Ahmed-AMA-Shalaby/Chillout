@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
-@Table(name = "Drivers")
+@Table(name = "Drivers", uniqueConstraints = {@UniqueConstraint(columnNames = {"phoneNumber"})})
 public class Driver {
 
     @Id
@@ -19,7 +19,6 @@ public class Driver {
 
     private String lastName;
 
-    @Column(unique = true)
     private String phoneNumber;
 
     private boolean isHidden;

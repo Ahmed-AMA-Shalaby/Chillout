@@ -15,7 +15,6 @@ import { AppStorageService } from 'app/main/services/app-storage.service';
 })
 export class UsersSearchComponent implements OnInit {
     users: User[] = [];
-    filterValue: string;
     deleteFlag: boolean = false;
 
     dataSource: MatTableDataSource<{}>;
@@ -38,13 +37,13 @@ export class UsersSearchComponent implements OnInit {
         this.users = [];
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveAllEntities(environment.entities.User).subscribe(data => {
-            this.users = data;
+            this.users = data as [];
             this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber', 'role'];
             this.displayedColumns = ['الإسم الأول', 'الإسم الأوسط', 'الإسم الأخير', 'رقم الهاتف', 'الدور'];
             this.dataSource = new MatTableDataSource(this.users);
             this.cdr.detectChanges();
             this.dataSource.filterPredicate = (data: User, filter: string) => {
-                return data.firstName.startsWith(filter) || data.middleName.startsWith(filter) || data.lastName.startsWith(filter) || data.phoneNumber.startsWith(filter);
+                return data.firstName.startsWith(filter) || data.middleName.startsWith(filter) || data.lastName.startsWith(filter) || data.phoneNumber.startsWith(filter)
             };
             this.dataSource.paginator = this.paginator;
             this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
@@ -55,7 +54,7 @@ export class UsersSearchComponent implements OnInit {
     }
 
     applyFilter(filterValue) {
-        this.filterValue = filterValue;
+        this.dataSource.filter = filterValue;
     }
 
     toggleDelete() {

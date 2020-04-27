@@ -100,7 +100,6 @@ export class DistancesReportComponent implements OnInit {
             this.originalColumns = ['day', 'distances', 'trips'];
             this.displayedColumns = ['اليوم', 'إجمالى المسافه', 'عدد الرحلات'];
             this.days = new Array<number>(this.date.value.daysInMonth())
-            console.log(this.days);
 
             for (let index = 0; index < this.days.length; index++) {
                 this.days[index] = index + 1;

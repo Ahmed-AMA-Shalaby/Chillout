@@ -6,14 +6,13 @@ import javax.persistence.*;
 
 @Entity
 @GenericGenerator(name = "uuid", strategy = "uuid2")
-@Table(name = "Agents")
+@Table(name = "Agents", uniqueConstraints = {@UniqueConstraint(columnNames = {"agentName"})})
 public class Agent {
 
     @Id
     @GeneratedValue(generator = "uuid")
     private String id;
 
-    @Column(unique = true)
     private String agentName;
 
     private boolean isHidden;
