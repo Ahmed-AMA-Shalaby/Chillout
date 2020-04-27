@@ -140,6 +140,6 @@ export class AboutComponent implements OnInit {
     }
 
     adjustThousands(number: number) {
-        return number > 999 ? number / 1000 + 'k' : number;
+        return number > 999 ? number / 1000 + 'ألف' : number;
     }
 }

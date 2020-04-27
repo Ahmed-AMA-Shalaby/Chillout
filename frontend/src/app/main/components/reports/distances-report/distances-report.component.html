@@ -1,4 +1,4 @@
-<div id="distances-report" class="page-layout carded fullwidth">
+<div id="distances-report" class="page-layout carded fullwidth" dir="rtl">
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg accent"></div>
@@ -16,7 +16,7 @@
                 <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
                     import_contacts
                 </mat-icon>
-                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Distances</span>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">المسافات</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -41,7 +41,7 @@
 
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!--  EXPORT BUTTON -->
-                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="Export"
+                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="تصدير"
                     [disabled]="dataSource.filteredData.length === 0">
                     <mat-icon>archive</mat-icon>
                 </button>

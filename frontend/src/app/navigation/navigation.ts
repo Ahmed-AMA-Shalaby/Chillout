@@ -4,26 +4,26 @@ import { FuseNavigation } from '@fuse/types';
 export const administratorNavigation: FuseNavigation[] = [
     {
         id: 'home',
-        title: 'Home',
+        title: 'الرئيسية',
         icon: 'home',
         type: 'item',
         url: '/home'
     },
     {
         id: 'agents',
-        title: 'Agents',
+        title: 'الوكلاء',
         icon: 'business',
         type: 'collapsable',
         children: [
             {
                 id: 'Create',
-                title: 'Create',
+                title: 'إنشاء',
                 type: 'item',
                 url: '/agents/create'
             },
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/agents/search'
             }
@@ -31,19 +31,19 @@ export const administratorNavigation: FuseNavigation[] = [
     },
     {
         id: 'distances',
-        title: 'Distances',
+        title: 'المسافات',
         icon: 'map',
         type: 'collapsable',
         children: [
             {
                 id: 'Create',
-                title: 'Create',
+                title: 'إنشاء',
                 type: 'item',
                 url: '/distances/create'
             },
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/distances/search'
             }
@@ -51,19 +51,19 @@ export const administratorNavigation: FuseNavigation[] = [
     },
     {
         id: 'drivers',
-        title: 'Drivers',
+        title: 'السائقين',
         icon: 'people',
         type: 'collapsable',
         children: [
             {
                 id: 'Create',
-                title: 'Create',
+                title: 'إنشاء',
                 type: 'item',
                 url: '/drivers/create'
             },
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/drivers/search'
             }
@@ -71,19 +71,19 @@ export const administratorNavigation: FuseNavigation[] = [
     },
     {
         id: 'products',
-        title: 'Products',
+        title: 'المنتجات',
         icon: 'category',
         type: 'collapsable',
         children: [
             {
                 id: 'Create',
-                title: 'Create',
+                title: 'إنشاء',
                 type: 'item',
                 url: '/products/create'
             },
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/products/search'
             }
@@ -91,26 +91,26 @@ export const administratorNavigation: FuseNavigation[] = [
     },
     {
         id: 'quotas',
-        title: 'Quotas',
+        title: 'الكوتات',
         icon: 'cloud',
         type: 'item',
         url: '/quotas'
     },
     {
         id: 'sectors',
-        title: 'Sectors',
+        title: 'القطاعات',
         icon: 'pie_chart',
         type: 'collapsable',
         children: [
             {
                 id: 'Create',
-                title: 'Create',
+                title: 'إنشاء',
                 type: 'item',
                 url: '/sectors/create'
             },
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/sectors/search'
             }
@@ -118,19 +118,19 @@ export const administratorNavigation: FuseNavigation[] = [
     },
     {
         id: 'stations',
-        title: 'Stations',
+        title: 'المحطات',
         icon: 'local_gas_station',
         type: 'collapsable',
         children: [
             {
                 id: 'Create',
-                title: 'Create',
+                title: 'إنشاء',
                 type: 'item',
                 url: '/stations/create'
             },
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/stations/search'
             }
@@ -138,19 +138,19 @@ export const administratorNavigation: FuseNavigation[] = [
     },
     {
         id: 'trips',
-        title: 'Trips',
+        title: 'الرحلات',
         icon: 'departure_board',
         type: 'collapsable',
         children: [
             {
                 id: 'Create',
-                title: 'Create',
+                title: 'إنشاء',
                 type: 'item',
                 url: '/trips/create'
             },
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/trips/search'
             }
@@ -158,19 +158,19 @@ export const administratorNavigation: FuseNavigation[] = [
     },
     {
         id: 'users',
-        title: 'Users',
+        title: 'المستخدمين',
         icon: 'person_pin',
         type: 'collapsable',
         children: [
             {
                 id: 'Create',
-                title: 'Create',
+                title: 'إنشاء',
                 type: 'item',
                 url: '/users/create'
             },
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/users/search'
             }
@@ -178,19 +178,19 @@ export const administratorNavigation: FuseNavigation[] = [
     },
     {
         id: 'vehicles',
-        title: 'Vehicles',
+        title: 'المركبات',
         icon: 'local_shipping',
         type: 'collapsable',
         children: [
             {
                 id: 'Create',
-                title: 'Create',
+                title: 'إنشاء',
                 type: 'item',
                 url: '/vehicles/create'
             },
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/vehicles/search'
             }
@@ -198,19 +198,19 @@ export const administratorNavigation: FuseNavigation[] = [
     },
     {
         id: 'warehouses',
-        title: 'Warehouses',
+        title: 'المستودعات',
         icon: 'account_balance',
         type: 'collapsable',
         children: [
             {
                 id: 'Create',
-                title: 'Create',
+                title: 'إنشاء',
                 type: 'item',
                 url: '/warehouses/create'
             },
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/warehouses/search'
             }
@@ -218,19 +218,19 @@ export const administratorNavigation: FuseNavigation[] = [
     },
     {
         id: 'acknowledgement',
-        title: 'Acknowledgements',
+        title: 'التمامات',
         icon: 'done_all',
         type: 'collapsable',
         children: [
             {
                 id: 'sales',
-                title: 'Sales',
+                title: 'المبيعات',
                 type: 'item',
                 url: '/acknowledgements/sales'
             },
             {
                 id: 'existings',
-                title: 'Existings',
+                title: 'الموجودات',
                 type: 'item',
                 url: '/acknowledgements/existings'
             }
@@ -238,54 +238,54 @@ export const administratorNavigation: FuseNavigation[] = [
     },
     {
         id: 'reports',
-        title: 'Reports',
+        title: 'التقارير',
         icon: 'import_contacts',
         type: 'collapsable',
         children: [
             {
                 id: 'distances-report',
-                title: 'Distances Covered',
+                title: 'المسافات المقطوعة',
                 type: 'item',
                 url: '/reports/distances'
             },
             {
                 id: 'imports-report',
-                title: 'Imports',
+                title: 'الواردات',
                 type: 'item',
                 url: '/reports/imports'
             },
             {
                 id: 'needs-report',
-                title: 'Needs',
+                title: 'الإحتياجات',
                 type: 'item',
                 url: '/reports/needs'
             },
             {
                 id: 'sales-report',
-                title: 'Sales',
+                title: 'المبيعات',
                 type: 'item',
                 url: '/reports/sales'
             },
             {
                 id: 'withdrawals-reports',
-                title: 'Withdrawals',
+                title: 'المسحوبات',
                 type: 'collapsable',
                 children: [
                     {
                         id: 'companies-report',
-                        title: 'Companies',
+                        title: 'الشركات',
                         type: 'item',
                         url: '/reports/withdrawals/companies'
                     },
                     {
                         id: 'remainings-report',
-                        title: 'Remainings',
+                        title: 'المتبقيات',
                         type: 'item',
                         url: '/reports/withdrawals/remainings'
                     },
                     {
                         id: 'warehouses-report',
-                        title: 'Warehouses',
+                        title: 'المستودعات',
                         type: 'item',
                         url: '/reports/withdrawals/warehouses'
                     }
@@ -298,20 +298,20 @@ export const administratorNavigation: FuseNavigation[] = [
 export const operatorNavigation: FuseNavigation[] = [
     {
         id: 'home',
-        title: 'Home',
+        title: 'الرئيسية',
         icon: 'home',
         type: 'item',
         url: '/home'
     },
     {
         id: 'agents',
-        title: 'Agents',
+        title: 'الوكلاء',
         icon: 'business',
         type: 'collapsable',
         children: [
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/agents/search'
             }
@@ -319,13 +319,13 @@ export const operatorNavigation: FuseNavigation[] = [
     },
     {
         id: 'distances',
-        title: 'Distances',
+        title: 'المسافات',
         icon: 'map',
         type: 'collapsable',
         children: [
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/distances/search'
             }
@@ -333,13 +333,13 @@ export const operatorNavigation: FuseNavigation[] = [
     },
     {
         id: 'drivers',
-        title: 'Drivers',
+        title: 'السائقين',
         icon: 'people',
         type: 'collapsable',
         children: [
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/drivers/search'
             }
@@ -347,13 +347,13 @@ export const operatorNavigation: FuseNavigation[] = [
     },
     {
         id: 'products',
-        title: 'Products',
+        title: 'المنتجات',
         icon: 'category',
         type: 'collapsable',
         children: [
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/products/search'
             }
@@ -361,20 +361,20 @@ export const operatorNavigation: FuseNavigation[] = [
     },
     {
         id: 'quotas',
-        title: 'Quotas',
+        title: 'الكوتات',
         icon: 'cloud',
         type: 'item',
         url: '/quotas'
     },
     {
         id: 'sectors',
-        title: 'Sectors',
+        title: 'القطاعات',
         icon: 'pie_chart',
         type: 'collapsable',
         children: [
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/sectors/search'
             }
@@ -382,13 +382,13 @@ export const operatorNavigation: FuseNavigation[] = [
     },
     {
         id: 'stations',
-        title: 'Stations',
+        title: 'المحطات',
         icon: 'local_gas_station',
         type: 'collapsable',
         children: [
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/stations/search'
             }
@@ -396,13 +396,13 @@ export const operatorNavigation: FuseNavigation[] = [
     },
     {
         id: 'trips',
-        title: 'Trips',
+        title: 'الرحلات',
         icon: 'departure_board',
         type: 'collapsable',
         children: [
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/trips/search'
             }
@@ -410,13 +410,13 @@ export const operatorNavigation: FuseNavigation[] = [
     },
     {
         id: 'users',
-        title: 'Users',
+        title: 'المستخدمين',
         icon: 'person_pin',
         type: 'collapsable',
         children: [
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/users/search'
             }
@@ -424,13 +424,13 @@ export const operatorNavigation: FuseNavigation[] = [
     },
     {
         id: 'vehicles',
-        title: 'Vehicles',
+        title: 'المركبات',
         icon: 'local_shipping',
         type: 'collapsable',
         children: [
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/vehicles/search'
             }
@@ -438,13 +438,13 @@ export const operatorNavigation: FuseNavigation[] = [
     },
     {
         id: 'warehouses',
-        title: 'Warehouses',
+        title: 'المستودعات',
         icon: 'account_balance',
         type: 'collapsable',
         children: [
             {
                 id: 'Search',
-                title: 'Search',
+                title: 'بحث',
                 type: 'item',
                 url: '/warehouses/search'
             }
@@ -452,19 +452,19 @@ export const operatorNavigation: FuseNavigation[] = [
     },
     {
         id: 'acknowledgement',
-        title: 'Acknowledgements',
+        title: 'التمامات',
         icon: 'done_all',
         type: 'collapsable',
         children: [
             {
                 id: 'sales',
-                title: 'Sales',
+                title: 'المبيعات',
                 type: 'item',
                 url: '/acknowledgements/sales'
             },
             {
                 id: 'existings',
-                title: 'Existings',
+                title: 'الموجودات',
                 type: 'item',
                 url: '/acknowledgements/existings'
             }
@@ -472,54 +472,54 @@ export const operatorNavigation: FuseNavigation[] = [
     },
     {
         id: 'reports',
-        title: 'Reports',
+        title: 'التقارير',
         icon: 'import_contacts',
         type: 'collapsable',
         children: [
             {
                 id: 'distances-report',
-                title: 'Distances Covered',
+                title: 'المسافات المقطوعة',
                 type: 'item',
                 url: '/reports/distances'
             },
             {
                 id: 'imports-report',
-                title: 'Imports',
+                title: 'الواردات',
                 type: 'item',
                 url: '/reports/imports'
             },
             {
                 id: 'needs-report',
-                title: 'Needs',
+                title: 'الإحتياجات',
                 type: 'item',
                 url: '/reports/needs'
             },
             {
                 id: 'sales-report',
-                title: 'Sales',
+                title: 'المبيعات',
                 type: 'item',
                 url: '/reports/sales'
             },
             {
                 id: 'withdrawals-reports',
-                title: 'Withdrawals',
+                title: 'المسحوبات',
                 type: 'collapsable',
                 children: [
                     {
                         id: 'companies-report',
-                        title: 'Companies',
+                        title: 'الشركات',
                         type: 'item',
                         url: '/reports/withdrawals/companies'
                     },
                     {
                         id: 'remainings-report',
-                        title: 'Remainings',
+                        title: 'المتبقيات',
                         type: 'item',
                         url: '/reports/withdrawals/remainings'
                     },
                     {
                         id: 'warehouses-report',
-                        title: 'Warehouses',
+                        title: 'المستودعات',
                         type: 'item',
                         url: '/reports/withdrawals/warehouses'
                     }
@@ -528,304 +528,3 @@ export const operatorNavigation: FuseNavigation[] = [
         ]
     }
 ];
-
-// Arabic
-
-// export const Navigation: FuseNavigation[] = [
-//     {
-//         id: 'home',
-//         title: 'الصفحة الرئيسية',
-//         icon: 'home',
-//         type: 'item',
-//         url: '/home'
-//     },
-//     {
-//         id: 'sectors',
-//         title: 'قطاعات',
-//         icon: 'location_city',
-//         type: 'collapsable',
-//         children: [
-//             {
-//                 id: 'Create',
-//                 title: 'إنشاء',
-//                 type: 'item',
-//                 url: '/sectors/create'
-//             },
-//             {
-//                 id: 'Search',
-//                 title: 'بحث',
-//                 type: 'item',
-//                 url: '/sectors/search'
-//             }
-//         ]
-//     },
-//     {
-//         id: 'stations',
-//         title: 'محطات',
-//         icon: 'local_gas_station',
-//         type: 'collapsable',
-//         children: [
-//             {
-//                 id: 'Create',
-//                 title: 'إنشاء',
-//                 type: 'item',
-//                 url: '/stations/create'
-//             },
-//             {
-//                 id: 'Search',
-//                 title: 'بحث',
-//                 type: 'item',
-//                 url: '/stations/search'
-//             }
-//         ]
-//     },
-//     {
-//         id: 'tanks',
-//         title: 'خزانات',
-//         icon: 'delete_outline',
-//         type: 'collapsable',
-//         children: [
-//             {
-//                 id: 'Create',
-//                 title: 'إنشاء',
-//                 type: 'item',
-//                 url: '/tanks/create'
-//             },
-//             {
-//                 id: 'Search',
-//                 title: 'بحث',
-//                 type: 'item',
-//                 url: '/tanks/search'
-//             }
-//         ]
-//     },
-//     {
-//         id: 'warehouses',
-//         title: 'مستودعات',
-//         icon: 'account_balance',
-//         type: 'collapsable',
-//         children: [
-//             {
-//                 id: 'Create',
-//                 title: 'إنشاء',
-//                 type: 'item',
-//                 url: '/warehouses/create'
-//             },
-//             {
-//                 id: 'Search',
-//                 title: 'بحث',
-//                 type: 'item',
-//                 url: '/warehouses/search'
-//             }
-//         ]
-//     },
-//     {
-//         id: 'products',
-//         title: 'منتجات',
-//         icon: 'category',
-//         type: 'collapsable',
-//         children: [
-//             {
-//                 id: 'Create',
-//                 title: 'إنشاء',
-//                 type: 'item',
-//                 url: '/products/create'
-//             },
-//             {
-//                 id: 'Search',
-//                 title: 'بحث',
-//                 type: 'item',
-//                 url: '/products/search'
-//             }
-//         ]
-//     },
-//     {
-//         id: 'vehicles',
-//         title: 'مركبات',
-//         icon: 'local_shipping',
-//         type: 'collapsable',
-//         children: [
-//             {
-//                 id: 'Create',
-//                 title: 'إنشاء',
-//                 type: 'item',
-//                 url: '/vehicles/create'
-//             },
-//             {
-//                 id: 'Search',
-//                 title: 'بحث',
-//                 type: 'item',
-//                 url: '/vehicles/search'
-//             }
-//         ]
-//     },
-//     {
-//         id: 'drivers',
-//         title: 'سائقين',
-//         icon: 'people',
-//         type: 'collapsable',
-//         children: [
-//             {
-//                 id: 'Create',
-//                 title: 'إنشاء',
-//                 type: 'item',
-//                 url: '/drivers/create'
-//             },
-//             {
-//                 id: 'Search',
-//                 title: 'بحث',
-//                 type: 'item',
-//                 url: '/drivers/search'
-//             }
-//         ]
-//     },
-//     {
-//         id: 'distances',
-//         title: 'مسافات',
-//         icon: 'map',
-//         type: 'collapsable',
-//         children: [
-//             {
-//                 id: 'Create',
-//                 title: 'إنشاء',
-//                 type: 'item',
-//                 url: '/distances/create'
-//             },
-//             {
-//                 id: 'Search',
-//                 title: 'بحث',
-//                 type: 'item',
-//                 url: '/distances/search'
-//             }
-//         ]
-//     },
-//     {
-//         id: 'trips',
-//         title: 'رحلات',
-//         icon: 'departure_board',
-//         type: 'collapsable',
-//         children: [
-//             {
-//                 id: 'Create',
-//                 title: 'إنشاء',
-//                 type: 'item',
-//                 url: '/trips/create'
-//             },
-//             {
-//                 id: 'Search',
-//                 title: 'بحث',
-//                 type: 'item',
-//                 url: '/trips/search'
-//             }
-//         ]
-//     },
-//     {
-//         id: 'users',
-//         title: 'مستخدمين',
-//         icon: 'person_pin',
-//         type: 'collapsable',
-//         children: [
-//             {
-//                 id: 'Create',
-//                 title: 'إنشاء',
-//                 type: 'item',
-//                 url: '/users/create'
-//             },
-//             {
-//                 id: 'Search',
-//                 title: 'بحث',
-//                 type: 'item',
-//                 url: '/users/search'
-//             }
-//         ]
-//     },
-//     {
-//         id: 'reports',
-//         title: 'تقارير',
-//         icon: 'import_contacts',
-//         type: 'collapsable',
-//         children: [
-//             {
-//                 id: 'dailyreports',
-//                 title: 'تقارير يومية',
-//                 type: 'collapsable',
-//                 children: [
-//                     {
-//                         id: 'withdrawals',
-//                         title: 'مسحوبات',
-//                         type: 'item',
-//                         url: '/withdrawals'
-//                     },
-//                     {
-//                         id: 'sales',
-//                         title: 'مبيعات',
-//                         type: 'item',
-//                         url: '/sales'
-//                     },
-//                     {
-//                         id: 'importedproduct',
-//                         title: 'واردات',
-//                         type: 'item',
-//                         url: '/importedproduct'
-//                     },
-//                     {
-//                         id: 'supplyplan',
-//                         title: 'خطة الإمداد',
-//                         type: 'item',
-//                         url: '/supplyplan'
-//                     }
-//                 ]
-//             },
-//             {
-//                 id: 'monthlyreports',
-//                 title: 'تقارير شهرية',
-//                 type: 'collapsable',
-//                 children: [
-//                     {
-//                         id: 'withdrawals',
-//                         title: 'مسحوبات',
-//                         type: 'item',
-//                         url: '/withdrawals'
-//                     },
-//                     {
-//                         id: 'sales',
-//                         title: 'مبيعات',
-//                         type: 'item',
-//                         url: '/sales'
-//                     },
-//                     {
-//                         id: 'importedproduct',
-//                         title: 'واردات',
-//                         type: 'item',
-//                         url: '/importedproduct'
-//                     }
-//                 ]
-//             },
-//             {
-//                 id: 'specialreports',
-//                 title: 'تقارير خاصة',
-//                 type: 'collapsable',
-//                 children: [
-//                     {
-//                         id: 'averageimportedproduct',
-//                         title: 'متوسط الواردات',
-//                         type: 'item',
-//                         url: '/averageimportedproduct'
-//                     },
-//                     {
-//                         id: 'endofmonthstationsneeds',
-//                         title: 'إحتياجات المحطة أخر الشهر',
-//                         type: 'item',
-//                         url: '/endofmonthstationsneeds'
-//                     },
-//                     {
-//                         id: 'warehousesremaining',
-//                         title: 'متبقى الخزانات',
-//                         type: 'item',
-//                         url: '/warehousesremaining'
-//                     }
-//                 ]
-//             }
-//         ]
-//     }
-// ];

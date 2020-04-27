@@ -1,52 +1,52 @@
-<div *ngIf="station" id="about" class="p-24" fxLayout="row wrap">
+<div *ngIf="station" id="about" class="p-24" fxLayout="row wrap" dir="rtl">
 
     <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="65">
 
         <div class="station-box info-box general" fxLayout="column">
 
             <header class="accent" fxLayout="row" fxLayoutAlign="space-between center">
-                <div class="title">General Information</div>
+                <div class="title">معلومات عامة</div>
                 <div></div>
                 <button mat-icon-button class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit" [disabled]="addFlag" *ngIf="administratorFlag">
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل" [disabled]="addFlag" *ngIf="administratorFlag">
                     <mat-icon>edit</mat-icon>
                 </button>
             </header>
 
             <div *ngIf="station" class="content">
                 <div class="info-line">
-                    <div class="title">Code:</div>
+                    <div class="title">الكود:</div>
                     <div *ngIf="!editFlag" class="info">{{station.stationCode}}</div>
                     <mat-form-field floatLabel="never" *ngIf="editFlag">
-                        <mat-label>Code</mat-label>
+                        <mat-label>الكود</mat-label>
                         <input matInput class="info" [value]="station.stationCode" [(ngModel)]="station.stationCode">
                     </mat-form-field>
                 </div>
 
                 <div class="info-line">
-                    <div class="title">Name:</div>
+                    <div class="title">الإسم:</div>
                     <div *ngIf="!editFlag" class="info">{{station.stationName}}</div>
                     <mat-form-field floatLabel="never" *ngIf="editFlag">
-                        <mat-label>Name</mat-label>
+                        <mat-label>الإسم</mat-label>
                         <input matInput class="info" [value]="station.stationName" [(ngModel)]="station.stationName">
                     </mat-form-field>
                 </div>
 
                 <div class="info-line">
-                    <div class="title">Location:</div>
+                    <div class="title">الموقع:</div>
                     <div *ngIf="!editFlag" class="info">{{station.stationLocation}}</div>
                     <mat-form-field floatLabel="never" *ngIf="editFlag">
-                        <mat-label>Location</mat-label>
+                        <mat-label>الموقع</mat-label>
                         <input matInput class="info" [value]="station.stationLocation"
                             [(ngModel)]="station.stationLocation">
                     </mat-form-field>
                 </div>
 
                 <div class="info-line">
-                    <div class="title">Agent:</div>
+                    <div class="title">الوكيل:</div>
                     <div *ngIf="!editFlag" class="info">{{station.agent.agentName}}</div>
                     <mat-form-field floatLabel="never" *ngIf="editFlag">
-                        <mat-label>Agent</mat-label>
+                        <mat-label>الوكيل</mat-label>
                         <mat-select [(ngModel)]="station.agent">
                             <mat-option *ngFor="let agent of agents" [value]="station.agent.id === agent.id ? station.agent : agent">
                                 {{agent.agentName}}
@@ -56,10 +56,10 @@
                 </div>
 
                 <div class="info-line">
-                    <div class="title">Sector:</div>
+                    <div class="title">القطاع:</div>
                     <div *ngIf="!editFlag" class="info">{{station.sector.sectorName}}</div>
                     <mat-form-field floatLabel="never" *ngIf="editFlag">
-                        <mat-label>Sector</mat-label>
+                        <mat-label>القطاع</mat-label>
                         <mat-select [(ngModel)]="station.sector">
                             <mat-option *ngFor="let sector of sectors" [value]="station.sector.id === sector.id ? station.sector : sector">
                                 {{sector.sectorName}}
@@ -80,8 +80,8 @@
         <div class="station-box groups" fxLayout="column">
 
             <header class="accent" fxLayout="row" fxLayoutAlign="space-between center">
-                <div class="title">Products</div>
-                <div class="title">Tanks</div>
+                <div class="title">المنتجات</div>
+                <div class="title">الخزانات</div>
                 <button mat-icon-button class="mx-4" (click)="toggleAdd()"
                     [ngClass]="{'fuse-white': !addFlag, 'green': addFlag}" matTooltip="Add a product"
                     [disabled]="editFlag" *ngIf="administratorFlag">
@@ -106,7 +106,7 @@
                             </mat-select>
                         </mat-form-field>
 
-                        <div *ngIf="!editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="info">{{adjustThousands(tank.tankVolume)}} litres</div>
+                        <div *ngIf="!editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="info">{{adjustThousands(tank.tankVolume)}} لتر</div>
                         <mat-form-field floatLabel="never" *ngIf="editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="mr-16">
                             <input matInput class="info" [(ngModel)]="station.tanks[i].tankVolume"
                                 [value]="tank.tankVolume">
@@ -128,7 +128,7 @@
                     <div class="tank" fxLayout="row" fxLayoutAlign="space-between center">
 
                         <mat-form-field floatLabel="never" class="mr-16">
-                            <mat-label>Product</mat-label>
+                            <mat-label>المنتج</mat-label>
                             <mat-select [(ngModel)]="newProduct">
                                 <mat-option *ngFor="let product of products" [value]="product">
                                     {{product.productName}}
@@ -137,7 +137,7 @@
                         </mat-form-field>
 
                         <mat-form-field floatLabel="never" class="mr-16">
-                            <mat-label>Tank Volume</mat-label>
+                            <mat-label>حجم الخزان</mat-label>
                             <input matInput class="info" [(ngModel)]="newTankVolume" type="number" min="0">
                         </mat-form-field>
 

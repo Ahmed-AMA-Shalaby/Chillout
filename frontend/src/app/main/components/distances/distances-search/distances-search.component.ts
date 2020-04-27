@@ -3,7 +3,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { Distance } from 'app/main/models/distance.model';
 import { GenericService } from 'app/main/services/generic.service';
 import { environment } from 'environments/environment';
-import { MatSnackBar, MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatSnackBar, MatTableDataSource, MatPaginator, MatPaginatorIntl } from '@angular/material';
 import { Warehouse } from 'app/main/models/warehouse.model';
 import { Station } from 'app/main/models/station.model';
 import { AppStorageService } from 'app/main/services/app-storage.service';
@@ -33,7 +33,8 @@ export class DistancesSearchComponent implements OnInit {
         private genericService: GenericService,
         private snackbar: MatSnackBar,
         private storageService: AppStorageService,
-        private cdr: ChangeDetectorRef
+        private cdr: ChangeDetectorRef,
+        private paginatorLabel: MatPaginatorIntl,
     ) { }
 
     ngOnInit() {
@@ -41,13 +42,16 @@ export class DistancesSearchComponent implements OnInit {
         this.genericService.retrieveAllEntities(environment.entities.Distance).subscribe(data => {
             this.distances = data;
             this.originalColumns = ['distance', 'warehouse', 'station'];
-            this.displayedColumns = ['Distance', 'Company - Warehouse', 'Station'];
+            this.displayedColumns = ['المسافه', 'الشركه - المستودع', 'المحطه'];
             this.dataSource = new MatTableDataSource(this.distances);
             this.cdr.detectChanges();
             this.dataSource.filterPredicate = (data: Distance, filter: string) => {
                 return data.warehouse.companyName.startsWith(filter) ||data.warehouse.warehouseName.startsWith(filter) || data.station.stationName.startsWith(filter)
             };
             this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
         this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
@@ -70,9 +74,12 @@ export class DistancesSearchComponent implements OnInit {
                 this.distances.push(distance)
             })
             this.originalColumns = ['distance', 'warehouse', 'station'];
-            this.displayedColumns = ['Distance', 'Company - Warehouse', 'Station'];
+            this.displayedColumns = ['المسافه', 'الشركه - المستودع', 'المحطه'];
             this.cdr.detectChanges();
             this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
     }
 

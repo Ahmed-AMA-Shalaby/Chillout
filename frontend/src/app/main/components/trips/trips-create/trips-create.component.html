@@ -1,4 +1,4 @@
-<div id="trips-create" class="page-layout carded fullwidth">
+<div id="trips-create" class="page-layout carded fullwidth" dir="rtl">
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg accent"></div>
@@ -16,7 +16,7 @@
                 <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
                     departure_board
                 </mat-icon>
-                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Trips</span>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">الرحلات</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -47,12 +47,12 @@
             <mat-horizontal-stepper linear #stepper>
 
 
-                <mat-step [stepControl]="tripForm" label="Trip">
+                <mat-step [stepControl]="tripForm" label="الرحله">
                     <form [formGroup]="tripForm">
                         <div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 0 auto">
 
                             <mat-form-field appearance="outline" class="pr-4 pl-4">
-                                <mat-label>Outbound Warehouse</mat-label>
+                                <mat-label>مستودع الخروج</mat-label>
                                 <mat-select formControlName="outboundWarehouse" #outboundWarehouse required
                                     style="width: 180px;" (selectionChange)="restrictProducts($event.value)">
                                     <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
@@ -60,11 +60,11 @@
                                     </mat-option>
                                 </mat-select>
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Outbound Warehouse is required!</mat-error>
+                                <mat-error>مستودع الخروج مطلوب</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="pr-4 pl-4">
-                                <mat-label>Driver</mat-label>
+                                <mat-label>السائق</mat-label>
                                 <mat-select formControlName="driver" #driver required style="width: 180px;">
                                     <mat-option *ngFor="let driver of drivers" [value]="driver">
                                         {{driver.firstName}} {{driver.middleName}} {{driver.lastName}} /
@@ -72,22 +72,22 @@
                                     </mat-option>
                                 </mat-select>
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Driver is required!</mat-error>
+                                <mat-error>السائق مطلوب</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="pr-4 pl-4">
-                                <mat-label>Vehicle</mat-label>
+                                <mat-label>المركبه</mat-label>
                                 <mat-select formControlName="vehicle" #vehicle required style="width: 180px;">
                                     <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">
                                         {{vehicle.vehicleCode}}
                                     </mat-option>
                                 </mat-select>
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Vehicle is required!</mat-error>
+                                <mat-error>المركبه مطلوبه</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="pr-4 pl-4">
-                                <mat-label>Inbound Warehouse</mat-label>
+                                <mat-label>مستودع الرجوع</mat-label>
                                 <mat-select formControlName="inboundWarehouse" #inboundWarehouse required
                                     style="width: 180px;">
                                     <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
@@ -95,14 +95,12 @@
                                     </mat-option>
                                 </mat-select>
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Inbound Warehouse is required!</mat-error>
+                                <mat-error>مستودع الرجوع مطلوب</mat-error>
                             </mat-form-field>
                             <br>
 
                             <div fxLayout="row" fxLayoutAlign="center center" fxFlex="1 0 auto">
-                                <button mat-raised-button color="accent" class="mx-16"
-                                    matStepperPrevious>Previous</button>
-                                <button mat-raised-button color="accent" matStepperNext>Next</button>
+                                <button mat-raised-button color="accent" matStepperNext>التالى</button>
                             </div>
 
                         </div>
@@ -110,11 +108,11 @@
                     </form>
                 </mat-step>
 
-                <mat-step [stepControl]="transfer1Form" label="Transfer 1">
+                <mat-step [stepControl]="transfer1Form" label="النقله 1">
                     <form [formGroup]="transfer1Form">
                         <div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 0 auto">
                             <mat-form-field appearance="outline" class="pr-4 pl-4">
-                                <mat-label>Station</mat-label>
+                                <mat-label>المحطه</mat-label>
                                 <mat-select formControlName="station" #station required style="width: 180px;"
                                     (selectionChange)="restrictTransfer1products($event.value)">
                                     <mat-option *ngFor="let station of stations" [value]="station">
@@ -122,42 +120,47 @@
                                     </mat-option>
                                 </mat-select>
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Station is required!</mat-error>
+                                <mat-error>المحطة مطلوبه</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="pr-4 pl-4">
-                                <mat-label>Product</mat-label>
+                                <mat-label>المنتج</mat-label>
                                 <mat-select formControlName="product" #product required style="width: 180px;">
                                     <mat-option *ngFor="let product of transfer1products" [value]="product">
                                         {{product.productName}}
                                     </mat-option>
                                 </mat-select>
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Product is required!</mat-error>
+                                <mat-error>المنتج مطلوب</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="pr-4">
-                                <mat-label>Amount</mat-label>
+                                <mat-label>الكميه</mat-label>
                                 <input matInput formControlName="transferredAmount" #transferredAmount required
                                     type="number" min="0">
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Amount is required!</mat-error>
+                                <mat-error>الكمية مطلوبه</mat-error>
                             </mat-form-field>
 
                             <br>
 
-                            <button mat-raised-button color="accent" matStepperNext>Next</button>
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <button mat-raised-button color="accent" class="mx-16"
+                                    matStepperPrevious>السابق</button>
+                                <button mat-raised-button color="accent" class="mx-16" matStepperNext>التالى</button>
+                            </div>
+                            
                         </div>
 
                     </form>
                 </mat-step>
 
-                <mat-step [stepControl]="transfer2Form" label="Transfer 2" [optional]="transfer2Form.pristine">
+                <mat-step [stepControl]="transfer2Form" label="النقله 2" [optional]="transfer2Form.pristine">
                     <form [formGroup]="transfer2Form">
                         <div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 0 auto">
 
                             <mat-form-field appearance="outline" class="pr-4 pl-4">
-                                <mat-label>Station</mat-label>
+                                <mat-label>المحطه</mat-label>
                                 <mat-select formControlName="station" #station required style="width: 180px;"
                                     (selectionChange)="restrictTransfer2products($event.value)">
                                     <mat-option *ngFor="let station of stations" [value]="station">
@@ -165,51 +168,51 @@
                                     </mat-option>
                                 </mat-select>
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Station is required!</mat-error>
+                                <mat-error>المحطة مطلوبه</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="pr-4 pl-4">
-                                <mat-label>Product</mat-label>
+                                <mat-label>المنتج</mat-label>
                                 <mat-select formControlName="product" #product required style="width: 180px;">
                                     <mat-option *ngFor="let product of transfer2products" [value]="product">
                                         {{product.productName}}
                                     </mat-option>
                                 </mat-select>
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Product is required!</mat-error>
+                                <mat-error>المنتج مطلوب</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="pr-4">
-                                <mat-label>Amount</mat-label>
+                                <mat-label>الكميه</mat-label>
                                 <input matInput formControlName="transferredAmount" #transferredAmount required
                                     type="number" min="0">
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Amount is required!</mat-error>
+                                <mat-error>الكمية مطلوبه</mat-error>
                             </mat-form-field>
 
                             <br>
 
                             <div fxLayout="row" fxLayoutAlign="center center">
                                 <button mat-raised-button color="accent" class="mx-16"
-                                    matStepperPrevious>Previous</button>
-                                <button mat-raised-button color="accent" class="mx-16" matStepperNext>Next</button>
+                                    matStepperPrevious>السابق</button>
+                                <button mat-raised-button color="accent" class="mx-16" matStepperNext>التالى</button>
                             </div>
 
                             <br>
 
-                            <button mat-raised-button color="warn" (click)="transfer2Form.reset()">Reset</button>
+                            <button mat-raised-button color="warn" (click)="transfer2Form.reset()">إعاده</button>
 
                         </div>
 
                     </form>
                 </mat-step>
 
-                <mat-step [stepControl]="transfer3Form" label="Transfer 3" optional>
+                <mat-step [stepControl]="transfer3Form" label="النقله 3" [optional]="transfer3Form.pristine">
                     <form [formGroup]="transfer3Form">
                         <div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 0 auto">
 
                             <mat-form-field appearance="outline" class="pr-4 pl-4">
-                                <mat-label>Station</mat-label>
+                                <mat-label>المحطه</mat-label>
                                 <mat-select formControlName="station" #station required style="width: 180px;"
                                     (selectionChange)="restrictTransfer3products($event.value)">
                                     <mat-option *ngFor="let station of stations" [value]="station">
@@ -217,46 +220,46 @@
                                     </mat-option>
                                 </mat-select>
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Station is required!</mat-error>
+                                <mat-error>المحطة مطلوبه</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="pr-4 pl-4">
-                                <mat-label>Product</mat-label>
+                                <mat-label>المنتج</mat-label>
                                 <mat-select formControlName="product" #product required style="width: 180px;">
                                     <mat-option *ngFor="let product of transfer3products" [value]="product">
                                         {{product.productName}}
                                     </mat-option>
                                 </mat-select>
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Product is required!</mat-error>
+                                <mat-error>المنتج مطلوب</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="pr-4">
-                                <mat-label>Amount</mat-label>
+                                <mat-label>الكميه</mat-label>
                                 <input matInput formControlName="transferredAmount" #transferredAmount required
                                     type="number" min="0">
                                 <mat-icon matSuffix class="secondary-text">departure_board</mat-icon>
-                                <mat-error>Amount is required!</mat-error>
+                                <mat-error>الكمية مطلوبه</mat-error>
                             </mat-form-field>
 
                             <br>
 
                             <div fxLayout="row" fxLayoutAlign="center center">
                                 <button mat-raised-button color="accent" class="mx-16"
-                                    matStepperPrevious>Previous</button>
-                                <button mat-raised-button color="accent" class="mx-16" matStepperNext>Next</button>
+                                    matStepperPrevious>السابق</button>
+                                <button mat-raised-button color="accent" class="mx-16" matStepperNext>التالى</button>
                             </div>
 
                             <br>
 
-                            <button mat-raised-button color="warn" (click)="transfer3Form.reset()">Reset</button>
+                            <button mat-raised-button color="warn" (click)="transfer3Form.reset()">إعاده</button>
 
                         </div>
 
                     </form>
                 </mat-step>
 
-                <mat-step [stepControl]="Done" label="Done">
+                <mat-step [stepControl]="Done" label="النهايه">
                     <div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 0 auto">
 
                         <br>
@@ -268,7 +271,7 @@
                         <br>
                         <br>
                         <button mat-raised-button class="green mx-16" [disabled]="tripForm.invalid"
-                            (click)="createTrip(stepper)">Create Trip</button>
+                            (click)="createTrip(stepper)">إنشاء الرحله</button>
 
                     </div>
                 </mat-step>

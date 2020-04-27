@@ -3,7 +3,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { Quota } from 'app/main/models/quota.model';
 import { GenericService } from 'app/main/services/generic.service';
 import { environment } from 'environments/environment';
-import { MatSnackBar, MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatSnackBar, MatTableDataSource, MatPaginator, MatPaginatorIntl } from '@angular/material';
 import { Warehouse } from 'app/main/models/warehouse.model';
 import { Product } from 'app/main/models/product.model';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
@@ -69,7 +69,8 @@ export class QuotasComponent implements OnInit {
         private genericService: GenericService,
         private snackbar: MatSnackBar,
         private storageService: AppStorageService,
-        private cdr: ChangeDetectorRef
+        private cdr: ChangeDetectorRef,
+        private paginatorLabel: MatPaginatorIntl,
     ) { }
 
     ngOnInit() {
@@ -81,7 +82,7 @@ export class QuotasComponent implements OnInit {
         this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(warehouses => {
             this.warehouses = warehouses;
             this.originalColumns = ['warehouse'];
-            this.displayedColumns = ['Company - Warehouse'];
+            this.displayedColumns = ['الشركه - المستودع'];
             this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
                 this.products = products;
                 this.products.forEach(product => {
@@ -98,6 +99,9 @@ export class QuotasComponent implements OnInit {
             this.dataSource = new MatTableDataSource(this.warehouses);
             this.cdr.detectChanges();
             this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
         this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
@@ -108,7 +112,7 @@ export class QuotasComponent implements OnInit {
         this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(warehouses => {
             this.warehouses = warehouses;
             this.originalColumns = ['warehouse'];
-            this.displayedColumns = ['Company - Warehouse'];
+            this.displayedColumns = ['الشركه - المستودع'];
             this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
                 this.products = products;
                 this.products.forEach(product => {
@@ -125,6 +129,9 @@ export class QuotasComponent implements OnInit {
             this.dataSource = new MatTableDataSource(this.warehouses);
             this.cdr.detectChanges();
             this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
     }
 
@@ -217,7 +224,7 @@ export class QuotasComponent implements OnInit {
 
     calculateTotal() {
         this.total = [];
-        this.total.push('Total')
+        this.total.push('الإجمالى')
         for (let columnIndex = 1; columnIndex < this.displayedColumns.length; columnIndex++) {
             let quotaAccumulator = 0;
             for (let quotaIndex = 0; quotaIndex < this.quotas.length; quotaIndex++) {
@@ -230,6 +237,6 @@ export class QuotasComponent implements OnInit {
     }
 
     exportTable() {
-        this.exporter.exportTable('xlsx', { fileName: `Quotas-${this.date.value.month() + 1}_${this.date.value.year()}` })
+        this.exporter.exportTable('xlsx', { fileName: `الكوتات-${this.date.value.month() + 1}_${this.date.value.year()}` })
     }
 }

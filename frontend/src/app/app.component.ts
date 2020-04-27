@@ -12,6 +12,8 @@ import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 import { administratorNavigation, operatorNavigation } from 'app/navigation/navigation';
 import { environment } from 'environments/environment';
 import { AppStorageService } from './main/services/app-storage.service';
+import { GenericService } from './main/services/generic.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app',
@@ -43,8 +45,20 @@ export class AppComponent implements OnInit, OnDestroy {
         private _fuseSidebarService: FuseSidebarService,
         private _fuseSplashScreenService: FuseSplashScreenService,
         private _platform: Platform,
-        private storageService: AppStorageService
+        private storageService: AppStorageService,
+        private genericService: GenericService,
+        private router: Router
     ) {
+
+        this.genericService.checkAdminUserExistence().subscribe(isFound => {
+            if (isFound) {
+                this.router.navigate(['/login']);
+            }
+            else{
+                this.router.navigate(['/register']);
+            }
+
+        })
         // Register the navigation to the service
         this._fuseNavigationService.register(environment.roles.Administrator, administratorNavigation);
         this._fuseNavigationService.register(environment.roles.Operator, operatorNavigation);

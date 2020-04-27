@@ -6,7 +6,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import * as _moment from 'moment';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Trip } from 'app/main/models/trip.model';
-import { MatTableDataSource, MatPaginator, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSnackBar, MatPaginatorIntl } from '@angular/material';
 import { environment } from 'environments/environment';
 import { AppStorageService } from 'app/main/services/app-storage.service';
 import { MatTableExporterDirective } from 'mat-table-exporter';
@@ -61,7 +61,8 @@ export class TripsSearchComponent implements OnInit {
         private genericService: GenericService,
         private snackbar: MatSnackBar,
         private storageService: AppStorageService,
-        private cdr: ChangeDetectorRef
+        private cdr: ChangeDetectorRef,
+        private paginatorLabel: MatPaginatorIntl,
         ) { }
 
     ngOnInit() {
@@ -87,9 +88,12 @@ export class TripsSearchComponent implements OnInit {
                     this.trips.push(trip as never)
                 })
                 this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'details', 'inboundDistance', 'distance', 'delete'];
-                this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Details', 'Inbound Warehouse', 'Total Distance', ' '];
+                this.displayedColumns = ['الترتيب', 'المركبه', 'مستودع الخروج', 'التفاصيل', 'مستودع الرجوع', 'إجمالى المسافه', ' '];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
         else {
@@ -98,9 +102,12 @@ export class TripsSearchComponent implements OnInit {
                     this.trips.push(trip as never)
                 })
                 this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'details', 'inboundDistance', 'distance'];
-                this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Details', 'Inbound Warehouse', 'Total Distance'];
+                this.displayedColumns = ['الترتيب', 'المركبه', 'مستودع الخروج', 'التفاصيل', 'مستودع الرجوع', 'إجمالى المسافه'];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
     }
@@ -143,22 +150,25 @@ export class TripsSearchComponent implements OnInit {
         this.genericService.retrieveEntitiesbyDate(environment.entities.Trip, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
             this.trips = data as Trip[];
             this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'details', 'inboundDistance', 'distance'];
-            this.displayedColumns = ['Order', 'Vehicle', 'Outbound Warehouse', 'Details', 'Inbound Warehouse', 'Total Distance'];
+            this.displayedColumns = ['الترتيب', 'المركبه', 'مستودع الخروج', 'التفاصيل', 'مستودع الرجوع', 'إجمالى المسافه'];
             this.dataSource = new MatTableDataSource(this.trips);
             this.cdr.detectChanges();
             this.dataSource.filterPredicate = (data: Trip, filter: string) => {
                 return data.vehicle.vehicleCode.toString().startsWith(filter)
             };
             this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
     }
 
     exportTable() {
         if (this.dataSource.filter) {
-            this.exporter.exportTable('xlsx', { fileName: `Trips-${this.date.value.date()}_${this.date.value.month() + 1}_${this.date.value.year()}(${this.dataSource.filter})` })
+            this.exporter.exportTable('xlsx', { fileName: `الرحلات-${this.date.value.date()}_${this.date.value.month() + 1}_${this.date.value.year()}(${this.dataSource.filter})` })
         }
         else {
-            this.exporter.exportTable('xlsx', { fileName: `Trips-${this.date.value.date()}_${this.date.value.month() + 1}_${this.date.value.year()}` })
+            this.exporter.exportTable('xlsx', { fileName: `الرحلات-${this.date.value.date()}_${this.date.value.month() + 1}_${this.date.value.year()}` })
         }
     }
 

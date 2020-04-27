@@ -1,4 +1,4 @@
-<div id="sales-report" class="page-layout carded fullwidth">
+<div id="sales-report" class="page-layout carded fullwidth" dir="rtl">
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg accent"></div>
@@ -16,7 +16,7 @@
                 <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
                     import_contacts
                 </mat-icon>
-                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Sales</span>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">المبيعات</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -25,7 +25,7 @@
                 <form name="startdateForm" [formGroup]="startdateForm">
                     <mat-form-field appearance="never" class="pr-4">
                         <div class="search mt-12" fxFlex fxLayout="row" fxLayoutAlign="center center">
-                            <span style="margin-left: 80px;"><b>From:</b></span>
+                            <span style="margin-right: 80px;"><b>من:</b></span>
                             <input matInput [matDatepicker]="startdatepicker" [formControl]="startdate"
                                 formControlName="startdate" [attr.disabled]="true">
                             <mat-datepicker-toggle style="position: relative; transform: translateX(0px);" matSuffix
@@ -42,7 +42,7 @@
                 <form name="enddateForm" [formGroup]="enddateForm">
                     <mat-form-field appearance="never" class="pr-4" style="width: 100%;">
                         <div class="search mt-12" fxFlex fxLayout="row" fxLayoutAlign="center center">
-                            <span><b>To:</b></span>
+                            <span><b>إلى:</b></span>
                             <input matInput [matDatepicker]="enddatepicker" [formControl]="enddate"
                                 formControlName="enddate" [attr.disabled]="true" [min]="minEndDate" [max]="maxEndDate">
                             <mat-datepicker-toggle matSuffix [for]="enddatepicker"></mat-datepicker-toggle>
@@ -57,7 +57,7 @@
 
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!--  EXPORT BUTTON -->
-                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="Export"
+                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="تصدير"
                     [disabled]="dataSource.filteredData.length === 0">
                     <mat-icon>archive</mat-icon>
                 </button>

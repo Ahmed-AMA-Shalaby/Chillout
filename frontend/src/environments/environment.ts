@@ -28,6 +28,7 @@ export const environment = {
         retrieveEntitybyID: 'retrieveEntitybyID',
         retrieveEntitiesbyYearandMonth: 'retrieveEntitiesbyYearandMonth',
         retrieveEntitiesbyDate: 'retrieveEntitiesbyDate',
+        checkAdminUserExistence: 'checkAdminUserExistence',
         checkUser: 'checkUser',
         deleteEntity: 'deleteEntity'
     },
@@ -49,8 +50,8 @@ export const environment = {
         Warehouse: 'Warehouse'
     },
     roles: {
-        Administrator: 'Administrator',
-        Operator: 'Operator'
+        Administrator: 'مدير',
+        Operator: 'عامل'
     }
 };
 /*

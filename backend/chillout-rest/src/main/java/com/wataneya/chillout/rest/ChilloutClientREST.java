@@ -70,6 +70,18 @@ public class ChilloutClientREST {
             return Response.ok(entity + "s not found").build();
         }
     }
+
+    @GET
+    @Path("/checkAdminUserExistence")
+    @Produces("application/json")
+    public Response checkAdminUserExistence() {
+        try {
+            return Response.ok(chilloutQueryService.checkAdminUserExistence()).build();
+        } catch (Exception e) {
+            return Response.ok("Users not found").build();
+        }
+    }
+
     //endregion
 
     /****************************************************POST***********************************************************/

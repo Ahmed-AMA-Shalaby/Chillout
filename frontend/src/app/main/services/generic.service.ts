@@ -50,6 +50,10 @@ export class GenericService {
         return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.retrieveEntitiesbyDate, { headers: this.httpOptions.headers, params: params });
     }
 
+    checkAdminUserExistence(): Observable<{}> {
+        return this.httpClient.get<{}>(environment.apis.baseUrl + environment.apis.checkAdminUserExistence, this.httpOptions);
+    }
+
     deleteEntity(type: string, id: string): Observable<BaseResponse> {
         let params = new HttpParams().set('entity', type).set('id', id);
         return this.httpClient.delete<BaseResponse>(environment.apis.baseUrl + environment.apis.deleteEntity, { headers: this.httpOptions.headers, params: params });

@@ -1,4 +1,4 @@
-<div id="trips-search" class="page-layout carded fullwidth">
+<div id="trips-search" class="page-layout carded fullwidth" dir="rtl">
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg accent"></div>
@@ -16,7 +16,7 @@
                 <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
                     departure_board
                 </mat-icon>
-                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Trips</span>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">الرحلات</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -24,7 +24,7 @@
             <div class="search-wrapper mx-32 mx-md-0">
                 <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                     <mat-icon>search</mat-icon>
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search for a trip">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="إبحث عن كود المركبه">
                 </div>
             </div>
 
@@ -47,12 +47,12 @@
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!--  DELETE BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleDelete()"
-                    [ngClass]="{'fuse-white': !deleteFlag, 'red': deleteFlag}" matTooltip="Delete" *ngIf="administratorFlag" [disabled]="dataSource.filteredData.length === 0">
+                    [ngClass]="{'fuse-white': !deleteFlag, 'red': deleteFlag}" matTooltip="حذف" *ngIf="administratorFlag" [disabled]="dataSource.filteredData.length === 0">
                     <mat-icon>delete</mat-icon>
                 </button>
                 <!-- / DELETE BUTTON -->
                 <!--  EXPORT BUTTON -->
-                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="Export" [disabled]="dataSource.filteredData.length === 0">
+                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="تصدير" [disabled]="dataSource.filteredData.length === 0">
                     <mat-icon>archive</mat-icon>
                 </button>
                 <!-- / EXPORT BUTTON -->
@@ -88,7 +88,7 @@
                             {{trips["outboundDistance"]["distance"] + trips["inboundDistance"]["distance"]}}</p>
                         <button mat-icon-button class="mx-16" *ngIf="originalColumns[i] == 'delete'"
                             (click)="deleteTrip(j + (paginator.pageIndex * paginator.pageSize))">
-                            <mat-icon matTooltip="Delete">delete
+                            <mat-icon matTooltip="حذف">delete
                             </mat-icon>
                         </button>
                     </mat-cell>

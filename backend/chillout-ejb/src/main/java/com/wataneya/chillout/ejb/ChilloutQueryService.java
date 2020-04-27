@@ -49,4 +49,11 @@ public class ChilloutQueryService {
             return null;
         return list;
     }
+
+    public boolean checkAdminUserExistence() {
+        List admins = em.createQuery("From User u where u.role = :role").setParameter("role", "مدير").getResultList();
+        if (admins.size() == 0)
+            return false;
+        return true;
+    }
 }

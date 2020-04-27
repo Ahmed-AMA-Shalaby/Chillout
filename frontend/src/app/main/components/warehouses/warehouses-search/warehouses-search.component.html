@@ -1,4 +1,4 @@
-<div id="warehouses-search" class="page-layout carded fullwidth">
+<div id="warehouses-search" class="page-layout carded fullwidth" dir="rtl">
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg accent"></div>
@@ -16,7 +16,7 @@
                 <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
                     account_balance
                 </mat-icon>
-                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Warehouses</span>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">المستودعات</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -24,7 +24,7 @@
             <div class="search-wrapper mx-32 mx-md-0">
                 <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                     <mat-icon>search</mat-icon>
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search for a warehouse">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="إبحث عن إسم المستودع أو إسم الشركة">
                 </div>
             </div>
             <!-- / FILTER -->
@@ -32,7 +32,7 @@
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!--  HIDE BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleHide()"
-                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="Show / Hide"
+                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="إظهار / إخفاء"
                     *ngIf="administratorFlag">
                     <mat-icon>visibility</mat-icon>
                 </button>

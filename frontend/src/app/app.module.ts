@@ -25,11 +25,15 @@ import { environment } from 'environments/environment';
 
 const appRoutes: Routes = [
     {
-        path: '', redirectTo: 'login', pathMatch: 'full',
+        path: '', redirectTo: 'register', pathMatch: 'full',
     },
     {
         path: 'login',
         loadChildren: './main/components/login/login.module#LoginModule'
+    },
+    {
+        path: 'register',
+        loadChildren: './main/components/register/register.module#RegisterModule'
     },
     {
         path: 'home',

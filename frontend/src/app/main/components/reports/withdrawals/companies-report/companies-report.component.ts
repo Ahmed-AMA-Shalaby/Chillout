@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { GenericService } from 'app/main/services/generic.service';
 import { environment } from 'environments/environment';
-import { MatSnackBar, MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatSnackBar, MatTableDataSource, MatPaginator, MatPaginatorIntl } from '@angular/material';
 import { Warehouse } from 'app/main/models/warehouse.model';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -68,7 +68,8 @@ export class CompaniesReportComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private genericService: GenericService,
-        private snackbar: MatSnackBar
+        private snackbar: MatSnackBar,
+        private paginatorLabel: MatPaginatorIntl,
     ) { }
 
     ngOnInit() {
@@ -85,7 +86,7 @@ export class CompaniesReportComponent implements OnInit {
             this.warehouses = warehouses;
             this.companies = Array.from(new Set(this.warehouses.map(warehouse => warehouse.companyName)))
             this.originalColumns = ['company'];
-            this.displayedColumns = ['Company'];
+            this.displayedColumns = ['الشركه'];
             this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
                 this.products = products;
                 this.products.forEach(product => {
@@ -99,6 +100,9 @@ export class CompaniesReportComponent implements OnInit {
             this.retrieveCurrentTrips();
             this.dataSource = new MatTableDataSource(this.companies);
             this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
     }
 
@@ -149,6 +153,6 @@ export class CompaniesReportComponent implements OnInit {
     }
 
     exportTable() {
-        this.exporter.exportTable('xlsx', { fileName: `Companies-${this.startdate.value.date()}_${this.startdate.value.month() + 1}_${this.startdate.value.year()}-${this.enddate.value.date()}_${this.enddate.value.month() + 1}_${this.enddate.value.year()}` })
+        this.exporter.exportTable('xlsx', { fileName: `الشركات-${this.startdate.value.date()}_${this.startdate.value.month() + 1}_${this.startdate.value.year()}-${this.enddate.value.date()}_${this.enddate.value.month() + 1}_${this.enddate.value.year()}` })
     }
 }

@@ -73,11 +73,11 @@ export class DistancesReportComponent implements OnInit {
         let tripsAccumulator = { isUpdated: false, value: 0 };
         for (let tripsIndex = 0; tripsIndex < this.trips.length; tripsIndex++) {
             if (this.trips[tripsIndex].day === this.days[rowIndex]) {
-                if (this.displayedColumns[columnIndex] === 'Total Distance') {
+                if (this.displayedColumns[columnIndex] === 'إجمالى المسافه') {
                     tripsAccumulator.value += (this.trips[tripsIndex].inboundDistance.distance + this.trips[tripsIndex].outboundDistance.distance);
                     tripsAccumulator.isUpdated = true;
                 }
-                else if (this.displayedColumns[columnIndex] === 'Trips\' count') {
+                else if (this.displayedColumns[columnIndex] === 'عدد الرحلات') {
                     tripsAccumulator.value += 1;
                     tripsAccumulator.isUpdated = true;
                 }
@@ -98,7 +98,7 @@ export class DistancesReportComponent implements OnInit {
             })
             this.calculateTotal();
             this.originalColumns = ['day', 'distances', 'trips'];
-            this.displayedColumns = ['Day', 'Total Distance', 'Trips\' count'];
+            this.displayedColumns = ['اليوم', 'إجمالى المسافه', 'عدد الرحلات'];
             this.days = new Array<number>(this.date.value.daysInMonth())
             console.log(this.days);
 
@@ -111,7 +111,7 @@ export class DistancesReportComponent implements OnInit {
 
     calculateTotal() {
         this.total = [];
-        this.total.push('Total');
+        this.total.push('الإجمالى');
         if (this.trips.length != 0) {
             this.total.push(this.trips.map(trip => trip.inboundDistance.distance + trip.outboundDistance.distance).reduce((accumulator, currentValue) => accumulator + currentValue))
             this.total.push(this.trips.length);
@@ -133,6 +133,6 @@ export class DistancesReportComponent implements OnInit {
     }
 
     exportTable() {
-        this.exporter.exportTable('xlsx', { fileName: `Distances-${this.date.value.date()}_${this.date.value.month() + 1}` })
+        this.exporter.exportTable('xlsx', { fileName: `المسافات-${this.date.value.date()}_${this.date.value.month() + 1}` })
     }
 }

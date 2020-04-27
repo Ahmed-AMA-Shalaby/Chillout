@@ -1,4 +1,4 @@
-<div id="sales" class="page-layout carded fullwidth">
+<div id="sales" class="page-layout carded fullwidth" dir="rtl">
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg accent"></div>
@@ -16,7 +16,7 @@
                 <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
                     done_all
                 </mat-icon>
-                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Sales</span>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">المبيعات</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -40,7 +40,7 @@
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!-- EDIT BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit">
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <!-- / EDIT BUTTON -->
@@ -61,7 +61,9 @@
                             {{station["stationName"]}}</p>
                         <p *ngIf="!editFlag && originalColumns[i] != 'station'">
                             {{adjustSalesDisplay(j,i)}}</p>
-                        <p *ngIf="originalColumns[i] != 'station' && !checkProductInStation(j,i)">N/A</p>
+                        <p *ngIf="originalColumns[i] != 'station' && !checkProductInStation(j,i)">
+                            <mat-icon>close</mat-icon>
+                        </p>
                         <div *ngIf="editFlag && originalColumns[i] != 'station' && checkProductInStation(j,i)">
                             <mat-form-field floatLabel="never" appearance="outline" class="mt-20"
                                 style="width: 100px !important;">

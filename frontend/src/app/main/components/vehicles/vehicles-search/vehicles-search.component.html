@@ -1,4 +1,4 @@
-<div id="vehicles-search" class="page-layout carded fullwidth">
+<div id="vehicles-search" class="page-layout carded fullwidth" dir="rtl">
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg accent"></div>
@@ -16,7 +16,7 @@
                 <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
                     local_shipping
                 </mat-icon>
-                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Vehicles</span>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">المركبات</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -24,7 +24,7 @@
             <div class="search-wrapper mx-32 mx-md-0">
                 <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                     <mat-icon>search</mat-icon>
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search for a vehicle">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="إبحث عن كود المركبة">
                 </div>
             </div>
             <!-- / FILTER -->
@@ -32,14 +32,14 @@
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!-- EDIT BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit" [disabled]="hideFlag"
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل" [disabled]="hideFlag"
                     *ngIf="administratorFlag">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <!-- / EDIT BUTTON -->
                 <!--  HIDE BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleHide()"
-                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="Show / Hide"
+                    [ngClass]="{'fuse-white': !hideFlag, 'red': hideFlag}" matTooltip="إظهار / إخفاء"
                     [disabled]="editFlag" *ngIf="administratorFlag">
                     <mat-icon>visibility</mat-icon>
                 </button>

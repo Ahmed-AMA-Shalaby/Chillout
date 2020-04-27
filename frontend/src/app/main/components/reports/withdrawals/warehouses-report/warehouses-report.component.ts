@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { GenericService } from 'app/main/services/generic.service';
 import { environment } from 'environments/environment';
-import { MatSnackBar, MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatSnackBar, MatTableDataSource, MatPaginator, MatPaginatorIntl } from '@angular/material';
 import { Warehouse } from 'app/main/models/warehouse.model';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -69,7 +69,8 @@ export class WarehousesReportComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private genericService: GenericService,
-        private snackbar: MatSnackBar
+        private snackbar: MatSnackBar,
+        private paginatorLabel: MatPaginatorIntl,
     ) { }
 
     ngOnInit() {
@@ -85,7 +86,7 @@ export class WarehousesReportComponent implements OnInit {
         this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(warehouses => {
             this.warehouses = warehouses;
             this.originalColumns = ['warehouse'];
-            this.displayedColumns = ['Company - Warehouse'];
+            this.displayedColumns = ['الشركه - المستودع'];
             this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
                 this.products = products;
                 this.products.forEach(product => {
@@ -98,6 +99,9 @@ export class WarehousesReportComponent implements OnInit {
             this.retrieveCurrentTrips();
             this.dataSource = new MatTableDataSource(this.warehouses);
             this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
     }
 
@@ -150,7 +154,7 @@ export class WarehousesReportComponent implements OnInit {
 
     calculateTotal() {
         this.total = [];
-        this.total.push('Total')
+        this.total.push('الإجمالى')
         for (let columnIndex = 1; columnIndex < this.displayedColumns.length; columnIndex++) {
             let warehousesAccumulator = { isUpdated: false, value: 0 };
             for (let tripsIndex = 0; tripsIndex < this.trips.length; tripsIndex++) {
@@ -169,6 +173,6 @@ export class WarehousesReportComponent implements OnInit {
     }
 
     exportTable() {
-        this.exporter.exportTable('xlsx', { fileName: `Warehouses-${this.startdate.value.date()}_${this.startdate.value.month() + 1}_${this.startdate.value.year()}-${this.enddate.value.date()}_${this.enddate.value.month() + 1}_${this.enddate.value.year()}` })
+        this.exporter.exportTable('xlsx', { fileName: `المستودعات-${this.startdate.value.date()}_${this.startdate.value.month() + 1}_${this.startdate.value.year()}-${this.enddate.value.date()}_${this.enddate.value.month() + 1}_${this.enddate.value.year()}` })
     }
 }

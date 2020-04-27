@@ -65,14 +65,18 @@ export class LoginComponent implements OnInit {
                 this.storageService.storeUser(user);
                 this._fuseNavigationService.setCurrentNavigation(environment.roles.Administrator);
                 this.router.navigate(['/home']);
+                this.snackbar.open(`Welcome, ${user.firstName}`);
             }
             else if (user.role === environment.roles.Operator) {
                 this.storageService.storeUser(user);
                 this._fuseNavigationService.setCurrentNavigation(environment.roles.Operator);
                 this.router.navigate(['/home']);
+                this.snackbar.open(`Welcome, ${user.firstName}`);
             }
-            this.snackbar.open(`Welcome, ${user.firstName}`);
-            
+            else {
+                this.snackbar.open('User not authenticated');
+            }
+
             let response = data as BaseResponse;
             if (response.error === true) {
                 this.snackbar.open(response.message);

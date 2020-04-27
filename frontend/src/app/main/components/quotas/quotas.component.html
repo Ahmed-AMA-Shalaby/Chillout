@@ -1,4 +1,4 @@
-<div id="quotas" class="page-layout carded fullwidth">
+<div id="quotas" class="page-layout carded fullwidth" dir="rtl">
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg accent"></div>
@@ -16,7 +16,7 @@
                 <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
                     cloud
                 </mat-icon>
-                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Quotas</span>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">الكوتات</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -41,13 +41,13 @@
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!-- EDIT BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="Edit"
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل"
                     *ngIf="administratorFlag">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <!-- / EDIT BUTTON -->
                 <!--  EXPORT BUTTON -->
-                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="Export"
+                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="تصدير"
                     [disabled]="editFlag || dataSource.filteredData.length === 0">
                     <mat-icon>archive</mat-icon>
                 </button>
@@ -70,7 +70,9 @@
                             {{warehouse["companyName"]}} - {{warehouse["warehouseName"]}}</p>
                         <p *ngIf="!editFlag && originalColumns[i] != 'warehouse'">
                             {{adjustQuotasDisplay(j,i)}}</p>
-                        <p *ngIf="originalColumns[i] != 'warehouse' && !checkProductInWarehouse(j,i)">N/A</p>
+                        <p *ngIf="originalColumns[i] != 'warehouse' && !checkProductInWarehouse(j,i)">
+                            <mat-icon>close</mat-icon>
+                        </p>
                         <div *ngIf="editFlag && originalColumns[i] != 'warehouse' && checkProductInWarehouse(j,i)">
                             <mat-form-field floatLabel="never" appearance="outline" class="mt-20"
                                 style="width: 100px !important;">

@@ -3,7 +3,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { Existing } from 'app/main/models/existing.model';
 import { GenericService } from 'app/main/services/generic.service';
 import { environment } from 'environments/environment';
-import { MatSnackBar, MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatSnackBar, MatTableDataSource, MatPaginator, MatPaginatorIntl } from '@angular/material';
 import { Station } from 'app/main/models/station.model';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -59,8 +59,9 @@ export class ExistingsComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private genericService: GenericService,
-        private snackbar: MatSnackBar
-    ) { }
+        private snackbar: MatSnackBar,
+        private paginatorLabel: MatPaginatorIntl,
+        ) { }
 
     ngOnInit() {
         this.dateForm = this._formBuilder.group({
@@ -87,6 +88,9 @@ export class ExistingsComponent implements OnInit {
             })
             this.dataSource = new MatTableDataSource(this.stations);
             this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
     }
 
@@ -110,6 +114,9 @@ export class ExistingsComponent implements OnInit {
             })
             this.dataSource = new MatTableDataSource(this.stations);
             this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
     }
 

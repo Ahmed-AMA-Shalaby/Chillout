@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSnackBar, MatPaginatorIntl } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { Vehicle } from 'app/main/models/vehicle.model';
 import { GenericService } from 'app/main/services/generic.service';
@@ -44,7 +44,8 @@ export class VehiclesSearchComponent implements OnInit {
         private genericService: GenericService,
         private snackbar: MatSnackBar,
         private storageService: AppStorageService,
-        private cdr: ChangeDetectorRef
+        private cdr: ChangeDetectorRef,
+        private paginatorLabel: MatPaginatorIntl,
     ) { }
 
     ngOnInit() {
@@ -54,13 +55,16 @@ export class VehiclesSearchComponent implements OnInit {
             this.vehicles = data as [];
             this.displayIsolatedCharacter();
             this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate'];
-            this.displayedColumns = ['Vehicle Code', 'Vehicle Plate', 'Vehicle Card', 'Trailer Plate'];
+            this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره'];
             this.dataSource = new MatTableDataSource(this.vehicles);
             this.cdr.detectChanges();
             this.dataSource.filterPredicate = (data: Vehicle, filter: string) => {
                 return data.vehicleCode.toString().startsWith(filter)
             };
             this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
         this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
@@ -115,9 +119,12 @@ export class VehiclesSearchComponent implements OnInit {
                     this.vehicles.push(customVehicle as never)
                 })
                 this.originalColumns = ['vehicleCode', 'vehiclePlateNumbers', 'vehiclePlateLetters', 'vehicleCard', 'trailerPlateNumbers', 'trailerPlateLetters'];
-                this.displayedColumns = ['Vehicle Code', 'Vehicle Plate Numbers', 'Vehicle Plate Letters', 'Vehicle Card', 'Trailer Plate Numbers', 'Trailer Plate Letters'];
+                this.displayedColumns = ['كود المركبه', 'أرقام لوحة المركبه', 'حروف لوحة المركبه', 'كارت المركبه', 'أرقام لوحة المقطوره', 'حروف لوحة المقطوره'];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
         else {
@@ -127,9 +134,12 @@ export class VehiclesSearchComponent implements OnInit {
                     this.displayIsolatedCharacter();
                 })
                 this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate'];
-                this.displayedColumns = ['Vehicle Code', 'Vehicle Plate', 'Vehicle Card', 'Trailer Plate'];
+                this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره'];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
     }
@@ -167,9 +177,12 @@ export class VehiclesSearchComponent implements OnInit {
                     this.displayIsolatedCharacter();
                 })
                 this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate', 'hidden'];
-                this.displayedColumns = ['Vehicle Code', 'Vehicle Plate', 'Vehicle Card', 'Trailer Plate', ' '];
+                this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره', ' '];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
         else {
@@ -179,9 +192,12 @@ export class VehiclesSearchComponent implements OnInit {
                     this.displayIsolatedCharacter();
                 })
                 this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate'];
-                this.displayedColumns = ['Vehicle Code', 'Vehicle Plate', 'Vehicle Card', 'Trailer Plate'];
+                this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره'];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
     }

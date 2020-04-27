@@ -1,4 +1,4 @@
-<div id="needs-report" class="page-layout carded fullwidth">
+<div id="needs-report" class="page-layout carded fullwidth" dir="rtl">
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg accent"></div>
@@ -16,7 +16,7 @@
                 <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
                     import_contacts
                 </mat-icon>
-                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Needs</span>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">الإحتياجات</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -39,7 +39,7 @@
 
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!--  EXPORT BUTTON -->
-                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="Export"
+                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="تصدير"
                     [disabled]="dataSource.filteredData.length === 0">
                     <mat-icon>archive</mat-icon>
                 </button>
@@ -62,7 +62,9 @@
                         <p *ngIf="!editFlag && originalColumns[i] != 'station'"
                             [ngClass]="{'fuse-white': checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column), 'red': !checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column)}">
                             {{adjustNeedsDisplay(j,i)}}</p>
-                        <p *ngIf="originalColumns[i] != 'station' && !checkProductInStation(j,i)">N/A</p>
+                        <p *ngIf="originalColumns[i] != 'station' && !checkProductInStation(j,i)">
+                            <mat-icon>close</mat-icon>
+                        </p>
                         <div *ngIf="editFlag && originalColumns[i] != 'station' && checkProductInStation(j,i)">
                             <mat-form-field floatLabel="never" appearance="outline" class="mt-20"
                                 style="width: 100px !important; text-align: center;">

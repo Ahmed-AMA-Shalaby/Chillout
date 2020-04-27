@@ -3,7 +3,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { Sale } from 'app/main/models/sale.model';
 import { GenericService } from 'app/main/services/generic.service';
 import { environment } from 'environments/environment';
-import { MatSnackBar, MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatSnackBar, MatTableDataSource, MatPaginator, MatPaginatorIntl } from '@angular/material';
 import { Station } from 'app/main/models/station.model';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -69,7 +69,8 @@ export class SalesReportComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private genericService: GenericService,
-        private snackbar: MatSnackBar
+        private snackbar: MatSnackBar,
+        private paginatorLabel: MatPaginatorIntl,
     ) { }
 
     ngOnInit() {
@@ -85,7 +86,7 @@ export class SalesReportComponent implements OnInit {
         this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
             this.stations = stations;
             this.originalColumns = ['station'];
-            this.displayedColumns = ['Station'];
+            this.displayedColumns = ['المحطه'];
             this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
                 this.products = products;
                 this.products.forEach(product => {
@@ -98,6 +99,9 @@ export class SalesReportComponent implements OnInit {
             this.retrieveCurrentSales();
             this.dataSource = new MatTableDataSource(this.stations);
             this.dataSource.paginator = this.paginator;
+            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
     }
 
@@ -147,7 +151,7 @@ export class SalesReportComponent implements OnInit {
 
     calculateTotal() {
         this.total = [];
-        this.total.push('Total')
+        this.total.push('الإجمالى')
         for (let columnIndex = 0; columnIndex < this.displayedColumns.length; columnIndex++) {
             let salesAccumulator = { isUpdated: false, value: 0 };
             for (let salesIndex = 0; salesIndex < this.sales.length; salesIndex++) {
@@ -163,6 +167,6 @@ export class SalesReportComponent implements OnInit {
     }
 
     exportTable() {
-        this.exporter.exportTable('xlsx', { fileName: `Sales-${this.startdate.value.date()}_${this.startdate.value.month() + 1}_${this.startdate.value.year()}-${this.enddate.value.date()}_${this.enddate.value.month() + 1}_${this.enddate.value.year()}` })
+        this.exporter.exportTable('xlsx', { fileName: `المبيعات-${this.startdate.value.date()}_${this.startdate.value.month() + 1}_${this.startdate.value.year()}-${this.enddate.value.date()}_${this.enddate.value.month() + 1}_${this.enddate.value.year()}` })
     }
 }
