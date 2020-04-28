@@ -8,7 +8,6 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { Trip } from 'app/main/models/trip.model';
 import { MatTableDataSource, MatPaginator, MatSnackBar, MatPaginatorIntl } from '@angular/material';
 import { environment } from 'environments/environment';
-import { AppStorageService } from 'app/main/services/app-storage.service';
 import { MatTableExporterDirective } from 'mat-table-exporter';
 const moment = _moment;
 
@@ -48,7 +47,6 @@ export class TripsSearchComponent implements OnInit {
     dataSource: MatTableDataSource<{}>;
     originalColumns = [];
     displayedColumns = [];
-    administratorFlag: boolean = true;
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
@@ -60,19 +58,17 @@ export class TripsSearchComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private genericService: GenericService,
         private snackbar: MatSnackBar,
-        private storageService: AppStorageService,
         private cdr: ChangeDetectorRef,
         private paginatorLabel: MatPaginatorIntl,
-        ) { }
+    ) { }
 
     ngOnInit() {
         this.dateForm = this._formBuilder.group({
             date: [null, Validators.required]
         });
         this.dateForm.get('date').disable();
-        
+
         this.retrieveCurrentTrips();
-        this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
 
     applyFilter(filterValue) {
@@ -91,9 +87,9 @@ export class TripsSearchComponent implements OnInit {
                 this.displayedColumns = ['الترتيب', 'المركبه', 'مستودع الخروج', 'التفاصيل', 'مستودع الرجوع', 'إجمالى المسافه', ' '];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
-            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
-            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
-            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
+                this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+                this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+                this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
         else {
@@ -105,9 +101,9 @@ export class TripsSearchComponent implements OnInit {
                 this.displayedColumns = ['الترتيب', 'المركبه', 'مستودع الخروج', 'التفاصيل', 'مستودع الرجوع', 'إجمالى المسافه'];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
-            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
-            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
-            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
+                this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+                this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+                this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
     }

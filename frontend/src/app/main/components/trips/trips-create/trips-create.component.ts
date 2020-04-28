@@ -212,19 +212,19 @@ export class TripsCreateComponent implements OnInit {
         for (let distanceIndex = 0; distanceIndex < this.distances.length; distanceIndex++) {
             if (this.distances[distanceIndex].warehouse.id === this.tripForm.value.outboundWarehouse.id) {
                 if (!this.transfer1Form.invalid) {
-                    if (this.distances[distanceIndex].station.id === this.transfer1Form.value.station.id && this.distances[distanceIndex].distance > outboundDistance.value) {
+                    if (this.distances[distanceIndex].station.id === this.transfer1Form.value.station.id && this.distances[distanceIndex].distance >= outboundDistance.value) {
                         outboundDistance.value = this.distances[distanceIndex].distance;
                         outboundDistance.distance = this.distances[distanceIndex];
                     }
                 }
                 if (!this.transfer2Form.invalid) {
-                    if (this.distances[distanceIndex].station.id === this.transfer2Form.value.station.id && this.distances[distanceIndex].distance > outboundDistance.value) {
+                    if (this.distances[distanceIndex].station.id === this.transfer2Form.value.station.id && this.distances[distanceIndex].distance >= outboundDistance.value) {
                         outboundDistance.value = this.distances[distanceIndex].distance;
                         outboundDistance.distance = this.distances[distanceIndex];
                     }
                 }
                 if (!this.transfer3Form.invalid) {
-                    if (this.distances[distanceIndex].station.id === this.transfer3Form.value.station.id && this.distances[distanceIndex].distance > outboundDistance.value) {
+                    if (this.distances[distanceIndex].station.id === this.transfer3Form.value.station.id && this.distances[distanceIndex].distance >= outboundDistance.value) {
                         outboundDistance.value = this.distances[distanceIndex].distance;
                         outboundDistance.distance = this.distances[distanceIndex];
                     }

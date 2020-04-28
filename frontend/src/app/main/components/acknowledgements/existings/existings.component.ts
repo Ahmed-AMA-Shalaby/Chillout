@@ -61,7 +61,7 @@ export class ExistingsComponent implements OnInit {
         private genericService: GenericService,
         private snackbar: MatSnackBar,
         private paginatorLabel: MatPaginatorIntl,
-        ) { }
+    ) { }
 
     ngOnInit() {
         this.dateForm = this._formBuilder.group({
@@ -81,7 +81,6 @@ export class ExistingsComponent implements OnInit {
                     }
                 })
                 this.displayedColumns.sort();
-                this.displayedColumns.push("إجمالى المبالغ الإضافيه");
             })
             this.genericService.retrieveEntitiesbyDate(environment.entities.Existing, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
                 this.existings = data as Existing[];
@@ -206,7 +205,7 @@ export class ExistingsComponent implements OnInit {
                 modifiedColumn = product;
             }
         })
-        
+
         if (modifiedColumn.productName !== "إجمالى المبالغ الإضافيه") {
             for (let existingIndex = 0; existingIndex < this.existings.length; existingIndex++) {
                 if (this.existings[existingIndex].station.stationName === modifiedRow.stationName && this.existings[existingIndex].product.productName === modifiedColumn.productName) {
@@ -219,7 +218,7 @@ export class ExistingsComponent implements OnInit {
             }
             return true;
         }
-        else{
+        else {
             return true;
         }
     }

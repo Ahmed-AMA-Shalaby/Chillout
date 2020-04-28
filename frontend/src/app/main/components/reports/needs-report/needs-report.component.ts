@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { Existing } from 'app/main/models/existing.model';
 import { GenericService } from 'app/main/services/generic.service';
@@ -64,6 +64,7 @@ export class NeedsReportComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private genericService: GenericService,
         private snackbar: MatSnackBar,
+        private cdr: ChangeDetectorRef,
         private paginatorLabel: MatPaginatorIntl,
     ) { }
 
@@ -91,6 +92,7 @@ export class NeedsReportComponent implements OnInit {
                 this.existings = data as Existing[];
             })
             this.dataSource = new MatTableDataSource(this.stations);
+            this.cdr.detectChanges();
             this.dataSource.paginator = this.paginator;
             this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
             this.paginatorLabel.nextPageLabel = "الصفحة التاليه"

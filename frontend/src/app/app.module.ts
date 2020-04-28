@@ -131,10 +131,7 @@ const appRoutes: Routes = [
     {
         path: 'trips/create',
         loadChildren: './main/components/trips/trips-create/trips-create.module#TripsCreateModule',
-        canActivate: [RoleGuardService],
-        data: {
-            expectedRole: environment.roles.Administrator
-        }
+        canActivate: [AuthGuardService]
     },
     {
         path: 'trips/search',

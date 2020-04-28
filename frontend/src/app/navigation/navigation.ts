@@ -401,6 +401,12 @@ export const operatorNavigation: FuseNavigation[] = [
         type: 'collapsable',
         children: [
             {
+                id: 'Create',
+                title: 'إنشاء',
+                type: 'item',
+                url: '/trips/create'
+            },
+            {
                 id: 'Search',
                 title: 'بحث',
                 type: 'item',

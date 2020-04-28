@@ -5,6 +5,7 @@ import { environment } from 'environments/environment';
 import { MatTableDataSource, MatPaginator, MatSnackBar, MatPaginatorIntl } from '@angular/material';
 import { User } from 'app/main/models/user.model';
 import { AppStorageService } from 'app/main/services/app-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'users-search',
@@ -29,6 +30,7 @@ export class UsersSearchComponent implements OnInit {
         private genericService: GenericService,
         private snackbar: MatSnackBar,
         private storageService: AppStorageService,
+        private router: Router,
         private cdr: ChangeDetectorRef,
         private paginatorLabel: MatPaginatorIntl,
     ) { }
@@ -69,9 +71,9 @@ export class UsersSearchComponent implements OnInit {
                 this.displayedColumns = ['الإسم الأول', 'الإسم الأوسط', 'الإسم الأخير', 'رقم الهاتف', 'الدور', ' '];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
-            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
-            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
-            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
+                this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+                this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+                this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
         else {
@@ -83,9 +85,9 @@ export class UsersSearchComponent implements OnInit {
                 this.displayedColumns = ['الإسم الأول', 'الإسم الأوسط', 'الإسم الأخير', 'رقم الهاتف', 'الدور'];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
-            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
-            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
-            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
+                this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+                this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+                this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
             })
         }
     }
@@ -94,10 +96,23 @@ export class UsersSearchComponent implements OnInit {
         let rowID = this.dataSource.filteredData[filteredRow]["id"]
         this.users.forEach((row, index) => {
             if (row["id"] == rowID) {
-                this.users.splice(index, 1)[0] as User
+                let deletedUser = this.users.splice(index, 1)[0] as User;
                 this.genericService.deleteEntity(environment.entities.User, rowID).subscribe(
                     data => {
                         this.snackbar.open(data.message);
+                        console.log(this.storageService.loadUser());
+                        
+                        if (deletedUser.id === this.storageService.loadUser().id) {
+                            this.storageService.removeUser();
+                            this.genericService.checkAdminUserExistence().subscribe(isFound => {
+                                if (isFound) {
+                                    this.router.navigate(['/login']);
+                                }
+                                else {
+                                    this.router.navigate(['/register']);
+                                }
+                            })
+                        }
                     },
                     error => {
                         this.snackbar.open(error.message);

@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
         private storageService: AppStorageService,
         private snackbar: MatSnackBar,
         private router: Router,
-        ) {
+    ) {
         this._fuseConfigService.config = {
             layout: {
                 navbar: {
@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
         });
     }
 
-    register(){
+    register() {
         const user = <User>{
             firstName: this.registerForm.value.firstName,
             middleName: this.registerForm.value.middleName,
@@ -68,19 +68,22 @@ export class RegisterComponent implements OnInit {
             role: environment.roles.Administrator
         }
 
-        
+
         this.genericService.updateEntity(environment.entities.User, user).subscribe(
             data => {
                 this.snackbar.open(data.message, "Ok");
-                this.storageService.storeUser(user);
-                this._fuseNavigationService.setCurrentNavigation(environment.roles.Administrator);
-                this.router.navigate(['/home']);
-                this.snackbar.open(`Welcome, ${user.firstName}`);
+                this.genericService.checkUser(this.registerForm.value.phoneNumber, this.registerForm.value.password).subscribe(data => {
+                    let user = data as User;
+                    this.storageService.storeUser(user);
+                    this._fuseNavigationService.setCurrentNavigation(environment.roles.Administrator);
+                    this.router.navigate(['/home']);
+                    this.snackbar.open(`Welcome, ${user.firstName}`);
+                })
             },
             error => {
                 this.snackbar.open(error.message, "Ok");
             }
         )
-        
+
     }
 }

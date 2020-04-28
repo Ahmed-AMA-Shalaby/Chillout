@@ -47,12 +47,14 @@
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!--  DELETE BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleDelete()"
-                    [ngClass]="{'fuse-white': !deleteFlag, 'red': deleteFlag}" matTooltip="حذف" *ngIf="administratorFlag" [disabled]="dataSource.filteredData.length === 0">
+                    [ngClass]="{'fuse-white': !deleteFlag, 'red': deleteFlag}" matTooltip="حذف"
+                    [disabled]="dataSource.filteredData.length === 0">
                     <mat-icon>delete</mat-icon>
                 </button>
                 <!-- / DELETE BUTTON -->
                 <!--  EXPORT BUTTON -->
-                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="تصدير" [disabled]="dataSource.filteredData.length === 0">
+                <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="تصدير"
+                    [disabled]="dataSource.filteredData.length === 0">
                     <mat-icon>archive</mat-icon>
                 </button>
                 <!-- / EXPORT BUTTON -->
@@ -64,7 +66,8 @@
         <!-- CONTENT CARD -->
         <div class="content-card" *ngIf="trips.length != 0" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
 
-            <mat-table matTableExporter #exporter="matTableExporter" [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+            <mat-table matTableExporter #exporter="matTableExporter" [dataSource]="dataSource"
+                [@animateStagger]="{value:'50'}">
 
                 <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns; let i = index">
                     <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
