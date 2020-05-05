@@ -188,6 +188,9 @@ export class RemainingsReportComponent implements OnInit {
                 }
                 this.total.push(quotaAccumulator - remainingsAccumulator.value);
             }
+            else{
+                this.total.push(0);
+            }
         }
     }
 

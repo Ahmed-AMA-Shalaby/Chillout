@@ -28,7 +28,7 @@
                             <input matInput [matDatepicker]="datepicker" [formControl]="date" formControlName="date"
                                 [attr.disabled]="true">
                             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-                            <mat-datepicker #datepicker startView="multi-year" (closed)="retrieveCurrentNeeds()"
+                            <mat-datepicker #datepicker startView="month" (closed)="retrieveCurrentNeeds()"
                                 disabled="false">
                             </mat-datepicker>
                         </div>
@@ -50,27 +50,41 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card" *ngIf="stations.length != 0" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+        <div class="content-card" *ngIf="stations.length != 0"
+            [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
 
-            <mat-table matTableExporter #exporter="matTableExporter" [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+            <mat-table matTableExporter #exporter="matTableExporter" [dataSource]="dataSource"
+                [@animateStagger]="{value:'50'}">
 
                 <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns; let i = index">
                     <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
                     <mat-cell *matCellDef="let station; let j  = index">
                         <p *ngIf="originalColumns[i] == 'station'">
                             {{station["stationName"]}}</p>
-                        <p *ngIf="!editFlag && originalColumns[i] != 'station'"
-                            [ngClass]="{'fuse-white': checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column), 'red': !checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column)}">
-                            {{adjustNeedsDisplay(j,i)}}</p>
-                        <p *ngIf="originalColumns[i] != 'station' && !checkProductInStation(j,i)">
-                            <mat-icon>close</mat-icon>
-                        </p>
-                        <div *ngIf="editFlag && originalColumns[i] != 'station' && checkProductInStation(j,i)">
+                        <div
+                            *ngIf="!editFlag && originalColumns[i] != 'station' && adjustNeedsDisplay(j + (paginator.pageIndex * paginator.pageSize), i)">
+                            <div *ngFor="let tankAndNeed of tanksAndNeeds; let k = index"
+                                [ngClass]="{'fuse-white': checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column), 'red': !checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column)}">
+                                <p *ngIf="k == 0">
+                                    <b>الخزان: </b>{{tankAndNeed}}
+                                </p>
+                                <p *ngIf="k == 1">
+                                    <b>الإحتياج: </b>{{tankAndNeed}}
+                                </p>
+                            </div>
+                        </div>
+                        <!-- *ngFor="let tankAndNeed of adjustNeedsDisplay(j + (paginator.pageIndex * paginator.pageSize), i); let k = index" -->
+                        <p
+                            *ngIf="originalColumns[i] != 'station' && !checkProductInStation(j + (paginator.pageIndex * paginator.pageSize), i)">
+                            0</p>
+                        <div
+                            *ngIf="editFlag && originalColumns[i] != 'station' && checkProductInStation(j + (paginator.pageIndex * paginator.pageSize), i)">
                             <mat-form-field floatLabel="never" appearance="outline" class="mt-20"
                                 style="width: 100px !important; text-align: center;">
                                 <input matInput
                                     (input)="modifyData(stations[j + (paginator.pageIndex * paginator.pageSize)], column, $event.target.value)"
-                                    placeholder="{{column}}" [value]="adjustNeedsDisplay(j,i)"
+                                    placeholder="{{column}}"
+                                    [value]="adjustNeedsDisplay(j + (paginator.pageIndex * paginator.pageSize), i)"
                                     [ngClass]="{'fuse-white': checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column), 'red': !checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column)}">
                             </mat-form-field>
                         </div>
@@ -81,8 +95,8 @@
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             </mat-table>
 
-            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
-                [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+                [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
 
         </div>
         <!-- / CONTENT CARD -->

@@ -8,7 +8,8 @@
                 <div class="title">معلومات عامة</div>
                 <div></div>
                 <button mat-icon-button class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل" [disabled]="addFlag" *ngIf="administratorFlag">
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل" [disabled]="addFlag"
+                    *ngIf="administratorFlag">
                     <mat-icon>edit</mat-icon>
                 </button>
             </header>
@@ -35,10 +36,10 @@
                 <div class="info-line">
                     <div class="title">الموقع:</div>
                     <div *ngIf="!editFlag" class="info">{{station.stationLocation}}</div>
-                    <mat-form-field floatLabel="never" *ngIf="editFlag">
+                    <mat-form-field floatLabel="never" *ngIf="editFlag" style="width: 480px;">
                         <mat-label>الموقع</mat-label>
-                        <input matInput class="info" [value]="station.stationLocation"
-                            [(ngModel)]="station.stationLocation">
+                        <textarea matInput class="info" [value]="station.stationLocation"
+                            [(ngModel)]="station.stationLocation"></textarea>
                     </mat-form-field>
                 </div>
 
@@ -48,7 +49,8 @@
                     <mat-form-field floatLabel="never" *ngIf="editFlag">
                         <mat-label>الوكيل</mat-label>
                         <mat-select [(ngModel)]="station.agent">
-                            <mat-option *ngFor="let agent of agents" [value]="station.agent.id === agent.id ? station.agent : agent">
+                            <mat-option *ngFor="let agent of agents"
+                                [value]="station.agent.id === agent.id ? station.agent : agent">
                                 {{agent.agentName}}
                             </mat-option>
                         </mat-select>
@@ -61,7 +63,8 @@
                     <mat-form-field floatLabel="never" *ngIf="editFlag">
                         <mat-label>القطاع</mat-label>
                         <mat-select [(ngModel)]="station.sector">
-                            <mat-option *ngFor="let sector of sectors" [value]="station.sector.id === sector.id ? station.sector : sector">
+                            <mat-option *ngFor="let sector of sectors"
+                                [value]="station.sector.id === sector.id ? station.sector : sector">
                                 {{sector.sectorName}}
                             </mat-option>
                         </mat-select>
@@ -97,7 +100,8 @@
                         fxLayoutAlign="space-between center">
 
                         <div *ngIf="!editFlag" class="info">{{tank.product.productName}}</div>
-                        <mat-form-field floatLabel="never" *ngIf="editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="mr-16">
+                        <mat-form-field floatLabel="never"
+                            *ngIf="editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="mr-16">
                             <mat-label>{{station.tanks[i].product.productName}}</mat-label>
                             <mat-select [(ngModel)]="station.tanks[i].product" (ngModelChange)="toggleEdit()">
                                 <mat-option *ngFor="let product of products" [value]="product">
@@ -106,13 +110,16 @@
                             </mat-select>
                         </mat-form-field>
 
-                        <div *ngIf="!editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="info">{{adjustThousands(tank.tankVolume)}} لتر</div>
-                        <mat-form-field floatLabel="never" *ngIf="editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="mr-16">
+                        <div *ngIf="!editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="info">
+                            {{adjustThousands(tank.tankVolume)}} لتر</div>
+                        <mat-form-field floatLabel="never"
+                            *ngIf="editFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه'" class="mr-16">
                             <input matInput class="info" [(ngModel)]="station.tanks[i].tankVolume"
                                 [value]="tank.tankVolume">
                         </mat-form-field>
 
-                        <button *ngIf="!editFlag && !addFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه' && administratorFlag"
+                        <button
+                            *ngIf="!editFlag && !addFlag && tank.product.productName != 'إجمالى المبالغ الإضافيه' && administratorFlag"
                             mat-icon-button class="mx-4"
                             (click)="removeProduct(i, tank.product.productName, tank.tankVolume)" ngClass="warn"
                             matTooltip="Remove product">
@@ -144,7 +151,8 @@
                     </div>
 
                     <div fxLayout="row" fxLayoutAlign="center center">
-                        <button mat-raised-button ngClass="green-700" (click)="addTank()" [disabled]="!newTankVolume || !newProduct">Add Product</button>
+                        <button mat-raised-button ngClass="green-700" (click)="addTank()"
+                            [disabled]="!newTankVolume || !newProduct">Add Product</button>
                     </div>
 
                 </div>

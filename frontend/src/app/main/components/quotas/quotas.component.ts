@@ -11,7 +11,6 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatDatepicker } from '@angular/material/datepicker';
 import * as _moment from 'moment';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { AppStorageService } from 'app/main/services/app-storage.service';
 import { MatTableExporterDirective } from 'mat-table-exporter';
 const moment = _moment;
 
@@ -68,7 +67,6 @@ export class QuotasComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private genericService: GenericService,
         private snackbar: MatSnackBar,
-        private storageService: AppStorageService,
         private cdr: ChangeDetectorRef,
         private paginatorLabel: MatPaginatorIntl,
     ) { }
@@ -103,7 +101,6 @@ export class QuotasComponent implements OnInit {
             this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
             this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
-        this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
 
     toggleEdit() {

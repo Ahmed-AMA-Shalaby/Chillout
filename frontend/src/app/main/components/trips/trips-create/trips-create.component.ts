@@ -119,6 +119,17 @@ export class TripsCreateComponent implements OnInit {
 
         this.genericService.retrieveShownEntities(environment.entities.Driver).subscribe(drivers => {
             this.drivers = drivers;
+            this.drivers.sort((a, b) => {
+                if ([a.firstName, a.middleName, a.lastName].join(' ') > [b.firstName, b.middleName, b.lastName].join(' ')) {
+                    return 1;
+                }
+                else if ([a.firstName, a.middleName, a.lastName].join(' ') == [b.firstName, b.middleName, b.lastName].join(' ')) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
 
         this.genericService.retrieveShownEntities(environment.entities.Vehicle).subscribe(vehicles => {
@@ -242,13 +253,24 @@ export class TripsCreateComponent implements OnInit {
     }
 
     restrictProducts(outboundWarehouse: Warehouse) {
-        this.products = this.products.filter(product => {
-            for (let productIndex = 0; productIndex < outboundWarehouse.products.length; productIndex++) {
-                if (outboundWarehouse.products[productIndex].id === product.id) {
-                    return true;
+        this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
+            (products as Product[]).forEach((product, index) => {
+                if (product.productName === "إجمالى المبالغ الإضافيه") {
+                    products.splice(index, 1)
                 }
-            }
-        });
+            })
+            this.products = products;
+            this.products = this.products.filter(product => {
+                for (let productIndex = 0; productIndex < outboundWarehouse.products.length; productIndex++) {
+                    if (outboundWarehouse.products[productIndex].id === product.id) {
+                        return true;
+                    }
+                }
+            });
+        })
+        this.transfer1products = [];
+        this.transfer2products = [];
+        this.transfer3products = [];
     }
 
     restrictTransfer1products(station: Station) {

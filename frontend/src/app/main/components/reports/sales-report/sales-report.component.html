@@ -30,7 +30,7 @@
                                 formControlName="startdate" [attr.disabled]="true">
                             <mat-datepicker-toggle style="position: relative; transform: translateX(0px);" matSuffix
                                 [for]="startdatepicker"></mat-datepicker-toggle>
-                            <mat-datepicker #startdatepicker startView="multi-year" (closed)="updateEndDatePicker()"
+                            <mat-datepicker #startdatepicker startView="month" (closed)="updateEndDatePicker()"
                                 disabled="false">
                             </mat-datepicker>
                         </div>
@@ -56,6 +56,16 @@
             <!-- / FILTER -->
 
             <div fxLayout="row" fxLayoutAlign="center center">
+                <!--  AGGREGATE BUTTONS -->
+                <button mat-mini-fab class="mx-16 fuse-white" (click)="toggleAggregate()"
+                    matTooltip="المتوسط" [disabled]="dataSource.filteredData.length === 0" *ngIf="!aggregateFlag">
+                    <mat-icon>toggle_on</mat-icon>
+                </button>
+                <button mat-mini-fab class="mx-16 fuse-white" (click)="toggleAggregate()"
+                    matTooltip="المجموع" [disabled]="dataSource.filteredData.length === 0" *ngIf="aggregateFlag">
+                    <mat-icon>toggle_off</mat-icon>
+                </button>
+                <!-- / AGGREGATE BUTTON -->
                 <!--  EXPORT BUTTON -->
                 <button mat-mini-fab class="mx-16 fuse-white" (click)="exportTable()" matTooltip="تصدير"
                     [disabled]="dataSource.filteredData.length === 0">
@@ -68,7 +78,8 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card" *ngIf="stations.length != 0" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+        <div class="content-card" *ngIf="stations.length != 0"
+            [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
 
             <mat-table matTableExporter #exporter="matTableExporter" [dataSource]="dataSource"
                 [@animateStagger]="{value:'50'}">
@@ -79,11 +90,13 @@
                         <p *ngIf="originalColumns[i] == 'station'">
                             {{station["stationName"]}}</p>
                         <p *ngIf="originalColumns[i] != 'station'">
-                            {{adjustSalesDisplay(j,i)}}</p>
-                        <p *ngIf="originalColumns[i] != 'station' && !checkProductInStation(j,i)">0</p>
+                            {{adjustSalesDisplay(j + (paginator.pageIndex * paginator.pageSize), i)}}</p>
+                        <p
+                            *ngIf="originalColumns[i] != 'station' && !checkProductInStation(j + (paginator.pageIndex * paginator.pageSize), i)">
+                            0</p>
                     </mat-cell>
                     <mat-footer-cell *matFooterCellDef>
-                        <p><b>{{total[i]}}</b></p>
+                        <p><b>{{aggregate[i]}}</b></p>
                     </mat-footer-cell>
                 </ng-container>
 
@@ -92,8 +105,8 @@
                 <mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></mat-footer-row>
             </mat-table>
 
-            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
-                [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+                [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
 
         </div>
         <!-- / CONTENT CARD -->

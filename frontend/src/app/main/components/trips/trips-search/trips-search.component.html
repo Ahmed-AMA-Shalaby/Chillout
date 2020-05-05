@@ -24,7 +24,7 @@
             <div class="search-wrapper mx-32 mx-md-0">
                 <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                     <mat-icon>search</mat-icon>
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="إبحث عن كود المركبه">
+                    <input matInput [(ngModel)]="filterValue" (keyup)="applyFilter($event.target.value)" placeholder="إبحث عن كود المركبه">
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
                             <input matInput [matDatepicker]="datepicker" [formControl]="date" formControlName="date"
                                 [attr.disabled]="true">
                             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-                            <mat-datepicker #datepicker startView="multi-year" (closed)="retrieveCurrentTrips()"
+                            <mat-datepicker #datepicker startView="month" (closed)="retrieveCurrentTrips()"
                                 disabled="false">
                             </mat-datepicker>
                         </div>
@@ -75,6 +75,8 @@
                         <p *ngIf="originalColumns[i] == 'order'">{{trips[originalColumns[i]]}}</p>
                         <p *ngIf="originalColumns[i] == 'vehicle'">
                             {{trips[originalColumns[i]]["vehicleCode"]}}</p>
+                        <p *ngIf="originalColumns[i] == 'driver'">
+                            {{trips[originalColumns[i]]["firstName"]}} {{trips[originalColumns[i]]["middleName"]}} {{trips[originalColumns[i]]["lastName"]}}</p>
                         <p *ngIf="originalColumns[i] == 'outboundDistance'">
                             {{trips[originalColumns[i]]["warehouse"]["companyName"]}} -
                             {{trips[originalColumns[i]]["warehouse"]["warehouseName"]}}</p>
@@ -101,8 +103,8 @@
                 <mat-row *matRowDef="let row; columns: displayedColumns;" class="row"></mat-row>
             </mat-table>
 
-            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
-                [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+                [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
 
         </div>
         <!-- / CONTENT CARD -->

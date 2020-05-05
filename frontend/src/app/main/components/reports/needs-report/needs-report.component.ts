@@ -54,6 +54,8 @@ export class NeedsReportComponent implements OnInit {
     displayedColumns = [];
     dateForm: FormGroup;
 
+    tanksAndNeeds: number[]
+
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
 
@@ -180,11 +182,14 @@ export class NeedsReportComponent implements OnInit {
     }
 
     adjustNeedsDisplay(rowIndex: number, columnIndex: number) {
+        this.tanksAndNeeds = [];
         for (let existingsIndex = 0; existingsIndex < this.existings.length; existingsIndex++) {
             if (this.existings[existingsIndex].station.stationName === this.stations[rowIndex].stationName && this.existings[existingsIndex].product.productName === this.displayedColumns[columnIndex]) {
                 for (let tankIndex = 0; tankIndex < this.stations[rowIndex].tanks.length; tankIndex++) {
                     if (this.stations[rowIndex].tanks[tankIndex].product.productName === this.displayedColumns[columnIndex]) {
-                        return this.stations[rowIndex].tanks[tankIndex].tankVolume - this.existings[existingsIndex].existingAmount;
+                        this.tanksAndNeeds.push(this.stations[rowIndex].tanks[tankIndex].tankVolume);
+                        this.tanksAndNeeds.push(this.stations[rowIndex].tanks[tankIndex].tankVolume - this.existings[existingsIndex].existingAmount);
+                        return true;
                     }
                 }
             }

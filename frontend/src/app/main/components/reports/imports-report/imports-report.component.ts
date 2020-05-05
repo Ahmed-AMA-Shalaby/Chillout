@@ -158,7 +158,7 @@ export class ImportsReportComponent implements OnInit {
     calculateTotal() {
         this.total = [];
         this.total.push('الإجمالى')
-        for (let columnIndex = 0; columnIndex < this.displayedColumns.length; columnIndex++) {
+        for (let columnIndex = 1; columnIndex < this.displayedColumns.length; columnIndex++) {
             let importsAccumulator = { isUpdated: false, value: 0 };
             for (let tripsIndex = 0; tripsIndex < this.trips.length; tripsIndex++) {
                 for (let transferIndex = 0; transferIndex < this.trips[tripsIndex].transfers.length; transferIndex++) {
@@ -166,11 +166,13 @@ export class ImportsReportComponent implements OnInit {
                         importsAccumulator.value += this.trips[tripsIndex].transfers[transferIndex].transferredAmount;
                         importsAccumulator.isUpdated = true;
                     }
-
                 }
             }
             if (importsAccumulator.isUpdated) {
                 this.total.push(importsAccumulator.value);
+            }
+            else{
+                this.total.push(0);
             }
         }
     }

@@ -28,7 +28,7 @@
                             <input matInput [matDatepicker]="datepicker" [formControl]="date" formControlName="date"
                                 [attr.disabled]="true">
                             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-                            <mat-datepicker #datepicker startView="multi-year"
+                            <mat-datepicker #datepicker startView="year"
                                 (yearSelected)="chosenYearHandler($event)"
                                 (monthSelected)="chosenMonthHandler($event, datepicker)" disabled="false">
                             </mat-datepicker>
@@ -41,8 +41,7 @@
             <div fxLayout="row" fxLayoutAlign="center center">
                 <!-- EDIT BUTTON -->
                 <button mat-mini-fab class="mx-16" (click)="toggleEdit()"
-                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل"
-                    *ngIf="administratorFlag">
+                    [ngClass]="{'fuse-white': !editFlag, 'fuse-navy': editFlag}" matTooltip="تعديل">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <!-- / EDIT BUTTON -->
@@ -69,16 +68,19 @@
                         <p *ngIf="originalColumns[i] == 'warehouse'">
                             {{warehouse["companyName"]}} - {{warehouse["warehouseName"]}}</p>
                         <p *ngIf="!editFlag && originalColumns[i] != 'warehouse'">
-                            {{adjustQuotasDisplay(j,i)}}</p>
-                        <p *ngIf="originalColumns[i] != 'warehouse' && !checkProductInWarehouse(j,i)">
+                            {{adjustQuotasDisplay(j + (paginator.pageIndex * paginator.pageSize), i)}}</p>
+                        <p
+                            *ngIf="originalColumns[i] != 'warehouse' && !checkProductInWarehouse(j + (paginator.pageIndex * paginator.pageSize), i)">
                             <mat-icon>close</mat-icon>
                         </p>
-                        <div *ngIf="editFlag && originalColumns[i] != 'warehouse' && checkProductInWarehouse(j,i)">
+                        <div
+                            *ngIf="editFlag && originalColumns[i] != 'warehouse' && checkProductInWarehouse(j + (paginator.pageIndex * paginator.pageSize), i)">
                             <mat-form-field floatLabel="never" appearance="outline" class="mt-20"
                                 style="width: 100px !important;">
                                 <input matInput
                                     (input)="modifyData(warehouses[j + (paginator.pageIndex * paginator.pageSize)], column, $event.target.value)"
-                                    placeholder="{{column}}" [value]="adjustQuotasDisplay(j,i)">
+                                    placeholder="{{column}}"
+                                    [value]="adjustQuotasDisplay(j + (paginator.pageIndex * paginator.pageSize), i)">
                             </mat-form-field>
                         </div>
                     </mat-cell>
@@ -92,8 +94,8 @@
                 <mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></mat-footer-row>
             </mat-table>
 
-            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
-                [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+                [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
 
         </div>
         <!-- / CONTENT CARD -->

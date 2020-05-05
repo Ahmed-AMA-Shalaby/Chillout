@@ -25,7 +25,7 @@ import { environment } from 'environments/environment';
 
 const appRoutes: Routes = [
     {
-        path: '', redirectTo: 'register', pathMatch: 'full',
+        path: '', redirectTo: 'login', pathMatch: 'full',
     },
     {
         path: 'login',

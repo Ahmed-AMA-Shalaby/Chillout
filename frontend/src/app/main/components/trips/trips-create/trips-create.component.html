@@ -28,7 +28,7 @@
                             <input matInput [matDatepicker]="datepicker" [formControl]="date" formControlName="date"
                                 [attr.disabled]="true">
                             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-                            <mat-datepicker #datepicker startView="multi-year" disabled="false">
+                            <mat-datepicker #datepicker startView="month" disabled="false">
                             </mat-datepicker>
                         </div>
                     </mat-form-field>
@@ -54,7 +54,7 @@
                             <mat-form-field appearance="outline" class="pr-4 pl-4">
                                 <mat-label>مستودع الخروج</mat-label>
                                 <mat-select formControlName="outboundWarehouse" #outboundWarehouse required
-                                    style="width: 180px;" (selectionChange)="restrictProducts($event.value)">
+                                    style="width: 180px;" (selectionChange)="restrictProducts($event.value); transfer1Form.reset(); transfer2Form.reset(); transfer3Form.reset();">
                                     <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
                                         {{warehouse.companyName}} - {{warehouse.warehouseName}}
                                     </mat-option>

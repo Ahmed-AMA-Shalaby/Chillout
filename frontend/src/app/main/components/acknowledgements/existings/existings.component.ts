@@ -87,36 +87,23 @@ export class ExistingsComponent implements OnInit {
             })
             this.dataSource = new MatTableDataSource(this.stations);
             this.dataSource.paginator = this.paginator;
+            this.dataSource.filterPredicate = (data: Station, filter: string) => {
+                return data.stationName.includes(filter)
+            };
             this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
             this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
             this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
         })
     }
 
+    applyFilter(filterValue) {
+        this.dataSource.filter = filterValue;
+    }
+
     toggleEdit() {
         this.editFlag = !this.editFlag;
         this.existings.length = 0;
         this.retrieveCurrentExistings();
-        this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
-            this.stations = stations;
-            this.originalColumns = ['station'];
-            this.displayedColumns = ['Station'];
-            this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
-                this.products = products;
-                this.products.forEach(product => {
-                    if (product.productName !== "إجمالى المبالغ الإضافيه") {
-                        this.displayedColumns.push(product.productName);
-                    }
-                })
-                this.displayedColumns.sort();
-                this.displayedColumns.push("إجمالى المبالغ الإضافيه");
-            })
-            this.dataSource = new MatTableDataSource(this.stations);
-            this.dataSource.paginator = this.paginator;
-            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
-            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
-            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
-        })
     }
 
     modifyData(filteredRow, filteredColumn, modifiedAmount) {

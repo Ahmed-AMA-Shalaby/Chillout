@@ -58,7 +58,8 @@ export class SalesReportComponent implements OnInit {
     minEndDate: _moment.Moment
     maxEndDate: _moment.Moment
 
-    total: (string | number)[] = [];
+    aggregate: (string | number)[] = [];
+    aggregateFlag: boolean = false;
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
@@ -117,7 +118,12 @@ export class SalesReportComponent implements OnInit {
             }
         }
         if (salesAccumulator.isUpdated) {
-            return salesAccumulator.value;
+            if (!this.aggregateFlag) {
+                return salesAccumulator.value;
+            }
+            else {
+                return (salesAccumulator.value / (this.enddate.value.date() - this.startdate.value.date() + 1)).toFixed(0);
+            }
         }
         else {
             return "";
@@ -152,10 +158,20 @@ export class SalesReportComponent implements OnInit {
         })
     }
 
+    toggleAggregate() {
+        this.aggregateFlag = !this.aggregateFlag;
+        this.calculateTotal();
+    }
+
     calculateTotal() {
-        this.total = [];
-        this.total.push('الإجمالى')
-        for (let columnIndex = 0; columnIndex < this.displayedColumns.length; columnIndex++) {
+        this.aggregate = [];
+        if (!this.aggregateFlag) {
+            this.aggregate.push('الإجمالى')
+        }
+        else {
+            this.aggregate.push('المتوسط')
+        }
+        for (let columnIndex = 1; columnIndex < this.displayedColumns.length; columnIndex++) {
             let salesAccumulator = { isUpdated: false, value: 0 };
             for (let salesIndex = 0; salesIndex < this.sales.length; salesIndex++) {
                 if (this.sales[salesIndex].product.productName === this.displayedColumns[columnIndex]) {
@@ -164,7 +180,15 @@ export class SalesReportComponent implements OnInit {
                 }
             }
             if (salesAccumulator.isUpdated) {
-                this.total.push(salesAccumulator.value);
+                if (!this.aggregateFlag) {
+                    this.aggregate.push(salesAccumulator.value);
+                }
+                else {
+                    this.aggregate.push((salesAccumulator.value / (this.enddate.value.date() - this.startdate.value.date() + 1)).toFixed(0));
+                }
+            }
+            else {
+                this.aggregate.push(0);
             }
         }
     }

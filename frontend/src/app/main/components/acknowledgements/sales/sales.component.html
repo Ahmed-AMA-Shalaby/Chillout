@@ -21,14 +21,21 @@
             <!-- / APP TITLE -->
 
             <!-- FILTER -->
-            <div class="search-wrapper mx-32 mx-md-0 fuse-white">
+            <div class="search-wrapper mx-32 mx-md-0">
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon>search</mat-icon>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="إبحث عن إسم المحطه">
+                </div>
+            </div>
+
+            <div class="datepicker-wrapper mx-32 mx-md-0 fuse-white">
                 <form name="dateForm" [formGroup]="dateForm">
                     <mat-form-field appearance="never" class="pr-4">
-                        <div class="search mt-12" fxFlex fxLayout="row" fxLayoutAlign="center center">
+                        <div class="datepicker mt-12" fxFlex fxLayout="row" fxLayoutAlign="center center">
                             <input matInput [matDatepicker]="datepicker" [formControl]="date" formControlName="date"
                                 [attr.disabled]="true">
                             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-                            <mat-datepicker #datepicker startView="multi-year" (closed)="retrieveCurrentSales()"
+                            <mat-datepicker #datepicker startView="month" (closed)="retrieveCurrentSales()"
                                 disabled="false">
                             </mat-datepicker>
                         </div>
@@ -60,16 +67,16 @@
                         <p *ngIf="originalColumns[i] == 'station'">
                             {{station["stationName"]}}</p>
                         <p *ngIf="!editFlag && originalColumns[i] != 'station'">
-                            {{adjustSalesDisplay(j,i)}}</p>
-                        <p *ngIf="originalColumns[i] != 'station' && !checkProductInStation(j,i)">
+                            {{adjustSalesDisplay(j + (paginator.pageIndex * paginator.pageSize), i)}}</p>
+                        <p *ngIf="originalColumns[i] != 'station' && !checkProductInStation(j + (paginator.pageIndex * paginator.pageSize), i)">
                             <mat-icon>close</mat-icon>
                         </p>
-                        <div *ngIf="editFlag && originalColumns[i] != 'station' && checkProductInStation(j,i)">
+                        <div *ngIf="editFlag && originalColumns[i] != 'station' && checkProductInStation(j + (paginator.pageIndex * paginator.pageSize), i)">
                             <mat-form-field floatLabel="never" appearance="outline" class="mt-20"
                                 style="width: 100px !important;">
                                 <input matInput
                                     (input)="modifyData(stations[j + (paginator.pageIndex * paginator.pageSize)], column, $event.target.value)"
-                                    placeholder="{{column}}" [value]="adjustSalesDisplay(j,i)">
+                                    placeholder="{{column}}" [value]="adjustSalesDisplay(j + (paginator.pageIndex * paginator.pageSize), i)">
                             </mat-form-field>
                         </div>
                     </mat-cell>
@@ -79,8 +86,8 @@
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             </mat-table>
 
-            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
-                [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+                [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
 
         </div>
         <!-- / CONTENT CARD -->

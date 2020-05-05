@@ -24,7 +24,7 @@ public class Warehouse {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Sector sector;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Product> products = new HashSet<>();
 
     public Warehouse() {

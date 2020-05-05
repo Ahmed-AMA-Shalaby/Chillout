@@ -43,6 +43,7 @@ export class TripsSearchComponent implements OnInit {
     dateForm: FormGroup;
     trips: Trip[] = [];
     deleteFlag: boolean = false;
+    filterValue: string = '';
 
     dataSource: MatTableDataSource<{}>;
     originalColumns = [];
@@ -72,6 +73,7 @@ export class TripsSearchComponent implements OnInit {
     }
 
     applyFilter(filterValue) {
+        this.filterValue = filterValue;
         this.dataSource.filter = filterValue;
     }
 
@@ -83,8 +85,8 @@ export class TripsSearchComponent implements OnInit {
                 (data as Trip[]).forEach(trip => {
                     this.trips.push(trip as never)
                 })
-                this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'details', 'inboundDistance', 'distance', 'delete'];
-                this.displayedColumns = ['الترتيب', 'المركبه', 'مستودع الخروج', 'التفاصيل', 'مستودع الرجوع', 'إجمالى المسافه', ' '];
+                this.originalColumns = ['order', 'vehicle', 'driver', 'outboundDistance', 'details', 'inboundDistance', 'distance', 'delete'];
+                this.displayedColumns = ['الترتيب', 'المركبه', 'السائق', 'مستودع الخروج', 'التفاصيل', 'مستودع الرجوع', 'إجمالى المسافه', ' '];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
                 this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
@@ -97,8 +99,8 @@ export class TripsSearchComponent implements OnInit {
                 (data as Trip[]).forEach(trip => {
                     this.trips.push(trip as never)
                 })
-                this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'details', 'inboundDistance', 'distance'];
-                this.displayedColumns = ['الترتيب', 'المركبه', 'مستودع الخروج', 'التفاصيل', 'مستودع الرجوع', 'إجمالى المسافه'];
+                this.originalColumns = ['order', 'vehicle', 'driver', 'outboundDistance', 'details', 'inboundDistance', 'distance'];
+                this.displayedColumns = ['الترتيب', 'المركبه', 'السائق', 'مستودع الخروج', 'التفاصيل', 'مستودع الرجوع', 'إجمالى المسافه'];
                 this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
                 this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
@@ -110,22 +112,21 @@ export class TripsSearchComponent implements OnInit {
 
     deleteTrip(filteredRow) {
         let rowID = this.dataSource.filteredData[filteredRow]["id"]
-        this.trips.forEach((row, index) => {
-            if (row["id"] == rowID) {
-                let deletedTrip = this.trips.splice(index, 1)[0] as Trip
-                this.genericService.deleteEntity(environment.entities.Trip, rowID).subscribe(
-                    data => {
-                        this.snackbar.open(data.message);
-                    },
-                    error => {
-                        this.snackbar.open(error.message);
-                    }
-                );
+        let deletedTrip = null;
+        for (let tripIndex = 0; tripIndex < this.trips.length; tripIndex++) {
+            if (this.trips[tripIndex]["id"] == rowID) {
+                deletedTrip = this.trips.splice(tripIndex, 1)[0] as Trip
+                break;
+            }
+        }
+        this.genericService.deleteEntity(environment.entities.Trip, rowID).subscribe(
+            data => {
+                this.snackbar.open(data.message);
                 this.trips.map(trip => {
                     if (trip.vehicle.vehicleCode === deletedTrip.vehicle.vehicleCode && trip.order > deletedTrip.order) {
                         return trip.order -= 1;
                     }
-                })
+                });
                 this.trips.forEach(trip => {
                     this.genericService.updateEntity(environment.entities.Trip, trip).subscribe(
                         data => {
@@ -136,22 +137,41 @@ export class TripsSearchComponent implements OnInit {
                         }
                     );
                 })
-                this.dataSource = new MatTableDataSource(this.trips);
+                this.dataSource = new MatTableDataSource([]);
+                this.genericService.retrieveEntitiesbyDate(environment.entities.Trip, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
+                    this.trips = data as Trip[];
+                    this.originalColumns = ['order', 'vehicle', 'driver', 'outboundDistance', 'details', 'inboundDistance', 'distance', 'delete'];
+                    this.displayedColumns = ['الترتيب', 'المركبه', 'السائق', 'مستودع الخروج', 'التفاصيل', 'مستودع الرجوع', 'إجمالى المسافه', ' '];
+                    this.dataSource = new MatTableDataSource(this.trips);
+                    this.cdr.detectChanges();
+                    this.dataSource.filterPredicate = (data: Trip, filter: string) => {
+                        return data.vehicle.vehicleCode.toString().startsWith(filter)
+                    };
+                    this.dataSource.filter = this.filterValue;
+                    this.dataSource.paginator = this.paginator;
+                    this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
+                    this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
+                    this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
+                })
+            },
+            error => {
+                this.snackbar.open(error.message);
             }
-        })
+        );
     }
 
     retrieveCurrentTrips() {
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveEntitiesbyDate(environment.entities.Trip, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
             this.trips = data as Trip[];
-            this.originalColumns = ['order', 'vehicle', 'outboundDistance', 'details', 'inboundDistance', 'distance'];
-            this.displayedColumns = ['الترتيب', 'المركبه', 'مستودع الخروج', 'التفاصيل', 'مستودع الرجوع', 'إجمالى المسافه'];
+            this.originalColumns = ['order', 'vehicle', 'driver', 'outboundDistance', 'details', 'inboundDistance', 'distance'];
+            this.displayedColumns = ['الترتيب', 'المركبه', 'السائق', 'مستودع الخروج', 'التفاصيل', 'مستودع الرجوع', 'إجمالى المسافه'];
             this.dataSource = new MatTableDataSource(this.trips);
             this.cdr.detectChanges();
             this.dataSource.filterPredicate = (data: Trip, filter: string) => {
                 return data.vehicle.vehicleCode.toString().startsWith(filter)
             };
+            this.dataSource.filter = this.filterValue;
             this.dataSource.paginator = this.paginator;
             this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
             this.paginatorLabel.nextPageLabel = "الصفحة التاليه"

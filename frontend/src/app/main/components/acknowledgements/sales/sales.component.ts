@@ -87,6 +87,9 @@ export class SalesComponent implements OnInit {
                 this.sales = data as Sale[];
             })
             this.dataSource = new MatTableDataSource(this.stations);
+            this.dataSource.filterPredicate = (data: Station, filter: string) => {
+                return data.stationName.includes(filter)
+            };
             this.dataSource.paginator = this.paginator;
             this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
             this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
@@ -94,30 +97,14 @@ export class SalesComponent implements OnInit {
         })
     }
 
+    applyFilter(filterValue) {
+        this.dataSource.filter = filterValue;
+    }
+
     toggleEdit() {
         this.editFlag = !this.editFlag;
         this.sales.length = 0;
         this.retrieveCurrentSales();
-        this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
-            this.stations = stations;
-            this.originalColumns = ['station'];
-            this.displayedColumns = ['Station'];
-            this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
-                this.products = products;
-                this.products.forEach(product => {
-                    if (product.productName !== "إجمالى المبالغ الإضافيه") {
-                        this.displayedColumns.push(product.productName);
-                    }
-                })
-                this.displayedColumns.sort();
-                this.displayedColumns.push("إجمالى المبالغ الإضافيه");
-            })
-            this.dataSource = new MatTableDataSource(this.stations);
-            this.dataSource.paginator = this.paginator;
-            this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
-            this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
-            this.paginatorLabel.previousPageLabel = "الصفحة السابقة"
-        })
     }
 
     modifyData(filteredRow, filteredColumn, modifiedAmount) {
@@ -191,7 +178,7 @@ export class SalesComponent implements OnInit {
         return false;
     }
 
-    retrieveCurrentSales(){
+    retrieveCurrentSales() {
         this.genericService.retrieveEntitiesbyDate(environment.entities.Sale, this.date.value.year(), this.date.value.month() + 1, this.date.value.date()).subscribe(data => {
             this.sales = data as Sale[];
         })

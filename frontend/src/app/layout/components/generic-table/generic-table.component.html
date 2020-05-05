@@ -6,8 +6,8 @@
             <p *ngIf="!editMode && originalColumns[i] != 'hidden'">{{data[originalColumns[i]]}}</p>
             <button mat-icon-button class="mx-16" *ngIf="!editMode && originalColumns[i] == 'hidden'"
                 (click)="toggleVisibility(j + (paginator.pageIndex * paginator.pageSize))">
-                <mat-icon *ngIf="data[originalColumns[i]] == true" matTooltip="Show">visibility</mat-icon>
-                <mat-icon *ngIf="data[originalColumns[i]] == false" matTooltip="إظهار / إخفاء">visibility_off</mat-icon>
+                <mat-icon *ngIf="data[originalColumns[i]] == true" matTooltip="إظهار">visibility</mat-icon>
+                <mat-icon *ngIf="data[originalColumns[i]] == false" matTooltip="إخفاء">visibility_off</mat-icon>
             </button>
             <mat-form-field floatLabel="never" appearance="outline" class="mt-20" *ngIf="editMode" style="width: 70%;">
                 <input matInput (input)="modifyData(j + (paginator.pageIndex * paginator.pageSize))"
@@ -18,7 +18,8 @@
 
     <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
     <div *ngIf="!editMode && !hideMode && (type == 'Station' || type == 'Warehouse')">
-        <mat-row *matRowDef="let row; columns: displayedColumns;" class="row" matRipple [routerLink]="cellLink+ row.id">
+        <mat-row *matRowDef="let row; columns: displayedColumns;"
+            style="position: relative; cursor: pointer; height: 84px;" matRipple [routerLink]="cellLink+ row.id">
         </mat-row>
     </div>
     <div *ngIf="editMode || hideMode || (type != 'Station' && type != 'Warehouse')">

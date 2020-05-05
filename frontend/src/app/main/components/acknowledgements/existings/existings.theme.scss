@@ -1,5 +1,6 @@
 @mixin existings-theme($theme) {
 
+    $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
 
     existings {
@@ -7,12 +8,28 @@
         .header {
 
             .search-wrapper {
+                background: map-get($background, card);
 
                 .search {
 
+                    .mat-icon {
+                        color: map-get($foreground, icon);
+                    }
+
                     input {
+                        background: map-get($background, card);
                         color: map-get($foreground, text);
                     }
+                }
+            }
+        }
+
+        .datepicker-wrapper {
+
+            .datepicker {
+
+                input {
+                    color: map-get($foreground, text);
                 }
             }
         }

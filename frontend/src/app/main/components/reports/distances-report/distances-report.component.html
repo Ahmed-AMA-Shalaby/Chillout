@@ -29,7 +29,7 @@
                             <input matInput [matDatepicker]="datepicker" [formControl]="date" formControlName="date"
                                 [attr.disabled]="true">
                             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-                            <mat-datepicker #datepicker startView="multi-year"
+                            <mat-datepicker #datepicker startView="year"
                                 (yearSelected)="chosenYearHandler($event)"
                                 (monthSelected)="chosenMonthHandler($event, datepicker)" disabled="false">
                             </mat-datepicker>
@@ -63,7 +63,7 @@
                         <p *ngIf="originalColumns[i] == 'day'">
                             {{day}}</p>
                         <p *ngIf="originalColumns[i] != 'date'">
-                            {{adjustDataDisplay(j,i)}}</p>
+                            {{adjustDataDisplay(j, i)}}</p>
                     </mat-cell>
                     <mat-footer-cell *matFooterCellDef>
                         <p><b>{{total[i]}}</b></p>

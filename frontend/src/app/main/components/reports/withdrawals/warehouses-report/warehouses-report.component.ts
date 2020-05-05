@@ -172,6 +172,9 @@ export class WarehousesReportComponent implements OnInit {
             if (warehousesAccumulator.isUpdated) {
                 this.total.push(warehousesAccumulator.value);
             }
+            else{
+                this.total.push(0);
+            }
         }
     }
 
