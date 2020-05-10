@@ -54,6 +54,7 @@ export class VehiclesSearchComponent implements OnInit {
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveShownEntities(environment.entities.Vehicle).subscribe(data => {
             this.vehicles = data as [];
+            (this.vehicles as Vehicle[]).sort((a, b) => a.vehicleCode - b.vehicleCode);
             this.displayIsolatedCharacter();
             this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate', 'vehiclePhoneNumber'];
             this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره', 'رقم هاتف المركبه'];
@@ -119,7 +120,8 @@ export class VehiclesSearchComponent implements OnInit {
                         hidden: (vehicle as Vehicle).hidden
                     }
                     this.vehicles.push(customVehicle as never)
-                })
+                });
+                (this.vehicles as CustomVehicle[]).sort((a, b) => a.vehicleCode - b.vehicleCode);
                 this.originalColumns = ['vehicleCode', 'vehiclePlateNumbers', 'vehiclePlateLetters', 'vehicleCard', 'trailerPlateNumbers', 'trailerPlateLetters', 'vehiclePhoneNumber'];
                 this.displayedColumns = ['كود المركبه', 'أرقام لوحة المركبه', 'حروف لوحة المركبه', 'كارت المركبه', 'أرقام لوحة المقطوره', 'حروف لوحة المقطوره', 'رقم هاتف المركبه'];
                 this.cdr.detectChanges();
@@ -134,10 +136,11 @@ export class VehiclesSearchComponent implements OnInit {
                 data.forEach(vehicle => {
                     this.vehicles.push(vehicle as never)
                     this.displayIsolatedCharacter();
-                })
+                });
+                (this.vehicles as Vehicle[]).sort((a, b) => a.vehicleCode - b.vehicleCode);
                 this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate', 'vehiclePhoneNumber'];
-            this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره', 'رقم هاتف المركبه'];
-            this.cdr.detectChanges();
+                this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره', 'رقم هاتف المركبه'];
+                this.cdr.detectChanges();
                 this.dataSource.paginator = this.paginator;
                 this.paginatorLabel.itemsPerPageLabel = "مواد لكل صفحه:"
                 this.paginatorLabel.nextPageLabel = "الصفحة التاليه"
@@ -178,7 +181,8 @@ export class VehiclesSearchComponent implements OnInit {
                 data.forEach(vehicle => {
                     this.vehicles.push(vehicle as never)
                     this.displayIsolatedCharacter();
-                })
+                });
+                (this.vehicles as Vehicle[]).sort((a, b) => a.vehicleCode - b.vehicleCode);
                 this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate', 'vehiclePhoneNumber', 'hidden'];
                 this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره', 'رقم هاتف المركبه', ' '];
                 this.cdr.detectChanges();
@@ -193,7 +197,8 @@ export class VehiclesSearchComponent implements OnInit {
                 data.forEach(vehicle => {
                     this.vehicles.push(vehicle as never)
                     this.displayIsolatedCharacter();
-                })
+                });
+                (this.vehicles as Vehicle[]).sort((a, b) => a.vehicleCode - b.vehicleCode);
                 this.originalColumns = ['vehicleCode', 'vehiclePlate', 'vehicleCard', 'trailerPlate', 'vehiclePhoneNumber'];
                 this.displayedColumns = ['كود المركبه', 'لوحة المركبه', 'كارت المركبه', 'لوحة المقطوره', 'رقم هاتف المركبه'];
                 this.cdr.detectChanges();

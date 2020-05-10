@@ -40,6 +40,17 @@ export class UsersSearchComponent implements OnInit {
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveAllEntities(environment.entities.User).subscribe(data => {
             this.users = data as [];
+            this.users.sort((a, b) => {
+                if (a.role < b.role) {
+                    return 1;
+                }
+                else if (a.role == b.role) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
             this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber', 'role'];
             this.displayedColumns = ['الإسم الأول', 'الإسم الأوسط', 'الإسم الأخير', 'رقم الهاتف', 'الدور'];
             this.dataSource = new MatTableDataSource(this.users);
@@ -66,7 +77,18 @@ export class UsersSearchComponent implements OnInit {
             this.genericService.retrieveAllEntities(environment.entities.User).subscribe(data => {
                 (data as User[]).forEach(user => {
                     this.users.push(user as never)
-                })
+                });
+                this.users.sort((a, b) => {
+                    if (a.role < b.role) {
+                        return 1;
+                    }
+                    else if (a.role == b.role) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
                 this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber', 'role', 'delete'];
                 this.displayedColumns = ['الإسم الأول', 'الإسم الأوسط', 'الإسم الأخير', 'رقم الهاتف', 'الدور', ' '];
                 this.cdr.detectChanges();
@@ -80,7 +102,18 @@ export class UsersSearchComponent implements OnInit {
             this.genericService.retrieveAllEntities(environment.entities.User).subscribe(data => {
                 (data as User[]).forEach(user => {
                     this.users.push(user as never)
-                })
+                });
+                this.users.sort((a, b) => {
+                    if (a.role < b.role) {
+                        return 1;
+                    }
+                    else if (a.role == b.role) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
                 this.originalColumns = ['firstName', 'middleName', 'lastName', 'phoneNumber', 'role'];
                 this.displayedColumns = ['الإسم الأول', 'الإسم الأوسط', 'الإسم الأخير', 'رقم الهاتف', 'الدور'];
                 this.cdr.detectChanges();
@@ -100,8 +133,6 @@ export class UsersSearchComponent implements OnInit {
                 this.genericService.deleteEntity(environment.entities.User, rowID).subscribe(
                     data => {
                         this.snackbar.open(data.message);
-                        console.log(this.storageService.loadUser());
-                        
                         if (deletedUser.id === this.storageService.loadUser().id) {
                             this.storageService.removeUser();
                             this.genericService.checkAdminUserExistence().subscribe(isFound => {

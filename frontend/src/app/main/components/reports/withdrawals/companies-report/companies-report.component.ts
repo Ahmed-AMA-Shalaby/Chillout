@@ -86,6 +86,17 @@ export class CompaniesReportComponent implements OnInit {
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(warehouses => {
             this.warehouses = warehouses;
+            this.warehouses.sort((a, b) => {
+                if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                    return 1;
+                }
+                else if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
             this.companies = Array.from(new Set(this.warehouses.map(warehouse => warehouse.companyName)))
             this.originalColumns = ['company'];
             this.displayedColumns = ['الشركه'];

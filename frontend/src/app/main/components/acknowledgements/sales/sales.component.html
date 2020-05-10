@@ -75,7 +75,7 @@
                             <mat-form-field floatLabel="never" appearance="outline" class="mt-20"
                                 style="width: 100px !important;">
                                 <input matInput
-                                    (input)="modifyData(stations[j + (paginator.pageIndex * paginator.pageSize)], column, $event.target.value)"
+                                    (input)="modifyData(dataSource.filteredData[j + (paginator.pageIndex * paginator.pageSize)], column, $event.target.value)"
                                     placeholder="{{column}}" [value]="adjustSalesDisplay(j + (paginator.pageIndex * paginator.pageSize), i)">
                             </mat-form-field>
                         </div>

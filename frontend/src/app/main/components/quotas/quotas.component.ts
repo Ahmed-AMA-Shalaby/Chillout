@@ -79,6 +79,17 @@ export class QuotasComponent implements OnInit {
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(warehouses => {
             this.warehouses = warehouses;
+            this.warehouses.sort((a, b) => {
+                if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                    return 1;
+                }
+                else if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
             this.originalColumns = ['warehouse'];
             this.displayedColumns = ['الشركه - المستودع'];
             this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
@@ -108,6 +119,17 @@ export class QuotasComponent implements OnInit {
         this.quotas.length = 0;
         this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(warehouses => {
             this.warehouses = warehouses;
+            this.warehouses.sort((a, b) => {
+                if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                    return 1;
+                }
+                else if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
             this.originalColumns = ['warehouse'];
             this.displayedColumns = ['الشركه - المستودع'];
             this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {

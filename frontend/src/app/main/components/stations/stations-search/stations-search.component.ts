@@ -26,6 +26,17 @@ export class StationsSearchComponent implements OnInit {
     ngOnInit() {
         this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
             this.stations = stations;
+            this.stations.sort((a, b) => {
+                if (a.stationName > b.stationName) {
+                    return 1;
+                }
+                else if (a.stationName == b.stationName) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
         this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
@@ -40,11 +51,33 @@ export class StationsSearchComponent implements OnInit {
         if (this.hideFlag) {
             this.genericService.retrieveAllEntities(environment.entities.Station).subscribe(data => {
                 this.stations = data;
+                this.stations.sort((a, b) => {
+                    if (a.stationName > b.stationName) {
+                        return 1;
+                    }
+                    else if (a.stationName == b.stationName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
         else {
             this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(data => {
                 this.stations = data;
+                this.stations.sort((a, b) => {
+                    if (a.stationName > b.stationName) {
+                        return 1;
+                    }
+                    else if (a.stationName == b.stationName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
     }

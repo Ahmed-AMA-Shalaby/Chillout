@@ -47,7 +47,7 @@ export const MY_FORMATS = {
 })
 
 export class TripsCreateComponent implements OnInit {
-    date = new FormControl(moment());
+    date = new FormControl(moment(null));
     dateForm: FormGroup;
     transfer1Form: FormGroup;
     transfer2Form: FormGroup;
@@ -102,10 +102,32 @@ export class TripsCreateComponent implements OnInit {
 
         this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(warehouses => {
             this.warehouses = warehouses;
+            this.warehouses.sort((a, b) => {
+                if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                    return 1;
+                }
+                else if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
 
         this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
             this.stations = stations;
+            this.stations.sort((a, b) => {
+                if (a.stationName > b.stationName) {
+                    return 1;
+                }
+                else if (a.stationName == b.stationName) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
 
         this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
@@ -115,6 +137,17 @@ export class TripsCreateComponent implements OnInit {
                 }
             })
             this.products = products;
+            this.products.sort((a, b) => {
+                if (a.productName > b.productName) {
+                    return 1;
+                }
+                else if (a.productName == b.productName) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
 
         this.genericService.retrieveShownEntities(environment.entities.Driver).subscribe(drivers => {
@@ -134,6 +167,7 @@ export class TripsCreateComponent implements OnInit {
 
         this.genericService.retrieveShownEntities(environment.entities.Vehicle).subscribe(vehicles => {
             this.vehicles = vehicles;
+            (this.vehicles as Vehicle[]).sort((a, b) => a.vehicleCode - b.vehicleCode);
         })
 
         this.genericService.retrieveAllEntities(environment.entities.Distance).subscribe(distances => {
@@ -260,6 +294,17 @@ export class TripsCreateComponent implements OnInit {
                 }
             })
             this.products = products;
+            this.products.sort((a, b) => {
+                if (a.productName > b.productName) {
+                    return 1;
+                }
+                else if (a.productName == b.productName) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
             this.products = this.products.filter(product => {
                 for (let productIndex = 0; productIndex < outboundWarehouse.products.length; productIndex++) {
                     if (outboundWarehouse.products[productIndex].id === product.id) {

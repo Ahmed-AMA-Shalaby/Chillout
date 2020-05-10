@@ -76,7 +76,7 @@
                             <mat-form-field floatLabel="never" appearance="outline" class="mt-20"
                                 style="width: 100px !important; text-align: center;">
                                 <input matInput
-                                    (input)="modifyData(stations[j + (paginator.pageIndex * paginator.pageSize)], column, $event.target.value)"
+                                    (input)="modifyData(dataSource.filteredData[j + (paginator.pageIndex * paginator.pageSize)], column, $event.target.value)"
                                     placeholder="{{column}}" [value]="adjustExistingsDisplay(j + (paginator.pageIndex * paginator.pageSize), i)"
                                     [ngClass]="{'fuse-white': checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column), 'red': !checkTankLimit(stations[j + (paginator.pageIndex * paginator.pageSize)], column)}">
                             </mat-form-field>

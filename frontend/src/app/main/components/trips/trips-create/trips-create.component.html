@@ -26,7 +26,7 @@
                     <mat-form-field appearance="never" class="pr-4">
                         <div class="search mt-12" fxFlex fxLayout="row" fxLayoutAlign="center center">
                             <input matInput [matDatepicker]="datepicker" [formControl]="date" formControlName="date"
-                                [attr.disabled]="true">
+                                [attr.disabled]="true" placeholder="DD/MM/YYYY">
                             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                             <mat-datepicker #datepicker startView="month" disabled="false">
                             </mat-datepicker>
@@ -42,7 +42,7 @@
         <!-- / HEADER -->
 
         <!-- CONTENT CARD -->
-        <div class="content-card" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
+        <div class="content-card" *ngIf="date.value.isValid()" [@animate]="{value:'*',params:{delay:'100ms',y:'-25px'}}">
 
             <mat-horizontal-stepper linear #stepper>
 

@@ -41,6 +41,7 @@ export class DistancesSearchComponent implements OnInit {
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveAllEntities(environment.entities.Distance).subscribe(data => {
             this.distances = data;
+            (this.distances as Distance[]).sort((a, b) => a.distance - b.distance);
             this.originalColumns = ['distance', 'warehouse', 'station'];
             this.displayedColumns = ['المسافه', 'الشركه - المستودع', 'المحطه'];
             this.dataSource = new MatTableDataSource(this.distances);
@@ -72,7 +73,8 @@ export class DistancesSearchComponent implements OnInit {
         this.genericService.retrieveAllEntities(environment.entities.Distance).subscribe(data => {
             data.forEach(distance => {
                 this.distances.push(distance)
-            })
+            });
+            (this.distances as Distance[]).sort((a, b) => a.distance - b.distance);
             this.originalColumns = ['distance', 'warehouse', 'station'];
             this.displayedColumns = ['المسافه', 'الشركه - المستودع', 'المحطه'];
             this.cdr.detectChanges();

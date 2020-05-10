@@ -71,6 +71,17 @@ export class SalesComponent implements OnInit {
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
             this.stations = stations;
+            this.stations.sort((a, b) => {
+                if (a.stationName > b.stationName) {
+                    return 1;
+                }
+                else if (a.stationName == b.stationName) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
             this.originalColumns = ['station'];
             this.displayedColumns = ['Station'];
             this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
@@ -162,7 +173,7 @@ export class SalesComponent implements OnInit {
 
     adjustSalesDisplay(rowIndex: number, columnIndex: number) {
         for (let salesIndex = 0; salesIndex < this.sales.length; salesIndex++) {
-            if (this.sales[salesIndex].station.stationName === this.stations[rowIndex].stationName && this.sales[salesIndex].product.productName === this.displayedColumns[columnIndex]) {
+            if (this.sales[salesIndex].station.stationName === (this.dataSource.filteredData[rowIndex] as Station).stationName && this.sales[salesIndex].product.productName === this.displayedColumns[columnIndex]) {
                 return this.sales[salesIndex].saleAmount;
             }
         }
@@ -170,8 +181,8 @@ export class SalesComponent implements OnInit {
     }
 
     checkProductInStation(rowIndex: number, columnIndex: number) {
-        for (let tankIndex = 0; tankIndex < (this.stations[rowIndex] as Station).tanks.length; tankIndex++) {
-            if ((this.stations[rowIndex] as Station).tanks[tankIndex].product.productName === this.displayedColumns[columnIndex]) {
+        for (let tankIndex = 0; tankIndex < (this.dataSource.filteredData[rowIndex] as Station).tanks.length; tankIndex++) {
+            if ((this.dataSource.filteredData[rowIndex] as Station).tanks[tankIndex].product.productName === this.displayedColumns[columnIndex]) {
                 return true;
             }
         }

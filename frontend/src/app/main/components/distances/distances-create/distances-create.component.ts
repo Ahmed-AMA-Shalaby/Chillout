@@ -31,9 +31,31 @@ export class DistancesCreateComponent implements OnInit {
         });
         this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(warehouses => {
             this.warehouses = warehouses;
+            this.warehouses.sort((a, b) => {
+                if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                    return 1;
+                }
+                else if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
         this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
             this.stations = stations;
+            this.stations.sort((a, b) => {
+                if (a.stationName > b.stationName) {
+                    return 1;
+                }
+                else if (a.stationName == b.stationName) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
     }
 

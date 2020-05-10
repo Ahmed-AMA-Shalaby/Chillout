@@ -26,6 +26,17 @@ export class SectorsSearchComponent implements OnInit {
     ngOnInit() {
         this.genericService.retrieveShownEntities(environment.entities.Sector).subscribe(data => {
             this.sectors = data;
+            this.sectors.sort((a, b) => {
+                if (a.sectorName > b.sectorName) {
+                    return 1;
+                }
+                else if (a.sectorName == b.sectorName) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
         this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
@@ -40,6 +51,17 @@ export class SectorsSearchComponent implements OnInit {
         this.genericService.retrieveShownEntities(environment.entities.Sector).subscribe(
             data => {
                 this.sectors = data;
+                this.sectors.sort((a, b) => {
+                    if (a.sectorName > b.sectorName) {
+                        return 1;
+                    }
+                    else if (a.sectorName == b.sectorName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             }
         )
     }
@@ -50,11 +72,33 @@ export class SectorsSearchComponent implements OnInit {
         if (this.hideFlag) {
             this.genericService.retrieveAllEntities(environment.entities.Sector).subscribe(data => {
                 this.sectors = data;
+                this.sectors.sort((a, b) => {
+                    if (a.sectorName > b.sectorName) {
+                        return 1;
+                    }
+                    else if (a.sectorName == b.sectorName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
         else {
             this.genericService.retrieveShownEntities(environment.entities.Sector).subscribe(data => {
                 this.sectors = data;
+                this.sectors.sort((a, b) => {
+                    if (a.sectorName > b.sectorName) {
+                        return 1;
+                    }
+                    else if (a.sectorName == b.sectorName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
     }

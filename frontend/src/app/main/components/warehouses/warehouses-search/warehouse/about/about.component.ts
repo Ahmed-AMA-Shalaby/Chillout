@@ -53,6 +53,17 @@ export class AboutComponent implements OnInit {
         else {
             this.genericService.retrieveShownEntities(environment.entities.Sector).subscribe(sectors => {
                 this.sectors = sectors;
+                this.sectors.sort((a, b) => {
+                    if (a.sectorName > b.sectorName) {
+                        return 1;
+                    }
+                    else if (a.sectorName == b.sectorName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
             this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
                 (products as Product[]).forEach((product, index) => {
@@ -68,6 +79,17 @@ export class AboutComponent implements OnInit {
                     })
                 })
                 this.products = products;
+                this.products.sort((a, b) => {
+                    if (a.productName > b.productName) {
+                        return 1;
+                    }
+                    else if (a.productName == b.productName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
         this.editFlag = !this.editFlag;
@@ -89,6 +111,17 @@ export class AboutComponent implements OnInit {
                     })
                 })
                 this.products = products;
+                this.products.sort((a, b) => {
+                    if (a.productName > b.productName) {
+                        return 1;
+                    }
+                    else if (a.productName == b.productName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
         this.addFlag = !this.addFlag;

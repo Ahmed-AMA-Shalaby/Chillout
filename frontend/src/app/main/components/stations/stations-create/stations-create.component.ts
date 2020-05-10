@@ -34,9 +34,31 @@ export class StationsCreateComponent implements OnInit {
         });
         this.genericService.retrieveShownEntities(environment.entities.Agent).subscribe(agents => {
             this.agents = agents;
+            this.agents.sort((a, b) => {
+                if (a.agentName > b.agentName) {
+                    return 1;
+                }
+                else if (a.agentName == b.agentName) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
         this.genericService.retrieveShownEntities(environment.entities.Sector).subscribe(sectors => {
             this.sectors = sectors;
+            this.sectors.sort((a, b) => {
+                if (a.sectorName > b.sectorName) {
+                    return 1;
+                }
+                else if (a.sectorName == b.sectorName) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
     }
 

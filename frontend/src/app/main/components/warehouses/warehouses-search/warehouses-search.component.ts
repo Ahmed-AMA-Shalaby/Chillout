@@ -21,11 +21,22 @@ export class WarehousesSearchComponent implements OnInit {
     constructor(
         private genericService: GenericService,
         private storageService: AppStorageService
-        ) { }
+    ) { }
 
     ngOnInit() {
         this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(data => {
             this.warehouses = data;
+            this.warehouses.sort((a, b) => {
+                if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                    return 1;
+                }
+                else if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
         this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
@@ -40,11 +51,33 @@ export class WarehousesSearchComponent implements OnInit {
         if (this.hideFlag) {
             this.genericService.retrieveAllEntities(environment.entities.Warehouse).subscribe(data => {
                 this.warehouses = data;
+                this.warehouses.sort((a, b) => {
+                    if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                        return 1;
+                    }
+                    else if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
         else {
             this.genericService.retrieveShownEntities(environment.entities.Warehouse).subscribe(data => {
                 this.warehouses = data;
+                this.warehouses.sort((a, b) => {
+                    if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                        return 1;
+                    }
+                    else if ([a.companyName, a.warehouseName].join(' - ') > [b.companyName, b.warehouseName].join(' - ')) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
     }

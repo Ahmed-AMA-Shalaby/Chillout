@@ -29,6 +29,17 @@ export class UsersCreateComponent implements OnInit {
             role: [null, Validators.required]
         });
         this.roles = Object.values(environment.roles)
+        this.roles.sort((a, b) => {
+            if (a < b) {
+                return 1;
+            }
+            else if (a == b) {
+                return 0;
+            }
+            else {
+                return -1
+            }
+        });
     }
 
     createUser() {

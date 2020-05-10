@@ -27,6 +27,17 @@ export class AgentsSearchComponent implements OnInit {
         this.genericService.retrieveShownEntities(environment.entities.Agent).subscribe(
             data => {
                 this.agents = data;
+                this.agents.sort((a, b) => {
+                    if (a.agentName > b.agentName) {
+                        return 1;
+                    }
+                    else if (a.agentName == b.agentName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             }
         )
         this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
@@ -42,6 +53,17 @@ export class AgentsSearchComponent implements OnInit {
         this.genericService.retrieveShownEntities(environment.entities.Agent).subscribe(
             data => {
                 this.agents = data;
+                this.agents.sort((a, b) => {
+                    if (a.agentName > b.agentName) {
+                        return 1;
+                    }
+                    else if (a.agentName == b.agentName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             }
         )
     }
@@ -52,11 +74,33 @@ export class AgentsSearchComponent implements OnInit {
         if (this.hideFlag) {
             this.genericService.retrieveAllEntities(environment.entities.Agent).subscribe(data => {
                 this.agents = data;
+                this.agents.sort((a, b) => {
+                    if (a.agentName > b.agentName) {
+                        return 1;
+                    }
+                    else if (a.agentName == b.agentName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
         else {
             this.genericService.retrieveShownEntities(environment.entities.Agent).subscribe(data => {
                 this.agents = data;
+                this.agents.sort((a, b) => {
+                    if (a.agentName > b.agentName) {
+                        return 1;
+                    }
+                    else if (a.agentName == b.agentName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
     }

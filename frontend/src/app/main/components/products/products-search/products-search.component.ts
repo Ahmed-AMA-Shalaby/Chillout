@@ -26,6 +26,17 @@ export class ProductsSearchComponent implements OnInit {
     ngOnInit() {
         this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(data => {
             this.products = data;
+            this.products.sort((a, b) => {
+                if (a.productName > b.productName) {
+                    return 1;
+                }
+                else if (a.productName == b.productName) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
         this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
@@ -40,6 +51,17 @@ export class ProductsSearchComponent implements OnInit {
         this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(
             data => {
                 this.products = data;
+                this.products.sort((a, b) => {
+                    if (a.productName > b.productName) {
+                        return 1;
+                    }
+                    else if (a.productName == b.productName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             }
         )
     }
@@ -50,11 +72,33 @@ export class ProductsSearchComponent implements OnInit {
         if (this.hideFlag) {
             this.genericService.retrieveAllEntities(environment.entities.Product).subscribe(data => {
                 this.products = data;
+                this.products.sort((a, b) => {
+                    if (a.productName > b.productName) {
+                        return 1;
+                    }
+                    else if (a.productName == b.productName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
         else {
             this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(data => {
                 this.products = data;
+                this.products.sort((a, b) => {
+                    if (a.productName > b.productName) {
+                        return 1;
+                    }
+                    else if (a.productName == b.productName) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
     }

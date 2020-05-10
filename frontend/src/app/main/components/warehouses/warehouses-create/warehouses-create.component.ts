@@ -29,6 +29,17 @@ export class WarehousesCreateComponent implements OnInit {
         });
         this.genericService.retrieveShownEntities(environment.entities.Sector).subscribe(sectors => {
             this.sectors = sectors;
+            this.sectors.sort((a, b) => {
+                if (a.sectorName > b.sectorName) {
+                    return 1;
+                }
+                else if (a.sectorName == b.sectorName) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
     }
 

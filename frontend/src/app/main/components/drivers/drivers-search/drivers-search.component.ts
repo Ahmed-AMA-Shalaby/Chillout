@@ -26,6 +26,17 @@ export class DriversSearchComponent implements OnInit {
     ngOnInit() {
         this.genericService.retrieveShownEntities(environment.entities.Driver).subscribe(data => {
             this.drivers = data;
+            this.drivers.sort((a, b) => {
+                if ([a.firstName, a.middleName, a.lastName].join(' ') > [b.firstName, b.middleName, b.lastName].join(' ')) {
+                    return 1;
+                }
+                else if ([a.firstName, a.middleName, a.lastName].join(' ') == [b.firstName, b.middleName, b.lastName].join(' ')) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
         })
         this.storageService.loadUser().role === environment.roles.Administrator ? this.administratorFlag = true : this.administratorFlag = false;
     }
@@ -40,6 +51,17 @@ export class DriversSearchComponent implements OnInit {
         this.genericService.retrieveShownEntities(environment.entities.Driver).subscribe(
             data => {
                 this.drivers = data;
+                this.drivers.sort((a, b) => {
+                    if ([a.firstName, a.middleName, a.lastName].join(' ') > [b.firstName, b.middleName, b.lastName].join(' ')) {
+                        return 1;
+                    }
+                    else if ([a.firstName, a.middleName, a.lastName].join(' ') == [b.firstName, b.middleName, b.lastName].join(' ')) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             }
         )
     }
@@ -50,11 +72,33 @@ export class DriversSearchComponent implements OnInit {
         if (this.hideFlag) {
             this.genericService.retrieveAllEntities(environment.entities.Driver).subscribe(data => {
                 this.drivers = data;
+                this.drivers.sort((a, b) => {
+                    if ([a.firstName, a.middleName, a.lastName].join(' ') > [b.firstName, b.middleName, b.lastName].join(' ')) {
+                        return 1;
+                    }
+                    else if ([a.firstName, a.middleName, a.lastName].join(' ') == [b.firstName, b.middleName, b.lastName].join(' ')) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
         else {
             this.genericService.retrieveShownEntities(environment.entities.Driver).subscribe(data => {
                 this.drivers = data;
+                this.drivers.sort((a, b) => {
+                    if ([a.firstName, a.middleName, a.lastName].join(' ') > [b.firstName, b.middleName, b.lastName].join(' ')) {
+                        return 1;
+                    }
+                    else if ([a.firstName, a.middleName, a.lastName].join(' ') == [b.firstName, b.middleName, b.lastName].join(' ')) {
+                        return 0;
+                    }
+                    else {
+                        return -1
+                    }
+                });
             })
         }
     }

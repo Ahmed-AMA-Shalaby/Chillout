@@ -79,6 +79,17 @@ export class NeedsReportComponent implements OnInit {
         this.dataSource = new MatTableDataSource([]);
         this.genericService.retrieveShownEntities(environment.entities.Station).subscribe(stations => {
             this.stations = stations;
+            this.stations.sort((a, b) => {
+                if (a.stationName > b.stationName) {
+                    return 1;
+                }
+                else if (a.stationName == b.stationName) {
+                    return 0;
+                }
+                else {
+                    return -1
+                }
+            });
             this.originalColumns = ['station'];
             this.displayedColumns = ['Station'];
             this.genericService.retrieveShownEntities(environment.entities.Product).subscribe(products => {
