@@ -158,7 +158,7 @@ export const administratorNavigation: FuseNavigation[] = [
     },
     {
         id: 'users',
-        title: 'المستخدمين',
+        title: 'المستخدمون',
         icon: 'person_pin',
         type: 'collapsable',
         children: [
@@ -416,7 +416,7 @@ export const operatorNavigation: FuseNavigation[] = [
     },
     {
         id: 'users',
-        title: 'المستخدمين',
+        title: 'المستخدمون',
         icon: 'person_pin',
         type: 'collapsable',
         children: [
